@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI模型价格对比器 2026 — API定价/订阅价格一表看懂 | 平野AI工具站</title>
+<meta name="description" content="实时对比GPT-5.5、Claude Opus 4.7、Gemini 3.5 Flash、DeepSeek V4等主流AI模型的API定价和订阅价格，帮你选最划算的AI工具。">
+<meta name="keywords" content="AI模型价格,GPT-4o价格,Claude价格,DeepSeek价格,API定价对比,AI工具对比">
+<link rel="canonical" href="https://pingyeai.com/">
+<meta property="og:title" content="AI模型价格对比器 2026">
+<meta property="og:description" content="一表看懂所有主流AI模型的定价，选工具不再纠结。">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+/* ===== Reset & Base ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;background:#f7f8fa;color:#1a1a2e;line-height:1.6;min-height:100vh}
+
+/* ===== Layout ===== */
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* ===== Hero ===== */
+.hero{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;padding:60px 0 48px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,rgba(255,255,255,0.03) 0%,transparent 50%);pointer-events:none}
+.hero h1{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:700;margin-bottom:10px;letter-spacing:-0.02em}
+.hero h1 span{background:linear-gradient(90deg,#e94560,#ff6b6b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:clamp(0.9rem,2vw,1.1rem);color:rgba(255,255,255,0.7);max-width:600px;margin:0 auto 20px}
+.hero .badge{display:inline-flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.hero .badge span{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:4px 14px;font-size:0.8rem;color:rgba(255,255,255,0.7)}
+
+/* ===== Update Banner ===== */
+.update-banner{background:#fff3cd;border-bottom:1px solid #ffeaa7;padding:10px 0;text-align:center;font-size:0.85rem;color:#856404}
+.update-banner strong{margin-right:4px}
+
+/* ===== Tab Nav ===== */
+.tab-nav{display:flex;gap:0;background:#fff;border-radius:12px;padding:4px;margin:32px auto 0;max-width:400px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.tab-nav button{flex:1;padding:10px 16px;border:none;background:transparent;border-radius:8px;font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:#666}
+.tab-nav button.active{background:#1a1a2e;color:#fff}
+.tab-nav button:hover:not(.active){background:#f0f0f5}
+
+/* ===== Toolbar ===== */
+.toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:24px 0 16px}
+.toolbar .search-wrap{flex:1;min-width:200px;position:relative}
+.toolbar .search-wrap input{width:100%;padding:10px 14px 10px 38px;border:1px solid #e0e0e8;border-radius:10px;font-size:0.9rem;outline:none;transition:border 0.2s;background:#fff}
+.toolbar .search-wrap input:focus{border-color:#0f3460;box-shadow:0 0 0 3px rgba(15,52,96,0.1)}
+.toolbar .search-wrap .icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#999;font-size:1rem}
+.toolbar .filters{display:flex;gap:8px;flex-wrap:wrap}
+.toolbar .filters select{padding:10px 32px 10px 14px;border:1px solid #e0e0e8;border-radius:10px;font-size:0.85rem;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E") no-repeat right 10px center;appearance:none;cursor:pointer;outline:none}
+.toolbar .filters select:focus{border-color:#0f3460}
+
+/* ===== Table ===== */
+.table-wrap{background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.05);overflow:hidden;margin-bottom:20px}
+.table-wrap table{width:100%;border-collapse:collapse;font-size:0.9rem}
+.table-wrap thead{background:#f7f8fa}
+.table-wrap thead th{padding:14px 12px;text-align:left;font-weight:600;font-size:0.8rem;color:#666;text-transform:uppercase;letter-spacing:0.03em;border-bottom:2px solid #e8e8f0;white-space:nowrap;position:sticky;top:0;background:#f7f8fa;z-index:2}
+.table-wrap thead th.sortable{cursor:pointer;user-select:none}
+.table-wrap thead th.sortable:hover{color:#1a1a2e}
+.table-wrap thead th .sort-icon{display:inline-block;margin-left:4px;opacity:0.4}
+.table-wrap tbody tr{border-bottom:1px solid #f0f0f5;transition:background 0.15s}
+.table-wrap tbody tr:hover{background:#f8f9ff}
+.table-wrap tbody tr.hidden{display:none}
+.table-wrap tbody td{padding:12px;vertical-align:middle;line-height:1.4}
+.table-wrap tbody td:first-child{font-weight:600}
+.table-wrap tbody td .tag{display:inline-block;font-size:0.7rem;padding:2px 8px;border-radius:10px;font-weight:500;margin-left:6px}
+.tag-recent{background:#e3f2fd;color:#1565c0}
+.tag-popular{background:#fff3e0;color:#e65100}
+.tag-best{background:#e8f5e9;color:#2e7d32}
+.tag-expensive{background:#fce4ec;color:#c62828}
+.price-input{color:#2e7d32;font-weight:600}
+.price-output{color:#c62828;font-weight:600}
+.price-sub{color:#1a1a2e;font-weight:600}
+.price-free{color:#2e7d32;font-weight:700}
+.free-badge{display:inline-block;background:#e8f5e9;color:#2e7d32;font-size:0.75rem;padding:2px 10px;border-radius:10px;font-weight:600}
+.provider-logo{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;font-size:0.85rem;font-weight:700;color:#fff;margin-right:8px;flex-shrink:0}
+
+/* ===== Charts ===== */
+.chart-section{margin-bottom:24px}
+.chart-section h3{font-size:1rem;font-weight:600;margin-bottom:16px;color:#1a1a2e}
+.chart-bar{margin-bottom:10px}
+.chart-bar .label-row{display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:4px;color:#555}
+.chart-bar .bar-track{height:20px;background:#f0f0f5;border-radius:10px;overflow:hidden;position:relative}
+.chart-bar .bar-fill{height:100%;border-radius:10px;transition:width 0.6s ease;display:flex;align-items:center;padding-left:8px;font-size:0.7rem;color:#fff;font-weight:600;white-space:nowrap;min-width:fit-content}
+
+/* ===== CTA Cards ===== */
+.cta-section{margin:28px 0 40px}
+.cta-section h3{font-size:1.1rem;font-weight:600;margin-bottom:16px;text-align:center;color:#1a1a2e}
+.cta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.cta-card{background:#fff;border-radius:14px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.05);border:1px solid #eee;transition:all 0.2s}
+.cta-card:hover{box-shadow:0 6px 20px rgba(0,0,0,0.08);transform:translateY(-2px)}
+.cta-card h4{font-size:0.95rem;margin-bottom:6px}
+.cta-card p{font-size:0.82rem;color:#666;margin-bottom:12px;line-height:1.5}
+.cta-card .btn{display:inline-block;padding:8px 20px;border-radius:8px;font-size:0.85rem;font-weight:600;text-decoration:none;transition:all 0.2s}
+.btn-primary{background:#1a1a2e;color:#fff}
+.btn-primary:hover{background:#0f3460}
+.btn-outline{background:transparent;color:#1a1a2e;border:1px solid #ddd}
+.btn-outline:hover{background:#f5f5f5}
+
+/* ===== Disclaimer ===== */
+.disclaimer{background:#fff;border-radius:12px;padding:16px 20px;margin:20px 0;font-size:0.8rem;color:#888;border:1px solid #eee;line-height:1.6}
+
+/* ===== Footer ===== */
+.footer{text-align:center;padding:30px 0;font-size:0.8rem;color:#999;border-top:1px solid #eee;margin-top:20px}
+.footer a{color:#666;text-decoration:none}
+.footer a:hover{color:#1a1a2e}
+
+/* ===== Affiliate Notice ===== */
+.aff-note{display:inline-block;font-size:0.7rem;color:#aaa;margin-top:4px}
+
+/* ===== Mobile ===== */
+@media(max-width:768px){
+  .container{padding:0 14px}
+  .hero{padding:40px 0 32px}
+  .tab-nav{max-width:100%;margin-top:20px}
+  .toolbar .search-wrap{min-width:100%}
+  .toolbar .filters{width:100%}
+  .toolbar .filters select{flex:1}
+  .table-wrap{overflow-x:auto;border-radius:12px}
+  .table-wrap table{font-size:0.78rem;min-width:700px}
+  .table-wrap thead th,.table-wrap tbody td{padding:8px 6px}
+  .cta-grid{grid-template-columns:1fr}
+  .hero h1{font-size:1.3rem}
+}
+
+@media(max-width:480px){
+  .table-wrap table{min-width:620px;font-size:0.72rem}
+  .table-wrap thead th,.table-wrap tbody td{padding:6px 4px}
+  .hero{padding:30px 0 24px}
+  .hero h1{font-size:1.15rem}
+}
+
+/* ===== Print ===== */
+@media print{
+  .hero{background:#1a1a2e!important;-webkit-text-fill-color:#fff!important;padding:20px 0}
+  .cta-section{display:none}
+  .tab-nav{display:none}
+  .toolbar{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ====== Hero ====== -->
+<header class="hero">
+  <div class="container">
+    <h1>🤖 <span>AI模型价格</span>对比器 2026</h1>
+    <p>一表看懂GPT、Claude、Gemini、DeepSeek等主流AI模型的定价，选工具不再纠结。</p>
+    <div class="badge">
+      <span>📊 17款模型</span>
+      <span>💰 API定价</span>
+      <span>📅 订阅价格</span>
+      <span>🆕 2026年5月更新</span>
+    </div>
+  </div>
+</header>
+
+<!-- ====== Update Banner ====== -->
+<div class="update-banner">
+  <div class="container">
+    <strong>📌 最后更新：</strong>2026年5月24日 · 价格来自各厂商官网及OpenRouter，如有变动以官方为准
+  </div>
+</div>
+
+<main class="container">
+
+<!-- ====== Tab ====== -->
+<nav class="tab-nav" role="tablist">
+  <button class="active" data-tab="api" role="tab">💰 API 定价</button>
+  <button data-tab="sub" role="tab">📅 订阅价格</button>
+</nav>
+
+<!-- ====== Toolbar ====== -->
+<div class="toolbar">
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="搜索模型名称..." autocomplete="off">
+  </div>
+  <div class="filters">
+    <select id="providerFilter">
+      <option value="all">全部厂商</option>
+      <option value="openai">OpenAI</option>
+      <option value="anthropic">Anthropic</option>
+      <option value="google">Google</option>
+      <option value="deepseek">DeepSeek</option>
+      <option value="others">其他</option>
+    </select>
+    <select id="sortSelect">
+      <option value="name">按名称</option>
+      <option value="input">按输入价格 ↑</option>
+      <option value="input-desc">按输入价格 ↓</option>
+      <option value="output">按输出价格 ↑</option>
+      <option value="output-desc">按输出价格 ↓</option>
+    </select>
+  </div>
+</div>
+
+<!-- ====== API Pricing Table ====== -->
+<section class="tab-content active" id="tab-api">
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>模型</th>
+          <th class="sortable" data-sort="input">输入 ($/1M tokens) <span class="sort-icon">↕</span></th>
+          <th class="sortable" data-sort="output">输出 ($/1M tokens) <span class="sort-icon">↕</span></th>
+          <th>上下文</th>
+          <th>特点</th>
+        </tr>
+      </thead>
+      <tbody id="apiTableBody"></tbody>
+    </table>
+  </div>
+
+  <!-- ====== Chart: 输入价格对比 ====== -->
+  <div class="chart-section" id="apiChart">
+    <h3>📊 输入价格对比（越低越划算）</h3>
+    <div id="apiChartBars"></div>
+  </div>
+</section>
+
+<!-- ====== Subscription Pricing Table ====== -->
+<section class="tab-content" id="tab-sub" style="display:none">
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>产品</th>
+          <th>月费</th>
+          <th>核心功能</th>
+          <th>限制</th>
+          <th>推荐人群</th>
+        </tr>
+      </thead>
+      <tbody id="subTableBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ====== CTA ====== -->
+<section class="cta-section">
+  <h3>🚀 选好了？直达官网注册</h3>
+  <div class="cta-grid" id="ctaGrid"></div>
+  <p class="aff-note" style="text-align:center;margin-top:12px;">* 部分链接为联盟链接，不影响你的购买价格</p>
+</section>
+
+<!-- ====== 提示 ====== -->
+<div class="disclaimer">
+  <strong>💡 使用提示：</strong>
+  选模型不能只看价格。便宜模型（如GPT-4o-mini、Gemini Flash）适合简单任务、高频调用；贵模型（如Claude Opus、GPT-4o）适合复杂推理、代码生成。建议先用便宜的跑通流程，再到关键环节上强模型。
+  <br><br>
+  <strong>📅 更新说明：</strong>
+  本文数据来自各厂商公开定价页面，手动整理。价格可能随时调整，建议购买前到官网确认最新价格。
+</div>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p><a href="https://pingyeai.com">pingyeai.com</a> · 平野AI工具站 · 持续更新中</p>
+    <p style="margin-top:4px;">发现价格有变动？<a href="mailto:hello@pingyeai.com">告诉我</a></p>
+  </div>
+</footer>
+
+<script>
+// ====== Data ======
+const apiModels = [
+  // ===== OpenAI =====
+  {id:'gpt-5.5-pro',name:'GPT-5.5 Pro',provider:'openai',input:30.00,output:180.00,context:'270K',tag:'expensive',desc:'旗舰深度推理模型',color:'#10a37f'},
+  {id:'gpt-5.5',name:'GPT-5.5',provider:'openai',input:5.00,output:30.00,context:'270K',tag:'popular',desc:'最新旗舰，编程/专业工作',color:'#10a37f'},
+  {id:'gpt-5.4',name:'GPT-5.4',provider:'openai',input:2.50,output:15.00,context:'270K',tag:'',desc:'次旗舰，性价比之选',color:'#10a37f'},
+  {id:'gpt-5.4-mini',name:'GPT-5.4 Mini',provider:'openai',input:0.75,output:4.50,context:'270K',tag:'best',desc:'最强迷你模型，编程/Agent',color:'#10a37f'},
+  {id:'gpt-4.1',name:'GPT-4.1',provider:'openai',input:2.00,output:8.00,context:'1M',tag:'',desc:'超长上下文(1M)，文档分析',color:'#10a37f'},
+
+  // ===== Anthropic =====
+  {id:'claude-opus-4.7',name:'Claude Opus 4.7',provider:'anthropic',input:5.00,output:25.00,context:'200K',tag:'expensive',desc:'最强Claude，深度研究/编程',color:'#d4a574'},
+  {id:'claude-sonnet-4.6',name:'Claude Sonnet 4.6',provider:'anthropic',input:3.00,output:15.00,context:'200K',tag:'popular',desc:'主力模型，编程/长文顶尖',color:'#d4a574'},
+  {id:'claude-haiku-4.5',name:'Claude Haiku 4.5',provider:'anthropic',input:1.00,output:5.00,context:'200K',tag:'best',desc:'快速便宜，高频调用首选',color:'#d4a574'},
+
+  // ===== Google =====
+  {id:'gemini-3.5-flash',name:'Gemini 3.5 Flash',provider:'google',input:2.00,output:9.00,context:'1M',tag:'recent',desc:'最新Flash，速度快价格优',color:'#4285f4'},
+  {id:'gemini-3.1-pro',name:'Gemini 3.1 Pro',provider:'google',input:2.00,output:12.00,context:'2M',tag:'',desc:'超长上下文(2M)，多模态',color:'#4285f4'},
+  {id:'gemini-3.1-flash-lite',name:'Gemini 3.1 Flash Lite',provider:'google',input:0.30,output:2.00,context:'1M',tag:'best',desc:'最便宜之一，轻量任务',color:'#4285f4'},
+
+  // ===== DeepSeek =====
+  {id:'deepseek-v4-flash',name:'DeepSeek V4 Flash',provider:'deepseek',input:0.14,output:0.28,context:'1M',tag:'best',desc:'极致性价比，国产之光',color:'#4f46e5'},
+  {id:'deepseek-v4-pro',name:'DeepSeek V4 Pro',provider:'deepseek',input:1.74,output:3.48,context:'1M',tag:'recent',desc:'旗舰模型，推理能力强',color:'#4f46e5'},
+
+  // ===== 其他 =====
+  {id:'grok-4.20',name:'Grok 4.20',provider:'others',input:1.00,output:3.00,context:'128K',tag:'',desc:'xAI旗舰，实时信息',color:'#1da1f2'},
+  {id:'qwen-3.7-max',name:'Qwen 3.7 Max',provider:'others',input:3.00,output:8.00,context:'128K',tag:'',desc:'阿里通义千问最新旗舰',color:'#ff6a00'},
+  {id:'mistral-large',name:'Mistral Large',provider:'others',input:2.00,output:6.00,context:'128K',tag:'',desc:'Mistral AI旗舰模型',color:'#f97316'},
+];
+
+const subPlans = [
+  {name:'ChatGPT Plus',price:20,provider:'openai',features:'GPT-5系列无限制、DALL·E、文件上传、网页浏览',limits:'消息速率限制',for:'日常使用的重度用户'},
+  {name:'ChatGPT Pro',price:200,provider:'openai',features:'无限GPT-5.5/5.5 Pro、高级语音、优先访问',limits:'无',for:'专业人士，高频深度使用'},
+  {name:'Claude Pro',price:20,provider:'anthropic',features:'Opus/Sonnet/Haiku全系列、长文处理',limits:'额度限制',for:'编程和长文写作用户'},
+  {name:'Claude Team',price:30,provider:'anthropic',features:'Pro全部功能+更高额度、管理控制台',limits:'按席位',for:'小团队协作'},
+  {name:'Gemini Advanced',price:19.99,provider:'google',features:'Gemini 3.5 Flash/3.1 Pro、2TB云盘',limits:'使用量限制',for:'Google生态用户'},
+  {name:'DeepSeek Chat',price:0,provider:'deepseek',features:'V4 Flash免费使用、联网搜索',limits:'高峰期可能限流',for:'预算有限，日常使用'},
+  {name:'GitHub Copilot',price:10,provider:'others',features:'集成编辑器、无限补全',limits:'需GitHub账号',for:'开发者编程辅助'},
+  {name:'Cursor Pro',price:20,provider:'others',features:'无限补全、Claude/GPT全系列集成',limits:'高级模型用量限制',for:'AI编程重度用户'},
+];
+
+const affiliateLinks = [
+  {name:'ChatGPT',url:'https://chat.openai.com',desc:'体验GPT-5.5和GPT-5系列',color:'#10a37f'},
+  {name:'Claude',url:'https://claude.ai',desc:'Claude Opus 4.7 / Sonnet 4.6',color:'#d4a574'},
+  {name:'DeepSeek',url:'https://chat.deepseek.com',desc:'V4 Flash免费畅用，国产最强',color:'#4f46e5'},
+  {name:'Cursor',url:'https://cursor.sh',desc:'AI编程神器，集成Claude/GPT',color:'#6c5ce7'},
+];
+
+// ====== Providers config ======
+const providerLabels = {
+  openai:'OpenAI',anthropic:'Anthropic',google:'Google',deepseek:'DeepSeek',others:'其他'
+};
+
+// ====== Render API Table ======
+function renderApiTable(data){
+  const tbody=document.getElementById('apiTableBody');
+  tbody.innerHTML=data.map(m=>{
+    const tags={recent:'tag-recent',popular:'tag-popular',best:'tag-best',expensive:'tag-expensive'};
+    const tagClass=tags[m.tag]||'';
+    return `<tr data-provider="${m.provider}" data-input="${m.input}" data-output="${m.output}" data-name="${m.name}">
+      <td>
+        <span class="provider-logo" style="background:${m.color}">${m.provider==='openai'?'O':m.provider==='anthropic'?'C':m.provider==='google'?'G':m.provider==='deepseek'?'D':'?'}</span>
+        ${m.name}${m.tag ? ` <span class="tag ${tagClass}">${({recent:'🆕新',popular:'🔥热门',best:'⭐推荐',expensive:'💎旗舰'})[m.tag]||m.tag}</span>` : ''}
+      </td>
+      <td class="price-input">$${m.input.toFixed(2)}</td>
+      <td class="price-output">$${m.output.toFixed(2)}</td>
+      <td>${m.context}</td>
+      <td style="font-size:0.82rem;color:#555;max-width:180px">${m.desc}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ====== Render Sub Table ======
+function renderSubTable(){
+  const tbody=document.getElementById('subTableBody');
+  tbody.innerHTML=subPlans.map(p=>{
+    const priceDisplay=p.price===0?'<span class="free-badge">免费</span>':`<span class="price-sub">$${p.price}<span style="font-size:0.7rem;color:#999">/月</span></span>`;
+    return `<tr>
+      <td style="font-weight:600">${p.name}</td>
+      <td>${priceDisplay}</td>
+      <td style="font-size:0.82rem;color:#555;max-width:280px">${p.features}</td>
+      <td style="font-size:0.8rem;color:#888">${p.limits}</td>
+      <td style="font-size:0.82rem;color:#555">${p.for}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ====== Render Chart ======
+function renderApiChart(data){
+  const container=document.getElementById('apiChartBars');
+  const maxInput=Math.max(...data.map(m=>m.input));
+  const sorted=[...data].sort((a,b)=>a.input-b.input);
+  container.innerHTML=sorted.map(m=>{
+    const pct=Math.max((m.input/maxInput)*100,3);
+    return `<div class="chart-bar">
+      <div class="label-row">
+        <span>${m.name}</span>
+        <span style="font-weight:600">$${m.input.toFixed(2)}</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${pct}%;background:${m.color};opacity:${0.5+(1-m.input/maxInput)*0.5}">$${m.input.toFixed(2)}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ====== Render CTA ======
+function renderCTA(){
+  const grid=document.getElementById('ctaGrid');
+  grid.innerHTML=affiliateLinks.map(a=>`
+    <div class="cta-card">
+      <h4>${a.name}</h4>
+      <p>${a.desc}</p>
+      <a href="${a.url}" class="btn btn-primary" target="_blank" rel="noopener sponsored">前往官网 →</a>
+    </div>
+  `).join('');
+}
+
+// ====== Filter & Sort ======
+function getFilteredData(){
+  const provider=document.getElementById('providerFilter').value;
+  const query=document.getElementById('searchInput').value.toLowerCase();
+  return apiModels.filter(m=>{
+    if(provider!=='all'&&m.provider!==provider)return false;
+    if(query&&!m.name.toLowerCase().includes(query)&&!m.desc.toLowerCase().includes(query))return false;
+    return true;
+  });
+}
+
+function sortData(data,sortKey){
+  const sorted=[...data];
+  switch(sortKey){
+    case 'input':sorted.sort((a,b)=>a.input-b.input);break;
+    case 'input-desc':sorted.sort((a,b)=>b.input-a.input);break;
+    case 'output':sorted.sort((a,b)=>a.output-b.output);break;
+    case 'output-desc':sorted.sort((a,b)=>b.output-a.output);break;
+    default:sorted.sort((a,b)=>a.name.localeCompare(b.name));
+  }
+  return sorted;
+}
+
+function refresh(){
+  let data=getFilteredData();
+  const sortVal=document.getElementById('sortSelect').value;
+  data=sortData(data,sortVal);
+  renderApiTable(data);
+  renderApiChart(data);
+}
+
+// ====== Tab Switching ======
+document.querySelectorAll('.tab-nav button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-nav button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const tab=btn.dataset.tab;
+    document.querySelectorAll('.tab-content').forEach(el=>el.style.display='none');
+    document.getElementById('tab-'+tab).style.display='block';
+  });
+});
+
+// ====== Events ======
+document.getElementById('searchInput').addEventListener('input',refresh);
+document.getElementById('providerFilter').addEventListener('change',refresh);
+document.getElementById('sortSelect').addEventListener('change',refresh);
+
+// ====== Init ======
+renderApiTable(apiModels);
+renderApiChart(apiModels);
+renderSubTable();
+renderCTA();
+</script>
+</body>
+</html>
