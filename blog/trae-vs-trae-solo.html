@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>别再问我绿TRAE和TRAE SOLO选哪个了 | 平野AI工具站</title>
+<meta name="description" content="全面对比绿TRAE和TRAE SOLO两款AI编程工具的核心差异、适用场景和选型建议，帮你一次搞清楚到底该用哪个。">
+<meta name="keywords" content="TRAE,绿Trae,TRAE SOLO,AI编程工具对比,AI IDE">
+<link rel="canonical" href="https://pingyeai.cn/blog/trae-vs-trae-solo.html">
+<meta property="og:title" content="别再问我绿TRAE和TRAE SOLO选哪个了">
+<meta property="og:description" content="绿TRAE和TRAE SOLO的核心区别就一句话，看完这篇你就知道该选哪个了。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pingyeai.cn/blog/trae-vs-trae-solo.html">
+<meta name="twitter:card" content="summary_large_image">
+<!-- ====== Google Analytics (GA4) ====== -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXXXXX');
+</script>
+<!-- ====== 百度统计 ====== -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;background:#f7f8fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* ===== Navbar ===== */
+.navbar{background:#1a1a2e;border-bottom:1px solid rgba(255,255,255,0.06);position:sticky;top:0;z-index:100}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;height:52px}
+.navbar .logo{display:flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-weight:700;font-size:1rem}
+.navbar .logo .logo-img{width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.navbar .logo span{color:#e94560}
+.navbar .nav-links{display:flex;gap:4px}
+.navbar .nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.85rem;padding:8px 14px;border-radius:8px;transition:all 0.2s;white-space:nowrap}
+.navbar .nav-links a:hover{color:#fff;background:rgba(255,255,255,0.08)}
+.navbar .nav-links a.active{color:#fff;background:rgba(255,255,255,0.12)}
+.navbar .hamburger{display:none;background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;padding:4px}
+
+/* ===== Article ===== */
+.article-wrap{max-width:800px;margin:40px auto 60px;background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.05);padding:48px 56px}
+.article-header{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid #f0f0f5}
+.article-header h1{font-size:clamp(1.4rem,3vw,2rem);font-weight:700;line-height:1.3;margin-bottom:12px;letter-spacing:-0.02em}
+.article-meta{display:flex;flex-wrap:wrap;gap:12px;font-size:0.82rem;color:#888}
+.article-meta span{display:inline-flex;align-items:center;gap:4px}
+.article-meta .tag{display:inline-block;font-size:0.7rem;padding:2px 10px;border-radius:10px;background:#f0f0f5;color:#666}
+.article-body{font-size:1rem;color:#333}
+.article-body h2{font-size:1.3rem;font-weight:700;margin:32px 0 14px;color:#1a1a2e;padding-bottom:8px;border-bottom:2px solid #f0f0f5}
+.article-body h3{font-size:1.1rem;font-weight:600;margin:24px 0 10px;color:#1a1a2e}
+.article-body p{margin-bottom:14px;line-height:1.8}
+.article-body ul,.article-body ol{margin:10px 0 16px;padding-left:24px}
+.article-body li{margin-bottom:6px;line-height:1.7}
+.article-body strong{color:#1a1a2e}
+.article-body code{background:#f5f5fa;padding:2px 8px;border-radius:4px;font-size:0.88em;color:#c62828;font-family:'SF Mono','Menlo','Monaco','Courier New',monospace}
+.article-body blockquote{border-left:4px solid #e94560;background:#faf9ff;padding:12px 20px;margin:16px 0;border-radius:0 8px 8px 0;color:#555;font-size:0.95rem}
+.article-body blockquote strong{color:#1a1a2e}
+.article-body .tip-box{background:#e8f5e9;border-left:4px solid #4caf50;border-radius:0 8px 8px 0;padding:14px 20px;margin:16px 0;font-size:0.92rem;color:#2e7d32}
+.article-body .warn-box{background:#fff8e1;border-left:4px solid #ff9800;border-radius:0 8px 8px 0;padding:14px 20px;margin:16px 0;font-size:0.92rem;color:#e65100}
+.article-body .highlight-box{background:#e3f2fd;border-left:4px solid #1565c0;border-radius:0 8px 8px 0;padding:14px 20px;margin:16px 0;font-size:0.92rem;color:#0d47a1}
+.article-body a{color:#0f3460;text-decoration:underline;text-underline-offset:2px}
+.article-body a:hover{color:#e94560}
+.article-body table{border-collapse:collapse;width:100%;margin:16px 0;font-size:0.9rem}
+.article-body table th,.article-body table td{padding:10px 14px;border:1px solid #e0e0e8;text-align:left}
+.article-body table th{background:#f7f8fa;font-weight:600;color:#1a1a2e}
+.article-body table tr:nth-child(even){background:#faf9ff}
+.article-body img{max-width:100%;border-radius:10px;margin:16px 0;border:1px solid #eee}
+
+/* ===== Author ===== */
+.author-box{display:flex;align-items:center;gap:16px;margin:40px 0 0;padding:24px;background:#f7f8fa;border-radius:12px}
+.author-box .avatar{width:52px;height:52px;border-radius:50%;background:#1a1a2e;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:700;flex-shrink:0}
+.author-box .author-info{font-size:0.9rem;color:#555;line-height:1.6}
+.author-box .author-info strong{color:#1a1a2e}
+.author-box .author-info .follow{display:inline-block;margin-top:4px;font-size:0.8rem;color:#e94560}
+
+/* ===== Related Articles ===== */
+.related-articles{max-width:800px;margin:0 auto 40px}
+.related-articles h3{font-size:1rem;font-weight:600;margin-bottom:14px;color:#1a1a2e;text-align:center}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.related-card{background:#fff;border-radius:12px;padding:16px;border:1px solid #eee;transition:all 0.2s;text-decoration:none;display:block}
+.related-card:hover{box-shadow:0 4px 14px rgba(0,0,0,0.06);transform:translateY(-2px);border-color:#ccc}
+.related-card .rc-title{font-size:0.88rem;font-weight:600;color:#1a1a2e;margin-bottom:4px;line-height:1.4}
+.related-card .rc-date{font-size:0.72rem;color:#999}
+
+/* ===== Footer ===== */
+.footer{text-align:center;padding:30px 0;font-size:0.8rem;color:#999;border-top:1px solid #eee;margin-top:20px;line-height:1.8}
+.footer a{color:#666;text-decoration:none}
+.footer a:hover{color:#1a1a2e}
+
+/* ===== Mobile ===== */
+@media(max-width:768px){
+  .container{padding:0 14px}
+  .navbar .nav-links{display:none;position:absolute;top:52px;left:0;right:0;background:#1a1a2e;flex-direction:column;padding:8px;border-top:1px solid rgba(255,255,255,0.06)}
+  .navbar .nav-links.open{display:flex}
+  .navbar .hamburger{display:block}
+  .article-wrap{padding:28px 20px;margin:20px 10px;border-radius:12px}
+  .related-grid{grid-template-columns:1fr}
+  .author-box{flex-direction:column;text-align:center}
+}
+@media(max-width:480px){
+  .article-wrap{padding:20px 16px}
+  .article-body table{font-size:0.8rem}
+  .article-body table th,.article-body table td{padding:6px 8px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Navbar ===== -->
+<nav class="navbar">
+  <div class="container">
+    <a href="/" class="logo"><img src="/logo.jpg" alt="平野AI" class="logo-img" width="28" height="28"> <span>平野AI</span></a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="菜单">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="/">🏠 首页</a>
+      <a href="/blog/" class="active">📝 博客</a>
+      <a href="/compare-ai-coding-tools">🛠 AI编程工具对比</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Article ===== -->
+<article class="article-wrap">
+  <header class="article-header">
+    <h1>别再问我绿TRAE和TRAE SOLO选哪个了</h1>
+    <div class="article-meta">
+      <span>📅 2026-05-07</span>
+      <span>⏱ 约5分钟</span>
+      <span class="tag">TRAE</span>
+      <span class="tag">TRAE SOLO</span>
+      <span class="tag">AI编程</span>
+    </div>
+  </header>
+
+  <div class="article-body">
+
+    <h2>困扰很多人的选择题</h2>
+    <p>自从字节跳动的绿TRAE和TRAE SOLO两个版本同时可用以来，后台收到的私信里问得最多的问题就是：<strong>"到底该选哪个？"</strong></p>
+    <p>有人说绿TRAE免费还好用，有人说TRAE SOLO才是未来。今天一次性说清楚，你看完就明白了。</p>
+
+    <div class="highlight-box">
+      🔑 <strong>核心结论放前面：</strong>如果你是重度编程用户，两个都可以装，但主力建议上TRAE SOLO。
+    </div>
+
+    <h2>一句话说清区别</h2>
+    <p><strong>TRAE（绿TRAE）：AI 辅助你写代码</strong><br>
+    <strong>TRAE SOLO：AI 替你写代码</strong></p>
+    <p>就这一句话的区别，理解了这个你就能判断该用哪个了。</p>
+    <p>展开说：</p>
+    <ul>
+      <li><strong>绿TRAE</strong> 的核心是<em>「人机协作」</em>——你主导开发流程，AI全程在旁边当副驾。每一步的代码修改、文件的变更，你都能看到、能控制、能决定要不要接受。</li>
+      <li><strong>TRAE SOLO</strong> 的核心是<em>「AI全权负责」</em>——你只需要说出需求，AI去理解需求、设计方案、写代码、建文件、测试，全流程自动化。你更像是一个产品经理或者审核者。</li>
+    </ul>
+
+    <table>
+      <thead>
+        <tr>
+          <th>对比维度</th>
+          <th>绿TRAE</th>
+          <th>TRAE SOLO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>定位</td>
+          <td>AI 辅助编码</td>
+          <td>AI 自主编码</td>
+        </tr>
+        <tr>
+          <td>控制权</td>
+          <td>你说了算</td>
+          <td>AI说了算（你负责审核）</td>
+        </tr>
+        <tr>
+          <td>适合场景</td>
+          <td>大型项目、精细控制</td>
+          <td>快速原型、打工人省时间</td>
+        </tr>
+        <tr>
+          <td>学习曲线</td>
+          <td>低（传统IDE用户秒上手）</td>
+          <td>略高（需要学会"提需求"）</td>
+        </tr>
+        <tr>
+          <td>开发效率</td>
+          <td>提升 2-3 倍</td>
+          <td>提升 5-10 倍</td>
+        </tr>
+        <tr>
+          <td>费用</td>
+          <td>免费</td>
+          <td>订阅制</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>绿TRAE的使用体验</h2>
+    <p>绿TRAE本质上是一个集成AI的IDE，你可以把它理解为<strong>"AI增强版的VS Code"</strong>。</p>
+    <p>几个典型的协作场景：</p>
+    <ul>
+      <li><strong>自动补全：</strong>写一行代码，AI帮你预测下一行</li>
+      <li><strong>行内对话：</strong>选中代码，按快捷键直接和AI对话</li>
+      <li><strong>代码解释：</strong>选一段看不懂的代码，AI帮你解释</li>
+      <li><strong>Bug修复：</strong>报错了直接右键"修一下"</li>
+    </ul>
+    <p>体验上最突出的感受是：<strong>每一行代码都是你"看着"它生成的</strong>。这让很多开发者心里踏实——代码可控、可审查、可修改。</p>
+
+    <h2>TRAE SOLO的使用体验</h2>
+    <p>TRAE SOLO跟绿TRAE完全是两个物种。它更像是一个<strong>"编程机器人"</strong>。</p>
+    <p>最核心的能力是<strong>MTC（Multi-Task Collaboration）模式</strong>。在这个模式下，你只需要告诉AI你要做什么：</p>
+
+    <blockquote>
+      <strong>举例：</strong><br>
+      "帮我写一个博客系统的后端，使用FastAPI + PostgreSQL，包含用户注册登录、文章CRUD、标签管理功能，API文档用Swagger自动生成。"<br><br>
+      然后AI会自动创建项目结构、建数据库模型、写路由、生成文档……你看着它一个个文件地创建出来。
+    </blockquote>
+
+    <p>TRAE SOLO不再要求你一步一步地写代码。你只需要<strong>描述需求足够清楚</strong>，它就能把事情给你办了。</p>
+
+    <p>使用TRAE SOLO的典型流程：</p>
+    <ol>
+      <li>在聊天窗口输入需求（尽量详细，附上参考）</li>
+      <li>AI规划方案，给你一个初步计划</li>
+      <li>确认方案 → AI开始执行，逐个文件创建/修改</li>
+      <li>你有遇到问题可以随时打断、纠偏</li>
+      <li>完成后你审核代码，做必要调整</li>
+    </ol>
+
+    <div class="tip-box">
+      💡 <strong>TRAE SOLO小技巧：</strong>写得越清楚，结果越接近你想要的效果。建议先写需求文档再让AI干活，而不是边走边想。
+    </div>
+
+    <h2>什么时候还是绿TRAE更合适</h2>
+    <p>虽然我最后两个都切到了TRAE SOLO，但必须客观说：绿TRAE在有些场景下依然不可替代。</p>
+
+    <h3>大型项目维护</h3>
+    <p>如果你维护的是一个几十万行代码的老项目，TRAE SOLO的"全权代理"模式反而可能搞出乱子。这时候绿TRAE的逐行辅助模式更安全——你改一行，AI帮你补一行，不会大范围改乱。</p>
+
+    <h3>需要精细控制代码质量的场景</h3>
+    <p>比如做核心算法逻辑、性能敏感代码、安全关键代码。绿TRAE让你能看清楚每一步，该不该用这个实现方式，自己说了算。</p>
+
+    <h3>调试复杂Bug</h3>
+    <p>TRAE SOLO更适合"从零到一"的构建任务。对于现场调试已经复杂的Bug，绿TRAE的行内对话反而更顺手——你能精确定位到出问题的行，问AI这里为什么不对。</p>
+
+    <h2>我现在的使用方案</h2>
+    <p>我现在两个都用，但<strong>主力已经是TRAE SOLO了</strong>。</p>
+
+    <p>日常开发：<br>
+    → TRAE SOLO 打开，MTC模式，开始干活。</p>
+
+    <p>遇到以下情况切回绿TRAE：</p>
+    <ul>
+      <li>需要修改老项目的某段代码 → 绿TRAE</li>
+      <li>调试一个特别复杂的Bug → 绿TRAE</li>
+      <li>做代码Review → 绿TRAE（看得更清楚）</li>
+    </ul>
+
+    <p>当然，如果预算只允许装一个，那我建议：<strong>如果你是学生或者预算紧张，先用绿TRAE，免费而且能大大提升效率。如果你是开发者或者靠写代码吃饭的，直接上TRAE SOLO——省下来的时间远超订阅费。</strong></p>
+
+    <div class="tip-box">
+      🎯 <strong>终极建议：</strong>两个都装，不冲突。绿TRAE当"备胎"，TRAE SOLO当"主力"。每次开启新项目时先用TRAE SOLO搭框架，然后切到绿TRAE做精细化调整。这套组合拳目前是我觉得最舒服的开发姿势。
+    </div>
+
+    <!-- ===== Author ===== -->
+    <div class="author-box">
+      <div class="avatar">J</div>
+      <div class="author-info">
+        <strong>John Chow</strong><br>
+        一个自学AI、在职场摸爬滚打的中登。关注我，让你的AI之路少踩坑。<br>
+        <span class="follow">📱 公众号：平野先生</span>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+<!-- ===== Related Articles ===== -->
+<div class="related-articles">
+  <h3>📖 更多文章</h3>
+  <div class="related-grid">
+    <a href="/blog/trae-solo-ima-knowledge.html" class="related-card">
+      <div class="rc-title">10分钟搞定TRAE SOLO接入ima知识库</div>
+      <div class="rc-date">2026-05-10</div>
+    </a>
+    <a href="/blog/" class="related-card">
+      <div class="rc-title">📝 返回博客列表</div>
+      <div class="rc-date">浏览全部文章</div>
+    </a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div><a href="https://pingyeai.cn">pingyeai.cn</a> — 平野AI工具站</div>
+  <div>原创文章，转载请注明出处</div>
+  <div><a href="/">首页</a> · <a href="/blog/">博客</a> · <a href="/compare-ai-coding-tools">编程工具对比</a></div>
+</footer>
+
+<script>
+document.getElementById('hamburgerBtn').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a => {
+  if(a.getAttribute('href') === window.location.pathname) a.classList.add('active');
+});
+</script>
+</body>
+</html>

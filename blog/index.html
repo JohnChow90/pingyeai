@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>平野AI工具站 - 博客 | AI工具实战笔记</title>
+<meta name="description" content="平野AI博客——AI工具使用心得、踩坑记录、实战教程。TRAE SOLO、Claude Code、AI编程工具深度对比与实操指南。">
+<meta name="keywords" content="AI工具,AI教程,AI编程,公众号文章,平野先生,TRAE SOLO教程,AI IDE对比">
+<link rel="canonical" href="https://pingyeai.cn/blog/">
+<meta property="og:title" content="平野AI工具站 - 博客">
+<meta property="og:description" content="AI工具使用心得、踩坑记录、实战教程">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pingyeai.cn/blog/">
+<meta name="twitter:card" content="summary_large_image">
+<!-- ====== Google Analytics (GA4) ====== -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXXXXX');
+</script>
+<!-- ====== 百度统计 ====== -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;background:#f7f8fa;color:#1a1a2e;line-height:1.6;min-height:100vh}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* ===== Navbar ===== */
+.navbar{background:#1a1a2e;border-bottom:1px solid rgba(255,255,255,0.06);position:sticky;top:0;z-index:100}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;height:52px}
+.navbar .logo{display:flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-weight:700;font-size:1rem}
+.navbar .logo .logo-img{width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.navbar .logo span{color:#e94560}
+.navbar .nav-links{display:flex;gap:4px}
+.navbar .nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.85rem;padding:8px 14px;border-radius:8px;transition:all 0.2s;white-space:nowrap}
+.navbar .nav-links a:hover{color:#fff;background:rgba(255,255,255,0.08)}
+.navbar .nav-links a.active{color:#fff;background:rgba(255,255,255,0.12)}
+.navbar .hamburger{display:none;background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;padding:4px}
+
+/* ===== Hero ===== */
+.hero{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;padding:60px 0 48px;text-align:center;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:700;margin-bottom:10px;letter-spacing:-0.02em}
+.hero h1 span{background:linear-gradient(90deg,#e94560,#ff6b6b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:clamp(0.9rem,2vw,1.1rem);color:rgba(255,255,255,0.7);max-width:600px;margin:0 auto 20px}
+.hero .badge{display:inline-flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:8px}
+.hero .badge span{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:4px 14px;font-size:0.8rem;color:rgba(255,255,255,0.7)}
+.hero .update-note{font-size:0.75rem;color:rgba(255,255,255,0.4)}
+
+/* ===== Blog Cards ===== */
+.blog-section{margin:36px auto;max-width:860px}
+.blog-card{background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.05);padding:28px;margin-bottom:20px;transition:all 0.25s;border:1px solid #eee;display:block;text-decoration:none;color:inherit}
+.blog-card:hover{box-shadow:0 6px 20px rgba(0,0,0,0.08);transform:translateY(-3px);border-color:#d0d0dd}
+.blog-card .bc-meta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px;font-size:0.8rem;color:#888}
+.blog-card .bc-meta .tag{font-size:0.7rem;padding:2px 10px;border-radius:10px;background:#f0f0f5;color:#666}
+.blog-card .bc-meta .tag-trae{background:#e3f2fd;color:#1565c0}
+.blog-card .bc-meta .tag-popular{background:#fff3e0;color:#e65100}
+.blog-card h2{font-size:1.15rem;font-weight:700;margin-bottom:8px;color:#1a1a2e;line-height:1.4}
+.blog-card:hover h2{color:#e94560}
+.blog-card .bc-excerpt{font-size:0.9rem;color:#666;line-height:1.7;margin-bottom:12px}
+.blog-card .bc-readmore{font-size:0.85rem;color:#0f3460;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+
+/* ===== Footer ===== */
+.footer{text-align:center;padding:30px 0;font-size:0.8rem;color:#999;border-top:1px solid #eee;margin-top:20px;line-height:1.8}
+.footer a{color:#666;text-decoration:none}
+.footer a:hover{color:#1a1a2e}
+
+/* ===== Mobile ===== */
+@media(max-width:768px){
+  .container{padding:0 14px}
+  .navbar .nav-links{display:none;position:absolute;top:52px;left:0;right:0;background:#1a1a2e;flex-direction:column;padding:8px;border-top:1px solid rgba(255,255,255,0.06)}
+  .navbar .nav-links.open{display:flex}
+  .navbar .hamburger{display:block}
+  .hero{padding:40px 0 32px}
+  .blog-card{padding:20px 18px;border-radius:12px}
+}
+@media(max-width:480px){
+  .hero{padding:30px 0 24px}
+  .blog-card h2{font-size:1.05rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Navbar ===== -->
+<nav class="navbar">
+  <div class="container">
+    <a href="/" class="logo"><img src="/logo.jpg" alt="平野AI" class="logo-img" width="28" height="28"> <span>平野AI</span></a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="菜单">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="/">🏠 首页</a>
+      <a href="/blog/" class="active">📝 博客</a>
+      <a href="/compare-ai-coding-tools">🛠 AI编程工具对比</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <div class="container">
+    <h1>📝 <span>平野AI博客</span> | AI工具实战笔记</h1>
+    <p>AI工具使用心得、踩坑记录、实战教程——不整虚的，全是干货</p>
+    <div class="badge">
+      <span>✍️ 原创内容</span>
+      <span>🛠 实战导向</span>
+      <span>📊 深度对比</span>
+    </div>
+    <div class="update-note">最后更新：2026年5月 · 持续输出中</div>
+  </div>
+</header>
+
+<!-- ===== Blog List ===== -->
+<main class="container blog-section">
+
+  <a href="/blog/trae-solo-ima-knowledge.html" class="blog-card">
+    <div class="bc-meta">
+      <span>📅 2026-05-10</span>
+      <span class="tag tag-trae">TRAE SOLO</span>
+      <span class="tag">教程</span>
+    </div>
+    <h2>10分钟搞定TRAE SOLO接入ima知识库</h2>
+    <div class="bc-excerpt">
+      手把手教你用TRAE SOLO的技能系统接入腾讯ima知识库，让你的AI编程工具拥有"外挂大脑"——写代码时直接搜索个人知识库内容，再也不用来回切换窗口。简单四步，人人都能学会。
+    </div>
+    <div class="bc-readmore">阅读全文 →</div>
+  </a>
+
+  <a href="/blog/trae-vs-trae-solo.html" class="blog-card">
+    <div class="bc-meta">
+      <span>📅 2026-05-07</span>
+      <span class="tag tag-trae">TRAE</span>
+      <span class="tag tag-popular">热门</span>
+    </div>
+    <h2>别再问我绿TRAE和TRAE SOLO选哪个了</h2>
+    <div class="bc-excerpt">
+      一文说清楚绿TRAE和TRAE SOLO的核心区别、适用场景和选型建议。一句话总结：绿TRAE是AI辅助你写代码，TRAE SOLO是AI替你写代码。看完你就知道该选哪个了。
+    </div>
+    <div class="bc-readmore">阅读全文 →</div>
+  </a>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div><a href="https://pingyeai.cn">pingyeai.cn</a> — 平野AI工具站</div>
+  <div>原创文章，转载请注明出处</div>
+  <div>📱 公众号：平野先生</div>
+  <div><a href="/">首页</a> · <a href="/blog/">博客</a> · <a href="/compare-ai-coding-tools">编程工具对比</a></div>
+</footer>
+
+<script>
+document.getElementById('hamburgerBtn').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a => {
+  if(a.getAttribute('href') === window.location.pathname) a.classList.add('active');
+});
+</script>
+</body>
+</html>
