@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -11,6 +11,7 @@
 <meta property="og:description" content="一表看懂所有主流AI模型的定价，选工具不再纠结。">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<!-- ====== Google Analytics (GA4) ====== -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -18,6 +19,7 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-XXXXXXXXXX');
 </script>
+<!-- ====== 百度统计 ====== -->
 <script>
 var _hmt = _hmt || [];
 (function() {
@@ -32,15 +34,20 @@ var _hmt = _hmt || [];
 html{scroll-behavior:smooth}
 body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;background:#f7f8fa;color:#1a1a2e;line-height:1.6;min-height:100vh}
 .container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* ===== Navbar ===== */
 .navbar{background:#1a1a2e;border-bottom:1px solid rgba(255,255,255,0.06);position:sticky;top:0;z-index:100}
 .navbar .container{display:flex;align-items:center;justify-content:space-between;height:52px}
 .navbar .logo{display:flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-weight:700;font-size:1rem}
+.navbar .logo .logo-img{width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0}
 .navbar .logo span{color:#e94560}
 .navbar .nav-links{display:flex;gap:4px}
 .navbar .nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.85rem;padding:8px 14px;border-radius:8px;transition:all 0.2s;white-space:nowrap}
 .navbar .nav-links a:hover{color:#fff;background:rgba(255,255,255,0.08)}
 .navbar .nav-links a.active{color:#fff;background:rgba(255,255,255,0.12)}
 .navbar .hamburger{display:none;background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;padding:4px}
+
+/* ===== Hero ===== */
 .hero{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;padding:60px 0 48px;text-align:center;position:relative;overflow:hidden}
 .hero h1{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:700;margin-bottom:10px;letter-spacing:-0.02em}
 .hero h1 span{background:linear-gradient(90deg,#e94560,#ff6b6b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -48,10 +55,14 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
 .hero .badge{display:inline-flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:8px}
 .hero .badge span{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:4px 14px;font-size:0.8rem;color:rgba(255,255,255,0.7)}
 .hero .update-note{font-size:0.75rem;color:rgba(255,255,255,0.4)}
+
+/* ===== Tab ===== */
 .tab-nav{display:flex;gap:0;background:#fff;border-radius:12px;padding:4px;margin:24px auto 0;max-width:400px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
 .tab-nav button{flex:1;padding:10px 16px;border:none;background:transparent;border-radius:8px;font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:#666}
 .tab-nav button.active{background:#1a1a2e;color:#fff}
 .tab-nav button:hover:not(.active){background:#f0f0f5}
+
+/* ===== Toolbar ===== */
 .toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:20px 0 16px}
 .toolbar .search-wrap{flex:1;min-width:200px;position:relative}
 .toolbar .search-wrap input{width:100%;padding:10px 14px 10px 38px;border:1px solid #e0e0e8;border-radius:10px;font-size:0.9rem;outline:none;transition:border 0.2s;background:#fff}
@@ -60,10 +71,12 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
 .toolbar .filters{display:flex;gap:8px;flex-wrap:wrap}
 .toolbar .filters select{padding:10px 32px 10px 14px;border:1px solid #e0e0e8;border-radius:10px;font-size:0.85rem;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E") no-repeat right 10px center;appearance:none;cursor:pointer;outline:none}
 .toolbar .filters select:focus{border-color:#0f3460}
+
+/* ===== Table ===== */
 .table-wrap{background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.05);overflow:hidden;margin-bottom:16px}
 .table-wrap table{width:100%;border-collapse:collapse;font-size:0.9rem}
 .table-wrap thead{background:#f7f8fa}
-.table-wrap thead th{padding:14px 12px;text-align:left;font-weight:600;font-size:0.8rem;color:#666;border-bottom:2px solid #e8e8f0;white-space:nowrap;position:sticky;top:0;background:#f7f8fa;z-index:2}
+.table-wrap thead th{padding:14px 12px;text-align:left;font-weight:600;font-size:0.8rem;color:#666;text-transform:uppercase;letter-spacing:0.03em;border-bottom:2px solid #e8e8f0;white-space:nowrap;position:sticky;top:0;background:#f7f8fa;z-index:2}
 .table-wrap tbody tr{border-bottom:1px solid #f0f0f5;transition:background 0.15s}
 .table-wrap tbody tr:hover{background:#f8f9ff}
 .table-wrap tbody td{padding:12px;vertical-align:middle;line-height:1.4}
@@ -89,11 +102,8 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
 .chart-bar .label-row{display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:3px;color:#555}
 .chart-bar .bar-track{height:18px;background:#f0f0f5;border-radius:9px;overflow:hidden;position:relative}
 .chart-bar .bar-fill{height:100%;border-radius:9px;display:flex;align-items:center;padding-left:8px;font-size:0.65rem;color:#fff;font-weight:600;white-space:nowrap}
-.related-tools{background:#fff;border-radius:14px;padding:24px;margin:28px 0;border:1px solid #eee}
-.related-tools h3{font-size:1rem;font-weight:600;margin-bottom:14px}
-.related-tools .list{display:flex;flex-wrap:wrap;gap:12px}
-.related-tools .list a{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:10px;background:#f7f8fa;text-decoration:none;color:#1a1a2e;font-size:0.85rem;font-weight:500;transition:all 0.2s;border:1px solid #eee}
-.related-tools .list a:hover{background:#e8f5e9;border-color:#a5d6a7;transform:translateY(-1px)}
+
+/* ===== Tool Cards ===== */
 .tool-section{margin:28px 0 40px}
 .tool-section h3{font-size:1.1rem;font-weight:600;margin-bottom:16px;text-align:center;color:#1a1a2e}
 .tool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
@@ -104,11 +114,24 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
 .tool-card .btn{display:inline-block;padding:8px 20px;border-radius:8px;font-size:0.85rem;font-weight:600;text-decoration:none;transition:all 0.2s}
 .btn-primary{background:#1a1a2e;color:#fff}
 .btn-primary:hover{background:#0f3460}
+.btn-outline{background:transparent;color:#1a1a2e;border:1px solid #ddd}
+.btn-outline:hover{background:#f5f5f5}
 .aff-note{font-size:0.7rem;color:#aaa;margin-top:4px}
+
+/* ===== Related Tools Banner ===== */
+.related-tools{background:#fff;border-radius:14px;padding:24px;margin:28px 0;border:1px solid #eee}
+.related-tools h3{font-size:1rem;font-weight:600;margin-bottom:14px}
+.related-tools .list{display:flex;flex-wrap:wrap;gap:12px}
+.related-tools .list a{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:10px;background:#f7f8fa;text-decoration:none;color:#1a1a2e;font-size:0.85rem;font-weight:500;transition:all 0.2s;border:1px solid #eee}
+.related-tools .list a:hover{background:#e8f5e9;border-color:#a5d6a7;transform:translateY(-1px)}
+
+/* ===== Footer ===== */
 .footer{text-align:center;padding:30px 0;font-size:0.8rem;color:#999;border-top:1px solid #eee;margin-top:20px;line-height:1.8}
 .footer a{color:#666;text-decoration:none}
 .footer a:hover{color:#1a1a2e}
 .footer .stats{font-size:0.7rem;color:#bbb;margin-top:4px}
+
+/* ===== Mobile ===== */
 @media(max-width:768px){
   .container{padding:0 14px}
   .navbar .nav-links{display:none;position:absolute;top:52px;left:0;right:0;background:#1a1a2e;flex-direction:column;padding:8px;border-top:1px solid rgba(255,255,255,0.06)}
@@ -133,9 +156,11 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
 </style>
 </head>
 <body>
+
+<!-- ===== Navbar ===== -->
 <nav class="navbar">
   <div class="container">
-    <a href="/" class="logo">⚡ <span>平野</span>AI</a>
+    <a href="/" class="logo"><img src="/logo.jpg" alt="平野AI" class="logo-img"> <span>平野AI</span></a>
     <button class="hamburger" id="hamburgerBtn" aria-label="菜单">☰</button>
     <div class="nav-links" id="navLinks">
       <a href="/" class="active">🏠 首页</a>
@@ -143,6 +168,7 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     </div>
   </div>
 </nav>
+
 <header class="hero">
   <div class="container">
     <h1>🤖 <span>AI模型价格</span>对比器 2026</h1>
@@ -155,16 +181,22 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="update-note">最后更新：2026年5月24日 · 来源标注：✅官方确认 · ⚠️参考现行定价</div>
   </div>
 </header>
+
 <main class="container">
+
 <div class="source-bar">
   <span class="source-badge verified">✅ OpenAI — 来自官网 openai.com/api/pricing</span>
   <span class="source-badge verified">✅ DeepSeek — 来自官网 api-docs.deepseek.com</span>
   <span class="source-badge estimated">⚠️ 其他模型 —— 基于现行公开定价</span>
 </div>
+
+<!-- Tab -->
 <nav class="tab-nav" role="tablist">
   <button class="active" data-tab="api" role="tab">💰 API 定价</button>
   <button data-tab="sub" role="tab">📅 订阅价格</button>
 </nav>
+
+<!-- Toolbar -->
 <div class="toolbar">
   <div class="search-wrap">
     <span class="icon">🔍</span>
@@ -181,10 +213,19 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     </select>
   </div>
 </div>
+
+<!-- API pricing -->
 <section class="tab-content active" id="tab-api">
   <div class="table-wrap">
     <table>
-      <thead><tr><th>模型</th><th>输入 ($/1M tok)</th><th>输出 ($/1M tok)</th><th>缓存输入</th><th>上下文</th><th>特点</th></tr></thead>
+      <thead><tr>
+          <th>模型</th>
+          <th>输入 ($/1M tok)</th>
+          <th>输出 ($/1M tok)</th>
+          <th>缓存输入</th>
+          <th>上下文</th>
+          <th>特点</th>
+      </tr></thead>
       <tbody id="apiTableBody"></tbody>
     </table>
   </div>
@@ -193,20 +234,32 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div id="apiChartBars"></div>
   </div>
 </section>
+
+<!-- Subscription pricing -->
 <section class="tab-content" id="tab-sub" style="display:none">
   <div class="table-wrap">
     <table>
-      <thead><tr><th>产品</th><th>月费</th><th>可用模型</th><th>限额</th><th>适合人群</th></tr></thead>
+      <thead><tr>
+          <th>产品</th>
+          <th>月费</th>
+          <th>可用模型</th>
+          <th>限额</th>
+          <th>适合人群</th>
+      </tr></thead>
       <tbody id="subTableBody"></tbody>
     </table>
   </div>
 </section>
+
+<!-- Related Tools -->
 <div class="related-tools">
   <h3>🔧 更多工具</h3>
   <div class="list">
     <a href="/compare-ai-coding-tools">🛠 编程工具横向对比 → Claude Code vs Codex vs Trae SOLO</a>
   </div>
 </div>
+
+<!-- CTA -->
 <section class="tool-section">
   <h3>🚀 直达官方</h3>
   <div class="tool-grid">
@@ -232,18 +285,30 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     </div>
   </div>
 </section>
+
 </main>
+
 <footer class="footer">
   <div><a href="https://pingyeai.cn">pingyeai.cn</a> — 平野AI工具站</div>
   <div>数据来源：OpenAI / DeepSeek 官方定价页面 · 其他模型定价仅供参考</div>
-  <div class="stats">🔄 最后更新：2026-05-24 | 📊 收录14款API模型 + 8款订阅产品</div>
+  <div class="stats">🔄 最后更新：2026-05-24 ｜ 📊 收录14款API模型 + 8款订阅产品</div>
   <div><a href="/">首页</a> · <a href="/compare-ai-coding-tools">编程工具对比</a></div>
 </footer>
+
 <script>
-document.getElementById('hamburgerBtn').addEventListener('click', () => { document.getElementById('navLinks').classList.toggle('open'); });
-document.querySelectorAll('.nav-links a').forEach(a => { if(a.getAttribute('href') === window.location.pathname) a.classList.add('active'); });
+// Navigation hamburger
+document.getElementById('hamburgerBtn').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+// Active nav link
+document.querySelectorAll('.nav-links a').forEach(a => {
+  if(a.getAttribute('href') === window.location.pathname) a.classList.add('active');
+});
+
+// Data
 const COLORS = { openai:'#0f3460', anthropic:'#d4a574', google:'#4285f4', deepseek:'#4caf50', others:'#9c27b0' };
 const BAR_COLORS = ['#0f3460','#1565c0','#d4a574','#8d6e63','#4285f4','#4fc3f7','#4caf50','#66bb6a','#9c27b0','#e91e63','#ff6f00','#f44336','#00897b','#546e7a','#795548','#37474f'];
+
 const apiModels = [
   { id:'gpt55', name:'GPT-5.5', prov:'openai', input:5.00, output:30.00, cache:0.50, ctx:'128K', tags:['flagship','recent'], note:'旗舰推理模型' },
   { id:'gpt54', name:'GPT-5.4', prov:'openai', input:2.50, output:15.00, cache:0.25, ctx:'128K', tags:['popular'], note:'性价比编程模型' },
@@ -260,6 +325,7 @@ const apiModels = [
   { id:'mistrall', name:'Mistral Large', prov:'others', input:2.00, output:6.00, cache:null, ctx:'128K', note:'欧洲最强', tags:[] },
   { id:'grok3', name:'Grok 3', prov:'others', input:2.00, output:10.00, cache:null, ctx:'128K', note:'xAI 旗舰', tags:['popular'] },
 ];
+
 const subModels = [
   { name:'ChatGPT Plus', price:'$20/月', models:'GPT-5.5, GPT-5.4, GPT-5.4 mini', limit:'有使用上限，高容量', suit:'日常使用、轻度编程' },
   { name:'ChatGPT Pro', price:'$200/月', models:'GPT-5.5 无限', limit:'无限使用，优先排队', suit:'重度用户、专业开发' },
@@ -270,16 +336,37 @@ const subModels = [
   { name:'GitHub Copilot', price:'$10/月', models:'GPT-5.4, Claude 4 Sonnet', limit:'2000次/月补全', suit:'开发者编程辅助' },
   { name:'Cursor Pro', price:'$20/月', models:'GPT-5.5, Claude 4', limit:'500次高级模型/月', suit:'AI优先代码编辑器' },
 ];
-function renderApiTable(d){const t=document.getElementById('apiTableBody');t.innerHTML=d.map(m=>{const i=m.name.split(' ')[0][0],tg=(m.tags||[]).map(t=>'<span class="tag tag-'+t+'">'+({recent:'最新',popular:'热门',flagship:'旗舰',best:'推荐',cheap:'超值'}[t]||t)+'</span>').join(''),cs=m.cache!==null?'$'+m.cache.toFixed(m.cache<1?4:2):'—';return '<tr><td><span class="prov-logo" style="background:'+COLORS[m.prov]+'">'+i+'</span>'+m.name+tg+'</td><td class="price-input">$'+m.input.toFixed(2)+'</td><td class="price-output">$'+m.output.toFixed(2)+'</td><td>'+cs+'</td><td>'+m.ctx+'</td><td style="font-size:0.8rem;color:#666">'+(m.note||'')+'</td></tr>'}).join('');}
-function renderSubTable(){const t=document.getElementById('subTableBody');t.innerHTML=subModels.map(m=>'<tr><td style="font-weight:600">'+m.name+'</td><td class="'+(m.price=='免费'?'price-free':'price-sub')+'">'+m.price+'</td><td style="font-size:0.85rem">'+m.models+'</td><td style="font-size:0.85rem;color:#666">'+m.limit+'</td><td style="font-size:0.85rem;color:#666">'+m.suit+'</td></tr>').join('');}
-function renderChart(d){const s=[...d].sort((a,b)=>a.input-b.input),mx=s[s.length-1].input,c=document.getElementById('apiChartBars');c.innerHTML=s.map((m,i)=>{const p=(m.input/mx*100).toFixed(1);return '<div class="chart-bar"><div class="label-row"><span>'+m.name+'</span><span>$'+m.input.toFixed(2)+'</span></div><div class="bar-track"><div class="bar-fill" style="width:'+p+'%;background:'+BAR_COLORS[i%BAR_COLORS.length]+'">'+(p>15?'$'+m.input.toFixed(m.input<1?4:2):'')+'</div></div></div>'}).join('');}
-let cf='all',cs='';const pm={openai:['openai'],anthropic:['anthropic'],google:['google'],deepseek:['deepseek'],others:['others']};
-function fd(){return apiModels.filter(m=>{if(cf!=='all'&&!pm[cf].includes(m.prov))return false;if(cs&&!m.name.toLowerCase().includes(cs.toLowerCase()))return false;return true;});}
-function up(){const d=fd();renderApiTable(d);renderChart(d);}
-document.getElementById('searchInput').addEventListener('input',e=>{cs=e.target.value;up();});
-document.getElementById('providerFilter').addEventListener('change',e=>{cf=e.target.value;up();});
+
+function renderApiTable(data){
+  const tbody = document.getElementById('apiTableBody');
+  tbody.innerHTML = data.map(m => {
+    const initial = m.name.split(' ')[0][0];
+    const tags = (m.tags||[]).map(t => `<span class="tag tag-${t}">${{recent:'最新',popular:'热门',flagship:'旗舰',best:'推荐',cheap:'超值'}[t]||t}</span>`).join('');
+    const cacheStr = m.cache !== null ? '$'+m.cache.toFixed(m.cache<1?4:2) : '—';
+    return '<tr><td><span class="prov-logo" style="background:'+COLORS[m.prov]+'">'+initial+'</span>'+m.name+tags+'</td><td class="price-input">$'+m.input.toFixed(2)+'</td><td class="price-output">$'+m.output.toFixed(2)+'</td><td>'+cacheStr+'</td><td>'+m.ctx+'</td><td style="font-size:0.8rem;color:#666">'+(m.note||'')+'</td></tr>';
+  }).join('');
+}
+function renderSubTable(){
+  const tbody = document.getElementById('subTableBody');
+  tbody.innerHTML = subModels.map(m => '<tr><td style="font-weight:600">'+m.name+'</td><td class="'+(m.price=='免费'?'price-free':'price-sub')+'">'+m.price+'</td><td style="font-size:0.85rem">'+m.models+'</td><td style="font-size:0.85rem;color:#666">'+m.limit+'</td><td style="font-size:0.85rem;color:#666">'+m.suit+'</td></tr>').join('');
+}
+function renderChart(data){
+  const sorted = [...data].sort((a,b) => a.input - b.input);
+  const max = sorted[sorted.length-1].input;
+  const container = document.getElementById('apiChartBars');
+  container.innerHTML = sorted.map((m,i) => {
+    const pct = (m.input / max * 100).toFixed(1);
+    return '<div class="chart-bar"><div class="label-row"><span>'+m.name+'</span><span>$'+m.input.toFixed(2)+'</span></div><div class="bar-track"><div class="bar-fill" style="width:'+pct+'%;background:'+BAR_COLORS[i%BAR_COLORS.length]+'">'+(pct>15?'$'+m.input.toFixed(m.input<1?4:2):'')+'</div></div></div>';
+  }).join('');
+}
+let currentFilter='all',currentSearch='';
+const provMap={openai:['openai'],anthropic:['anthropic'],google:['google'],deepseek:['deepseek'],others:['others']};
+function filterData(){return apiModels.filter(m=>{if(currentFilter!=='all'&&!provMap[currentFilter].includes(m.prov))return false;if(currentSearch&&!m.name.toLowerCase().includes(currentSearch.toLowerCase()))return false;return true;});}
+function update(){const data=filterData();renderApiTable(data);renderChart(data);}
+document.getElementById('searchInput').addEventListener('input',e=>{currentSearch=e.target.value;update();});
+document.getElementById('providerFilter').addEventListener('change',e=>{currentFilter=e.target.value;update();});
 document.querySelectorAll('.tab-nav button').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.tab-nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.tab-content').forEach(tc=>tc.style.display='none');document.getElementById('tab-'+btn.dataset.tab).style.display='';});});
-renderSubTable();up();
+renderSubTable();update();
 </script>
 </body>
 </html>
