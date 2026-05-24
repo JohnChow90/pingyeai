@@ -39,6 +39,7 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
 .navbar{background:#1a1a2e;border-bottom:1px solid rgba(255,255,255,0.06);position:sticky;top:0;z-index:100}
 .navbar .container{display:flex;align-items:center;justify-content:space-between;height:52px}
 .navbar .logo{display:flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-weight:700;font-size:1rem}
+.navbar .logo .logo-img{width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0}
 .navbar .logo span{color:#e94560}
 .navbar .nav-links{display:flex;gap:4px}
 .navbar .nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.85rem;padding:8px 14px;border-radius:8px;transition:all 0.2s;white-space:nowrap}
@@ -151,7 +152,7 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
 <!-- Navbar -->
 <nav class="navbar">
   <div class="container">
-    <a href="/" class="logo"><img src="/logo.jpg" alt="平野AI" class="logo-img"> <span>平野AI</span></a>
+    <a href="/" class="logo"><img src="/logo.jpg" alt="平野AI" class="logo-img" width="28" height="28"> <span>平野AI</span></a>
     <button class="hamburger" id="hamburgerBtn" aria-label="菜单">☰</button>
     <div class="nav-links" id="navLinks">
       <a href="/">🏠 首页</a>
