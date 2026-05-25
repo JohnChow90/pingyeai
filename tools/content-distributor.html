@@ -183,13 +183,33 @@ const prompts = {
 
 要求：
 1. 开场1句话钩子
-2. 故事化叙述
-3. 每段3-5句话
+2. 故事化叙述，有画面感
+3. 每段3-5句话，自然停顿
 4. 结尾总结+预告
-5. 1500-2000字（8-12分钟）
+5. 1500-2000字（约8-12分钟口播量）
 ---
 [文章内容]
----`
+---`,
+    audioGuide: `═══════════════════════════════
+🎧 语音生成指南
+───────────────────────────────
+
+【方案一：ElevenLabs（推荐，效果最好）】
+1. 打开 https://elevenlabs.io 注册
+2. 左侧 Voice Lab → Voice Design → 上传你的录音（1-3分钟）
+3. 等几分钟克隆完成 → 选择你的声音
+4. 粘贴上方播客稿 → 点击 Generate → 下载 MP3
+
+【方案二：FishAudio（免费，中文友好）】
+1. 打开 https://fish.audio 注册
+2. Text to Speech → 选一个好听的中文声音 → 粘贴稿子 → 生成
+3. 或 Voice Clone → 上传自己的录音克隆
+
+【方案三：CosyVoice（阿里出品，免费）】
+1. 打开 https://www.modelscope.cn/studios/iic/CosyVoice-300M  
+2. 上传参考录音 → 输入文字 → 生成
+
+💡 小技巧：生成前在稿子里加入（停顿）（语气加重）等标记，AI读起来更有节奏感`
   },
   moments: {
     title: '💬 朋友圈/即刻 金句版',
@@ -231,6 +251,9 @@ function showSingleOutput(platform) {
     full += '───────────────────────────────\n';
     full += p.imagePrompts.join('\n\n');
   }
+  if (p.audioGuide) {
+    full += '\n\n' + p.audioGuide;
+  }
   
   document.getElementById('outputTitle').textContent = p.title;
   document.getElementById('outputContent').textContent = full;
@@ -246,6 +269,9 @@ function getCurrentContent() {
     text += '\n\n═══════════════════════════════\n🎨 即梦AI配图Prompt\n';
     text += '───────────────────────────────\n';
     text += p.imagePrompts.join('\n\n');
+  }
+  if (p.audioGuide) {
+    text += '\n\n' + p.audioGuide;
   }
   return text;
 }
@@ -277,6 +303,9 @@ document.getElementById('generateAllBtn').addEventListener('click', () => {
     if (p.imagePrompts) {
       allOutput += '🎨 即梦AI配图Prompt:\n';
       allOutput += p.imagePrompts.join('\n') + '\n\n';
+    }
+    if (p.audioGuide) {
+      allOutput += p.audioGuide + '\n\n';
     }
   }
   
