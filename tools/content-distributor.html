@@ -152,11 +152,17 @@ const prompts = {
 3. 每段开头用emoji
 4. 突出"踩坑""干货""亲测"
 5. 结尾话题标签
-6. 配图建议3-4张
-7. 300-500字
+6. 300-500字
 ---
 [文章内容]
----`
+---`,
+    imagePrompts: [
+      '生成3-4张配图，每张风格统一：清新简约、莫兰迪色系、带留白。每张图给出即梦AI文生图prompt：',
+      '封面图 Prompt: 一张简洁干净的办公桌俯拍，桌面有笔记本电脑和一杯咖啡，自然光，ins风，浅色系，浅景深，小红书封面风格 --ar 3:4',
+      '内页图1 Prompt: 手持手机屏幕截图，界面显示AI工具操作页面，虚化背景，暖色调，产品评测风格，上图下文留白 --ar 3:4',
+      '内页图2 Prompt: 书籍/笔记平铺俯视图，旁边放眼镜和绿植，文艺清新，自然光影，知识分享氛围，2:3竖版 --ar 3:4',
+      '内页图3 Prompt: 一支笔在笔记本上记笔记的特写，手上戴着简约手表，角落有绿植，暖黄灯光，ins博主风格 --ar 3:4',
+    ]
   },
   zhihu: {
     title: '💡 知乎 问答体',
@@ -217,7 +223,15 @@ platformBtns.forEach(btn => {
 function showSingleOutput(platform) {
   const article = document.getElementById('articleInput').value.trim();
   const p = prompts[platform];
-  const full = p.template.replace('[文章内容]', article || '(请先粘贴文章内容)');
+  let full = p.template.replace('[文章内容]', article || '(请先粘贴文章内容)');
+  
+  // 小红书额外加配图Prompt
+  if (p.imagePrompts) {
+    full += '\n\n═══════════════════════════════\n🎨 即梦AI配图Prompt\n';
+    full += '───────────────────────────────\n';
+    full += p.imagePrompts.join('\n\n');
+  }
+  
   document.getElementById('outputTitle').textContent = p.title;
   document.getElementById('outputContent').textContent = full;
   document.getElementById('outputSection').classList.add('visible');
@@ -227,7 +241,13 @@ function showSingleOutput(platform) {
 function getCurrentContent() {
   const article = document.getElementById('articleInput').value.trim();
   const p = prompts[currentPlatform];
-  return p.template.replace('[文章内容]', article || '(请先粘贴文章内容)');
+  let text = p.template.replace('[文章内容]', article || '(请先粘贴文章内容)');
+  if (p.imagePrompts) {
+    text += '\n\n═══════════════════════════════\n🎨 即梦AI配图Prompt\n';
+    text += '───────────────────────────────\n';
+    text += p.imagePrompts.join('\n\n');
+  }
+  return text;
 }
 
 document.getElementById('copyBtn').addEventListener('click', () => {
@@ -254,6 +274,10 @@ document.getElementById('generateAllBtn').addEventListener('click', () => {
     allOutput += p.title + '\n';
     allOutput += '───────────────────────────────\n';
     allOutput += p.template.replace('[文章内容]', article) + '\n\n';
+    if (p.imagePrompts) {
+      allOutput += '🎨 即梦AI配图Prompt:\n';
+      allOutput += p.imagePrompts.join('\n') + '\n\n';
+    }
   }
   
   document.getElementById('outputTitle').textContent = '📋 全平台生成结果（5个）';
