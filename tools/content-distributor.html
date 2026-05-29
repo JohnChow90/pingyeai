@@ -39,6 +39,31 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
 .platform-btn.active{border-color:#0f3460;background:#eef0ff}
 .platform-btn .icon{font-size:1.4rem;flex-shrink:0}
 .platform-btn .badge{font-size:.65rem;background:#f0f0f5;padding:2px 8px;border-radius:6px;color:#888;margin-left:auto}
+
+/* ===== API Key Settings ===== */
+.api-settings{background:#fff;border-radius:12px;padding:18px 20px;margin:16px 0;border:1px solid #eee;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.api-settings label{font-size:.82rem;font-weight:500;color:#555}
+.api-settings input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #e0e0e8;border-radius:8px;font-size:.82rem;outline:none}
+.api-settings input:focus{border-color:#0f3460}
+.api-settings .status-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.api-settings .status-dot.ok{background:#4caf50}
+.api-settings .status-dot.no{background:#ccc}
+.api-settings .save-btn{padding:8px 16px;border-radius:8px;border:none;background:#1a1a2e;color:#fff;font-size:.8rem;cursor:pointer}
+.api-settings .save-btn:hover{background:#0f3460}
+
+/* ===== Loading ===== */
+.generating{text-align:center;padding:30px;color:#0f3460}
+.generating .spinner{display:inline-block;width:20px;height:20px;border:2px solid #e0e0e8;border-top-color:#0f3460;border-radius:50%;animation:spin .8s linear infinite;margin-right:8px;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== History ===== */
+.history-section{display:none}
+.history-section.visible{display:block}
+.history-list{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.history-item{background:#f7f8fa;border-radius:8px;padding:10px 14px;font-size:.8rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid #eee;transition:all .15s}
+.history-item:hover{background:#eef0ff;border-color:#0f3460}
+.history-item .h-title{font-weight:500;color:#1a1a2e}
+.history-item .h-meta{font-size:.72rem;color:#999}
 .output-section{background:#fff;border-radius:16px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,0.04);margin:20px 0;display:none}
 .output-section.visible{display:block}
 .output-section .output-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
@@ -99,6 +124,22 @@ var _hmt = _hmt || [];
   <div class="hint">💡 建议贴完整文章，信息越丰富，生成效果越好</div>
 </div>
 
+<div class="api-settings">
+  <label>🔑 DeepSeek API Key</label>
+  <input type="password" id="apiKeyInput" placeholder="sk-...">
+  <span class="status-dot no" id="apiStatusDot"></span>
+  <button class="save-btn" id="saveApiKey">保存</button>
+  <span id="apiSaveMsg" style="font-size:.78rem;color:#888"></span>
+</div>
+
+<div class="input-section" style="margin-top:0">
+  <label for="apiModelSelect">🤖 AI 模型</label>
+  <select id="apiModelSelect" style="width:100%;padding:10px 14px;border:1px solid #e0e0e8;border-radius:10px;font-size:.85rem;outline:none">
+    <option value="deepseek-chat">DeepSeek V4 Flash（快速）</option>
+    <option value="deepseek-reasoner">DeepSeek Reasoner（深度推理）</option>
+  </select>
+</div>
+
 <div class="platform-grid" id="platformGrid">
   <div class="platform-btn" data-platform="wechat"><span class="icon">📱</span> 公众号/网站 <span class="badge">完整版</span></div>
   <div class="platform-btn" data-platform="xiaohongshu"><span class="icon">📕</span> 小红书 <span class="badge">Highlight</span></div>
@@ -132,160 +173,168 @@ var _hmt = _hmt || [];
 <footer class="footer"><div><a href="https://pingyeai.cn">pingyeai.cn</a> — 平野AI工具站</div><div><a href="/">首页</a> · <a href="/blog">博客</a> · <a href="/compare-ai-coding-tools">编程工具对比</a></div></footer>
 
 <script>
+// ====== 汉堡菜单 ======
 document.getElementById('hamburgerBtn').addEventListener('click',()=>{document.getElementById('navLinks').classList.toggle('open');});
 
+// ====== API Key 管理 ======
+(function(){
+  const saved = localStorage.getItem('cd_api_key');
+  if(saved){
+    document.getElementById('apiKeyInput').value = saved;
+    document.getElementById('apiStatusDot').className = 'status-dot ok';
+  }
+  document.getElementById('saveApiKey').addEventListener('click', () => {
+    const key = document.getElementById('apiKeyInput').value.trim();
+    if(key.startsWith('sk-')){
+      localStorage.setItem('cd_api_key', key);
+      document.getElementById('apiStatusDot').className = 'status-dot ok';
+      document.getElementById('apiSaveMsg').textContent = '✅ 已保存';
+    } else {
+      document.getElementById('apiSaveMsg').textContent = '❌ 请输入有效 sk- 开头的 Key';
+    }
+    setTimeout(() => document.getElementById('apiSaveMsg').textContent = '', 2000);
+  });
+})();
+
+// ====== 各平台 Prompt ======
 const prompts = {
   wechat: {
     title: '📱 公众号/网站 完整版',
-    template: `请帮我优化这篇公众号文章：
-
-优化要求：
-1. 标题优化：给出3个备选标题
-2. 开头重写：前30字出现具体时间/地点/事件
-3. 人称替换："用户"→"你"，"笔者"→"我"
-4. 去AI味：删除套话
-5. 结尾：预告或问题
-6. 增加小标题分段
----
-[文章内容]
----`
+    system: '你是一个公众号文章优化助手。请帮我把文章改写成适合公众号发布的版本：1.标题给出3个备选 2.开头前30字出现具体时间地点事件 3.人称统一："用户"→"你"，"笔者"→"我" 4.删除套话废话 5.结尾加预告或提问 6.分段加小标题。直接输出结果，不要解释。'
   },
   xiaohongshu: {
     title: '📕 小红书 Highlight版',
-    template: `请把以下文章改写成小红书笔记：
-
-要求：
-1. 标题10-20字带emoji
-2. 口语化短句，每段≤3行
-3. 每段开头用emoji
-4. 突出"踩坑""干货""亲测"
-5. 结尾话题标签
-6. 300-500字
----
-[文章内容]
----`,
-    imagePrompts: [
-      '生成3-4张配图，每张风格统一：清新简约、莫兰迪色系、带留白。每张图给出即梦AI文生图prompt：',
-      '封面图 Prompt: 一张简洁干净的办公桌俯拍，桌面有笔记本电脑和一杯咖啡，自然光，ins风，浅色系，浅景深，小红书封面风格 --ar 3:4',
-      '内页图1 Prompt: 手持手机屏幕截图，界面显示AI工具操作页面，虚化背景，暖色调，产品评测风格，上图下文留白 --ar 3:4',
-      '内页图2 Prompt: 书籍/笔记平铺俯视图，旁边放眼镜和绿植，文艺清新，自然光影，知识分享氛围，2:3竖版 --ar 3:4',
-      '内页图3 Prompt: 一支笔在笔记本上记笔记的特写，手上戴着简约手表，角落有绿植，暖黄灯光，ins博主风格 --ar 3:4',
-    ]
+    system: '你是一个小红书笔记写手。请把文章改写成小红书笔记：1.标题10-20字带emoji 2.口语化短句每段≤3行 3.每段开头用emoji 4.突出踩坑/干货/亲测 5.结尾带话题标签 6.300-500字。直接输出结果。'
   },
   zhihu: {
     title: '💡 知乎 问答体',
-    template: `请把以下文章改写成知乎回答：
-
-要求：
-1. 开头直接回答问题带结论
-2. 分2-3个点展开，配具体案例
-3. 结尾总结+引导讨论
-4. 800-1200字
----
-[文章内容]
----`
+    system: '你是一个知乎答主。请把文章改写成知乎回答：1.开头直接回答带结论 2.分2-3点展开配具体案例 3.结尾总结+引导讨论 4.800-1200字。直接输出结果。'
   },
   podcast: {
     title: '🎙️ 播客脚本 口播稿',
-    template: `请把以下文章改写成播客口播稿：
-
-要求：
-1. 开场1句话钩子
-2. 故事化叙述，有画面感
-3. 每段3-5句话，自然停顿
-4. 结尾总结+预告
-5. 1500-2000字（约8-12分钟口播量）
----
-[文章内容]
----`,
-    audioGuide: `═══════════════════════════════
-🎧 语音生成指南
-───────────────────────────────
-
-【方案一：ElevenLabs（推荐，效果最好）】
-1. 打开 https://elevenlabs.io 注册
-2. 左侧 Voice Lab → Voice Design → 上传你的录音（1-3分钟）
-3. 等几分钟克隆完成 → 选择你的声音
-4. 粘贴上方播客稿 → 点击 Generate → 下载 MP3
-
-【方案二：FishAudio（免费，中文友好）】
-1. 打开 https://fish.audio 注册
-2. Text to Speech → 选一个好听的中文声音 → 粘贴稿子 → 生成
-3. 或 Voice Clone → 上传自己的录音克隆
-
-【方案三：CosyVoice（阿里出品，免费）】
-1. 打开 https://www.modelscope.cn/studios/iic/CosyVoice-300M  
-2. 上传参考录音 → 输入文字 → 生成
-
-💡 小技巧：生成前在稿子里加入（停顿）（语气加重）等标记，AI读起来更有节奏感`
+    system: '你是一个播客脚本写手。请把文章改写成播客口播稿：1.开场1句话钩子 2.故事化叙述有画面感 3.每段3-5句话自然停顿 4.结尾总结+预告 5.1500-2000字（约8-12分钟）。直接输出口播稿正文。'
   },
   moments: {
     title: '💬 朋友圈/即刻 金句版',
-    template: `请从以下文章提取适合发朋友圈的内容：
-
-要求：
-1. 生成3条文案（干货/共鸣/提问各1条）
-2. 每条80-150字
-3. 每条配1张图建议
-4. 语言轻松像聊天
----
-[文章内容]
----`
+    system: '你是一个社交媒体文案写手。请从文章中提取适合发朋友圈的内容：1.生成3条文案（干货/共鸣/提问各1条）2.每条80-150字 3.每条配1张图建议 4.语言轻松像聊天。直接输出。'
   }
 };
 
 let currentPlatform = 'wechat';
 
-// 平台按钮点击
+// ====== 调用 DeepSeek API ======
+async function callDeepSeek(article, systemPrompt, model) {
+  const apiKey = localStorage.getItem('cd_api_key');
+  if(!apiKey) throw new Error('请先配置 API Key');
+  
+  const resp = await fetch('https://api.deepseek.com/chat/completions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + apiKey },
+    body: JSON.stringify({
+      model: model || 'deepseek-chat',
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: article }
+      ],
+      max_tokens: 4096,
+      temperature: 0.7
+    })
+  });
+  
+  if(!resp.ok){
+    const err = await resp.text();
+    throw new Error('API 错误: ' + (err.slice(0,100) || resp.status));
+  }
+  const data = await resp.json();
+  return data.choices[0].message.content;
+}
+
+// ====== 显示生成结果 ======
+async function showGenerated(platform) {
+  const article = document.getElementById('articleInput').value.trim();
+  if(!article) { alert('请先粘贴文章内容'); return; }
+  
+  const p = prompts[platform];
+  const outputDiv = document.getElementById('outputContent');
+  const titleEl = document.getElementById('outputTitle');
+  const section = document.getElementById('outputSection');
+  
+  titleEl.textContent = p.title + ' ⏳ 正在生成...';
+  outputDiv.innerHTML = '<div class="generating"><span class="spinner"></span> AI 正在改写中，请稍候...</div>';
+  section.classList.add('visible');
+  
+  try {
+    const model = document.getElementById('apiModelSelect').value;
+    const result = await callDeepSeek(article, p.system, model);
+    outputDiv.textContent = result;
+    titleEl.textContent = p.title + ' ✅ 已生成';
+    saveToHistory(platform, p.title, result);
+  } catch(e) {
+    outputDiv.textContent = '❌ 生成失败：' + e.message;
+    titleEl.textContent = p.title + ' ❌ 失败';
+  }
+}
+
+// ====== 历史记录 ======
+function getHistory() {
+  try { return JSON.parse(localStorage.getItem('cd_history')) || []; } catch(e) { return []; }
+}
+function saveToHistory(platform, title, content) {
+  const h = getHistory();
+  h.unshift({ platform, title, content, time: new Date().toLocaleString('zh-CN') });
+  if(h.length > 50) h.length = 50;
+  localStorage.setItem('cd_history', JSON.stringify(h));
+}
+
+// ====== 平台按钮点击 ======
 const platformBtns = document.querySelectorAll('.platform-btn');
 platformBtns.forEach(btn => {
   btn.addEventListener('click', () => {
+    const platform = btn.dataset.platform;
+    if(!platform) return;
     platformBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    currentPlatform = btn.dataset.platform;
-    showSingleOutput(currentPlatform);
+    currentPlatform = platform;
+    showGenerated(platform);
   });
 });
 
-// 显示单个平台
-function showSingleOutput(platform) {
+// ====== 一键生成全部 ======
+document.getElementById('generateAllBtn').addEventListener('click', async () => {
   const article = document.getElementById('articleInput').value.trim();
-  const p = prompts[platform];
-  let full = p.template.replace('[文章内容]', article || '(请先粘贴文章内容)');
+  if(!article) { alert('请先粘贴文章内容'); return; }
   
-  // 小红书额外加配图Prompt
-  if (p.imagePrompts) {
-    full += '\n\n═══════════════════════════════\n🎨 即梦AI配图Prompt\n';
-    full += '───────────────────────────────\n';
-    full += p.imagePrompts.join('\n\n');
-  }
-  if (p.audioGuide) {
-    full += '\n\n' + p.audioGuide;
+  const outputDiv = document.getElementById('outputContent');
+  const titleEl = document.getElementById('outputTitle');
+  const section = document.getElementById('outputSection');
+  section.classList.add('visible');
+  titleEl.textContent = '⚡ 一键生成全部（5个平台）...';
+  outputDiv.innerHTML = '<div class="generating"><span class="spinner"></span> 正在逐个生成，请稍候...</div>';
+  
+  let allResults = '';
+  const model = document.getElementById('apiModelSelect').value;
+  
+  for(const [key, p] of Object.entries(prompts)) {
+    try {
+      outputDiv.innerHTML = '<div class="generating"><span class="spinner"></span> 正在生成 ' + p.title + '...</div>';
+      const result = await callDeepSeek(article, p.system, model);
+      allResults += '═══════════════════════════════\n' + p.title + ' ✅\n';
+      allResults += '───────────────────────────────\n' + result + '\n\n';
+      saveToHistory(key, p.title, result);
+    } catch(e) {
+      allResults += '═══════════════════════════════\n' + p.title + ' ❌ 失败: ' + e.message + '\n\n';
+    }
   }
   
-  document.getElementById('outputTitle').textContent = p.title;
-  document.getElementById('outputContent').textContent = full;
-  document.getElementById('outputSection').classList.add('visible');
-}
+  outputDiv.textContent = allResults;
+  titleEl.textContent = '✅ 全部生成完毕';
+  platformBtns.forEach(b => b.classList.remove('active'));
+});
 
-// 一键复制
-function getCurrentContent() {
-  const article = document.getElementById('articleInput').value.trim();
-  const p = prompts[currentPlatform];
-  let text = p.template.replace('[文章内容]', article || '(请先粘贴文章内容)');
-  if (p.imagePrompts) {
-    text += '\n\n═══════════════════════════════\n🎨 即梦AI配图Prompt\n';
-    text += '───────────────────────────────\n';
-    text += p.imagePrompts.join('\n\n');
-  }
-  if (p.audioGuide) {
-    text += '\n\n' + p.audioGuide;
-  }
-  return text;
-}
-
+// ====== 复制 ======
 document.getElementById('copyBtn').addEventListener('click', () => {
-  const text = getCurrentContent();
+  const text = document.getElementById('outputContent').textContent;
+  if(!text || text.includes('正在生成') || text === '选择平台后将在这里显示生成的内容。' || text === '👆 粘贴文章 → 点击平台按钮 → AI 自动生成对应版本') return;
   navigator.clipboard.writeText(text).then(() => {
     const btn = document.getElementById('copyBtn');
     btn.textContent = '✅ 已复制';
@@ -297,43 +346,22 @@ document.getElementById('copyBtn').addEventListener('click', () => {
   });
 });
 
-// 一键生成全部
-document.getElementById('generateAllBtn').addEventListener('click', () => {
-  const article = document.getElementById('articleInput').value.trim();
-  if (!article) { alert('请先粘贴文章内容'); return; }
-  
-  let allOutput = '';
-  for (const [key, p] of Object.entries(prompts)) {
-    allOutput += '═══════════════════════════════\n';
-    allOutput += p.title + '\n';
-    allOutput += '───────────────────────────────\n';
-    allOutput += p.template.replace('[文章内容]', article) + '\n\n';
-    if (p.imagePrompts) {
-      allOutput += '🎨 即梦AI配图Prompt:\n';
-      allOutput += p.imagePrompts.join('\n') + '\n\n';
-    }
-    if (p.audioGuide) {
-      allOutput += p.audioGuide + '\n\n';
-    }
-  }
-  
-  document.getElementById('outputTitle').textContent = '📋 全平台生成结果（5个）';
-  document.getElementById('outputContent').textContent = allOutput;
-  document.getElementById('outputSection').classList.add('visible');
-  platformBtns.forEach(b => b.classList.remove('active'));
-});
-
-// 粘贴后自动更新内容
-let autoUpdateTimer = null;
+// ====== 自动保存文章 ======
+let autoSaveTimer = null;
 document.getElementById('articleInput').addEventListener('input', () => {
-  clearTimeout(autoUpdateTimer);
-  autoUpdateTimer = setTimeout(() => {
-    showSingleOutput(currentPlatform);
-  }, 500);
+  clearTimeout(autoSaveTimer);
+  autoSaveTimer = setTimeout(() => {
+    localStorage.setItem('cd_last_article', document.getElementById('articleInput').value);
+  }, 1000);
 });
 
-// Init
-showSingleOutput('wechat');
-</script>
+// ====== 初始化 ======
+(function(){
+  const last = localStorage.getItem('cd_last_article');
+  if(last) document.getElementById('articleInput').value = last;
+  document.getElementById('outputContent').textContent = '👆 粘贴文章 → 点击平台按钮 → AI 自动生成对应版本';
+})();
+
+
 </body>
 </html>
