@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>零基础自学AI编程3个月：我的进化路线和踩坑全集 | 平野AI工具站</title>
+<meta name="description" content="零基础自学AI编程三个月，从WorkBuddy到Trae SOLO再到OpenClaw+DeepSeek V4，三个阶段三种工具，每条教训都是真金白银。">
+<meta name="keywords" content="AI工具,AI编程,TRAE SOLO,公众号文章,平野先生">
+<link rel="canonical" href="https://pingyeai.cn/blog/self-learn-ai-3m">
+<meta property="og:title" content="零基础自学AI编程3个月：我的进化路线和踩坑全集">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-04-29">
+<meta property="article:author" content="John Chow">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;background:#f7f8fa;color:#1a1a2e;line-height:1.8;min-height:100vh}.container{max-width:800px;margin:0 auto;padding:0 20px}.wide-container{max-width:1200px;margin:0 auto;padding:0 20px}.navbar{background:#1a1a2e;position:sticky;top:0;z-index:100}.navbar .wide-container{display:flex;align-items:center;justify-content:space-between;height:52px}.navbar .logo{display:flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-weight:700;font-size:1rem}.navbar .logo .logo-img{width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0}.navbar .logo span{color:#e94560}.navbar .nav-links{display:flex;gap:4px}.navbar .nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:.85rem;padding:8px 14px;border-radius:8px;transition:all .2s;white-space:nowrap}.navbar .nav-links a:hover{color:#fff;background:rgba(255,255,255,0.08)}.navbar .hamburger{display:none;background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;padding:4px}.article-header{margin:40px 0 24px}.article-header h1{font-size:clamp(1.4rem,3vw,2rem);font-weight:700;line-height:1.4;margin-bottom:12px}.article-meta{font-size:.85rem;color:#888;display:flex;gap:16px;flex-wrap:wrap}.article-body{background:#fff;border-radius:16px;padding:32px 36px;box-shadow:0 2px 12px rgba(0,0,0,0.04);margin-bottom:30px;font-size:1rem;color:#333}.article-body p{margin-bottom:16px}.article-footer{background:#fff;border-radius:14px;padding:24px;border:1px solid #eee;margin-bottom:40px;text-align:center}.article-footer p{font-size:.9rem;color:#666;line-height:1.6}.article-footer .author-tag{display:inline-block;background:#1a1a2e;color:#fff;padding:8px 24px;border-radius:20px;font-size:.85rem;margin-top:12px}.copyright-notice{background:#fbe9e7;border:2px solid #e53935;border-radius:12px;padding:16px 20px;margin-bottom:24px;text-align:center}.copyright-notice h3{color:#c62828;font-size:1rem;margin-bottom:4px}.copyright-notice p{color:#b71c1c;font-size:.85rem;line-height:1.5}.footer{text-align:center;padding:30px 0;font-size:.8rem;color:#999;border-top:1px solid #eee;margin-top:20px;line-height:1.8}.footer a{color:#666;text-decoration:none}.footer a:hover{color:#1a1a2e}@media(max-width:768px){.container{padding:0 14px}.article-body{padding:20px 18px}.navbar .nav-links{display:none;position:absolute;top:52px;left:0;right:0;background:#1a1a2e;flex-direction:column;padding:8px}.navbar .nav-links.open{display:flex}.navbar .hamburger{display:block}}
+</style>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_C…OKEN"}'></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MEASUREMENT_ID');</script>
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?8787f6e4c29bc3acc5812750c378a195";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+</head>
+<body>
+<nav class="navbar"><div class="wide-container"><a href="/" class="logo"><img src="/logo.jpg" alt="" class="logo-img" width="28" height="28"> <span>平野</span>AI</a><button class="hamburger" id="hamburgerBtn">☰</button><div class="nav-links" id="navLinks"><a href="/">🏠 首页</a><a href="/blog">📝 博客</a></div></div></nav>
+
+<div class="container">
+<header class="article-header">
+<h1>零基础自学AI编程3个月：我的进化路线和踩坑全集</h1>
+<div class="article-meta"><span>📅 2026年4月29日</span><span>✍️ John Chow</span></div>
+</header>
+
+<div class="copyright-notice">
+<div class="icon">©️</div>
+<h3>原创文章，转载请注明出处</h3>
+<p>本文为「平野先生玩AI」原创内容，转载请注明出处。侵权必究。</p>
+</div>
+
+<article class="article-body">
+<p>三个月前，我还在朋友圈问：</p>
+<p>“AI编程到底怎么入门？”</p>
+<p>零基础，代码看不懂，花了几百块买token、买积分，装了一圈工具，也折腾出了几个能用的东西。</p>
+<p>回头看这3个月，不是“试了5个工具”，是经历了3个阶段。每个阶段用一个工具，犯一种错，学一个教训。</p>
+<p>这不是拼盘，是我的来时路。</p>
+<p>阶段一：懵懂期（WorkBuddy）</p>
+<p>入门的第一个工具是WorkBuddy。当时觉得AI编程嘛，就是跟电脑说话，电脑帮你干活。</p>
+<p>确实干成了事。用WorkBuddy做了酒店运营数据看板。入住率、RevPAR、客源结构，之前靠手动，每天光是拉报表至少半小时，还要整理汇总。现在打开网页就能看，每天省将近两个小时。</p>
+<p>同事跑来问这个看板在哪看的，我说我自己做的。</p>
+<p>不过做成这点事，代价不小。</p>
+<p>第一次用，说“帮我做一个数据看板”。Craft写了三个小时，我看着代码一行行往外冒，挺爽。可跑起来发现筛选条件是错的，图表数据对不上，整个看板是摆设。让它改，改完错，再改还错。两天下来，积分烧了两千多，看板没跑通。</p>
+<p>后来才知道Craft是“士兵模式”，你说啥它干啥，但它不质疑你的命令。我自己都没想清楚要什么，它再勤快也没用。</p>
+<p>后来让Craft改数据处理脚本，说“把计算逻辑改对”。改完跑通了。第二天同事问：入住率怎么比100%还高？一查，Craft把“平均入住率”改成了“加权平均入住率”，权重还是错的。Craft不会说“你的需求有问题”，它只会照做。</p>
+<p>然后还有一次，数据看板样式调不对，</p>
+<p>Craft折腾出来的页面还是丑。卡了快两个小时，才想起WorkBuddy有个“召唤专家”功能。叫了个前端专家来，看了一眼说：CSS用的float，换成flexbox就好了。三下五除二搞定。</p>
+<p>前几天写过《上来就Craft？WorkBuddy积分就是这么烧没的》</p>
+<p>，评论区有人说“之前没注意到这些，现在知道了“。</p>
+<p>阶段一的教训：不是让AI干活，是让AI帮你干活。</p>
+<p>先Plan出方案，确认了再Craft执行。卡住了找专家。顺序反了，烧多少积分都是白搭。</p>
+<p>阶段二：上瘾期（Trae / Trae SOLO）</p>
+<p>WorkBuddy摸到门道之后，开始试Trae。感受完全不同，太快了。</p>
+<p>10分钟，说了一句“帮我做个公众号运营助手”，它自动拆任务、写代码、搭界面。37个文件，全程没写一行代码。</p>
+<p>能盯热点、出选题、润色文章、做封面图。发到群里，虾友说这东西能卖钱了。</p>
+<p>后来又用Trae SOLO+OpenCode重构了一版，加了数据看板、热点追踪、选题规划、排期日历。每天上班打开就能用。</p>
+<p>但这个阶段翻车也最多。</p>
+<p>MTC模式玩顺了，想试Code模式，听起来更“高级”。结果进去就懵了，内置近50个编程技能，一个都看不懂。硬着头皮搞了两天。新功能没加上，整个agent功能全丢了，之前的成果也被覆盖了。</p>
+<p>这篇《Trae Solo Code模式避坑：别学我》</p>
+<p>发出来后，好几个人说“差点就想试了，还好先看了”。</p>
+<p>Trae还有个毛病，默认Auto模式，系统自动切换大模型。不同模型写代码风格不一样，前100行一种写法，后100行另一种，合在一起跑不起来。关掉Auto，手动固定一个大模型，就好了。</p>
+<p>另外就是高峰时段问题。周中早上</p>
+<p>10点、下午3点，基本在排队和等待中度过。点发送，排队半个小时起步，这两天更夸张，最多排到2300+。</p>
+<p>阶段二的教训：小白先用MTC模式，别硬上Code。</p>
+<p>关掉Auto，手选一个大模型固定住。</p>
+<p>高峰期别凑热闹，晚上睡前让它干活。</p>
+<p>阶段三：成熟期（DeepSeek V4 + OpenClaw）</p>
+<p>前两个阶段让我学会了</p>
+<p>“先想清楚再动手”和“不要贪多”。到第三阶段，开始考虑工具之间的配合。</p>
+<p>DeepSeek V4最先吸引我的是网页版。响应速度像换了台发动机。用它修了OpenClaw升级报错，终端里的英文丢给V4，3秒出结果，按步骤操作搞定。比之前用豆包折腾半天快多了。</p>
+<p>但想把V4接入OpenClaw一起用，一开始没跑通。折腾了半天发现V4只是假接入，实际调用被拒。第二天试了DeepSeek的专家模式，让专家帮忙看配置，一步步排查，终于接上了。</p>
+<p>现在OpenClaw跑的就是DeepSeek V4 Flash版本，响应快，积分消耗也不大，是目前用得最顺的组合。</p>
+<p>阶段三的教训：DeepSeek V4网页版值得上手，接入OpenClaw用专家模式能搞定。现在OpenClaw跑DeepSeek V4 Flash，既快又省，是目前的主力组合。</p>
+<p>如果让我重新来一遍走完这三个阶段，回头看，真正值钱的不是哪个工具好坏。</p>
+<p>不管用哪个工具，自己没想清楚要什么就让</p>
+<p>AI干，结果AI猜不对，重来，再猜，再重来。工具跑得越快，方向错了损失越大。</p>
+<p>WorkBuddy、Trae SOLO、OpenClaw、Hermes，电脑里同时装了好几个。每装一个都得重新配置、重新讲项目背景。同一个大模型，装在不同agent里表现完全不同。想省事，结果变成了AI的运维工程师。</p>
+<p>选工具这件事，最后用的是三个问题来筛：</p>
+<p>它能帮我落地吗，还是只给答案？</p>
+<p>出了问题我能往下走吗，还是直接卡死？</p>
+<p>用它的时候我是在学东西，还是在走流程？</p>
+<p>这三个问题最早是在《删了5个AI编程软件，换成这2个》</p>
+<p>里写的，后来好几个人跟我说“我就是用这三个问题选的”。</p>
+<p>后记：就在我写这篇文章的时候，我又踩了一个坑</p>
+<p>昨天下午用Trae SOLO的Code模式更新数据看板的一个功能。结果它“不小心”把整个HTML文件覆盖了。</p>
+<p>整个数据看板，43935行代码。</p>
+<p>全没了。从昨天下午修到今天中午，没修好。最后用绿</p>
+<p>Trae，大模型选GLM-5.1，全部重做了一遍。临近下班才勉强做完。</p>
+<p>有人可能会问：你不是把</p>
+<p>DeepSeek V4 Flash吹上天了吗，为什么不用？</p>
+<p>因为不想花钱。绿Trae目前免费，GLM-5.1也是免费。能用免费的解决问题，就别动付费的。</p>
+<p>你看，三个月走完三个阶段，以为自己总结透了。结果昨天又来一课：</p>
+<p>以为稳定了的工具，随时可能再翻车。</p>
+<p>这篇文章没法划句号。因为我还在学。</p>
+<p>说说你现在在哪一个阶段？评论区聊聊</p>
+<p>我是John Chow，一路摸爬滚打自学AI的中年博主。</p>
+<p>关注我，让你的AI之路少踩坑。</p>
+</article>
+
+<div class="article-footer">
+<p>我是John Chow，一个自学AI、在职场摸爬滚打的中登。</p>
+<p>关注我，让你的AI之路少踩坑。</p>
+<p>📱 公众号：平野先生</p>
+<span class="author-tag">平野先生玩AI</span>
+</div>
+
+<div style="text-align:center;margin-bottom:40px">
+<a href="/blog" style="display:inline-block;padding:10px 28px;background:#1a1a2e;color:#fff;border-radius:10px;text-decoration:none;font-size:.9rem;font-weight:600">← 返回博客</a>
+</div>
+</div>
+
+<footer class="footer"><div><a href="https://pingyeai.cn">pingyeai.cn</a> — 平野AI工具站</div><div><a href="/">首页</a> · <a href="/blog">博客</a></div></footer>
+<script>document.getElementById('hamburgerBtn').addEventListener('click',()=>{document.getElementById('navLinks').classList.toggle('open');});</script></body></html>

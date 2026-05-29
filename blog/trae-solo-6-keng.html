@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用TRAE SOLO一个多月，我踩了6个坑（附解决方案） | 平野AI工具站</title>
+<meta name="description" content="零基础用TRAE SOLO一个多月，踩遍Auto模式、排队过长、Code模式覆盖文件等6个坑，附详细解决方案和避坑指南。">
+<meta name="keywords" content="AI工具,AI编程,TRAE SOLO,公众号文章,平野先生">
+<link rel="canonical" href="https://pingyeai.cn/blog/trae-solo-6-keng">
+<meta property="og:title" content="用TRAE SOLO一个多月，我踩了6个坑（附解决方案）">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-05-06">
+<meta property="article:author" content="John Chow">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;background:#f7f8fa;color:#1a1a2e;line-height:1.8;min-height:100vh}.container{max-width:800px;margin:0 auto;padding:0 20px}.wide-container{max-width:1200px;margin:0 auto;padding:0 20px}.navbar{background:#1a1a2e;position:sticky;top:0;z-index:100}.navbar .wide-container{display:flex;align-items:center;justify-content:space-between;height:52px}.navbar .logo{display:flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-weight:700;font-size:1rem}.navbar .logo .logo-img{width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0}.navbar .logo span{color:#e94560}.navbar .nav-links{display:flex;gap:4px}.navbar .nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:.85rem;padding:8px 14px;border-radius:8px;transition:all .2s;white-space:nowrap}.navbar .nav-links a:hover{color:#fff;background:rgba(255,255,255,0.08)}.navbar .hamburger{display:none;background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;padding:4px}.article-header{margin:40px 0 24px}.article-header h1{font-size:clamp(1.4rem,3vw,2rem);font-weight:700;line-height:1.4;margin-bottom:12px}.article-meta{font-size:.85rem;color:#888;display:flex;gap:16px;flex-wrap:wrap}.article-body{background:#fff;border-radius:16px;padding:32px 36px;box-shadow:0 2px 12px rgba(0,0,0,0.04);margin-bottom:30px;font-size:1rem;color:#333}.article-body p{margin-bottom:16px}.article-footer{background:#fff;border-radius:14px;padding:24px;border:1px solid #eee;margin-bottom:40px;text-align:center}.article-footer p{font-size:.9rem;color:#666;line-height:1.6}.article-footer .author-tag{display:inline-block;background:#1a1a2e;color:#fff;padding:8px 24px;border-radius:20px;font-size:.85rem;margin-top:12px}.copyright-notice{background:#fbe9e7;border:2px solid #e53935;border-radius:12px;padding:16px 20px;margin-bottom:24px;text-align:center}.copyright-notice h3{color:#c62828;font-size:1rem;margin-bottom:4px}.copyright-notice p{color:#b71c1c;font-size:.85rem;line-height:1.5}.footer{text-align:center;padding:30px 0;font-size:.8rem;color:#999;border-top:1px solid #eee;margin-top:20px;line-height:1.8}.footer a{color:#666;text-decoration:none}.footer a:hover{color:#1a1a2e}@media(max-width:768px){.container{padding:0 14px}.article-body{padding:20px 18px}.navbar .nav-links{display:none;position:absolute;top:52px;left:0;right:0;background:#1a1a2e;flex-direction:column;padding:8px}.navbar .nav-links.open{display:flex}.navbar .hamburger{display:block}}
+</style>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_C…OKEN"}'></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MEASUREMENT_ID');</script>
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?8787f6e4c29bc3acc5812750c378a195";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+</head>
+<body>
+<nav class="navbar"><div class="wide-container"><a href="/" class="logo"><img src="/logo.jpg" alt="" class="logo-img" width="28" height="28"> <span>平野</span>AI</a><button class="hamburger" id="hamburgerBtn">☰</button><div class="nav-links" id="navLinks"><a href="/">🏠 首页</a><a href="/blog">📝 博客</a></div></div></nav>
+
+<div class="container">
+<header class="article-header">
+<h1>用TRAE SOLO一个多月，我踩了6个坑（附解决方案）</h1>
+<div class="article-meta"><span>📅 2026年5月6日</span><span>✍️ John Chow</span></div>
+</header>
+
+<div class="copyright-notice">
+<div class="icon">©️</div>
+<h3>原创文章，转载请注明出处</h3>
+<p>本文为「平野先生玩AI」原创内容，转载请注明出处。侵权必究。</p>
+</div>
+
+<article class="article-body">
+<p>TRAE最近动作很大很频繁。从五一当天上线手机端app，到昨天突然上线Windows独立端SOLO，正好印证了前几天播客里听到字节TRAE项目负责人释放出来TRAE不甘于只做AI Coding领域世界第二的强烈进取心和强大自信。作为零编程背景小白里的TRAE老用户，从去年10月份接触绿TRAE，尝试学着弄点东西，到今年3月份SOLO拆分升级成独立客户端，毫不犹豫申请账号。到了这个节骨眼，作为小白里的老用户，我觉得有必要把自己这么长时间摸爬滚打踩过的坑、攒下来的经验整理分享出来，帮大家避坑。</p>
+<p>第一个坑大模型别用Auto模式很多人第一次用Trae SOLO，对话框右下角默认是Auto模式。但MTC模式和Code模式的处理方式完全不同，踩坑成本也不一样。MTC模式（非编程场景）下，关掉Auto Mode后需要配置第三方大模型API，是要花钱的。如果你只是写文案、做PPT，建议保持Auto模式，或者接受偶尔的风格不一致。</p>
+<p>Code模式（编程场景）就不一样了。关掉Auto Mode后，有多个内置大模型可以免费选：Doubao-Seed-Code、Doubao-Seed-2.0-Code、MiniMax-M2.5/M2.7、GLM-5/5.1/5V-Turbo、Kimi-K2.5/K2.6、Qwen3.5-Plus/Qwen3.6-Plus。说说我的使用经验。项目比较复杂、要求比较高的，选GLM-5.1、Kimi-K2.6、Qwen3.6-Plus。</p>
+<p>这里面有个细节要注意：GLM-5.1不能识图，如果你需要看图干活——比如有设计稿或者UI参考——得选GLM-5V-Turbo、Kimi-K2.6或者Qwen3.6-Plus，这三个是多模态模型，可以识图。快速原型、试错阶段，Doubao-Seed-Code响应快，适合快速验证想法。MiniMax-M2.7在复杂逻辑上表现不错，代码生成比较稳定。选好之后，即使排队也别轻易换。</p>
+<p>保持风格一致比什么都重要。第二个坑需求描述太模糊，输出全是套话这是新手最容易犯的错。你跟AI说"帮我写个专业点的文案"，它给你一堆"赋能""抓手""闭环""沉淀"。看着挺专业，其实空洞无物。</p>
+<p>AI不是你肚子里的蛔虫。你说得越模糊，它越只能瞎编。那些看起来高大上的词，其实是它在"糊弄"你。我帮大家总结了几个常用的需求描述模板，直接复制，填入你的具体内容就能用：写文案/内容的时候，用这个——帮我写一篇【类型】，主题是【主题】。</p>
+<p>要求：字数【
+X
+】字，风格【口语化/专业/幽默】，受众是【目标人群】必须包含【要点
+1
+、要点
+2
+】，参考类似【XXX】的风格。做数据分析的时候，用这个——我需要分析【数据类型】，目的是【分析目的】。数据格式是【
+Excel
+/
+CSV
+/
+JSON
+】，需要输出【指标1
+】、【指标
+2
+】，可视化要求【图表类型】。写代码/做功能的时候，用这个——请帮我实现【功能描述】。</p>
+<p>技术栈【语言/框架】输入【输入格式】，输出【输出格式】，特别注意【边界条件/异常处理】。对比一下就知道了："帮我写个专业文案"和用模板填完之后的效果，差了十倍不止。第三个坑远程操控有前提条件Trae SOLO移动端最大的卖点，就是能远程操控电脑写代码。但很多人第一次用会发现——怎么连不上？</p>
+<p>远程操控有两个前提：电脑必须在线，而且必须打开了SOLO桌面端；手机和电脑要用同一个账号登录。缺一不可。出门前确认两件事就行：电脑开着，SOLO桌面端在运行；手机登录的是同一个账号。别等到了地铁上才发现连不上，那真是一点办法没有。</p>
+<p>（具体操作可以看手机端 Trae Solo 上线
+）第四个坑高峰期排队越来越久Trae SOLO国内版完全免费，但代价是高峰期要排队。上周我用GLM-5.1，排队只要等5-6个人。今天再看，已经排到200+了。这个增长速度，说明用户量在快速膨胀。</p>
+<p>两个解决办法：错峰，或者选排队短的模型。错峰时间我实测过，这几个时段排队会缓解很多——上午10点之前下午2-3点晚上7-9点凌晨1点半以后选模型也有讲究。注意，排队情况不是点模型就能看到的，要先切换模型、发送需求，才能看到具体的排队人数。我用自己的使用经验给大家排了个序：GLM &gt; Kimi &gt; Qwen &gt; MiniMax &gt;豆包。</p>
+<p>GLM排队最长，豆包排队最短。着急的时候选豆包或MiniMax，排队时间会短很多。第五个坑不同模型排队差异大这个其实跟上一个是一回事，但值得单独拿出来说。很多人默认用一个模型，排队就硬等。</p>
+<p>其实不同模型的排队人数差别很大。着急的时候选豆包或MiniMax，排队时间短；不着急的时候选GLM或Kimi，代码质量更稳定。但不管选哪个，选好了就尽量别换。换来换去，风格不一致，最后返工的还是你自己。</p>
+<p>第六个坑Code模式可能覆盖整个文件这是最严重的一个坑，我亲身经历。Code模式下，AI执行时可能不小心覆盖掉整个文件。如果没有备份，根本找不回来。我当时就遇到过这种情况，花了不少时间重新做。</p>
+<p>备份这件事，说三遍都不嫌多。推荐用GitHub。Trae SOLO现在深度集成了GitHub，包括接口和内置skill，可以直接推送代码到仓库。前提是要先注册好GitHub账号。</p>
+<p>Github注册网址：https://github.com/Trae SOLO关联GitHub账号：添加GitHub技能：唤起git：在对话框输入“/git”就能唤起已经添加的GitHub技能，其中git-commit就是提交修改后的代码。如果GitHub登不进去或者链接不稳定，Gitee是国内平替，免费用。区别就是gitee需要创建好仓库以后，在终端或者是Windows的powershell里手动执行git-commit命令提交。最简单的做法：用网盘。</p>
+<p>如果看不懂命令、嫌麻烦、记不住，就用百度网盘的同步空间，自动备份重要文件。适合小白。需要的可以看亲测，不用 GitHub、不搞 Gitee 复杂命令，两台电脑同步WorkBuddy项目我只靠它，Trae SOLO同样适用。保底做法：养成手动备份的习惯。</p>
+<p>至少重要项目随时手动备份。哪怕只是复制一份到另一个文件夹，也比丢了强。TRAE SOLO确实是个好东西，就像官方slogan写的一样More Than Coding，不止于编程。而且至少现阶段免费用是真的香。</p>
+<p>但免费不等于完美，上面这6个坑，我都已经替你踩过了，你就别再去踩了。我是John Chow，一个自学AI、在职场摸爬滚打的中登。关注我，让你的AI之路少踩坑。</p>
+</article>
+
+<div class="article-footer">
+<p>我是John Chow，一个自学AI、在职场摸爬滚打的中登。</p>
+<p>关注我，让你的AI之路少踩坑。</p>
+<p>📱 公众号：平野先生</p>
+<span class="author-tag">平野先生玩AI</span>
+</div>
+
+<div style="text-align:center;margin-bottom:40px">
+<a href="/blog" style="display:inline-block;padding:10px 28px;background:#1a1a2e;color:#fff;border-radius:10px;text-decoration:none;font-size:.9rem;font-weight:600">← 返回博客</a>
+</div>
+</div>
+
+<footer class="footer"><div><a href="https://pingyeai.cn">pingyeai.cn</a> — 平野AI工具站</div><div><a href="/">首页</a> · <a href="/blog">博客</a></div></footer>
+<script>document.getElementById('hamburgerBtn').addEventListener('click',()=>{document.getElementById('navLinks').classList.toggle('open');});</script></body></html>
