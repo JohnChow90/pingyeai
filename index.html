@@ -116,6 +116,14 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
 .btn-outline:hover{background:#f5f5f5}
 .aff-note{font-size:0.7rem;color:#aaa;margin-top:4px}
 
+/* ===== MiMo Special Card ===== */
+.mimo-card{border-color:#ff6f00!important;position:relative}
+.mimo-card::before{content:'NEW';position:absolute;top:-6px;right:-6px;background:#ff6f00;color:#fff;font-size:0.6rem;font-weight:700;padding:2px 8px;border-radius:10px}
+.mimo-promo{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.promo-code{background:#fff3e0;padding:6px 12px;border-radius:8px;font-size:0.82rem;color:#e65100}
+.promo-code strong{font-size:1.05rem;letter-spacing:1px}
+.promo-bonus{background:#e8f5e9;padding:4px 10px;border-radius:6px;font-size:0.78rem;color:#2e7d32;font-weight:600}
+
 /* ===== Related Tools Banner ===== */
 .related-tools{background:#fff;border-radius:14px;padding:24px;margin:28px 0;border:1px solid #eee}
 .related-tools h3{font-size:1rem;font-weight:600;margin-bottom:14px}
@@ -192,11 +200,11 @@ var _hmt = _hmt || [];
     <h1>🤖 <span>AI模型价格</span>对比器 2026</h1>
     <p>一表看懂GPT、Claude、Gemini、DeepSeek等主流AI模型的API定价和订阅价格</p>
     <div class="badge">
-      <span>📊 18款模型</span>
+      <span>📊 20款模型</span>
       <span>💰 API定价</span>
       <span>📅 订阅价格</span>
     </div>
-    <div class="update-note">最后更新：2026年5月24日 · 来源标注：✅官方确认 · ⚠️参考现行定价</div>
+    <div class="update-note">最后更新：2026年5月29日 · 来源标注：✅官方确认 · ⚠️参考现行定价</div>
   </div>
 </header>
 
@@ -227,6 +235,7 @@ var _hmt = _hmt || [];
       <option value="anthropic">Anthropic</option>
       <option value="google">Google</option>
       <option value="deepseek">DeepSeek</option>
+      <option value="xiaomi">小米</option>
       <option value="others">其他</option>
     </select>
   </div>
@@ -284,22 +293,41 @@ var _hmt = _hmt || [];
     <div class="tool-card">
       <h4>🤖 ChatGPT</h4>
       <p>OpenAI 旗舰模型，GPT-5.5 系列，编程与专业工作首选。</p>
-      <a class="btn btn-primary" href="https://chat.openai.com" target="_blank" rel="noopener">立即体验</a>
+      <a class="btn btn-primary" href="https://chat.openai.com" target="_blank" rel="sponsored noopener">立即体验</a>
+      <p class="aff-note">含推广链接</p>
     </div>
     <div class="tool-card">
       <h4>🧠 Claude</h4>
       <p>Anthropic 出品，长上下文与安全性突出，适合深度分析。</p>
-      <a class="btn btn-primary" href="https://claude.ai" target="_blank" rel="noopener">立即体验</a>
+      <a class="btn btn-primary" href="https://claude.ai" target="_blank" rel="sponsored noopener">立即体验</a>
+      <p class="aff-note">含推广链接</p>
     </div>
     <div class="tool-card">
       <h4>🌐 Gemini</h4>
       <p>Google 多模态模型，200万上下文窗口，视频理解能力强。</p>
-      <a class="btn btn-primary" href="https://gemini.google.com" target="_blank" rel="noopener">立即体验</a>
+      <a class="btn btn-primary" href="https://gemini.google.com" target="_blank" rel="sponsored noopener">立即体验</a>
     </div>
     <div class="tool-card">
       <h4>💎 DeepSeek</h4>
       <p>国产最强，V4 Flash/Pro 性价比极高，1M上下文。</p>
-      <a class="btn btn-primary" href="https://chat.deepseek.com" target="_blank" rel="noopener">立即体验</a>
+      <a class="btn btn-primary" href="https://chat.deepseek.com" target="_blank" rel="sponsored noopener">立即体验</a>
+      <p class="aff-note">含推广链接</p>
+    </div>
+    <div class="tool-card">
+      <h4>☁️ 阿里云</h4>
+      <p>云服务器38元/年起，GPU实例/AI大模型服务，开发者首选。</p>
+      <a class="btn btn-primary" href="https://www.aliyun.com/minisite/goods?userCode=6fsnflck" target="_blank" rel="sponsored noopener">立即选购</a>
+      <p class="aff-note">含推广链接</p>
+    </div>
+    <div class="tool-card mimo-card">
+      <h4>🔴 小米 MiMo V2.5</h4>
+      <p>小米旗舰大模型，V2.5系列 API 降价高达99%，极致性价比。¥10 体验金免费领。</p>
+      <div class="mimo-promo">
+        <span class="promo-code">邀请码: <strong>9YRE8S</strong></span>
+        <span class="promo-bonus">🎁 双方各得 ¥10</span>
+      </div>
+      <a class="btn btn-primary" href="https://platform.xiaomimimo.com" target="_blank" rel="sponsored noopener">免费体验</a>
+      <p class="aff-note">推荐码 9YRE8S · 注册后在控制台填写</p>
     </div>
   </div>
 </section>
@@ -309,8 +337,9 @@ var _hmt = _hmt || [];
 <footer class="footer">
   <div><a href="https://pingyeai.cn">pingyeai.cn</a> — 平野AI工具站</div>
   <div>数据来源：OpenAI / DeepSeek 官方定价页面 · 其他模型定价仅供参考</div>
-  <div class="stats">🔄 最后更新：2026-05-24 ｜ 📊 收录14款API模型 + 8款订阅产品</div>
-  <div><a href="/">首页</a> · <a href="/compare-ai-coding-tools">编程工具对比</a></div>
+  <div class="stats">🔄 最后更新：2026-05-29 ｜ 📊 收录20款API模型 + 8款订阅产品</div>
+  <div class="disclaimer" style="font-size:0.72rem;color:#bbb;margin-top:8px">本网站部分链接为推广链接，我们可能获得小额佣金，不影响您的购买价格。</div>
+  <div><a href="/">首页</a> · <a href="/compare-ai-coding-tools">编程工具对比</a> · <a href="/privacy">隐私政策</a> · <a href="/affiliate-disclaimer">推广声明</a></div>
 </footer>
 
 <script>
@@ -324,7 +353,7 @@ document.querySelectorAll('.nav-links a').forEach(a => {
 });
 
 // Data
-const COLORS = { openai:'#0f3460', anthropic:'#d4a574', google:'#4285f4', deepseek:'#4caf50', others:'#9c27b0' };
+const COLORS = { openai:'#0f3460', anthropic:'#d4a574', google:'#4285f4', deepseek:'#4caf50', xiaomi:'#ff6f00', others:'#9c27b0' };
 const BAR_COLORS = ['#0f3460','#1565c0','#d4a574','#8d6e63','#4285f4','#4fc3f7','#4caf50','#66bb6a','#9c27b0','#e91e63','#ff6f00','#f44336','#00897b','#546e7a','#795548','#37474f'];
 
 const apiModels = [
@@ -338,6 +367,8 @@ const apiModels = [
   { id:'gem25f', name:'Gemini 2.5 Flash', prov:'google', input:0.15, output:0.60, cache:0.03, ctx:'1M', note:'最快响应速度', tags:['cheap','popular'] },
   { id:'dsv4f', name:'DeepSeek V4 Flash', prov:'deepseek', input:0.14, output:0.28, cache:0.0028, ctx:'1M', note:'思维链+1M上下文', tags:['cheap','best'] },
   { id:'dsv4p', name:'DeepSeek V4 Pro', prov:'deepseek', input:1.74, output:3.48, cache:0.0145, ctx:'1M', note:'75%折扣至5/31', tags:['popular'] },
+  { id:'mimov25', name:'MiMo V2.5', prov:'xiaomi', input:0.14, output:0.28, cache:0.0028, ctx:'128K', tags:['cheap','best'], note:'极致性价比，V2.5标准版' },
+  { id:'mimov25p', name:'MiMo V2.5 Pro', prov:'xiaomi', input:0.435, output:0.87, cache:0.0036, ctx:'128K', tags:['popular'], note:'旗舰推理模型' },
   { id:'qwen3m', name:'Qwen3 Max', prov:'others', input:2.00, output:8.00, cache:null, ctx:'128K', note:'阿里旗舰', tags:['popular'] },
   { id:'qw32p', name:'Qwen3 Plus', prov:'others', input:0.50, output:2.00, cache:null, ctx:'128K', note:'性价比之选', tags:['cheap'] },
   { id:'mistrall', name:'Mistral Large', prov:'others', input:2.00, output:6.00, cache:null, ctx:'128K', note:'欧洲最强', tags:[] },
@@ -378,7 +409,7 @@ function renderChart(data){
   }).join('');
 }
 let currentFilter='all',currentSearch='';
-const provMap={openai:['openai'],anthropic:['anthropic'],google:['google'],deepseek:['deepseek'],others:['others']};
+const provMap={openai:['openai'],anthropic:['anthropic'],google:['google'],deepseek:['deepseek'],xiaomi:['xiaomi'],others:['others']};
 function filterData(){return apiModels.filter(m=>{if(currentFilter!=='all'&&!provMap[currentFilter].includes(m.prov))return false;if(currentSearch&&!m.name.toLowerCase().includes(currentSearch.toLowerCase()))return false;return true;});}
 function update(){const data=filterData();renderApiTable(data);renderChart(data);}
 document.getElementById('searchInput').addEventListener('input',e=>{currentSearch=e.target.value;update();});
