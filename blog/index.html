@@ -65,6 +65,19 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
 .blog-card .bc-meta .tag{font-size:0.7rem;padding:2px 10px;border-radius:10px;background:#f0f0f5;color:#666}
 .blog-card .bc-meta .tag-trae{background:#e3f2fd;color:#1565c0}
 .blog-card .bc-meta .tag-popular{background:#fff3e0;color:#e65100}
+.blog-card .bc-meta .tag-wb{background:#e8f5e9;color:#2e7d32}
+.blog-card .bc-meta .tag-oc{background:#f3e5f5;color:#7b1fa2}
+.blog-card .bc-meta .tag-ai{background:#fff8e1;color:#e65100}
+.blog-card .bc-meta .tag-cloud{background:#e0f2f1;color:#00695c}
+.blog-card .bc-meta .tag-code{background:#e8eaf6;color:#283593}
+
+/* ===== Category Filter ===== */
+.cat-filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;justify-content:center}
+.cat-filter button{padding:8px 18px;border-radius:20px;border:1px solid #ddd;background:#fff;color:#666;font-size:0.82rem;cursor:pointer;transition:all 0.2s;font-weight:500}
+.cat-filter button:hover{border-color:#1a1a2e;color:#1a1a2e}
+.cat-filter button.active{background:#1a1a2e;color:#fff;border-color:#1a1a2e}
+.cat-filter button .count{font-size:0.7rem;opacity:0.6;margin-left:3px}
+
 .blog-card h2{font-size:1.15rem;font-weight:700;margin-bottom:8px;color:#1a1a2e;line-height:1.4}
 .blog-card:hover h2{color:#e94560}
 .blog-card .bc-excerpt{font-size:0.9rem;color:#666;line-height:1.7;margin-bottom:12px}
@@ -122,10 +135,20 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
 <!-- ===== Blog List ===== -->
 <main class="container blog-section">
 
-  <a href="/blog/trae-feishu-ppt.html" class="blog-card">
+<div class="cat-filter" id="catFilter">
+  <button class="active" data-cat="all">全部 <span class="count">20</span></button>
+  <button data-cat="trae">🛠 TRAE SOLO <span class="count">10</span></button>
+  <button data-cat="wb">🧰 WorkBuddy <span class="count">3</span></button>
+  <button data-cat="oc">🦞 OpenClaw <span class="count">1</span></button>
+  <button data-cat="ai">🤖 AI工具 <span class="count">4</span></button>
+  <button data-cat="cloud">☁️ 云服务 <span class="count">1</span></button>
+  <button data-cat="code">📚 AI编程 <span class="count">1</span></button>
+</div>
+
+  <a href="/blog/trae-feishu-ppt.html" class="blog-card" data-category="trae">
     <div class="bc-meta">
       <span>📅 2026年5月29日</span>
-      <span class="tag tag-trae">TRAE SOLO</span><span class="tag tag-trae">踩坑</span>
+      <span class="tag tag-trae">TRAE SOLO</span><span class="tag tag-popular">踩坑</span>
     </div>
     <h2>TRAE SOLO调用飞书CLI做PPT，还是算了吧</h2>
     <div class="bc-excerpt">
@@ -134,10 +157,10 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/ai-cloud-server-guide.html" class="blog-card">
+  <a href="/blog/ai-cloud-server-guide.html" class="blog-card" data-category="cloud">
     <div class="bc-meta">
       <span>📅 2026年5月28日</span>
-      <span class="tag ">云服务</span><span class="tag tag-trae">教程</span>
+      <span class="tag tag-cloud">云服务</span><span class="tag ">教程</span>
     </div>
     <h2>AI开发者云服务器选购指南 2026</h2>
     <div class="bc-excerpt">
@@ -146,10 +169,10 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/ai-tool-selection-guide.html" class="blog-card">
+  <a href="/blog/ai-tool-selection-guide.html" class="blog-card" data-category="ai">
     <div class="bc-meta">
       <span>📅 2026年5月25日</span>
-      <span class="tag ">AI工具</span><span class="tag ">指南</span>
+      <span class="tag tag-ai">AI工具</span><span class="tag ">指南</span>
     </div>
     <h2>TRAE SOLO、WorkBuddy、DeepSeek……AI工具一大堆，怎么选？</h2>
     <div class="bc-excerpt">
@@ -158,7 +181,7 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/trae-docx-pptx.html" class="blog-card">
+  <a href="/blog/trae-docx-pptx.html" class="blog-card" data-category="trae">
     <div class="bc-meta">
       <span>📅 2026年5月21日</span>
       <span class="tag tag-trae">TRAE SOLO</span><span class="tag ">求助</span>
@@ -170,10 +193,10 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/openclaw-macos.html" class="blog-card">
+  <a href="/blog/openclaw-macos.html" class="blog-card" data-category="oc">
     <div class="bc-meta">
       <span>📅 2026年5月19日</span>
-      <span class="tag tag-trae">OpenClaw</span><span class="tag tag-trae">更新</span>
+      <span class="tag tag-oc">OpenClaw</span><span class="tag ">更新</span>
     </div>
     <h2>OpenClaw里程碑式更新，macOS原生App让你的小龙虾能听会说</h2>
     <div class="bc-excerpt">
@@ -182,10 +205,10 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/claude-vs-ts.html" class="blog-card">
+  <a href="/blog/claude-vs-ts.html" class="blog-card" data-category="ai">
     <div class="bc-meta">
       <span>📅 2026年5月18日</span>
-      <span class="tag tag-trae">TRAE SOLO</span><span class="tag tag-trae">Claude</span><span class="tag tag-trae">对比</span>
+      <span class="tag tag-ai">AI工具</span><span class="tag ">对比</span>
     </div>
     <h2>都说Claude比TS强，我试了一下——然后没换</h2>
     <div class="bc-excerpt">
@@ -194,10 +217,10 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/ai-tools-3-only.html" class="blog-card">
+  <a href="/blog/ai-tools-3-only.html" class="blog-card" data-category="ai">
     <div class="bc-meta">
       <span>📅 2026年5月15日</span>
-      <span class="tag ">AI工具</span><span class="tag ">推荐</span>
+      <span class="tag tag-ai">AI工具</span><span class="tag ">推荐</span>
     </div>
     <h2>试了十几个AI工具，真正留在电脑里的只有这3个</h2>
     <div class="bc-excerpt">
@@ -206,10 +229,10 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/trae-solo-zhenxiang.html" class="blog-card">
+  <a href="/blog/trae-solo-zhenxiang.html" class="blog-card" data-category="trae">
     <div class="bc-meta">
       <span>📅 2026年5月13日</span>
-      <span class="tag tag-trae">TRAE SOLO</span><span class="tag tag-trae">心得</span>
+      <span class="tag tag-trae">TRAE SOLO</span><span class="tag ">心得</span>
     </div>
     <h2>TRAE SOLO 真香</h2>
     <div class="bc-excerpt">
@@ -218,10 +241,10 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/workbuddy-real.html" class="blog-card">
+  <a href="/blog/workbuddy-real.html" class="blog-card" data-category="wb">
     <div class="bc-meta">
       <span>📅 2026年5月12日</span>
-      <span class="tag tag-trae">WorkBuddy</span><span class="tag tag-trae">吐槽</span>
+      <span class="tag tag-wb">WorkBuddy</span><span class="tag ">吐槽</span>
     </div>
     <h2>没想到你是这样的WorkBuddy</h2>
     <div class="bc-excerpt">
@@ -230,7 +253,7 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/trae-solo-free-limit.html" class="blog-card">
+  <a href="/blog/trae-solo-free-limit.html" class="blog-card" data-category="trae">
     <div class="bc-meta">
       <span>📅 2026年5月11日</span>
       <span class="tag tag-trae">TRAE SOLO</span><span class="tag tag-popular">热门</span>
@@ -242,10 +265,10 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/trae-solo-ima-knowledge.html" class="blog-card">
+  <a href="/blog/trae-solo-ima-knowledge.html" class="blog-card" data-category="trae">
     <div class="bc-meta">
       <span>📅 2026年5月10日</span>
-      <span class="tag tag-trae">TRAE SOLO</span><span class="tag tag-trae">教程</span>
+      <span class="tag tag-trae">TRAE SOLO</span><span class="tag ">教程</span>
     </div>
     <h2>10分钟搞定TRAE SOLO接入ima知识库</h2>
     <div class="bc-excerpt">
@@ -254,7 +277,7 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/trae-solo-worth-it.html" class="blog-card">
+  <a href="/blog/trae-solo-worth-it.html" class="blog-card" data-category="trae">
     <div class="bc-meta">
       <span>📅 2026年5月9日</span>
       <span class="tag tag-trae">TRAE SOLO</span><span class="tag ">评测</span>
@@ -266,10 +289,10 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/trae-vs-trae-solo.html" class="blog-card">
+  <a href="/blog/trae-vs-trae-solo.html" class="blog-card" data-category="trae">
     <div class="bc-meta">
       <span>📅 2026年5月7日</span>
-      <span class="tag tag-trae">TRAE</span><span class="tag tag-trae">对比</span><span class="tag tag-popular">热门</span>
+      <span class="tag tag-trae">TRAE SOLO</span><span class="tag ">对比</span><span class="tag tag-popular">热门</span>
     </div>
     <h2>别再问我绿TRAE和TRAE SOLO选哪个了</h2>
     <div class="bc-excerpt">
@@ -278,7 +301,7 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/trae-solo-6-keng.html" class="blog-card">
+  <a href="/blog/trae-solo-6-keng.html" class="blog-card" data-category="trae">
     <div class="bc-meta">
       <span>📅 2026年5月6日</span>
       <span class="tag tag-trae">TRAE SOLO</span><span class="tag ">避坑</span>
@@ -290,10 +313,10 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/trae-solo-windows.html" class="blog-card">
+  <a href="/blog/trae-solo-windows.html" class="blog-card" data-category="trae">
     <div class="bc-meta">
       <span>📅 2026年5月5日</span>
-      <span class="tag tag-trae">TRAE SOLO</span><span class="tag tag-trae">更新</span>
+      <span class="tag tag-trae">TRAE SOLO</span><span class="tag ">更新</span>
     </div>
     <h2>Windows版 TRAE SOLO 客户端上线</h2>
     <div class="bc-excerpt">
@@ -302,10 +325,10 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/trae-solo-mobile.html" class="blog-card">
+  <a href="/blog/trae-solo-mobile.html" class="blog-card" data-category="trae">
     <div class="bc-meta">
       <span>📅 2026年5月1日</span>
-      <span class="tag tag-trae">TRAE SOLO</span><span class="tag tag-trae">更新</span>
+      <span class="tag tag-trae">TRAE SOLO</span><span class="tag ">更新</span>
     </div>
     <h2>手机端 Trae Solo 上线</h2>
     <div class="bc-excerpt">
@@ -314,10 +337,10 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/self-learn-ai-3m.html" class="blog-card">
+  <a href="/blog/self-learn-ai-3m.html" class="blog-card" data-category="code">
     <div class="bc-meta">
       <span>📅 2026年4月29日</span>
-      <span class="tag ">AI编程</span><span class="tag ">自学</span><span class="tag ">入门</span>
+      <span class="tag tag-code">AI编程</span><span class="tag ">自学</span>
     </div>
     <h2>零基础自学AI编程3个月：我的进化路线和踩坑全集</h2>
     <div class="bc-excerpt">
@@ -326,10 +349,10 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/workbuddy-craft-plan-ask.html" class="blog-card">
+  <a href="/blog/workbuddy-craft-plan-ask.html" class="blog-card" data-category="wb">
     <div class="bc-meta">
       <span>📅 2026年4月24日</span>
-      <span class="tag tag-trae">WorkBuddy</span><span class="tag tag-trae">教程</span>
+      <span class="tag tag-wb">WorkBuddy</span><span class="tag ">教程</span>
     </div>
     <h2>上来就Craft？WorkBuddy积分就是这么烧没的</h2>
     <div class="bc-excerpt">
@@ -338,10 +361,10 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/delete-5-keep-2.html" class="blog-card">
+  <a href="/blog/delete-5-keep-2.html" class="blog-card" data-category="ai">
     <div class="bc-meta">
       <span>📅 2026年4月22日</span>
-      <span class="tag ">AI工具</span><span class="tag ">推荐</span><span class="tag tag-popular">热门</span>
+      <span class="tag tag-ai">AI工具</span><span class="tag ">推荐</span><span class="tag tag-popular">热门</span>
     </div>
     <h2>删了5个AI编程软件，换成这2个</h2>
     <div class="bc-excerpt">
@@ -350,10 +373,10 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="bc-readmore">阅读全文 →</div>
   </a>
 
-  <a href="/blog/workbuddy-vs-trae-solo.html" class="blog-card">
+  <a href="/blog/workbuddy-vs-trae-solo.html" class="blog-card" data-category="wb">
     <div class="bc-meta">
       <span>📅 2026年4月12日</span>
-      <span class="tag tag-trae">对比</span><span class="tag tag-trae">教程</span>
+      <span class="tag tag-wb">WorkBuddy</span><span class="tag ">对比</span>
     </div>
     <h2>WorkBuddy和Trae SOLO到底怎么选？</h2>
     <div class="bc-excerpt">
@@ -378,6 +401,24 @@ document.getElementById('hamburgerBtn').addEventListener('click', () => {
 });
 document.querySelectorAll('.nav-links a').forEach(a => {
   if(a.getAttribute('href') === window.location.pathname) a.classList.add('active');
+});
+
+// Category filter
+const catBtns = document.querySelectorAll('.cat-filter button');
+const posts = document.querySelectorAll('.blog-card[data-category]');
+catBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    catBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.cat;
+    posts.forEach(p => {
+      if (cat === 'all' || p.dataset.category === cat) {
+        p.style.display = 'block';
+      } else {
+        p.style.display = 'none';
+      }
+    });
+  });
 });
 </script>
 </body>
