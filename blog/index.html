@@ -5,13 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>平野AI工具站 - 博客 | AI工具实战笔记</title>
 <meta name="description" content="平野AI博客——AI工具使用心得、踩坑记录、实战教程。TRAE SOLO、Claude Code、AI编程工具深度对比与实操指南。">
-<meta name="keywords" content="AI工具,AI教程,AI编程,公众号文章,平野先生玩AI,TRAE SOLO教程,AI IDE对比">
+<meta name="keywords" content="AI工具,AI教程,AI编程,公众号文章,平野先生,TRAE SOLO教程,AI IDE对比">
 <link rel="canonical" href="https://pingyeai.cn/blog/">
 <meta property="og:title" content="平野AI工具站 - 博客">
 <meta property="og:description" content="AI工具使用心得、踩坑记录、实战教程">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://pingyeai.cn/blog/">
 <meta name="twitter:card" content="summary_large_image">
+<!-- ====== Google Analytics (GA4) ====== -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -87,27 +89,6 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
   .blog-card h2{font-size:1.05rem}
 }
 </style>
-
-<!-- ====== 网站数据统计 ====== -->
-<!-- 1. Cloudflare Web Analytics (免费, 注册: https://cloudflare.com) -->
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN"}'></script>
-
-<!-- 2. Google Analytics GA4 (需在 https://analytics.google.com 创建媒体资源) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MEASUREMENT_ID');</script>
-
-<!-- 3. 百度统计 (需在 https://tongji.baidu.com 注册) -->
-<script>
-var _hmt = _hmt || [];
-(function() {
- var hm = document.createElement("script");
- hm.src = "https://hm.baidu.com/hm.js?8787f6e4c29bc3acc5812750c378a195";
- var s = document.getElementsByTagName("script")[0];
- s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?8787f6e4c29bc3acc5812750c378a195";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
 </head>
 <body>
 
@@ -141,67 +122,30 @@ var _hmt = _hmt || [];
 <!-- ===== Blog List ===== -->
 <main class="container blog-section">
 
-  <a href="/blog/ai-tool-selection-guide.html" class="blog-card">
-    <div class="bc-meta"><span>📅 2026-05-25</span><span class="tag tag-popular">热门</span></div>
-    <h2>AI工具一大堆，怎么选？</h2>
-    <p class="bc-excerpt">花了几个月试了删删了试，总结出四条选AI工具的经验。最后一条你可能会觉得是废话，但恰恰是它让我想通了。</p>
-    <span class="bc-readmore">阅读全文 →</span>
-  </a>
-
-  <a href="/blog/trae-solo-worth-it.html" class="blog-card">
-    <div class="bc-meta"><span>📅 2026-05-09</span><span class="tag tag-trae">TRAE SOLO</span></div>
-    <h2>TRAE SOLO到底值不值得用</h2>
-    <p class="bc-excerpt">零基础想用AI提高工作效率，值不值得用？一个多月真实体验。程序员和非程序员吵翻了，但两边都没错。</p>
-    <span class="bc-readmore">阅读全文 →</span>
-  </a>
-
-  <a href="/blog/trae-solo-free-limit.html" class="blog-card">
-    <div class="bc-meta"><span>📅 2026-05-11</span><span class="tag tag-trae">TRAE SOLO</span><span class="tag tag-popular">热门</span></div>
-    <h2>TRAE SOLO，说好的免费呢？</h2>
-    <p class="bc-excerpt">用了半年一直说完全免费的TRAE SOLO，深夜突然限额断服务。深度拆解事件始末。</p>
-    <span class="bc-readmore">阅读全文 →</span>
-  </a>
-
   <a href="/blog/trae-solo-ima-knowledge.html" class="blog-card">
-    <div class="bc-meta"><span>📅 2026-05-10</span><span class="tag tag-trae">TRAE SOLO</span><span class="tag">教程</span></div>
+    <div class="bc-meta">
+      <span>📅 2026-05-10</span>
+      <span class="tag tag-trae">TRAE SOLO</span>
+      <span class="tag">教程</span>
+    </div>
     <h2>10分钟搞定TRAE SOLO接入ima知识库</h2>
-    <p class="bc-excerpt">手把手教你用技能系统接入腾讯ima知识库，让AI编程工具拥有外挂大脑。简单四步，人人都能学会。</p>
-    <span class="bc-readmore">阅读全文 →</span>
-  </a>
-
-  <a href="/blog/ai-cloud-server-guide" class="blog-card">
-    <div class="bc-meta"><span>📅 2026-05-28</span><span class="tag tag-popular">新发布</span><span class="tag tag-best">推荐</span></div>
-    <h2>AI开发者云服务器选购指南 2026</h2>
-    <p class="bc-excerpt">GPU实例怎么选？大模型API哪家性价比高？从个人开发者到小团队，帮你找到最划算的方案。</p>
-    <span class="bc-readmore">阅读全文 →</span>
+    <div class="bc-excerpt">
+      手把手教你用TRAE SOLO的技能系统接入腾讯ima知识库，让你的AI编程工具拥有"外挂大脑"——写代码时直接搜索个人知识库内容，再也不用来回切换窗口。简单四步，人人都能学会。
+    </div>
+    <div class="bc-readmore">阅读全文 →</div>
   </a>
 
   <a href="/blog/trae-vs-trae-solo.html" class="blog-card">
-    <div class="bc-meta"><span>📅 2026-05-07</span><span class="tag tag-trae">TRAE</span><span class="tag tag-popular">热门</span></div>
+    <div class="bc-meta">
+      <span>📅 2026-05-07</span>
+      <span class="tag tag-trae">TRAE</span>
+      <span class="tag tag-popular">热门</span>
+    </div>
     <h2>别再问我绿TRAE和TRAE SOLO选哪个了</h2>
-    <p class="bc-excerpt">一文说清楚核心区别：绿TRAE是AI辅助你写代码，TRAE SOLO是AI替你写代码。看完就知道该选哪个。</p>
-    <span class="bc-readmore">阅读全文 →</span>
-  </a>
-
-  <a href="/blog/delete-5-keep-2.html" class="blog-card">
-    <div class="bc-meta"><span>📅 2026-04-22</span><span class="tag tag-trae">WorkBuddy</span></div>
-    <h2>删了5个AI编程软件，换成这2个</h2>
-    <p class="bc-excerpt">最多的时候桌面同时开着5个AI工具。现在只剩两个图标——不是懒得下载，是试完之后主动删的。</p>
-    <span class="bc-readmore">阅读全文 →</span>
-  </a>
-
-  <a href="/blog/workbuddy-craft-plan-ask.html" class="blog-card">
-    <div class="bc-meta"><span>📅 2026-04-24</span><span class="tag tag-trae">WorkBuddy</span><span class="tag tag-popular">热门</span></div>
-    <h2>上来就Craft？WorkBuddy积分就是这么烧没的</h2>
-    <p class="bc-excerpt">Craft/Plan/Ask不是三个按钮，是三种身份。上来就让士兵冲锋，积分烧完活还没干完。</p>
-    <span class="bc-readmore">阅读全文 →</span>
-  </a>
-
-  <a href="/blog/workbuddy-vs-trae-solo.html" class="blog-card">
-    <div class="bc-meta"><span>📅 2026-04-12</span><span class="tag tag-trae">对比</span><span class="tag tag-popular">热门</span></div>
-    <h2>WorkBuddy和Trae SOLO到底怎么选？</h2>
-    <p class="bc-excerpt">20天120小时深度使用，用真实体验告诉你区别在哪。最优策略可能是两者搭配。</p>
-    <span class="bc-readmore">阅读全文 →</span>
+    <div class="bc-excerpt">
+      一文说清楚绿TRAE和TRAE SOLO的核心区别、适用场景和选型建议。一句话总结：绿TRAE是AI辅助你写代码，TRAE SOLO是AI替你写代码。看完你就知道该选哪个了。
+    </div>
+    <div class="bc-readmore">阅读全文 →</div>
   </a>
 
 </main>
@@ -209,9 +153,9 @@ var _hmt = _hmt || [];
 <!-- ===== Footer ===== -->
 <footer class="footer">
   <div><a href="https://pingyeai.cn">pingyeai.cn</a> — 平野AI工具站</div>
-  <div style="color:#c62828;font-weight:600">© 原创内容 · 禁止转载 · 侵权必究</div>
-  <div>📱 公众号：平野先生玩AI</div>
-  <div><a href="/">首页</a> · <a href="/blog/">博客</a> · <a href="/compare-ai-coding-tools">编程工具对比</a> · <a href="/privacy">隐私政策</a> · <a href="/affiliate-disclaimer">推广声明</a></div>
+  <div>原创文章，转载请注明出处</div>
+  <div>📱 公众号：平野先生</div>
+  <div><a href="/">首页</a> · <a href="/blog/">博客</a> · <a href="/compare-ai-coding-tools">编程工具对比</a></div>
 </footer>
 
 <script>

@@ -12,6 +12,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -145,26 +146,6 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
   .hero{padding:30px 0 24px}
 }
 </style>
-
-<!-- ====== 网站数据统计 ====== -->
-<!-- 1. Cloudflare Web Analytics (免费, 注册: https://cloudflare.com) -->
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN"}'></script>
-
-<!-- 2. Google Analytics GA4 (需在 https://analytics.google.com 创建媒体资源) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MEASUREMENT_ID');</script>
-
-<!-- 3. 百度统计 (需在 https://tongji.baidu.com 注册) -->
-<script>
-var _hmt = _hmt || [];
-(function() {
- var hm = document.createElement("script");
- hm.src = "https://hm.baidu.com/hm.js?8787f6e4c29bc3acc5812750c378a195";
- var s = document.getElementsByTagName("script")[0];
- s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
 </head>
 <body>
 
@@ -205,24 +186,21 @@ var _hmt = _hmt || [];
       <h3>Claude Code</h3>
       <div class="maker">by Anthropic</div>
       <p>终端原生AI编程代理，直接在终端的命令行里与Claude 4 Sonnet/Opus对话，理解你的代码库、编写代码、运行命令、处理Git工作流。</p>
-      <a class="btn btn-primary" href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank" rel="sponsored noopener">了解详情 →</a>
-      <p class="aff-note">含推广链接</p>
+      <a class="btn btn-primary" href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank" rel="noopener">了解详情 →</a>
     </div>
     <div class="comp-card cx">
       <div class="icon">🤖</div>
       <h3>OpenAI Codex</h3>
       <div class="maker">by OpenAI</div>
       <p>GPT-5.5驱动的编程智能体，VS Code扩展和CLI双模式，可自主编写、测试、调试代码，深度理解项目结构。</p>
-      <a class="btn btn-primary" href="https://platform.openai.com/docs/guides/codex" target="_blank" rel="sponsored noopener">了解详情 →</a>
-      <p class="aff-note">含推广链接</p>
+      <a class="btn btn-primary" href="https://platform.openai.com/docs/guides/codex" target="_blank" rel="noopener">了解详情 →</a>
     </div>
     <div class="comp-card ts">
       <div class="icon">💚</div>
       <h3>Trae SOLO</h3>
       <div class="maker">by 字节跳动</div>
       <p>中文AI编程IDE，内置Claude 4 + GPT-5.5双模型支持，对话式编程+可视化操作，对国内开发者友好，支持中文上下文。</p>
-      <a class="btn btn-primary" href="https://www.trae.ai" target="_blank" rel="sponsored noopener">了解详情 →</a>
-      <p class="aff-note">含推广链接</p>
+      <a class="btn btn-primary" href="https://www.trae.ai" target="_blank" rel="noopener">了解详情 →</a>
     </div>
   </div>
 </section>
@@ -375,7 +353,7 @@ var _hmt = _hmt || [];
 <footer class="footer">
   <div><a href="https://pingyeai.cn">pingyeai.cn</a> — 平野AI工具站</div>
   <div>数据来源：各工具官方网站及公开文档 · 价格为2026年5月参考价</div>
-  <div><a href="/">首页</a> · <a href="/compare-ai-coding-tools">编程工具对比</a> · <a href="/privacy">隐私政策</a> · <a href="/affiliate-disclaimer">推广声明</a></div>
+  <div><a href="/">首页</a> · <a href="/compare-ai-coding-tools">编程工具对比</a></div>
 </footer>
 
 <script>
