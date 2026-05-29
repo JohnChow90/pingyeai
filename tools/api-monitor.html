@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API用量监控 - 浏览器版</title>
+<style>
+/* ===== Reset & Base ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;font-size:14px;color:#1a1a2e;background:#f5f6fa}
+input,select,button,textarea{font-family:inherit;font-size:inherit}
+a{color:#0f3460;text-decoration:none}
+code{background:#f0f2f5;padding:2px 6px;border-radius:4px;font-size:0.85em}
+
+/* ===== Layout ===== */
+#app{display:flex;height:100vh}
+
+/* ===== Sidebar ===== */
+.sidebar{width:220px;background:#1a1a2e;color:#fff;display:flex;flex-direction:column;flex-shrink:0}
+.sidebar-header{display:flex;align-items:center;gap:10px;padding:20px 18px 16px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.sidebar-header .logo{font-size:1.5rem}
+.sidebar-header h1{font-size:1.05rem;font-weight:600}
+.sidebar-nav{flex:1;padding:12px 0}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 18px;color:rgba(255,255,255,0.6);cursor:pointer;transition:all 0.2s;font-size:0.9rem;border-left:3px solid transparent}
+.nav-item:hover{color:#fff;background:rgba(255,255,255,0.06)}
+.nav-item.active{color:#fff;background:rgba(255,255,255,0.1);border-left-color:#e94560}
+.nav-icon{font-size:1.1rem}
+.sidebar-footer{padding:14px 18px;border-top:1px solid rgba(255,255,255,0.08)}
+.last-update{font-size:0.72rem;color:rgba(255,255,255,0.4);margin-bottom:8px}
+.btn-refresh{width:100%;padding:8px;border:1px solid rgba(255,255,255,0.15);border-radius:8px;background:transparent;color:rgba(255,255,255,0.7);cursor:pointer;font-size:0.82rem;transition:all 0.2s}
+.btn-refresh:hover{background:rgba(255,255,255,0.1);color:#fff}
+
+/* ===== Content ===== */
+.content{flex:1;overflow-y:auto;padding:28px 32px;min-width:0}
+.page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.page-header h2{font-size:1.3rem;font-weight:600}
+.header-actions select{padding:8px 14px;border:1px solid #e0e0e8;border-radius:8px;background:#fff;font-size:0.85rem;cursor:pointer;outline:none}
+.header-actions select:focus{border-color:#0f3460}
+
+/* ===== Tabs ===== */
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* ===== Cards ===== */
+.card{background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,0.05);margin-bottom:20px;overflow:hidden;border:1px solid #eee}
+.card-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #f0f0f5}
+.card-header h3{font-size:0.95rem;font-weight:600}
+.card-body{padding:16px 20px}
+
+.card-grid{display:grid;gap:16px;margin-bottom:20px}
+.balances{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.stats{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+
+/* ===== Balance Card ===== */
+.balance-card{padding:20px;text-align:center;border-radius:12px;color:#fff}
+.balance-card .label{font-size:0.78rem;opacity:0.85;margin-bottom:6px}
+.balance-card .amount{font-size:1.6rem;font-weight:700}
+.balance-card .sub{font-size:0.75rem;opacity:0.7;margin-top:4px}
+.bc-total{background:linear-gradient(135deg,#1a1a2e,#0f3460)}
+
+/* ===== Stat Card ===== */
+.stat-card{padding:18px 20px;border-radius:12px;text-align:center;background:#fff;border:1px solid #eee}
+.stat-card .stat-value{font-size:1.5rem;font-weight:700;color:#1a1a2e}
+.stat-card .stat-label{font-size:0.78rem;color:#999;margin-top:4px}
+.stat-card .stat-sub{font-size:0.72rem;color:#bbb;margin-top:2px}
+
+/* ===== Model Ranking ===== */
+.rank-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f5f5f5}
+.rank-item:last-child{border-bottom:none}
+.rank-index{width:24px;height:24px;border-radius:50%;background:#f0f2f5;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;color:#666;flex-shrink:0}
+.rank-index.top3{background:#1a1a2e;color:#fff}
+.rank-info{flex:1;min-width:0}
+.rank-info .model-name{font-weight:600;font-size:0.9rem}
+.rank-info .provider-tag{display:inline-block;font-size:0.68rem;padding:1px 8px;border-radius:8px;margin-left:6px;background:#f0f2f5;color:#666}
+.rank-bar-wrap{display:flex;align-items:center;gap:12px;margin-top:6px}
+.rank-bar{flex:1;height:6px;background:#f0f2f5;border-radius:3px;overflow:hidden}
+.rank-bar-fill{height:100%;border-radius:3px;transition:width 0.5s}
+.rank-numbers{font-size:0.78rem;color:#666;white-space:nowrap}
+
+/* ===== Agent ===== */
+.agent-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #f5f5f5}
+.agent-item:last-child{border-bottom:none}
+.agent-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;background:#f0f2f5}
+.agent-info{flex:1}
+.agent-info .agent-name{font-weight:600;font-size:0.9rem}
+.agent-info .agent-meta{font-size:0.78rem;color:#999;margin-top:2px}
+.agent-tokens{font-weight:600;font-size:0.9rem}
+.agent-actions button{background:none;border:none;color:#999;cursor:pointer;padding:4px;font-size:0.85rem}
+.agent-actions button:hover{color:#c62828}
+
+/* ===== Providers Detail ===== */
+.provider-card{padding:16px 20px;border-bottom:1px solid #f0f0f5}
+.provider-card:last-child{border-bottom:none}
+.provider-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.provider-name{font-weight:600;font-size:1rem}
+.provider-total{font-size:0.85rem;color:#666}
+.provider-models{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.model-mini-card{padding:12px;border:1px solid #eee;border-radius:8px;font-size:0.82rem}
+.model-mini-card .mmc-name{font-weight:600;margin-bottom:6px}
+.model-mini-card .mmc-stats{display:grid;grid-template-columns:1fr 1fr;gap:4px;color:#666}
+.model-mini-card .mmc-stats span{font-size:0.78rem}
+
+/* ===== Models Table ===== */
+.models-table{width:100%;border-collapse:collapse;font-size:0.88rem}
+.models-table thead{background:#f7f8fa}
+.models-table th,.models-table td{padding:10px 12px;text-align:left;border-bottom:1px solid #f0f0f5}
+.models-table th{font-weight:600;font-size:0.78rem;color:#666;text-transform:uppercase}
+.models-table tbody tr:hover{background:#f8f9ff}
+
+/* ===== Form ===== */
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:0.85rem;font-weight:500;color:#444;margin-bottom:6px}
+.input-row{display:flex;gap:8px;align-items:center}
+.input-key{flex:1;padding:10px 14px;border:1px solid #e0e0e8;border-radius:8px;font-size:0.9rem;outline:none;transition:border 0.2s;max-width:400px}
+.input-key:focus{border-color:#0f3460;box-shadow:0 0 0 3px rgba(15,52,96,0.1)}
+
+/* ===== Buttons ===== */
+.btn-primary{padding:10px 24px;background:#1a1a2e;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:500;transition:all 0.2s}
+.btn-primary:hover{background:#0f3460}
+.btn-outline{padding:10px 24px;background:transparent;color:#1a1a2e;border:1px solid #ddd;border-radius:8px;cursor:pointer;font-weight:500;transition:all 0.2s}
+.btn-outline:hover{background:#f5f5f5}
+.btn-sm{padding:6px 14px;background:#f0f2f5;color:#444;border:none;border-radius:6px;cursor:pointer;font-size:0.8rem;transition:all 0.2s}
+.btn-sm:hover{background:#e0e2e8}
+
+/* ===== Modal ===== */
+.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:1000}
+.modal-content{background:#fff;border-radius:14px;width:480px;max-width:90vw;max-height:80vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,0.15)}
+.modal-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #eee}
+.modal-header h3{font-size:1rem;font-weight:600}
+.btn-close{background:none;border:none;font-size:1.2rem;cursor:pointer;color:#999;padding:4px}
+.btn-close:hover{color:#333}
+.modal-body{padding:20px}
+.modal-footer{display:flex;gap:8px;justify-content:flex-end;padding:14px 20px;border-top:1px solid #eee}
+
+/* ===== Utilities ===== */
+.skeleton{color:#bbb;font-size:0.85rem;padding:20px 0;text-align:center}
+.hint{font-size:0.85rem;color:#888;line-height:1.6;background:#f8f9ff;padding:12px 16px;border-radius:8px;border-left:3px solid #0f3460}
+.token-display{font-family:'SF Mono','Menlo','Monaco','Courier New',monospace;font-size:0.85rem}
+
+/* ===== Scrollbar ===== */
+.content::-webkit-scrollbar{width:6px}
+.content::-webkit-scrollbar-track{background:transparent}
+.content::-webkit-scrollbar-thumb{background:#ddd;border-radius:3px}
+.content::-webkit-scrollbar-thumb:hover{background:#bbb}
+
+/* ===== Responsive ===== */
+@media(max-width:800px){
+  .sidebar{width:56px}
+  .sidebar-header h1,.nav-item span:not(.nav-icon),.sidebar-footer{display:none}
+  .nav-item{padding:12px;justify-content:center}
+  .content{padding:16px}
+}
+
+/* ===== Manual Refresh Button ===== */
+.manual-fetch-section{margin:12px 0 20px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.manual-fetch-section button{padding:8px 18px;border-radius:8px;border:none;cursor:pointer;font-weight:500;transition:all 0.2s}
+.btn-fetch{background:#0f3460;color:#fff}
+.btn-fetch:hover{background:#1a237e}
+.btn-fetch-all{background:#1a1a2e;color:#fff}
+.btn-fetch-all:hover{background:#0f3460}
+.fetch-status{margin-left:12px;font-size:0.8rem;color:#888}
+</style>
+</head>
+<body>
+
+<div id="app">
+  <!-- 侧边栏 -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">📊</div>
+      <h1>API监控</h1>
+    </div>
+    <nav class="sidebar-nav">
+      <a class="nav-item active" data-tab="dashboard" onclick="switchTab('dashboard')">
+        <span class="nav-icon">📈</span> <span>总览</span>
+      </a>
+      <a class="nav-item" data-tab="providers" onclick="switchTab('providers')">
+        <span class="nav-icon">🔌</span> <span>服务商</span>
+      </a>
+      <a class="nav-item" data-tab="models" onclick="switchTab('models')">
+        <span class="nav-icon">🤖</span> <span>模型明细</span>
+      </a>
+      <a class="nav-item" data-tab="agents" onclick="switchTab('agents')">
+        <span class="nav-icon">👤</span> <span>Agent追踪</span>
+      </a>
+      <a class="nav-item" data-tab="settings" onclick="switchTab('settings')">
+        <span class="nav-icon">⚙️</span> <span>设置</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="last-update" id="lastUpdate">—</div>
+      <button class="btn-refresh" onclick="refreshAll()">🔄 刷新</button>
+    </div>
+  </aside>
+
+  <!-- 主内容 -->
+  <main class="content">
+
+    <!-- ===== 总览 ===== -->
+    <section id="tab-dashboard" class="tab-content active">
+      <div class="page-header">
+        <h2>📈 用量总览</h2>
+        <div class="header-actions">
+          <select id="timeRange" onchange="refreshAll()">
+            <option value="today">今日</option>
+            <option value="week">本周</option>
+            <option value="month" selected>本月</option>
+            <option value="all">全部</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 手动抓取 -->
+      <div class="manual-fetch-section">
+        <button class="btn-fetch-all" onclick="fetchAllProviders()">📡 从各平台抓取实时数据</button>
+        <span class="fetch-status" id="fetchStatus"></span>
+      </div>
+
+      <!-- 余额卡片 -->
+      <div class="card-grid balances" id="balanceCards">
+        <div class="card balance-card skeleton" style="background:linear-gradient(135deg,#1a1a2e,#0f3460);color:#fff;padding:20px;text-align:center;border-radius:12px">加载中...</div>
+      </div>
+
+      <!-- 消费概览 -->
+      <div class="card-grid stats" id="statsCards">
+        <div class="card stat-card skeleton">加载中...</div>
+      </div>
+
+      <!-- 模型用量排行 -->
+      <div class="card">
+        <div class="card-header">
+          <h3>🔥 模型用量排行</h3>
+        </div>
+        <div class="card-body" id="modelRanking">
+          <div class="skeleton">加载中...</div>
+        </div>
+      </div>
+
+      <!-- Agent用量 -->
+      <div class="card">
+        <div class="card-header">
+          <h3>👤 Agent Token消耗</h3>
+          <button class="btn-sm" onclick="switchTab('agents')">管理 →</button>
+        </div>
+        <div class="card-body" id="agentUsageOverview">
+          <div class="skeleton">加载中...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 服务商 ===== -->
+    <section id="tab-providers" class="tab-content">
+      <div class="page-header">
+        <h2>🔌 服务商详情</h2>
+      </div>
+      <div id="providersDetail" class="providers-detail">
+        <div class="skeleton">加载中...</div>
+      </div>
+    </section>
+
+    <!-- ===== 模型明细 ===== -->
+    <section id="tab-models" class="tab-content">
+      <div class="page-header">
+        <h2>🤖 模型用量明细</h2>
+        <div class="header-actions">
+          <select id="modelProviderFilter" onchange="renderModels()">
+            <option value="all">全部服务商</option>
+          </select>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body" id="modelsTable">
+          <div class="skeleton">加载中...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Agent追踪 ===== -->
+    <section id="tab-agents" class="tab-content">
+      <div class="page-header">
+        <h2>👤 Agent 追踪</h2>
+        <button class="btn-primary" onclick="showAddAgentModal()">+ 添加Agent</button>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <p class="hint">记录每个API请求来自哪个Agent，需要在调用API时传递自定义标签（如HTTP Header中的 <code>X-Agent-Name</code>）。</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h3>已注册的Agent</h3>
+        </div>
+        <div class="card-body" id="agentsList">
+          <div class="skeleton">加载中...</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h3>Agent 用量排行</h3>
+        </div>
+        <div class="card-body" id="agentRanking">
+          <div class="skeleton">加载中...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 设置 ===== -->
+    <section id="tab-settings" class="tab-content">
+      <div class="page-header">
+        <h2>⚙️ 设置</h2>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h3>🔑 API Key 配置</h3></div>
+        <div class="card-body" id="apiKeySettings">
+          <div class="form-group">
+            <label>DeepSeek API Key</label>
+            <div class="input-row">
+              <input type="password" id="key-deepseek" placeholder="sk-..." class="input-key">
+              <button class="btn-sm" onclick="toggleKey('deepseek')">👁</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Xiaomi MiMo API Key</label>
+            <div class="input-row">
+              <input type="password" id="key-xiaomi" placeholder="输入 API Key" class="input-key">
+              <button class="btn-sm" onclick="toggleKey('xiaomi')">👁</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>OpenAI API Key</label>
+            <div class="input-row">
+              <input type="password" id="key-openai" placeholder="sk-..." class="input-key">
+              <button class="btn-sm" onclick="toggleKey('openai')">👁</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Anthropic API Key</label>
+            <div class="input-row">
+              <input type="password" id="key-anthropic" placeholder="sk-ant-..." class="input-key">
+              <button class="btn-sm" onclick="toggleKey('anthropic')">👁</button>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="saveApiKeys()">💾 保存</button>
+          <span id="saveStatus" style="margin-left:12px;font-size:0.85rem;color:#666"></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h3>⏱ 刷新设置</h3></div>
+        <div class="card-body">
+          <div class="form-group">
+            <label>自动刷新间隔（分钟）</label>
+            <input type="number" id="refreshInterval" value="30" min="1" max="1440" style="width:100px">
+          </div>
+          <button class="btn-primary" onclick="saveRefreshInterval()">保存</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h3>📊 数据管理</h3></div>
+        <div class="card-body">
+          <button class="btn-outline" onclick="exportData()">📥 导出数据</button>
+          <button class="btn-outline" onclick="clearHistory()" style="margin-left:8px;color:#c62828">🗑 清除历史</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ===== Modal: 添加Agent ===== -->
+<div id="agentModal" class="modal" style="display:none">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>添加 Agent</h3>
+      <button class="btn-close" onclick="closeModal('agentModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Agent 名称</label>
+        <input type="text" id="agentName" placeholder="如：OpenClaw、Codex、Claude Code">
+      </div>
+      <div class="form-group">
+        <label>关联服务商</label>
+        <select id="agentProvider">
+          <option value="deepseek">DeepSeek</option>
+          <option value="xiaomi">Xiaomi MiMo</option>
+          <option value="openai">OpenAI</option>
+          <option value="anthropic">Anthropic</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>关联模型</label>
+        <input type="text" id="agentModel" placeholder="如：deepseek-v4-flash">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-primary" onclick="saveAgent()">保存</button>
+      <button class="btn-outline" onclick="closeModal('agentModal')">取消</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ====== 浏览器版 localStorage 适配层 ======
+const BROWSER_API = {
+  getConfig: () => {
+    const raw = localStorage.getItem('api-monitor-config');
+    if (raw) return JSON.parse(raw);
+    return {
+      providers: {
+        deepseek: { apiKey: '', name: 'DeepSeek' },
+        xiaomi: { apiKey: '', name: 'Xiaomi MiMo' },
+        openai: { apiKey: '', name: 'OpenAI' },
+        anthropic: { apiKey: '', name: 'Anthropic' },
+      },
+      agents: [],
+      refreshInterval: 30,
+    };
+  },
+  saveConfig: (config) => {
+    localStorage.setItem('api-monitor-config', JSON.stringify(config));
+    return { success: true };
+  },
+  getUsageHistory: () => {
+    const raw = localStorage.getItem('api-monitor-history');
+    return raw ? JSON.parse(raw) : [];
+  },
+  saveUsageHistory: (data) => {
+    localStorage.setItem('api-monitor-history', JSON.stringify(data));
+    return { success: true };
+  },
+  getDemoSnapshot: () => {
+    return DEMO_SNAPSHOT;
+  },
+};
+
+// ====== Demo 快照数据 ======
+const DEMO_SNAPSHOT = {
+  timestamp: new Date().toISOString(),
+  providers: {
+    deepseek: {
+      name: 'DeepSeek',
+      balance: 8.77,
+      monthlyConsumption: 2.35,
+      totalConsumption: 15.20,
+      models: {
+        'deepseek-v4-flash': { requests: 1847, tokens: 2850000, cost: 1.42 },
+        'deepseek-v3': { requests: 523, tokens: 980000, cost: 0.63 },
+        'deepseek-reasoner': { requests: 156, tokens: 420000, cost: 0.30 },
+      }
+    },
+    xiaomi: {
+      name: 'Xiaomi MiMo',
+      balance: null,
+      monthlyConsumption: 0,
+      totalConsumption: 0,
+      models: {
+        'mimo-v2-flash': { requests: 0, tokens: 0, cost: 0 },
+      }
+    },
+    openai: {
+      name: 'OpenAI',
+      balance: null,
+      monthlyConsumption: 0,
+      totalConsumption: 0,
+      models: {
+        'gpt-4o': { requests: 0, tokens: 0, cost: 0 },
+      }
+    },
+    anthropic: {
+      name: 'Anthropic',
+      balance: null,
+      monthlyConsumption: 0,
+      totalConsumption: 0,
+      models: {
+        'claude-sonnet-4-20250514': { requests: 0, tokens: 0, cost: 0 },
+      }
+    }
+  }
+};
+
+// ====== 全局状态 ======
+let state = {
+  config: null,
+  snapshot: null,
+  history: [],
+  agents: [],
+};
+
+const PROVIDER_COLORS = {
+  deepseek: '#4caf50',
+  xiaomi: '#ff6f00',
+  openai: '#0f3460',
+  anthropic: '#d4a574',
+};
+
+const PROVIDER_LABELS = {
+  deepseek: 'DeepSeek',
+  xiaomi: 'Xiaomi MiMo',
+  openai: 'OpenAI',
+  anthropic: 'Anthropic',
+};
+
+const API_ENDPOINTS = {
+  deepseek: 'https://api.deepseek.com/user/balance',
+  xiaomi: null,
+  openai: null,
+  anthropic: null,
+};
+
+// ====== 实时数据抓取（平台支持时） ======
+async function fetchProviderBalance(provider, apiKey) {
+  switch (provider) {
+    case 'deepseek':
+      if (!apiKey) throw new Error('未配置 DeepSeek API Key');
+      const resp = await fetch('https://api.deepseek.com/user/balance', {
+        headers: { 'Authorization': `Bearer ${apiKey}` }
+      });
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${resp.statusText}`);
+      const data = await resp.json();
+      return { balance: data.balance_available || 0 };
+    default:
+      throw new Error(`${PROVIDER_LABELS[provider]} 暂不支持自动抓取`);
+  }
+}
+
+async function fetchProviderUsage(provider, apiKey) {
+  switch (provider) {
+    case 'deepseek':
+      if (!apiKey) throw new Error('未配置 DeepSeek API Key');
+      // DeepSeek 用量查询 API — 使用 billing/usage 端点
+      const now = new Date();
+      const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split('T')[0];
+      const endOfMonth = now.toISOString().split('T')[0];
+      const resp = await fetch(`https://api.deepseek.com/billing/usage?start_date=${startOfMonth}&end_date=${endOfMonth}`, {
+        headers: { 'Authorization': `Bearer ${apiKey}` }
+      });
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const data = await resp.json();
+      return data;
+    default:
+      throw new Error(`${PROVIDER_LABELS[provider]} 暂不支持自动抓取`);
+  }
+}
+
+async function fetchAllProviders() {
+  const statusEl = document.getElementById('fetchStatus');
+  statusEl.textContent = '⏳ 正在抓取...';
+  
+  const config = state.config;
+  let totalBalance = 0;
+  let hasDeepSeek = false;
+
+  // DeepSeek
+  if (config.providers.deepseek.apiKey) {
+    try {
+      statusEl.textContent = '⏳ 正在查询 DeepSeek 余额...';
+      const balanceData = await fetchProviderBalance('deepseek', config.providers.deepseek.apiKey);
+      state.snapshot.providers.deepseek.balance = balanceData.balance;
+      totalBalance += balanceData.balance;
+      hasDeepSeek = true;
+
+      // 查本月用量
+      try {
+        statusEl.textContent = '⏳ 正在查询 DeepSeek 本月用量...';
+        const usageData = await fetchProviderUsage('deepseek', config.providers.deepseek.apiKey);
+        if (usageData.total_usage && usageData.total_usage.length > 0) {
+          let totalTokens = 0;
+          let totalCost = 0;
+          const modelMap = {};
+          for (const item of usageData.total_usage) {
+            const modelName = item.model || 'unknown';
+            const tokens = (item.input_tokens || 0) + (item.output_tokens || 0);
+            const cost = item.cost || 0;
+            totalTokens += tokens;
+            totalCost += cost;
+            if (!modelMap[modelName]) {
+              modelMap[modelName] = { requests: 0, tokens: 0, cost: 0 };
+            }
+            modelMap[modelName].requests += item.requests || 1;
+            modelMap[modelName].tokens += tokens;
+            modelMap[modelName].cost += cost;
+          }
+          state.snapshot.providers.deepseek.monthlyConsumption = totalCost;
+          state.snapshot.providers.deepseek.models = modelMap;
+        }
+      } catch (e) {
+        console.warn('DeepSeek 用量查询失败:', e);
+      }
+    } catch (e) {
+      console.warn('DeepSeek 余额查询失败:', e);
+    }
+  }
+
+  // 保存快照到历史
+  state.snapshot.timestamp = new Date().toISOString();
+  state.history.push({
+    timestamp: state.snapshot.timestamp,
+    data: JSON.parse(JSON.stringify(state.snapshot)),
+  });
+  if (state.history.length > 100) state.history = state.history.slice(-100);
+  BROWSER_API.saveUsageHistory(state.history);
+
+  renderAll();
+  statusEl.textContent = hasDeepSeek ? '✅ 已更新实时数据' : '⚠️ 未配置任何 API Key';
+  setTimeout(() => { statusEl.textContent = ''; }, 3000);
+}
+
+// ====== 初始化 ======
+async function init() {
+  state.config = BROWSER_API.getConfig();
+  state.history = BROWSER_API.getUsageHistory();
+  state.agents = state.config.agents || [];
+  state.snapshot = BROWSER_API.getDemoSnapshot();
+  
+  document.getElementById('refreshInterval').value = state.config.refreshInterval || 30;
+  
+  for (const [key, val] of Object.entries(state.config.providers)) {
+    const input = document.getElementById(`key-${key}`);
+    if (input && val.apiKey) {
+      input.value = '••••••••' + val.apiKey.slice(-4);
+      input.dataset.filled = 'true';
+    }
+  }
+  
+  renderAll();
+  setupAutoRefresh();
+}
+
+// ====== 标签切换 ======
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  document.getElementById(`tab-${tab}`).classList.add('active');
+  document.querySelector(`.nav-item[data-tab="${tab}"]`).classList.add('active');
+}
+
+// ====== 渲染 ======
+function renderAll() {
+  renderBalanceCards();
+  renderStatCards();
+  renderModelRanking();
+  renderAgentOverview();
+  renderProvidersDetail();
+  renderModels();
+  renderAgentsList();
+  renderAgentRanking();
+  updateLastUpdate();
+}
+
+function renderBalanceCards() {
+  const container = document.getElementById('balanceCards');
+  if (!state.snapshot) return;
+  
+  const p = state.snapshot.providers;
+  let totalBalance = 0;
+  
+  if (p.deepseek.balance !== null) totalBalance += p.deepseek.balance;
+  
+  let cards = `<div class="balance-card bc-total" style="background:linear-gradient(135deg,#1a1a2e,#0f3460);color:#fff;padding:20px;text-align:center;border-radius:12px">
+    <div style="font-size:0.78rem;opacity:0.85;margin-bottom:6px">💰 总余额</div>
+    <div style="font-size:1.6rem;font-weight:700">¥${totalBalance.toFixed(2)}</div>
+    <div style="font-size:0.75rem;opacity:0.7;margin-top:4px">DeepSeek (¥8.77)</div>
+  </div>`;
+  
+  for (const [key, val] of Object.entries(p)) {
+    if (val.balance === null && !val.monthlyConsumption && !val.totalConsumption) continue;
+    const color = PROVIDER_COLORS[key] || '#666';
+    cards += `<div class="balance-card" style="background:${color};color:#fff;padding:20px;text-align:center;border-radius:12px">
+      <div style="font-size:0.78rem;opacity:0.85;margin-bottom:6px">${val.name}</div>
+      <div style="font-size:1.6rem;font-weight:700">${val.balance !== null ? '¥' + val.balance.toFixed(2) : '—'}</div>
+      <div style="font-size:0.75rem;opacity:0.7;margin-top:4px">${val.monthlyConsumption ? '本月消费 ¥' + val.monthlyConsumption.toFixed(2) : val.totalConsumption ? '累计消费 ¥' + val.totalConsumption.toFixed(2) : ''}</div>
+    </div>`;
+  }
+  
+  container.innerHTML = cards;
+}
+
+function renderStatCards() {
+  const container = document.getElementById('statsCards');
+  if (!state.snapshot) return;
+  
+  const p = state.snapshot.providers;
+  let totalTokens = 0;
+  let totalCost = 0;
+  let totalRequests = 0;
+  
+  for (const [key, val] of Object.entries(p)) {
+    for (const [mkey, mval] of Object.entries(val.models)) {
+      totalTokens += mval.tokens || 0;
+      totalCost += mval.cost || 0;
+      totalRequests += mval.requests || 0;
+    }
+  }
+  
+  container.innerHTML = `
+    <div class="stat-card">
+      <div style="font-size:1.5rem;font-weight:700;color:#1a1a2e" class="token-display">${formatTokens(totalTokens)}</div>
+      <div style="font-size:0.78rem;color:#999;margin-top:4px">总 Token 消耗</div>
+    </div>
+    <div class="stat-card">
+      <div style="font-size:1.5rem;font-weight:700;color:#1a1a2e">¥${totalCost.toFixed(2)}</div>
+      <div style="font-size:0.78rem;color:#999;margin-top:4px">总消费金额</div>
+      <div style="font-size:0.72rem;color:#bbb;margin-top:2px">本月/累计</div>
+    </div>
+    <div class="stat-card">
+      <div style="font-size:1.5rem;font-weight:700;color:#1a1a2e">${totalRequests.toLocaleString()}</div>
+      <div style="font-size:0.78rem;color:#999;margin-top:4px">API 请求次数</div>
+    </div>
+    <div class="stat-card">
+      <div style="font-size:1.5rem;font-weight:700;color:#1a1a2e">${Object.keys(getModelsFlat()).length}</div>
+      <div style="font-size:0.78rem;color:#999;margin-top:4px">在用模型数</div>
+    </div>
+  `;
+}
+
+function getModelsFlat() {
+  const models = {};
+  if (!state.snapshot) return models;
+  for (const [pkey, pval] of Object.entries(state.snapshot.providers)) {
+    for (const [mkey, mval] of Object.entries(pval.models)) {
+      models[mkey] = { ...mval, provider: pkey, providerName: pval.name };
+    }
+  }
+  return models;
+}
+
+function renderModelRanking() {
+  const container = document.getElementById('modelRanking');
+  const models = getModelsFlat();
+  const sorted = Object.entries(models).sort((a, b) => (b[1].tokens || 0) - (a[1].tokens || 0));
+  
+  if (sorted.length === 0) {
+    container.innerHTML = '<div class="skeleton">暂无数据</div>';
+    return;
+  }
+  
+  const maxTokens = sorted[0][1].tokens || 1;
+  const colors = ['#e94560', '#0f3460', '#4caf50', '#ff6f00', '#9c27b0', '#00897b', '#d4a574'];
+  
+  container.innerHTML = sorted.map(([name, data], i) => {
+    const pct = ((data.tokens || 0) / maxTokens * 100).toFixed(1);
+    return `<div class="rank-item" style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f5f5f5">
+      <div class="rank-index ${i < 3 ? 'top3' : ''}" style="width:24px;height:24px;border-radius:50%;background:${i < 3 ? '#1a1a2e' : '#f0f2f5'};display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;color:${i < 3 ? '#fff' : '#666'};flex-shrink:0">${i + 1}</div>
+      <div class="rank-info" style="flex:1;min-width:0">
+        <div style="font-weight:600;font-size:0.9rem">${name} <span style="display:inline-block;font-size:0.68rem;padding:1px 8px;border-radius:8px;margin-left:6px;background:#f0f2f5;color:#666">${data.providerName}</span></div>
+        <div style="display:flex;align-items:center;gap:12px;margin-top:6px">
+          <div style="flex:1;height:6px;background:#f0f2f5;border-radius:3px;overflow:hidden"><div style="height:100%;border-radius:3px;width:${pct}%;background:${colors[i % colors.length]};transition:width 0.5s"></div></div>
+          <div style="font-size:0.78rem;color:#666;white-space:nowrap" class="token-display">${formatTokens(data.tokens)} / ¥${(data.cost || 0).toFixed(2)}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderAgentOverview() {
+  const container = document.getElementById('agentUsageOverview');
+  const agents = state.agents;
+  if (agents.length === 0) {
+    container.innerHTML = '<div class="skeleton">暂无Agent数据。请在「Agent追踪」页面添加Agent。</div>';
+    return;
+  }
+  container.innerHTML = agents.map(a => {
+    const color = PROVIDER_COLORS[a.provider] || '#666';
+    return `<div class="agent-item" style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #f5f5f5">
+      <div style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;background:${color}20">🤖</div>
+      <div class="agent-info" style="flex:1">
+        <div style="font-weight:600;font-size:0.9rem">${a.name}</div>
+        <div style="font-size:0.78rem;color:#999;margin-top:2px">${PROVIDER_LABELS[a.provider] || a.provider} · ${a.model || '—'}</div>
+      </div>
+      <div style="font-weight:600;font-size:0.9rem" class="token-display">${formatTokens(a.tokens || 0)}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderProvidersDetail() {
+  const container = document.getElementById('providersDetail');
+  if (!state.snapshot) return;
+  
+  container.innerHTML = Object.entries(state.snapshot.providers).map(([key, val]) => {
+    const modelCount = Object.keys(val.models).length;
+    if (modelCount === 0) return '';
+    
+    const color = PROVIDER_COLORS[key] || '#666';
+    return `<div class="provider-card" style="padding:16px 20px;border-bottom:1px solid #f0f0f5">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div style="font-weight:600;font-size:1rem;color:${color}">${val.name}</div>
+        <div style="font-size:0.85rem;color:#666">${val.monthlyConsumption !== undefined ? '本月 ¥' + val.monthlyConsumption.toFixed(2) : '累计 ¥' + (val.totalConsumption || 0).toFixed(2)}</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px">
+        ${Object.entries(val.models).map(([mname, mdata]) => `
+          <div style="padding:12px;border:1px solid #eee;border-radius:8px;font-size:0.82rem">
+            <div style="font-weight:600;margin-bottom:6px">${mname}</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;color:#666">
+              <span style="font-size:0.78rem">📨 ${(mdata.requests || 0).toLocaleString()} 次请求</span>
+              <span style="font-size:0.78rem" class="token-display">📝 ${formatTokens(mdata.tokens || 0)}</span>
+              <span style="font-size:0.78rem">💰 ¥${(mdata.cost || 0).toFixed(2)}</span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderModels() {
+  const container = document.getElementById('modelsTable');
+  const models = getModelsFlat();
+  const filter = document.getElementById('modelProviderFilter').value;
+  
+  const filtered = Object.entries(models).filter(([k, v]) => filter === 'all' || v.provider === filter);
+  const sorted = filtered.sort((a, b) => (b[1].tokens || 0) - (a[1].tokens || 0));
+  
+  const filterSelect = document.getElementById('modelProviderFilter');
+  const currentProviders = [...new Set(Object.values(models).map(m => m.provider))];
+  filterSelect.innerHTML = '<option value="all">全部服务商</option>' +
+    currentProviders.map(p => `<option value="${p}">${PROVIDER_LABELS[p] || p}</option>`).join('');
+  
+  if (sorted.length === 0) {
+    container.innerHTML = '<div class="skeleton">暂无数据</div>';
+    return;
+  }
+  
+  container.innerHTML = `<table class="models-table" style="width:100%;border-collapse:collapse;font-size:0.88rem">
+    <thead style="background:#f7f8fa"><tr>
+      <th style="padding:10px 12px;text-align:left;font-weight:600;font-size:0.78rem;color:#666;border-bottom:1px solid #f0f0f5">模型</th>
+      <th style="padding:10px 12px;text-align:left;font-weight:600;font-size:0.78rem;color:#666;border-bottom:1px solid #f0f0f5">服务商</th>
+      <th style="padding:10px 12px;text-align:left;font-weight:600;font-size:0.78rem;color:#666;border-bottom:1px solid #f0f0f5">请求次数</th>
+      <th style="padding:10px 12px;text-align:left;font-weight:600;font-size:0.78rem;color:#666;border-bottom:1px solid #f0f0f5">Token消耗</th>
+      <th style="padding:10px 12px;text-align:left;font-weight:600;font-size:0.78rem;color:#666;border-bottom:1px solid #f0f0f5">消费金额</th>
+      <th style="padding:10px 12px;text-align:left;font-weight:600;font-size:0.78rem;color:#666;border-bottom:1px solid #f0f0f5">平均Token/请求</th>
+    </tr></thead>
+    <tbody>${sorted.map(([name, data]) => `
+      <tr style="border-bottom:1px solid #f0f0f5">
+        <td style="padding:10px 12px;text-align:left;font-weight:600">${name}</td>
+        <td style="padding:10px 12px;text-align:left"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${PROVIDER_COLORS[data.provider] || '#666'};margin-right:6px"></span>${data.providerName}</td>
+        <td style="padding:10px 12px;text-align:left">${(data.requests || 0).toLocaleString()}</td>
+        <td style="padding:10px 12px;text-align:left" class="token-display">${formatTokens(data.tokens || 0)}</td>
+        <td style="padding:10px 12px;text-align:left">¥${(data.cost || 0).toFixed(2)}</td>
+        <td style="padding:10px 12px;text-align:left" class="token-display">${data.requests ? formatTokens(Math.round((data.tokens || 0) / data.requests)) : '—'}</td>
+      </tr>
+    `).join('')}</tbody>
+  </table>`;
+}
+
+function renderAgentsList() {
+  const container = document.getElementById('agentsList');
+  const agents = state.agents;
+  
+  if (agents.length === 0) {
+    container.innerHTML = '<div class="skeleton">还没有注册任何Agent。点击上面的「+ 添加Agent」开始追踪。</div>';
+    return;
+  }
+  
+  container.innerHTML = agents.map((a, i) => {
+    const color = PROVIDER_COLORS[a.provider] || '#666';
+    return `<div class="agent-item" style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #f5f5f5">
+      <div style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;background:${color}20">🤖</div>
+      <div class="agent-info" style="flex:1">
+        <div style="font-weight:600;font-size:0.9rem">${a.name}</div>
+        <div style="font-size:0.78rem;color:#999;margin-top:2px">${PROVIDER_LABELS[a.provider] || a.provider} · ${a.model || '—'}</div>
+      </div>
+      <div style="font-weight:600;font-size:0.9rem" class="token-display">${formatTokens(a.tokens || 0)}</div>
+      <div class="agent-actions"><button onclick="deleteAgent(${i})" style="background:none;border:none;color:#999;cursor:pointer;padding:4px;font-size:0.85rem">🗑</button></div>
+    </div>`;
+  }).join('');
+}
+
+function renderAgentRanking() {
+  const container = document.getElementById('agentRanking');
+  const agents = state.agents;
+  const sorted = [...agents].sort((a, b) => (b.tokens || 0) - (a.tokens || 0));
+  
+  if (sorted.length === 0) {
+    container.innerHTML = '<div class="skeleton">暂无数据</div>';
+    return;
+  }
+  
+  const maxTokens = sorted[0].tokens || 1;
+  
+  container.innerHTML = sorted.map((a, i) => {
+    const pct = ((a.tokens || 0) / maxTokens * 100).toFixed(1);
+    const colors = ['#e94560', '#0f3460', '#4caf50', '#ff6f00', '#9c27b0'];
+    return `<div class="rank-item" style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f5f5f5">
+      <div class="rank-index ${i < 3 ? 'top3' : ''}" style="width:24px;height:24px;border-radius:50%;background:${i < 3 ? '#1a1a2e' : '#f0f2f5'};display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;color:${i < 3 ? '#fff' : '#666'};flex-shrink:0">${i + 1}</div>
+      <div class="rank-info" style="flex:1;min-width:0">
+        <div style="font-weight:600;font-size:0.9rem">${a.name}</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-top:6px">
+          <div style="flex:1;height:6px;background:#f0f2f5;border-radius:3px;overflow:hidden"><div style="height:100%;border-radius:3px;width:${pct}%;background:${colors[i % colors.length]};transition:width 0.5s"></div></div>
+          <div style="font-size:0.78rem;color:#666;white-space:nowrap" class="token-display">${formatTokens(a.tokens || 0)}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ====== Agent管理 ======
+function showAddAgentModal() {
+  document.getElementById('agentModal').style.display = 'flex';
+  document.getElementById('agentName').value = '';
+  document.getElementById('agentModel').value = '';
+}
+
+function closeModal(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+async function saveAgent() {
+  const name = document.getElementById('agentName').value.trim();
+  const provider = document.getElementById('agentProvider').value;
+  const model = document.getElementById('agentModel').value.trim();
+  
+  if (!name) { alert('请输入Agent名称'); return; }
+  
+  state.agents.push({ name, provider, model, tokens: 0 });
+  state.config.agents = state.agents;
+  BROWSER_API.saveConfig(state.config);
+  
+  closeModal('agentModal');
+  renderAgentsList();
+  renderAgentRanking();
+  renderAgentOverview();
+}
+
+async function deleteAgent(index) {
+  state.agents.splice(index, 1);
+  state.config.agents = state.agents;
+  BROWSER_API.saveConfig(state.config);
+  renderAgentsList();
+  renderAgentRanking();
+  renderAgentOverview();
+}
+
+// ====== 设置 ======
+function toggleKey(provider) {
+  const input = document.getElementById(`key-${provider}`);
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
+
+async function saveApiKeys() {
+  for (const key of ['deepseek', 'xiaomi', 'openai', 'anthropic']) {
+    const input = document.getElementById(`key-${key}`);
+    let val = input.value;
+    if (val.startsWith('••••')) {
+      val = state.config.providers[key].apiKey;
+    }
+    state.config.providers[key].apiKey = val;
+  }
+  const result = BROWSER_API.saveConfig(state.config);
+  document.getElementById('saveStatus').textContent = result.success ? '✅ 已保存' : '❌ 保存失败';
+  setTimeout(() => document.getElementById('saveStatus').textContent = '', 2000);
+}
+
+async function saveRefreshInterval() {
+  const val = parseInt(document.getElementById('refreshInterval').value);
+  state.config.refreshInterval = val;
+  BROWSER_API.saveConfig(state.config);
+  setupAutoRefresh();
+  alert('已保存');
+}
+
+// ====== 数据管理 ======
+async function exportData() {
+  const data = {
+    exportedAt: new Date().toISOString(),
+    snapshot: state.snapshot,
+    history: state.history,
+    agents: state.agents,
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `api-usage-${new Date().toISOString().slice(0, 10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+async function clearHistory() {
+  if (!confirm('确定清除所有历史数据？')) return;
+  state.history = [];
+  BROWSER_API.saveUsageHistory([]);
+  alert('已清除');
+}
+
+// ====== 刷新 ======
+async function refreshAll() {
+  const btn = document.querySelector('.btn-refresh');
+  btn.textContent = '⏳ 刷新中...';
+  btn.disabled = true;
+  
+  // 重新加载配置和历史
+  state.config = BROWSER_API.getConfig();
+  state.history = BROWSER_API.getUsageHistory();
+  state.agents = state.config.agents || [];
+  
+  renderAll();
+  
+  btn.textContent = '🔄 刷新';
+  btn.disabled = false;
+}
+
+function updateLastUpdate() {
+  document.getElementById('lastUpdate').textContent = '上次更新: ' + new Date().toLocaleString('zh-CN');
+}
+
+// ====== 自动刷新 ======
+let refreshTimer = null;
+function setupAutoRefresh() {
+  if (refreshTimer) clearInterval(refreshTimer);
+  const interval = (state.config.refreshInterval || 30) * 60 * 1000;
+  refreshTimer = setInterval(refreshAll, interval);
+}
+
+// ====== 工具函数 ======
+function formatTokens(n) {
+  if (n === undefined || n === null) return '0';
+  if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+  if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+  return n.toString();
+}
+
+// ====== 启动 ======
+document.addEventListener('DOMContentLoaded', init);
+
+// 点击模态框外部关闭
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('modal')) {
+    e.target.style.display = 'none';
+  }
+});
+</script>
+
+</body>
+</html>

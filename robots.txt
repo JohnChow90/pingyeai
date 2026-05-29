@@ -1,0 +1,6 @@
+# 允许所有搜索引擎
+User-agent: *
+Disallow:
+
+# Sitemap
+Sitemap: https://www.pingyeai.cn/sitemap.xml
