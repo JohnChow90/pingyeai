@@ -178,17 +178,43 @@ document.getElementById('hamburgerBtn').addEventListener('click',()=>{document.g
 
 // ====== API Key 管理 ======
 (function(){
-  const saved = localStorage.getItem('cd_api_key');
-  if(saved){
-    document.getElementById('apiKeyInput').value = saved;
-    document.getElementById('apiStatusDot').className = 'status-dot ok';
+  // Debug: 检查 localStorage 是否可用
+  let lsOk = true;
+  try {
+    const testKey = '_cd_test_' + Date.now();
+    localStorage.setItem(testKey, '1');
+    localStorage.removeItem(testKey);
+  } catch(e) {
+    lsOk = false;
+    console.warn('[分发工具] localStorage 不可用:', e.message);
   }
+  console.log('[分发工具] localStorage 状态:', lsOk ? '✅ 正常' : '❌ 不可用');
+  
+  // 加载已保存的 Key
+  try {
+    const saved = localStorage.getItem('cd_api_key');
+    if(saved){
+      document.getElementById('apiKeyInput').value = saved;
+      document.getElementById('apiStatusDot').className = 'status-dot ok';
+      console.log('[分发工具] API Key 已从 localStorage 恢复');
+    } else {
+      console.log('[分发工具] localStorage 中未找到 cd_api_key');
+    }
+  } catch(e) {
+    console.warn('[分发工具] 读取 API Key 失败:', e.message);
+  }
+  
   document.getElementById('saveApiKey').addEventListener('click', () => {
     const key = document.getElementById('apiKeyInput').value.trim();
     if(key.startsWith('sk-')){
-      localStorage.setItem('cd_api_key', key);
-      document.getElementById('apiStatusDot').className = 'status-dot ok';
-      document.getElementById('apiSaveMsg').textContent = '✅ 已保存';
+      try {
+        localStorage.setItem('cd_api_key', key);
+        document.getElementById('apiStatusDot').className = 'status-dot ok';
+        document.getElementById('apiSaveMsg').textContent = '✅ 已保存';
+        console.log('[分发工具] API Key 已保存到 localStorage');
+      } catch(e) {
+        document.getElementById('apiSaveMsg').textContent = '❌ 保存失败: ' + e.message;
+      }
     } else {
       document.getElementById('apiSaveMsg').textContent = '❌ 请输入有效 sk- 开头的 Key';
     }
@@ -249,8 +275,31 @@ async function callDeepSeek(article, systemPrompt, model) {
   return data.choices[0].message.content;
 }
 
+// ====== 确保输出区域可见并滚动到视口 ======
+function showOutputAndScroll() {
+  const section = document.getElementById('outputSection');
+  section.classList.add('visible');
+  setTimeout(() => {
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+// ====== 检查 API Key 是否存在 ======
+function checkApiKey() {
+  const key = localStorage.getItem('cd_api_key');
+  if(!key) {
+    alert('⚠️ 请先在上方 🔑 API Key 设置中配置并保存你的 DeepSeek API Key');
+    document.getElementById('apiKeyInput').focus();
+    return false;
+  }
+  return true;
+}
+
 // ====== 显示生成结果 ======
 async function showGenerated(platform) {
+  // 前置检查
+  if(!checkApiKey()) return;
+  
   const article = document.getElementById('articleInput').value.trim();
   if(!article) { alert('请先粘贴文章内容'); return; }
   
@@ -270,9 +319,14 @@ async function showGenerated(platform) {
     titleEl.textContent = p.title + ' ✅ 已生成';
     saveToHistory(platform, p.title, result);
   } catch(e) {
+    console.error('[分发工具] 生成失败:', e.message);
     outputDiv.textContent = '❌ 生成失败：' + e.message;
     titleEl.textContent = p.title + ' ❌ 失败';
+    // 尝试弹出更明显的错误提示
+    alert('❌ 生成失败：' + e.message);
   }
+  // 自动滚动到输出区域
+  setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
 }
 
 // ====== 历史记录 ======
@@ -301,6 +355,8 @@ platformBtns.forEach(btn => {
 
 // ====== 一键生成全部 ======
 document.getElementById('generateAllBtn').addEventListener('click', async () => {
+  if(!checkApiKey()) return;
+  
   const article = document.getElementById('articleInput').value.trim();
   if(!article) { alert('请先粘贴文章内容'); return; }
   
@@ -310,6 +366,7 @@ document.getElementById('generateAllBtn').addEventListener('click', async () => 
   section.classList.add('visible');
   titleEl.textContent = '⚡ 一键生成全部（5个平台）...';
   outputDiv.innerHTML = '<div class="generating"><span class="spinner"></span> 正在逐个生成，请稍候...</div>';
+  setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
   
   let allResults = '';
   const model = document.getElementById('apiModelSelect').value;
@@ -322,6 +379,7 @@ document.getElementById('generateAllBtn').addEventListener('click', async () => 
       allResults += '───────────────────────────────\n' + result + '\n\n';
       saveToHistory(key, p.title, result);
     } catch(e) {
+      console.error('[分发工具] ' + p.title + ' 生成失败:', e.message);
       allResults += '═══════════════════════════════\n' + p.title + ' ❌ 失败: ' + e.message + '\n\n';
     }
   }
@@ -357,9 +415,14 @@ document.getElementById('articleInput').addEventListener('input', () => {
 
 // ====== 初始化 ======
 (function(){
-  const last = localStorage.getItem('cd_last_article');
-  if(last) document.getElementById('articleInput').value = last;
+  try {
+    const last = localStorage.getItem('cd_last_article');
+    if(last) document.getElementById('articleInput').value = last;
+  } catch(e) {
+    console.warn('[分发工具] 读取上次文章失败:', e.message);
+  }
   document.getElementById('outputContent').textContent = '👆 粘贴文章 → 点击平台按钮 → AI 自动生成对应版本';
+  console.log('[分发工具] 初始化完成 ✅');
 })();
 
 
