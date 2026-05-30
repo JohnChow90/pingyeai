@@ -182,6 +182,29 @@ var _hmt = _hmt || [];
 })();
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "平野AI工具站",
+  "url": "https://pingyeai.cn",
+  "description": "AI模型价格对比、工具评测、使用教程"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://pingyeai.cn/"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -192,7 +215,10 @@ var _hmt = _hmt || [];
     <button class="hamburger" id="hamburgerBtn" aria-label="菜单">☰</button>
     <div class="nav-links" id="navLinks">
       <a href="/" class="active">🏠 首页</a>
-      <a href="/compare-ai-coding-tools">🛠 AI编程工具对比</a>
+      <a href="/models/">📂 模型目录</a>
+      <a href="/compare-ai-coding-tools">🛠 编程工具对比</a>
+      <a href="/blog/">📝 博客</a>
+      <a href="/tools/content-distributor">📤 内容分发</a>
     </div>
   </div>
 </nav>
@@ -285,6 +311,35 @@ var _hmt = _hmt || [];
   <h3>🔧 更多工具</h3>
   <div class="list">
     <a href="/compare-ai-coding-tools">🛠 编程工具横向对比 → Claude Code vs Codex vs Trae SOLO</a>
+  </div>
+
+<div class="related-tools" style="margin-top:16px">
+  <h3>📂 模型目录</h3>
+  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
+    <a href="/models/openai.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#0f3460;margin-right:2px"></span> OpenAI</a>
+      <a href="/models/anthropic.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#d4a574;margin-right:2px"></span> Anthropic</a>
+      <a href="/models/google.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4285f4;margin-right:2px"></span> Google</a>
+      <a href="/models/deepseek.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4caf50;margin-right:2px"></span> DeepSeek</a>
+      <a href="/models/xiaomi.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#ff6f00;margin-right:2px"></span> 小米</a>
+      <a href="/models/others.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#9c27b0;margin-right:2px"></span> 其他</a>
+  </div>
+  <div class="list" style="display:flex;flex-wrap:wrap;gap:8px">
+    <a href="/models/gpt55.html">GPT-5.5</a>
+      <a href="/models/gpt54.html">GPT-5.4</a>
+      <a href="/models/gpt54m.html">GPT-5.4 mini</a>
+      <a href="/models/claude4o.html">Claude 4 Opus</a>
+      <a href="/models/claude4s.html">Claude 4 Sonnet</a>
+      <a href="/models/claude4h.html">Claude 4 Haiku</a>
+      <a href="/models/gem25p.html">Gemini 2.5 Pro</a>
+      <a href="/models/gem25f.html">Gemini 2.5 Flash</a>
+      <a href="/models/dsv4f.html">DeepSeek V4 Flash</a>
+      <a href="/models/dsv4p.html">DeepSeek V4 Pro</a>
+      <a href="/models/mimov25.html">MiMo V2.5</a>
+      <a href="/models/mimov25p.html">MiMo V2.5 Pro</a>
+      <a href="/models/qwen3m.html">Qwen3 Max</a>
+      <a href="/models/qw32p.html">Qwen3 Plus</a>
+      <a href="/models/mistrall.html">Mistral Large</a>
+      <a href="/models/grok3.html">Grok 3</a>
   </div>
 </div>
 
