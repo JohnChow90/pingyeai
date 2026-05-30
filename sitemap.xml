@@ -1,93 +1,303 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.pingyeai.cn/</loc>
-    <lastmod>2026-05-28</lastmod>
+    <loc>https://pingyeai.cn/</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.pingyeai.cn/compare-ai-coding-tools</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.pingyeai.cn/tools/content-distributor</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.pingyeai.cn/blog/</loc>
-    <lastmod>2026-05-28</lastmod>
+    <loc>https://pingyeai.cn/models/</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.pingyeai.cn/privacy</loc>
-    <lastmod>2026-05-28</lastmod>
+    <loc>https://pingyeai.cn/compare-ai-coding-tools</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/tools/content-distributor</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/tools/api-monitor</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/privacy/</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.1</priority>
   </url>
   <url>
-    <loc>https://www.pingyeai.cn/affiliate-disclaimer</loc>
-    <lastmod>2026-05-28</lastmod>
+    <loc>https://pingyeai.cn/affiliate-disclaimer/</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.1</priority>
   </url>
   <url>
-    <loc>https://www.pingyeai.cn/blog/ai-cloud-server-guide</loc>
-    <lastmod>2026-05-28</lastmod>
+    <loc>https://pingyeai.cn/models/gpt55</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/models/gpt54</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/models/gpt54m</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/models/claude4o</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/models/claude4s</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/models/claude4h</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/models/gem25p</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/models/gem25f</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/models/dsv4f</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/models/dsv4p</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/models/mimov25</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/models/mimov25p</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/models/qwen3m</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/models/qw32p</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/models/mistrall</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/models/grok3</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/models/openai</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.pingyeai.cn/blog/trae-solo-worth-it</loc>
-    <lastmod>2026-05-28</lastmod>
+    <loc>https://pingyeai.cn/models/anthropic</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.pingyeai.cn/blog/ai-tool-selection-guide</loc>
-    <lastmod>2026-05-28</lastmod>
+    <loc>https://pingyeai.cn/models/google</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.pingyeai.cn/blog/trae-solo-ima-knowledge.html</loc>
-    <lastmod>2026-05-28</lastmod>
+    <loc>https://pingyeai.cn/models/deepseek</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.pingyeai.cn/blog/trae-solo-free-limit</loc>
-    <lastmod>2026-05-28</lastmod>
+    <loc>https://pingyeai.cn/models/xiaomi</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.pingyeai.cn/blog/trae-vs-trae-solo.html</loc>
-    <lastmod>2026-05-28</lastmod>
+    <loc>https://pingyeai.cn/models/others</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.pingyeai.cn/blog/delete-5-keep-2.html</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://pingyeai.cn/blog/trae-feishu-ppt</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.pingyeai.cn/blog/workbuddy-craft-plan-ask.html</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://pingyeai.cn/blog/ai-cloud-server-guide</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.pingyeai.cn/blog/workbuddy-vs-trae-solo.html</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://pingyeai.cn/blog/ai-tool-selection-guide</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/trae-docx-pptx</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/openclaw-macos</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/claude-vs-ts</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/ai-tools-3-only</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/trae-solo-zhenxiang</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/workbuddy-real</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/trae-solo-free-limit</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/trae-solo-ima-knowledge</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/trae-solo-worth-it</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/trae-vs-trae-solo</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/trae-solo-6-keng</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/trae-solo-windows</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/trae-solo-mobile</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/self-learn-ai-3m</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/workbuddy-craft-plan-ask</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/delete-5-keep-2</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/workbuddy-vs-trae-solo</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
 </urlset>

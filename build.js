@@ -920,6 +920,33 @@ function build() {
     }
   }
 
+  // 12. Generate sitemap.xml
+  const now2 = new Date().toISOString().split('T')[0];
+  const sitePages = [
+    { url: 'https://pingyeai.cn/', priority: '1.0', changefreq: 'weekly' },
+    { url: 'https://pingyeai.cn/models/', priority: '0.9', changefreq: 'weekly' },
+    { url: 'https://pingyeai.cn/compare-ai-coding-tools', priority: '0.8', changefreq: 'monthly' },
+    { url: 'https://pingyeai.cn/blog/', priority: '0.9', changefreq: 'weekly' },
+    { url: 'https://pingyeai.cn/tools/content-distributor', priority: '0.7', changefreq: 'monthly' },
+    { url: 'https://pingyeai.cn/tools/api-monitor', priority: '0.6', changefreq: 'monthly' },
+    { url: 'https://pingyeai.cn/privacy/', priority: '0.1', changefreq: 'yearly' },
+    { url: 'https://pingyeai.cn/affiliate-disclaimer/', priority: '0.1', changefreq: 'yearly' },
+  ];
+  for (const m of MODELS) sitePages.push({ url: 'https://pingyeai.cn/models/' + m.id, priority: '0.7', changefreq: 'monthly' });
+  for (const p of PROVIDERS) sitePages.push({ url: 'https://pingyeai.cn/models/' + p.id, priority: '0.6', changefreq: 'monthly' });
+  for (const a of BLOG_ARTICLES) sitePages.push({ url: 'https://pingyeai.cn/blog/' + a.slug, priority: '0.5', changefreq: 'never' });
+  
+  const urlLines = sitePages.map(p => '  <url>\n    <loc>' + p.url + '</loc>\n    <lastmod>' + now2 + '</lastmod>\n    <changefreq>' + p.changefreq + '</changefreq>\n    <priority>' + p.priority + '</priority>\n  </url>').join('\n');
+  const sitemap = '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n' + urlLines + '\n</urlset>';
+  writeFile(path.join(ROOT, 'sitemap.xml'), sitemap);
+  log.push('\u2705 sitemap.xml \u5df2\u751f\u6210 (' + sitePages.length + ' \u6761URL)');
+
+  // 13. Generate RSS feed
+  const rssItems = BLOG_ARTICLES.map(a => '  <item>\n    <title><![CDATA[' + a.title + ']]></title>\n    <link>https://pingyeai.cn/blog/' + a.slug + '</link>\n    <guid>https://pingyeai.cn/blog/' + a.slug + '</guid>\n  </item>').join('\n');
+  const rss = '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<rss version=\"2.0\">\n  <channel>\n    <title>\u5e73\u91ceAI\u5de5\u5177\u7ad9 - \u535a\u5ba2</title>\n    <link>https://pingyeai.cn/blog/</link>\n    <description>AI\u5de5\u5177\u4f7f\u7528\u5fc3\u5f97\u3001\u8e29\u5751\u8bb0\u5f55\u3001\u5b9e\u6218\u6559\u7a0b</description>\n    <language>zh-CN</language>\n' + rssItems + '\n  </channel>\n</rss>';
+  writeFile(path.join(ROOT, 'feed.xml'), rss);
+  log.push('\u2705 feed.xml (RSS) \u5df2\u751f\u6210 (' + BLOG_ARTICLES.length + ' \u7bc7\u6587\u7ae0)');
+
   // Done
   console.log('\n' + log.join('\n'));
   console.log('\n🎉 构建完成！所有页面已生成/更新。');

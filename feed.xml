@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>平野AI工具站 - 博客</title>
+    <link>https://pingyeai.cn/blog/</link>
+    <description>AI工具使用心得、踩坑记录、实战教程</description>
+    <language>zh-CN</language>
+  <item>
+    <title><![CDATA[TRAE SOLO调用飞书CLI做PPT，还是算了吧]]></title>
+    <link>https://pingyeai.cn/blog/trae-feishu-ppt</link>
+    <guid>https://pingyeai.cn/blog/trae-feishu-ppt</guid>
+  </item>
+  <item>
+    <title><![CDATA[AI开发者云服务器选购指南 2026]]></title>
+    <link>https://pingyeai.cn/blog/ai-cloud-server-guide</link>
+    <guid>https://pingyeai.cn/blog/ai-cloud-server-guide</guid>
+  </item>
+  <item>
+    <title><![CDATA[TRAE SOLO、WorkBuddy、DeepSeek……AI工具一大堆，怎么选？]]></title>
+    <link>https://pingyeai.cn/blog/ai-tool-selection-guide</link>
+    <guid>https://pingyeai.cn/blog/ai-tool-selection-guide</guid>
+  </item>
+  <item>
+    <title><![CDATA[「求助贴」TRAE SOLO的docx、pptx技能执行不了]]></title>
+    <link>https://pingyeai.cn/blog/trae-docx-pptx</link>
+    <guid>https://pingyeai.cn/blog/trae-docx-pptx</guid>
+  </item>
+  <item>
+    <title><![CDATA[OpenClaw里程碑式更新，macOS原生App让你的小龙虾能听会说]]></title>
+    <link>https://pingyeai.cn/blog/openclaw-macos</link>
+    <guid>https://pingyeai.cn/blog/openclaw-macos</guid>
+  </item>
+  <item>
+    <title><![CDATA[都说Claude比TS强，我试了一下——然后没换]]></title>
+    <link>https://pingyeai.cn/blog/claude-vs-ts</link>
+    <guid>https://pingyeai.cn/blog/claude-vs-ts</guid>
+  </item>
+  <item>
+    <title><![CDATA[试了十几个AI工具，真正留在电脑里的只有这3个]]></title>
+    <link>https://pingyeai.cn/blog/ai-tools-3-only</link>
+    <guid>https://pingyeai.cn/blog/ai-tools-3-only</guid>
+  </item>
+  <item>
+    <title><![CDATA[TRAE SOLO 真香]]></title>
+    <link>https://pingyeai.cn/blog/trae-solo-zhenxiang</link>
+    <guid>https://pingyeai.cn/blog/trae-solo-zhenxiang</guid>
+  </item>
+  <item>
+    <title><![CDATA[没想到你是这样的WorkBuddy]]></title>
+    <link>https://pingyeai.cn/blog/workbuddy-real</link>
+    <guid>https://pingyeai.cn/blog/workbuddy-real</guid>
+  </item>
+  <item>
+    <title><![CDATA[TRAE SOLO，说好的免费呢？]]></title>
+    <link>https://pingyeai.cn/blog/trae-solo-free-limit</link>
+    <guid>https://pingyeai.cn/blog/trae-solo-free-limit</guid>
+  </item>
+  <item>
+    <title><![CDATA[10分钟搞定TRAE SOLO接入ima知识库]]></title>
+    <link>https://pingyeai.cn/blog/trae-solo-ima-knowledge</link>
+    <guid>https://pingyeai.cn/blog/trae-solo-ima-knowledge</guid>
+  </item>
+  <item>
+    <title><![CDATA[TRAE SOLO到底值不值得用]]></title>
+    <link>https://pingyeai.cn/blog/trae-solo-worth-it</link>
+    <guid>https://pingyeai.cn/blog/trae-solo-worth-it</guid>
+  </item>
+  <item>
+    <title><![CDATA[别再问我绿TRAE和TRAE SOLO选哪个了]]></title>
+    <link>https://pingyeai.cn/blog/trae-vs-trae-solo</link>
+    <guid>https://pingyeai.cn/blog/trae-vs-trae-solo</guid>
+  </item>
+  <item>
+    <title><![CDATA[用TRAE SOLO一个多月，我踩了6个坑]]></title>
+    <link>https://pingyeai.cn/blog/trae-solo-6-keng</link>
+    <guid>https://pingyeai.cn/blog/trae-solo-6-keng</guid>
+  </item>
+  <item>
+    <title><![CDATA[Windows版 TRAE SOLO 客户端上线]]></title>
+    <link>https://pingyeai.cn/blog/trae-solo-windows</link>
+    <guid>https://pingyeai.cn/blog/trae-solo-windows</guid>
+  </item>
+  <item>
+    <title><![CDATA[手机端 Trae Solo 上线]]></title>
+    <link>https://pingyeai.cn/blog/trae-solo-mobile</link>
+    <guid>https://pingyeai.cn/blog/trae-solo-mobile</guid>
+  </item>
+  <item>
+    <title><![CDATA[零基础自学AI编程3个月：我的进化路线和踩坑全集]]></title>
+    <link>https://pingyeai.cn/blog/self-learn-ai-3m</link>
+    <guid>https://pingyeai.cn/blog/self-learn-ai-3m</guid>
+  </item>
+  <item>
+    <title><![CDATA[上来就Craft？WorkBuddy积分就是这么烧没的]]></title>
+    <link>https://pingyeai.cn/blog/workbuddy-craft-plan-ask</link>
+    <guid>https://pingyeai.cn/blog/workbuddy-craft-plan-ask</guid>
+  </item>
+  <item>
+    <title><![CDATA[删了5个AI编程软件，换成这2个]]></title>
+    <link>https://pingyeai.cn/blog/delete-5-keep-2</link>
+    <guid>https://pingyeai.cn/blog/delete-5-keep-2</guid>
+  </item>
+  <item>
+    <title><![CDATA[WorkBuddy和Trae SOLO到底怎么选？]]></title>
+    <link>https://pingyeai.cn/blog/workbuddy-vs-trae-solo</link>
+    <guid>https://pingyeai.cn/blog/workbuddy-vs-trae-solo</guid>
+  </item>
+  </channel>
+</rss>
