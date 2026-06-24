@@ -34,6 +34,8 @@ const PROVIDER_COLORS = Object.fromEntries(PROVIDERS.map(p => [p.id, p.color]));
 
 // ====== Blog articles metadata (for related articles) ======
 const BLOG_ARTICLES = [
+  { slug: 'trae-work-feishu-cli', title: 'TRAE WORK+飞书CLI，6个技能让办公效率再上一层楼', cat: 'trae', keywords: ['trae','work','feishu','cli','lark','automation'] },
+
   { slug: 'trae-feishu-ppt', title: 'TRAE SOLO调用飞书CLI做PPT，还是算了吧', cat: 'trae', keywords: ['trae','solo','feishu','ppt','cli','mac','windows'] },
   { slug: 'ai-cloud-server-guide', title: 'AI开发者云服务器选购指南 2026', cat: 'cloud', keywords: ['cloud','server','gpu','aliyun','tencent','deploy','hosting'] },
   { slug: 'ai-tool-selection-guide', title: 'TRAE SOLO、WorkBuddy、DeepSeek……AI工具一大堆，怎么选？', cat: 'ai', keywords: ['ai','tool','selection','guide','deepseek','claude','gpt','compare'] },
@@ -63,8 +65,6 @@ const TAG_HTML = (tags) => (tags || []).map(t => {
   const info = TAG_LABELS[t];
   return info ? `<span class="tag ${info.cls}">${info.cn}</span>` : '';
 }).join('');
-
-function slugify(name) { return name; }
 
 function priceStr(v) {
   if (v === null || v === undefined) return '—';
@@ -186,10 +186,7 @@ document.querySelectorAll('.nav-links a').forEach(a => {
 }
 
 function makeAnalyticsSnippet() {
-  return `<!-- ====== 网站数据统计 ====== -->
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN"}'></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MEASUREMENT_ID');</script>
+  return `<!-- 百度统计 -->
 <script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?8787f6e4c29bc3acc5812750c378a195";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>`;
 }
 
@@ -407,7 +404,6 @@ ${makeNavHTML('/models/' + m.id + '.html')}
 
 ${makeFooterHTML()}
 
-<script src="/js/nav.js"></script>
 ${makeNavScript()}
 </body>
 </html>`;
@@ -507,7 +503,6 @@ ${makeNavHTML('/models/')}
 
 ${makeFooterHTML()}
 
-<script src="/js/nav.js"></script>
 ${makeNavScript()}
 </body>
 </html>`;
@@ -621,7 +616,6 @@ ${makeNavHTML('/models/' + provider.id + '.html')}
 
 ${makeFooterHTML()}
 
-<script src="/js/nav.js"></script>
 ${makeNavScript()}
 </body>
 </html>`;
@@ -643,11 +637,6 @@ function writeFile(p, content) {
 /** Insert content before </head> in HTML */
 function insertBeforeHeadEnd(html, content) {
   return html.replace('</head>', content + '\n</head>');
-}
-
-/** Insert content before </body> in HTML */
-function insertBeforeBodyEnd(html, content) {
-  return html.replace('</body>', content + '\n</body>');
 }
 
 /** Replace or add JSON-LD before </head> */

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRAE WORK+飞书CLI，6个技能让办公效率再上一层楼 | 平野AI工具站</title>
+<link rel="alternate" type="application/rss+xml" title="平野AI工具站" href="/feed.xml">
+<meta name="description" content="飞书CLI是什么？TRAE WORK内置了lark-im、lark-doc、lark-sheets等6个飞书CLI技能，配合自动化实现无人值守办公。附完整用法+授权教程。">
+<meta name="keywords" content="TRAE WORK,飞书CLI,飞书,lark-cli,AI办公,自动化,平野先生">
+<link rel="canonical" href="https://pingyeai.cn/blog/trae-work-feishu-cli">
+<meta property="og:title" content="TRAE WORK+飞书CLI，6个技能让办公效率再上一层楼">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-06-24">
+<meta property="article:author" content="John Chow">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;background:#f7f8fa;color:#1a1a2e;line-height:1.8;min-height:100vh}.container{max-width:800px;margin:0 auto;padding:0 20px}.wide-container{max-width:1200px;margin:0 auto;padding:0 20px}.navbar{background:#1a1a2e;position:sticky;top:0;z-index:100}.navbar .wide-container{display:flex;align-items:center;justify-content:space-between;height:52px}.navbar .logo{display:flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-weight:700;font-size:1rem}.navbar .logo .logo-img{width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0}.navbar .logo span{color:#e94560}.navbar .nav-links{display:flex;gap:4px}.navbar .nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:.85rem;padding:8px 14px;border-radius:8px;transition:all .2s;white-space:nowrap}.navbar .nav-links a:hover{color:#fff;background:rgba(255,255,255,0.08)}.navbar .hamburger{display:none;background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;padding:4px}.article-header{margin:40px 0 24px}.article-header h1{font-size:clamp(1.4rem,3vw,2rem);font-weight:700;line-height:1.4;margin-bottom:12px}.article-meta{font-size:.85rem;color:#888;display:flex;gap:16px;flex-wrap:wrap}.article-body{background:#fff;border-radius:16px;padding:32px 36px;box-shadow:0 2px 12px rgba(0,0,0,0.04);margin-bottom:30px;font-size:1rem;color:#333}.article-body p{margin-bottom:16px}.article-body h2{font-size:1.25rem;font-weight:700;margin:28px 0 12px;color:#1a1a2e}.article-body h3{font-size:1.1rem;font-weight:600;margin:20px 0 8px;color:#0f3460}.article-body ul,.article-body ol{padding-left:24px;margin-bottom:16px}.article-body li{margin-bottom:6px}.article-body table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.9rem}.article-body td,.article-body th{border:1px solid #e0e0e8;padding:10px 14px;text-align:left}.article-body th{background:#f7f8fa;font-weight:600}.article-body strong{color:#1a1a2e}.article-body blockquote{border-left:4px solid #e94560;padding:12px 16px;margin:16px 0;background:#fdf5f5;border-radius:0 8px 8px 0;color:#555}.article-body code{background:#f0f0f5;padding:2px 8px;border-radius:4px;font-size:.88rem;color:#c62828}.article-footer{background:#fff;border-radius:14px;padding:24px;border:1px solid #eee;margin-bottom:40px;text-align:center}.article-footer p{font-size:.9rem;color:#666;line-height:1.6}.article-footer .author-tag{display:inline-block;background:#1a1a2e;color:#fff;padding:8px 24px;border-radius:20px;font-size:.85rem;margin-top:12px}.footer{text-align:center;padding:30px 0;font-size:.8rem;color:#999;border-top:1px solid #eee;margin-top:20px;line-height:1.8}.footer a{color:#666;text-decoration:none}.footer a:hover{color:#1a1a2e}@media(max-width:768px){.container{padding:0 14px}.article-body{padding:20px 18px}.navbar .nav-links{display:none;position:absolute;top:52px;left:0;right:0;background:#1a1a2e;flex-direction:column;padding:8px}.navbar .nav-links.open{display:flex}.navbar .hamburger{display:block}}
+</style>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN"}'></script>
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?8787f6e4c29bc3acc5812750c378a195";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TRAE WORK+飞书CLI，6个技能让办公效率再上一层楼",
+  "url": "https://pingyeai.cn/blog/trae-work-feishu-cli.html",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://pingyeai.cn/blog/trae-work-feishu-cli.html"},
+  "author": {"@type": "Person", "name": "John Chow"},
+  "publisher": {"@type": "Organization", "name": "平野AI工具站"}
+}
+</script>
+</head>
+<body>
+<nav class="navbar"><div class="wide-container"><a href="/" class="logo"><img src="/logo.jpg" alt="" class="logo-img" width="28" height="28"> <span>平野</span>AI</a><button class="hamburger" id="hamburgerBtn">☰</button><div class="nav-links" id="navLinks">
+      <a href="/">🏠 首页</a>
+      <a href="/models/">📂 模型目录</a>
+      <a href="/compare-ai-coding-tools">🛠 编程工具对比</a>
+      <a href="/blog/" class="active">📝 博客</a>
+      <a href="/tools/content-distributor">📤 内容分发</a>
+    </div></div></nav>
+<div class="container">
+<header class="article-header">
+<h1>TRAE WORK+飞书CLI，6个技能让办公效率再上一层楼</h1>
+<div class="article-meta"><span>📅 2026年6月24日</span><span>✍️ John Chow</span></div>
+</header>
+<div class="copyright-notice" style="background:#fbe9e7;border:2px solid #e53935;border-radius:12px;padding:16px 20px;margin-bottom:24px;text-align:center;">
+<div style="color:#c62828;font-size:1rem;font-weight:700;margin-bottom:4px;">©️ 原创文章，转载请注明出处</div>
+<p style="color:#b71c1c;font-size:.85rem;line-height:1.5;">本文为「平野先生玩AI」原创内容，转载请注明出处。侵权必究。</p>
+</div>
+<article class="article-body">
+<h2>一句话说清楚什么是飞书CLI</h2>
+<p>飞书CLI是专门给agent用的命令行工具，是agent和飞书之间的"翻译官"。官方给的定位是"给agent一双操作飞书的手"。</p>
+<p>你在agent里用自然语言描述需求，飞书CLI把它翻译成飞书能听懂的操作指令，直接操控你的飞书消息、文档、表格、日程——不用你手动打开飞书App或网页，一句话搞定。</p>
+<p>我挑了6个最常用的飞书CLI技能，外加自动化组合场景，展示一下飞书CLI能玩出什么花样。</p>
+<table>
+<thead><tr><th>技能名称</th><th>作用/适用场景</th></tr></thead>
+<tbody>
+<tr><td>lark-im</td><td>收发消息、管理群聊，自动发送通知</td></tr>
+<tr><td>lark-doc</td><td>读写编辑飞书云文档，批量整理汇总</td></tr>
+<tr><td>lark-sheets</td><td>操作电子表格，自动填数据、做分析</td></tr>
+<tr><td>lark-slides</td><td>生成飞书幻灯片，快速做PPT</td></tr>
+<tr><td>lark-base</td><td>管理多维表格，项目任务跟踪</td></tr>
+<tr><td>lark-calendar</td><td>创建日程、预定会议室、管理参会人</td></tr>
+</tbody>
+</table>
+<h2>使用之前必做：飞书授权</h2>
+<p>TRAE WORK已经内置了全套飞书CLI技能，不需要你手动安装，打开技能面板就能看到。但要能用能跑通，必须先完成飞书身份授权。</p>
+<p><strong>授权方法：</strong>TRAE WORK → 设置 → 外部应用授权 → 找到飞书 → 完成身份验证。</p>
+<p>不授权会怎样？TRAE WORK仍然可以执行发消息、创建文档等操作，但无法访问你的个人数据（如你的日程、私信、收件箱）。</p>
+<h2>lark-im（飞书即时通讯）</h2>
+<p>每天早上自动给团队群发日报摘要，批量发送通知消息。自动整理群聊里的文件和关键信息。</p>
+<p><strong>用法：</strong>在TRAE WORK里说"给项目群发一条消息，通知大家下午3点开评审会"。</p>
+<h2>lark-doc（飞书云文档）</h2>
+<p>直接在TRAE WORK里写飞书文档，不用打开网页。批量读取多个文档做汇总。</p>
+<p><strong>用法：</strong>"帮我把这3份会议纪要整理成一份汇总文档，保存到飞书"。</p>
+<h2>lark-sheets（飞书电子表格）</h2>
+<p>自动填数据、批量读取分析、写回结果。</p>
+<p><strong>用法：</strong>"读取这个飞书表格里的销售数据，算出本月同比增长率，把结果写回表格最后一列"。</p>
+<h2>lark-slides（飞书幻灯片）</h2>
+<p>描述主题自动生成幻灯片，批量修改PPT，数据报告转PPT。</p>
+<p><strong>用法：</strong>"帮我做一份项目汇报PPT，包含项目背景、进度、数据、风险4页"。</p>
+<h2>lark-base（飞书多维表格）</h2>
+<p>项目管理、批量导入导出。</p>
+<p><strong>用法：</strong>"帮我把这个CSV文件导入到飞书多维表格，按'待办-进行中-已完成'分视图展示"。</p>
+<h2>lark-calendar（飞书日历）</h2>
+<p>创建日程、查会议室、批量导出。</p>
+<p><strong>用法：</strong>"帮我查一下明天下午2点到4点，哪个会议室有空，然后创建一个评审会"。</p>
+<h2>组合拳：飞书CLI + 自动化</h2>
+<p>上面6个技能单独用已经很省时间，和TRAE WORK的自动化功能（Schedule）组合起来，才能实现"人不在，活照干"。</p>
+<h3>数据自动汇报</h3>
+<ol>
+<li>从后台导出当天数据</li>
+<li>调用data-analysis技能自动分析</li>
+<li>调用lark-base写入飞书多维表格</li>
+<li>调用lark-im把链接发到飞书群聊</li>
+</ol>
+<p>以前每天花40分钟手动干这些事，现在零操作。</p>
+<h2>总结</h2>
+<p>这6个飞书CLI技能，如果你公司用飞书，强烈建议都装上。飞书CLI最大的价值不是单个技能，而是和自动化组合之后的"无人值守"能力。</p>
+<p>再次提醒：TRAE WORK预装飞书CLI，但必须先完成飞书授权。授权路径：设置 → 外部应用管理 → 飞书 → 身份验证。</p>
+<p>部分资料来源：<a href="https://open.feishu.cn/document/mcp_open_tools/feishu-cli-let-ai-actually-do-your-work-in-feishu" target="_blank" rel="noopener">飞书开放平台 - 飞书CLI</a></p>
+</article>
+<div class="article-footer">
+<p>本文同步自公众号「平野先生玩AI」<br>关注平野先生，让你的AI之路少踩坑。</p>
+<div class="author-tag">John Chow · 平野AI工具站</div>
+</div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p>© 2026 <a href="https://pingyeai.cn">平野AI工具站</a> · <a href="https://vercel.com" target="_blank" rel="noopener">Vercel</a></p>
+    <p><a href="/">首页</a> · <a href="/blog/">博客</a> · <a href="/privacy/">隐私政策</a> · <a href="/affiliate-disclaimer/">联盟营销声明</a></p>
+  </div>
+</footer>
+<script>
+document.getElementById('hamburgerBtn').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a => {
+  if(a.getAttribute('href') === window.location.pathname) a.classList.add('active');
+});
+</script>
+</body>
+</html>
