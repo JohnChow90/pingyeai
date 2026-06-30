@@ -306,4 +306,24 @@
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/wechat-xiaowei-experience.html</loc>
+    <lastmod>2026-06-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/trae-work-switch-cost.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/trae-work-limit-workbuddy-back.html</loc>
+    <lastmod>2026-06-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pingyeai.cn/blog/ai-tools-12-days-without.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
 </urlset>

@@ -110,5 +110,29 @@
     <link>https://pingyeai.cn/blog/workbuddy-vs-trae-solo</link>
     <guid>https://pingyeai.cn/blog/workbuddy-vs-trae-solo</guid>
   </item>
+  <item>
+    <title><![CDATA[微信小微灰度体验，能干的比想象的多]]></title>
+    <link>https://pingyeai.cn/blog/wechat-xiaowei-experience.html</link>
+    <guid>https://pingyeai.cn/blog/wechat-xiaowei-experience.html</guid>
+    <description><![CDATA[微信小微灰度体验。点咖啡、查美食、做攻略、总结文章、整理待办——微信里多了个会干活的AI助手。]]></description>
+  </item>
+  <item>
+    <title><![CDATA[从WorkBuddy换到TRAE WORK，这笔账不算不知道]]></title>
+    <link>https://pingyeai.cn/blog/trae-work-switch-cost.html</link>
+    <guid>https://pingyeai.cn/blog/trae-work-switch-cost.html</guid>
+    <description><![CDATA[追了半年AI agent，换一个agent到底要付出多少代价？三层隐性成本。]]></description>
+  </item>
+  <item>
+    <title><![CDATA[TRAE WORK又限额了，翻出WorkBuddy]]></title>
+    <link>https://pingyeai.cn/blog/trae-work-limit-workbuddy-back.html</link>
+    <guid>https://pingyeai.cn/blog/trae-work-limit-workbuddy-back.html</guid>
+    <description><![CDATA[TRAE WORK限额后重新打开WorkBuddy，3个变化，最后一个最意外。]]></description>
+  </item>
+  <item>
+    <title><![CDATA[AI工具集体断粮的12天]]></title>
+    <link>https://pingyeai.cn/blog/ai-tools-12-days-without.html</link>
+    <guid>https://pingyeai.cn/blog/ai-tools-12-days-without.html</guid>
+    <description><![CDATA[12天里AI工具陆续断粮，最后还是个人开发者用API搭自己的方案最稳。]]></description>
+  </item>
   </channel>
 </rss>
