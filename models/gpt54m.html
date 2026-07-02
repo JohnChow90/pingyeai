@@ -53,25 +53,12 @@ html{scroll-behavior:smooth}
 body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;background:#f7f8fa;color:#1a1a2e;line-height:1.6;min-height:100vh}
 .container{max-width:1200px;margin:0 auto;padding:0 20px}
 .container-narrow{max-width:900px;margin:0 auto;padding:0 20px}
-.navbar{background:#1a1a2e;border-bottom:1px solid rgba(255,255,255,0.06);position:sticky;top:0;z-index:100}
-.navbar .container{display:flex;align-items:center;justify-content:space-between;height:52px}
-.navbar .logo{display:flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-weight:700;font-size:1rem}
-.navbar .logo .logo-img{width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0}
-.navbar .logo span{color:#e94560}
-.navbar .nav-links{display:flex;gap:4px}
-.navbar .nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.85rem;padding:8px 14px;border-radius:8px;transition:all 0.2s;white-space:nowrap}
-.navbar .nav-links a:hover{color:#fff;background:rgba(255,255,255,0.08)}
-.navbar .nav-links a.active{color:#fff;background:rgba(255,255,255,0.12)}
-.navbar .hamburger{display:none;background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;padding:4px}
 .hero{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;padding:50px 0 40px;text-align:center;position:relative;overflow:hidden}
 .hero h1{font-size:clamp(1.3rem,3.5vw,2rem);font-weight:700;margin-bottom:10px;letter-spacing:-0.02em}
 .hero h1 span{background:linear-gradient(90deg,#e94560,#ff6b6b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero p{font-size:clamp(0.85rem,2vw,1rem);color:rgba(255,255,255,0.7);max-width:600px;margin:0 auto}
 .hero .badge{display:inline-flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:10px}
 .hero .badge span{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:4px 14px;font-size:0.78rem;color:rgba(255,255,255,0.7)}
-.footer{text-align:center;padding:30px 0;font-size:0.78rem;color:#999;border-top:1px solid #eee;margin-top:20px;line-height:1.8}
-.footer a{color:#666;text-decoration:none}
-.footer a:hover{color:#1a1a2e}
 .tag{display:inline-block;font-size:0.68rem;padding:2px 8px;border-radius:10px;font-weight:500;margin-left:4px;white-space:nowrap}
 .tag-recent{background:#e3f2fd;color:#1565c0}
 .tag-popular{background:#fff3e0;color:#e65100}
@@ -82,9 +69,6 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
 .price-red{color:#c62828;font-weight:600}
 @media(max-width:768px){
   .container{padding:0 14px}.container-narrow{padding:0 14px}
-  .navbar .nav-links{display:none;position:absolute;top:52px;left:0;right:0;background:#1a1a2e;flex-direction:column;padding:8px;border-top:1px solid rgba(255,255,255,0.06)}
-  .navbar .nav-links.open{display:flex}
-  .navbar .hamburger{display:block}
   .hero{padding:35px 0 28px}
 }
 @media(max-width:480px){
@@ -130,18 +114,173 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
   .related-blog{padding:16px}
 }
 
+<style>
+/* ===== 飞书风格全局设计系统 ===== */
+:root{
+  --brand-red:#e94560;--brand-red-hover:#d63a52;--brand-red-bg:#fef2f4;
+  --fs-blue:#3370ff;--fs-blue-hover:#2a5fd9;--fs-blue-bg:#eaf1ff;
+  --bg-page:#f5f6f7;--bg-card:#ffffff;--bg-hover:#f5f6f7;--bg-selected:#eaf1ff;
+  --text-primary:#1f2329;--text-secondary:#646a73;--text-tertiary:#8f959e;--text-link:#3370ff;
+  --border:#dee0e3;--border-light:#e5e6eb;--border-hover:#bbbfc4;
+  --radius-sm:4px;--radius-md:6px;--radius-lg:8px;--radius-full:999px;
+  --shadow-card:none;--shadow-hover:0 2px 8px rgba(0,0,0,.06);
+  --ease:cubic-bezier(.4,0,.2,1);
+  --tag-trae-bg:#eaf1ff;--tag-trae-fg:#3370ff;
+  --tag-popular-bg:#fef2f4;--tag-popular-fg:#e94560;
+  --tag-wb-bg:#e8f8f0;--tag-wb-fg:#0a8c4d;
+  --tag-oc-bg:#f3e8ff;--tag-oc-fg:#8a2cd9;
+  --tag-ai-bg:#fff3e0;--tag-ai-fg:#d97700;
+  --tag-cloud-bg:#e3f4ff;--tag-cloud-fg:#0c7fd9;
+  --tag-code-bg:#e8ecf4;--tag-code-fg:#3d4c7a;
+  --tag-default-bg:#f5f6f7;--tag-default-fg:#646a73;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Segoe UI',sans-serif;background:var(--bg-page);color:var(--text-primary);line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{color:var(--fs-blue);text-decoration:none;transition:color .15s var(--ease)}
+a:hover{color:var(--fs-blue-hover)}
+.ico{display:inline-flex;vertical-align:middle;width:16px;height:16px;color:currentColor;flex-shrink:0}
+.ico svg{width:100%;height:100%;display:block}
+.ico-lg{width:20px;height:20px}
+.ico-xl{width:24px;height:24px}
+@media(max-width:768px){
+}
+</style>
+
+<style>
+/* ===== 导航栏布局强制修正 ===== */
+.navbar{position:sticky!important;top:0!important;z-index:100!important;height:56px!important;background:var(--bg-card)!important;border-bottom:1px solid var(--border)!important;display:flex!important;align-items:center!important;margin-bottom:24px!important}
+.navbar .container,.navbar .wide,.navbar .wide-container{display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;max-width:1200px!important;margin:0 auto!important;padding:0 24px!important;height:56px!important}
+.navbar .logo{display:flex!important;align-items:center!important;gap:8px!important}
+.navbar .nav-links{display:flex!important;flex-direction:row!important;align-items:center!important;gap:4px!important}
+.navbar .hamburger{display:none!important}
+.navbar .nav-links a{padding:6px 14px!important;font-size:14px!important;font-weight:500!important;line-height:1.5!important}
+.navbar .nav-links a.active{background:transparent!important;color:var(--brand-red)!important;font-weight:600!important;position:relative!important}
+.navbar .nav-links a.active::after{content:''!important;position:absolute!important;left:14px!important;right:14px!important;bottom:-14px!important;height:2px!important;background:var(--brand-red)!important;border-radius:1px!important;z-index:101!important}
+@media(max-width:768px){
+  .navbar{height:48px!important;margin-bottom:16px!important}
+  .navbar .container,.navbar .wide,.navbar .wide-container{padding:0 16px!important;height:48px!important}
+  .navbar .hamburger{display:inline-flex!important}
+  .navbar .nav-links{display:none!important;position:absolute!important;top:48px!important;left:0!important;right:0!important;background:var(--bg-card)!important;flex-direction:column!important;padding:8px!important;gap:2px!important;border-bottom:1px solid var(--border)!important;box-shadow:0 2px 8px rgba(0,0,0,.06)!important}
+  .navbar .nav-links.open{display:flex!important}
+}
+
+/* ===== Hero 飞书化 ===== */
+.hero{background:var(--bg-card)!important;color:var(--text-primary)!important;border-bottom:1px solid var(--border-light)!important;padding:32px 0 36px!important;text-align:center!important;position:relative!important;z-index:1!important;margin-top:0!important}
+.hero h1{color:var(--text-primary)!important}
+.hero h1 span{background:none!important;-webkit-text-fill-color:var(--brand-red)!important;color:var(--brand-red)!important}
+.hero p{color:var(--text-secondary)!important;max-width:560px;margin:0 auto 20px!important}
+.hero .badge,.hero .stats-badges{display:inline-flex!important;justify-content:center!important;gap:8px!important;flex-wrap:wrap!important;margin-bottom:12px!important}
+.hero .badge span{display:inline-flex!important;align-items:center!important;gap:5px!important;background:var(--bg-page)!important;border:1px solid var(--border-light)!important;border-radius:var(--radius-full)!important;padding:4px 12px!important;font-size:12px!important;color:var(--text-secondary)!important;font-weight:500!important}
+.hero .update-note{text-align:center!important;font-size:12px!important;color:var(--text-tertiary)!important;margin-top:8px!important}
+
+/* ===== 表格表头加深 ===== */
+.table-wrap thead,.table thead,table thead{background:#e5e8ed!important}
+.table-wrap thead th,.table thead th,table thead th{background:#e5e8ed!important;color:#1f2329!important;font-weight:700!important;font-size:13px!important;border-bottom:2px solid #c5cad2!important;letter-spacing:0!important;text-transform:none!important}
+
+/* ===== 标签/说明水平居中 ===== */
+.source-bar{display:flex!important;flex-wrap:wrap!important;justify-content:center!important;gap:8px!important;margin:16px auto 24px!important}
+.source-badge{display:inline-flex!important;align-items:center!important;gap:5px!important;font-size:12px!important;padding:5px 12px!important;border-radius:var(--radius-full)!important;background:var(--bg-card)!important;border:1px solid var(--border)!important;color:var(--text-secondary)!important;font-weight:500!important}
+.source-badge.verified{background:#e8f8f0!important;border-color:#b7ebcc!important;color:#0a8c4d!important}
+.source-badge.estimated{background:#fff3e0!important;border-color:#ffcc80!important;color:#d97700!important}
+
+/* ===== 页脚居中 ===== */
+.footer{text-align:center!important;padding:32px 24px 20px!important;background:var(--bg-card)!important;border-top:1px solid var(--border-light)!important}
+.footer > div{display:block!important;text-align:center!important;margin:6px 0!important}
+.footer a{color:var(--text-secondary)!important}
+.footer a:hover{color:var(--fs-blue)!important}
+
+/* ===== 卡片飞书化（通用）===== */
+.card,.feature-card,.tool-card,.direct-card,.blog-card{background:var(--bg-card)!important;border:1px solid var(--border-light)!important;border-radius:var(--radius-lg)!important;box-shadow:none!important}
+.card:hover,.feature-card:hover,.tool-card:hover,.direct-card:hover,.blog-card:hover{border-color:var(--border-hover)!important;box-shadow:var(--shadow-hover)!important}
+
+/* ===== 按钮飞书化 ===== */
+.btn,.button,button.cta{border-radius:var(--radius-md)!important;font-weight:500!important}
+
+/* ===== 链接色统一 ===== */
+a{color:var(--fs-blue)!important}
+a:hover{color:var(--fs-blue-hover)!important}
+.navbar a,.footer a{color:var(--text-secondary)!important}
+.navbar .nav-links a.active{color:var(--brand-red)!important}
+</style>
+
+
+<style>
+.model-header,.model-hero{background:var(--bg-card)!important;border:1px solid var(--border-light)!important;border-radius:var(--radius-lg)!important;padding:24px!important;margin-bottom:16px!important}
+.price-grid,.price-cards{display:grid!important;gap:12px!important}
+.price-card,.price-item{background:var(--bg-card)!important;border:1px solid var(--border-light)!important;border-radius:var(--radius-lg)!important;padding:16px!important;box-shadow:none!important}
+.price-card .label,.price-item .label{color:var(--text-secondary)!important;font-size:12px!important;font-weight:500!important;margin-bottom:6px!important}
+.price-card .value,.price-item .value{color:var(--text-primary)!important;font-weight:600!important}
+.related-section,.back-section{background:var(--bg-card)!important;border:1px solid var(--border-light)!important;border-radius:var(--radius-lg)!important;padding:20px!important;margin-top:16px!important}
+.related-section h3,.back-section h3{color:var(--text-primary)!important;font-size:15px!important;font-weight:600!important;margin-bottom:12px!important}
+.back-link{display:inline-flex!important;align-items:center!important;gap:6px!important;padding:8px 16px!important;border-radius:var(--radius-md)!important;background:var(--fs-blue-bg)!important;color:var(--fs-blue)!important;border:1px solid var(--fs-blue)!important;font-weight:500!important;font-size:13px!important}
+.note-box{background:#fff3e0!important;border:1px solid #ffcc80!important;border-radius:var(--radius-md)!important;padding:10px 14px!important;font-size:12px!important;color:#d97700!important}
+</style>
+
+
+<!-- 飞书风格图标系统 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+<symbol id="i-tool" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.5 2.5-2.1-2.1z"/></symbol>
+<symbol id="i-blog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
+<symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="i-bot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M12 3v4M9 13h.01M15 13h.01M9 17h6"/><path d="M2 12h2M20 12h2"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="M8 14l3-4 3 3 4-6"/></symbol>
+<symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14 9.5c-.5-.8-1.5-1.3-2.5-1.3-1.4 0-2.5.8-2.5 2s1.1 1.8 2.5 1.8 2.5.6 2.5 1.8-1.1 2-2.5 2c-1 0-2-.5-2.5-1.3M12 6.5v1.7M12 15.8v1.7"/></symbol>
+<symbol id="i-coin-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 14l6-6M14.5 8H10M16 8v4.5"/></symbol>
+<symbol id="i-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></symbol>
+<symbol id="i-ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l5-5 13 13-5 5z"/><path d="M7 8l2 2M10 5l2 2M13 8l2 2M16 11l2 2"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2M10 21v-3h4v3"/></symbol>
+<symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9-9 9z"/><circle cx="9" cy="9" r="1.2"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
+<symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.5.5 1 1.5 1 2.5h6c0-1 .5-2 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7a2 2 0 0 1 2 2v14a1 1 0 0 0-1-1H4z"/><path d="M20 4h-7a2 2 0 0 0-2 2v14a1 1 0 0 1 1-1h8z"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></symbol>
+<symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6-10 10H4v-6z"/><path d="M13 5l6 6"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6 7-12a7 7 0 0 0-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 6 6.3.6-4.8 4.2 1.5 6.2L12 17l-5.7 3 1.5-6.2L3 9.6 9.3 9z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></symbol>
+<symbol id="i-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-15 6.7L3 16M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 4v4h-4M3 20v-4h4"/></symbol>
+<symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2"/><path d="M9 11a8 8 0 0 1 8-8c2 0 3 1 3 3a8 8 0 0 1-8 8l-3-3z"/><circle cx="14" cy="10" r="1.5"/></symbol>
+<symbol id="i-cloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1 0-8 5 5 0 0 1 9.8-1A3.5 3.5 0 0 1 18 18z"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4"/><path d="M5 12v9h14v-9M12 8v13"/><path d="M12 8S10 3 7.5 4 9 8 12 8zM12 8s2-5 4.5-4S15 8 12 8z"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+<symbol id="i-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M7 7l-3 6h6zM17 7l-3 6h6z"/></symbol>
+<symbol id="i-laptop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="11" rx="1"/><path d="M2 20h20"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M14 6l-4 12"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 13h6M9 17h4"/></symbol>
+<symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="4"/><path d="M11 11l9 9M16 16l2-2M19 19l2-2"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+<symbol id="i-book-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v15M12 6s-3-2-7-2-3 0-3 0v15s0-1 3-1 7 2 7 2M12 6s3-2 7-2 3 0 3 0v15s0-1-3-1-7 2-7 2"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-rss" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor"/></symbol>
+</defs>
+</svg>
 </head>
 <body>
 <nav class="navbar">
   <div class="container">
-    <a href="/" class="logo"><img src="/logo.jpg" alt="平野AI" class="logo-img" width="28" height="28"> <span>平野AI</span></a>
-    <button class="hamburger" id="hamburgerBtn" aria-label="菜单">☰</button>
+    <a href="/" class="logo"><img src="/logo.jpg" alt="平野AI" class="logo-img" width="28" height="28"> <span>平野</span>AI</a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="菜单"><svg class="ico ico-lg"><use href="#i-menu"/></svg></button>
     <div class="nav-links" id="navLinks">
-      <a href="/">🏠 首页</a>
-      <a href="/models/">📂 模型目录</a>
-      <a href="/compare-ai-coding-tools">🛠 编程工具对比</a>
-      <a href="/blog/">📝 博客</a>
-      <a href="/tools/content-distributor">📤 内容分发</a>
+      <a href="/">首页</a>
+      <a href="/models/">模型目录</a>
+      <a href="/compare-ai-coding-tools">编程工具对比</a>
+      <a href="/blog/">博客</a>
+      <a href="/tools/content-distributor">内容分发</a>
     </div>
   </div>
 </nav>
@@ -149,12 +288,12 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
 <header class="hero">
   <div class="container">
     <a href="/models/" class="back-link" style="display:inline-flex;align-items:center;gap:4px;padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.1);text-decoration:none;color:rgba(255,255,255,0.7);font-size:0.82rem;margin-bottom:12px">← 返回模型目录</a>
-    <h1>🤖 <span>GPT-5.4 mini</span> API定价 2026</h1>
+    <h1><svg class="ico ico-xl"><use href="#i-bot"/></use></svg> <span>GPT-5.4 mini</span> API定价 2026</h1>
     <p>GPT-5.4 mini是OpenAI最具性价比的轻量级模型，以极低的价格提供优秀的性能。适合大批量任务和成本敏感型应用。</p>
     <div class="badge">
-      <span>🏢 OpenAI</span>
-      <span>💬 undefined 上下文</span>
-      <span>🏷️ 超值</span>
+      <span><svg class="ico"><use href="#i-building"/></use></svg> OpenAI</span>
+      <span><svg class="ico"><use href="#i-chat"/></use></svg> undefined 上下文</span>
+      <span><svg class="ico"><use href="#i-tag"/></use></svg> 超值</span>
     </div>
   </div>
 </header>
@@ -171,34 +310,34 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
     <div class="card-body">
       <div class="price-grid">
         <div class="price-item">
-          <div class="label">💰 输入价格</div>
+          <div class="label"><svg class="ico"><use href="#i-coin"/></use></svg> 输入价格</div>
           <div class="value" style="color:#2e7d32">$0.75</div>
           <div class="sub">每 1M tokens</div>
         </div>
         <div class="price-item">
-          <div class="label">💸 输出价格</div>
+          <div class="label"><svg class="ico"><use href="#i-coin-out"/></use></svg> 输出价格</div>
           <div class="value" style="color:#c62828">$4.50</div>
           <div class="sub">每 1M tokens</div>
         </div>
         <div class="price-item">
-          <div class="label">💾 缓存输入</div>
+          <div class="label"><svg class="ico"><use href="#i-database"/></use></svg> 缓存输入</div>
           <div class="value" style="color:#1565c0">$0.07</div>
           <div class="sub">每 1M tokens</div>
         </div>
         <div class="price-item">
-          <div class="label">📐 上下文窗口</div>
+          <div class="label"><svg class="ico"><use href="#i-ruler"/></use></svg> 上下文窗口</div>
           <div class="value">undefined</div>
           <div class="sub">最大输入长度</div>
         </div>
       </div>
       <p style="font-size:0.9rem;color:#666;line-height:1.7">GPT-5.4 mini是OpenAI最具性价比的轻量级模型，以极低的价格提供优秀的性能。适合大批量任务和成本敏感型应用。</p>
-      <p style="font-size:0.82rem;color:#888;margin-top:10px;background:#fff8e1;border-radius:8px;padding:10px 14px;border:1px solid #ffe082">💡 最强mini模型</p>
+      <p style="font-size:0.82rem;color:#888;margin-top:10px;background:#fff8e1;border-radius:8px;padding:10px 14px;border:1px solid #ffe082"><svg class="ico"><use href="#i-bulb"/></use></svg> 最强mini模型</p>
     </div>
   </div>
 
   
 <div style="max-width:900px;margin:20px auto 10px;background:#fff;border-radius:14px;padding:20px 24px;border:1px solid #eee">
-  <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:10px;color:#1a1a2e">🏢 同厂商其他模型</h3>
+  <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:10px;color:#1a1a2e"><svg class="ico"><use href="#i-building"/></use></svg> 同厂商其他模型</h3>
   <div class="model-links">
     <a href="/models/gpt55.html"><span class="prov-logo" style="background:#0f3460">G</span> GPT-5.5 — 输入$5.00</a>
     <a href="/models/gpt54.html"><span class="prov-logo" style="background:#0f3460">G</span> GPT-5.4 — 输入$2.50</a>
@@ -207,7 +346,7 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
 
   
 <div style="max-width:900px;margin:20px auto;background:#fff;border-radius:14px;padding:24px;border:1px solid #eee;overflow-x:auto">
-  <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:12px;color:#1a1a2e">📊 相近价格模型对比</h3>
+  <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:12px;color:#1a1a2e"><svg class="ico ico-xl"><use href="#i-chart"/></use></svg> 相近价格模型对比</h3>
   <table class="comp-table">
     <thead><tr>
       <th>模型</th>
@@ -272,7 +411,7 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
 
   
 <div class="related-blog">
-  <h3>📖 相关博客推荐</h3>
+  <h3><svg class="ico"><use href="#i-book"/></use></svg> 相关博客推荐</h3>
   <div class="list">
     <a href="/blog/ai-tool-selection-guide.html">TRAE SOLO、WorkBuddy、DeepSeek……AI工具一大堆，怎么选？</a>
     <a href="/blog/claude-vs-ts.html">都说Claude比TS强，我试了一下——然后没换</a>
@@ -282,12 +421,12 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
 </div>
 
   <div class="card" style="padding:20px 28px;text-align:center">
-    <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:10px">🔍 查看所有 AI 模型价格</h3>
+    <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:10px"><svg class="ico"><use href="#i-search"/></use></svg> 查看所有 AI 模型价格</h3>
     <a href="/models/" class="back-link" style="color:#0f3460;background:#e8f0fe;padding:10px 24px;border-radius:8px;display:inline-block;text-decoration:none;font-weight:500">📂 浏览完整模型目录</a>
   </div>
 </main>
 
-<footer class="footer">
+<footer class="footer" style="text-align:center">
   <div><a href="https://pingyeai.cn">pingyeai.cn</a> — 平野AI工具站</div>
   <div>数据来源：OpenAI / DeepSeek 官方定价页面 · 其他模型定价仅供参考</div>
   <div><a href="/">首页</a> · <a href="/models/">模型目录</a> · <a href="/compare-ai-coding-tools">编程工具对比</a> · <a href="/blog/">博客</a></div>
