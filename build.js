@@ -153,7 +153,6 @@ function makeNavHTML(activePath) {
     { href: '/models/', label: '📂 模型目录' },
     { href: '/compare-ai-coding-tools', label: '🛠 编程工具对比' },
     { href: '/blog/', label: '📝 博客' },
-    { href: '/tools/content-distributor', label: '📤 内容分发' },
   ];
   return `<nav class="navbar">
   <div class="container">
@@ -656,7 +655,6 @@ function updateNavbar(html, activePath) {
     { href: '/models/', label: '📂 模型目录' },
     { href: '/compare-ai-coding-tools', label: '🛠 编程工具对比' },
     { href: '/blog/', label: '📝 博客' },
-    { href: '/tools/content-distributor', label: '📤 内容分发' },
   ];
 
   // Find the nav-links div and replace its contents
@@ -843,19 +841,6 @@ function build() {
     log.push(`✅ 导航栏已更新: blog/${f}`);
   }
 
-  // 7. Update tools/content-distributor.html
-  let cdHTML = readFile(path.join(ROOT, 'tools', 'content-distributor.html'));
-  if (cdHTML) {
-    if (!hasJsonLd(cdHTML)) {
-      const appLd = { "@context": "https://schema.org", "@type": "WebApplication", "name": "内容多平台分发助手", "url": "https://pingyeai.cn/tools/content-distributor", "description": "把一篇公众号长文自动拆成小红书、知乎、朋友圈、播客等多平台版本", "applicationCategory": "ContentDistribution", "operatingSystem": "Web" };
-      cdHTML = addJsonLd(cdHTML, appLd);
-      log.push('✅ JSON-LD 已更新到 tools/content-distributor.html');
-    }
-    cdHTML = updateNavbar(cdHTML, '/tools/content-distributor');
-    cdHTML = ensureHamburger(cdHTML);
-    writeFile(path.join(ROOT, 'tools', 'content-distributor.html'), cdHTML);
-    log.push('✅ tools/content-distributor.html 导航栏已更新');
-  }
 
   // 8. Update tools/api-monitor.html (add JSON-LD only, no nav update needed for this SPA)
   let apiMonitorHTML = readFile(path.join(ROOT, 'tools', 'api-monitor.html'));
@@ -916,7 +901,6 @@ function build() {
     { url: 'https://pingyeai.cn/models/', priority: '0.9', changefreq: 'weekly' },
     { url: 'https://pingyeai.cn/compare-ai-coding-tools', priority: '0.8', changefreq: 'monthly' },
     { url: 'https://pingyeai.cn/blog/', priority: '0.9', changefreq: 'weekly' },
-    { url: 'https://pingyeai.cn/tools/content-distributor', priority: '0.7', changefreq: 'monthly' },
     { url: 'https://pingyeai.cn/tools/api-monitor', priority: '0.6', changefreq: 'monthly' },
     { url: 'https://pingyeai.cn/privacy/', priority: '0.1', changefreq: 'yearly' },
     { url: 'https://pingyeai.cn/affiliate-disclaimer/', priority: '0.1', changefreq: 'yearly' },
