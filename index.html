@@ -3,440 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI模型价格对比器 2026 — API定价/订阅价格一表看懂 | 平野AI工具站</title>
+<title>平野AI工具站 — 模型价格·工具实测·博客</title>
 <link rel="alternate" type="application/rss+xml" title="平野AI工具站" href="/feed.xml">
-
-<meta name="description" content="实时对比GPT-5.5、Claude 4 Opus、Gemini 2.5 Pro、DeepSeek V4等主流AI模型的API定价和订阅价格，帮你选最划算的AI工具。">
-<meta name="keywords" content="AI模型价格,GPT-5.5价格,Claude价格,DeepSeek V4价格,API定价对比,AI工具对比">
+<meta name="description" content="实时对比主流AI模型API定价，查看AI工具实测体验和踩坑记录。非技术背景的真实使用分享。">
+<meta name="keywords" content="AI模型价格,AI工具对比,TRAE WORK,DeepSeek,平野先生,AI编程工具">
 <link rel="canonical" href="https://pingyeai.cn/">
-<meta property="og:title" content="AI模型价格对比器 2026">
-<meta property="og:description" content="一表看懂所有主流AI模型的定价，选工具不再纠结。">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<!-- ====== 百度统计 ====== -->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?8787f6e4c29bc3acc5812750c378a195";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+<meta property="og:title" content="平野AI工具站">
+<meta property="og:description" content="AI模型价格对比 + 工具实测 + 踩坑记录">
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--orange:#ff6a00;--orange-light:#ff8a33;--bg:#f7f8fa;--bg-card:#fff;--text:#1a1a2e;--text-secondary:#666;--text-tertiary:#999;--border:#e8e8ee;--border-light:#f0f0f5;--shadow:0 2px 12px rgba(0,0,0,0.05);--shadow-hover:0 8px 24px rgba(0,0,0,0.1);--radius:16px;--radius-sm:10px;--brand-red:#e94560;--fs-blue:#2563eb}
+.dark{--bg:#0f0f11;--bg-card:#1a1a1e;--text:#e8e8ee;--text-secondary:#888;--text-tertiary:#666;--border:#2a2a30;--border-light:#222;--shadow:0 2px 12px rgba(0,0,0,0.2);--shadow-hover:0 8px 24px rgba(0,0,0,0.3)}
 html{scroll-behavior:smooth}
-body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;background:#f7f8fa;color:#1a1a2e;line-height:1.6;min-height:100vh}
-.container{max-width:1200px;margin:0 auto;padding:0 20px}
-
-/* ===== Navbar ===== */
-
-/* ===== Hero ===== */
-.hero{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;padding:60px 0 48px;text-align:center;position:relative;overflow:hidden}
-.hero h1{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:700;margin-bottom:10px;letter-spacing:-0.02em}
-.hero h1 span{background:linear-gradient(90deg,#e94560,#ff6b6b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero p{font-size:clamp(0.9rem,2vw,1.1rem);color:rgba(255,255,255,0.7);max-width:600px;margin:0 auto 20px}
-.hero .badge{display:inline-flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:8px}
-.hero .badge span{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:4px 14px;font-size:0.8rem;color:rgba(255,255,255,0.7)}
-.hero .update-note{font-size:0.75rem;color:rgba(255,255,255,0.4)}
-
-/* ===== Tab ===== */
-.tab-nav{display:flex;gap:0;background:#fff;border-radius:12px;padding:4px;margin:24px auto 0;max-width:400px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
-.tab-nav button{flex:1;padding:10px 16px;border:none;background:transparent;border-radius:8px;font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:#666}
-.tab-nav button.active{background:#1a1a2e;color:#fff}
-.tab-nav button:hover:not(.active){background:#f0f0f5}
-
-/* ===== Toolbar ===== */
-.toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:20px 0 16px}
-.toolbar .search-wrap{flex:1;min-width:200px;position:relative}
-.toolbar .search-wrap input{width:100%;padding:10px 14px 10px 38px;border:1px solid #e0e0e8;border-radius:10px;font-size:0.9rem;outline:none;transition:border 0.2s;background:#fff}
-.toolbar .search-wrap input:focus{border-color:#0f3460;box-shadow:0 0 0 3px rgba(15,52,96,0.1)}
-.toolbar .search-wrap .icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#999;font-size:1rem}
-.toolbar .filters{display:flex;gap:8px;flex-wrap:wrap}
-.toolbar .filters select{padding:10px 32px 10px 14px;border:1px solid #e0e0e8;border-radius:10px;font-size:0.85rem;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E") no-repeat right 10px center;appearance:none;cursor:pointer;outline:none}
-.toolbar .filters select:focus{border-color:#0f3460}
-
-/* ===== Table ===== */
-.table-wrap{background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.05);overflow:hidden;margin-bottom:16px}
-.table-wrap table{width:100%;border-collapse:collapse;font-size:0.9rem}
-.table-wrap thead{background:#f7f8fa}
-.table-wrap thead th{padding:14px 12px;text-align:left;font-weight:600;font-size:0.8rem;color:#666;text-transform:uppercase;letter-spacing:0.03em;border-bottom:2px solid #e8e8f0;white-space:nowrap;position:sticky;top:0;background:#f7f8fa;z-index:2}
-.table-wrap tbody tr{border-bottom:1px solid #f0f0f5;transition:background 0.15s}
-.table-wrap tbody tr:hover{background:#f8f9ff}
-.table-wrap tbody td{padding:12px;vertical-align:middle;line-height:1.4}
-.table-wrap tbody td:first-child{font-weight:600}
-.tag{display:inline-block;font-size:0.7rem;padding:2px 8px;border-radius:10px;font-weight:500;margin-left:6px;white-space:nowrap}
-.tag-recent{background:#e3f2fd;color:#1565c0}
-.tag-popular{background:#fff3e0;color:#e65100}
-.tag-best{background:#e8f5e9;color:#2e7d32}
-.tag-flagship{background:#f3e5f5;color:#7b1fa2}
-.tag-cheap{background:#e8f5e9;color:#2e7d32}
-.price-input{color:#2e7d32;font-weight:600}
-.price-output{color:#c62828;font-weight:600}
-.price-sub{color:#1a1a2e;font-weight:600}
-.price-free{color:#2e7d32;font-weight:700}
-.source-bar{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 16px}
-.source-badge{display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;padding:4px 10px;border-radius:8px;background:#fff;border:1px solid #e0e0e8;color:#666}
-.source-badge.verified{border-color:#a5d6a7;color:#2e7d32;background:#e8f5e9}
-.source-badge.estimated{border-color:#ffe082;color:#e65100;background:#fff8e1}
-.prov-logo{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;font-size:0.7rem;font-weight:700;color:#fff;margin-right:6px;flex-shrink:0}
-.chart-section{margin-bottom:24px;background:#fff;border-radius:14px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
-.chart-section h3{font-size:0.95rem;font-weight:600;margin-bottom:16px;color:#1a1a2e}
-.chart-bar{margin-bottom:8px}
-.chart-bar .label-row{display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:3px;color:#555}
-.chart-bar .bar-track{height:18px;background:#f0f0f5;border-radius:9px;overflow:hidden;position:relative}
-.chart-bar .bar-fill{height:100%;border-radius:9px;display:flex;align-items:center;padding-left:8px;font-size:0.65rem;color:#fff;font-weight:600;white-space:nowrap}
-
-/* ===== Tool Cards ===== */
-.tool-section{margin:28px 0 40px}
-.tool-section h3{font-size:1.1rem;font-weight:600;margin-bottom:16px;text-align:center;color:#1a1a2e}
-.tool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.tool-card{background:#fff;border-radius:14px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.05);border:1px solid #eee;transition:all 0.2s}
-.tool-card:hover{box-shadow:0 6px 20px rgba(0,0,0,0.08);transform:translateY(-2px)}
-.tool-card h4{font-size:0.95rem;margin-bottom:6px}
-.tool-card p{font-size:0.82rem;color:#666;margin-bottom:12px;line-height:1.5}
-.tool-card .btn{display:inline-block;padding:8px 20px;border-radius:8px;font-size:0.85rem;font-weight:600;text-decoration:none;transition:all 0.2s}
-.btn-primary{background:#1a1a2e;color:#fff}
-.btn-primary:hover{background:#0f3460}
-.btn-outline{background:transparent;color:#1a1a2e;border:1px solid #ddd}
-.btn-outline:hover{background:#f5f5f5}
-.aff-note{font-size:0.7rem;color:#aaa;margin-top:4px}
-
-/* ===== MiMo Special Card ===== */
-.mimo-card{border-color:#ff6f00!important;position:relative}
-.mimo-card::before{content:'NEW';position:absolute;top:-6px;right:-6px;background:#ff6f00;color:#fff;font-size:0.6rem;font-weight:700;padding:2px 8px;border-radius:10px}
-.mimo-promo{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
-.promo-code{background:#fff3e0;padding:6px 12px;border-radius:8px;font-size:0.82rem;color:#e65100}
-.promo-code strong{font-size:1.05rem;letter-spacing:1px}
-.promo-bonus{background:#e8f5e9;padding:4px 10px;border-radius:6px;font-size:0.78rem;color:#2e7d32;font-weight:600}
-
-/* ===== Related Tools Banner ===== */
-.related-tools{background:#fff;border-radius:14px;padding:24px;margin:28px 0;border:1px solid #eee}
-.related-tools h3{font-size:1rem;font-weight:600;margin-bottom:14px}
-.related-tools .list{display:flex;flex-wrap:wrap;gap:12px}
-.related-tools .list a{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:10px;background:#f7f8fa;text-decoration:none;color:#1a1a2e;font-size:0.85rem;font-weight:500;transition:all 0.2s;border:1px solid #eee}
-.related-tools .list a:hover{background:#e8f5e9;border-color:#a5d6a7;transform:translateY(-1px)}
-
-/* ===== Footer ===== */
-
-/* ===== Mobile ===== */
-@media(max-width:768px){
-  .container{padding:0 14px}
-  .hero{padding:40px 0 32px}
-  .tab-nav{max-width:100%}
-  .toolbar .search-wrap{min-width:100%}
-  .toolbar .filters{width:100%}
-  .toolbar .filters select{flex:1}
-  .table-wrap{overflow-x:auto;border-radius:12px}
-  .table-wrap table{font-size:0.78rem;min-width:680px}
-  .table-wrap thead th,.table-wrap tbody td{padding:8px 6px}
-  .tool-grid{grid-template-columns:1fr}
-  .related-tools .list{flex-direction:column}
-}
-@media(max-width:480px){
-  .table-wrap table{min-width:600px;font-size:0.72rem}
-  .table-wrap thead th,.table-wrap tbody td{padding:6px 4px}
-  .hero{padding:30px 0 24px}
-}
+body{font-family:-apple-system,'PingFang SC','Noto Sans SC','Helvetica Neue',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s;min-height:100vh}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
 </style>
-<style>
-
-/* ===== 飞书风格覆盖 - 首页 ===== */
-.hero{background:var(--bg-card)!important;color:var(--text-primary)!important;border-bottom:1px solid var(--border-light);padding:48px 0 40px}
-.hero h1{color:var(--text-primary)!important}
-.hero h1 span{background:none!important;-webkit-text-fill-color:var(--brand-red)!important;color:var(--brand-red)!important}
-.hero p{color:var(--text-secondary)!important;max-width:560px}
-.hero .badge span{background:var(--bg-page)!important;border:1px solid var(--border-light)!important;color:var(--text-secondary)!important;border-radius:var(--radius-full)!important;font-size:12px!important}
-.hero .update-note{color:var(--text-tertiary)!important;font-size:12px!important}
-.tab-nav{background:var(--bg-card)!important;border:1px solid var(--border-light)!important;border-radius:var(--radius-lg)!important;box-shadow:none!important;padding:4px}
-.tab-nav button{color:var(--text-secondary)!important;border-radius:var(--radius-md)!important;font-weight:500!important}
-.tab-nav button.active{background:var(--brand-red-bg)!important;color:var(--brand-red)!important;font-weight:600!important}
-.tab-nav button:hover:not(.active){background:var(--bg-hover)!important}
-.toolbar .search-wrap input{border:1px solid var(--border)!important;border-radius:var(--radius-md)!important;background:var(--bg-card)!important}
-.toolbar .search-wrap input:focus{border-color:var(--fs-blue)!important;box-shadow:0 0 0 3px rgba(51,112,255,.1)!important}
-.toolbar .filters select{border:1px solid var(--border)!important;border-radius:var(--radius-md)!important;background:var(--bg-card)!important}
-.table-wrap{background:var(--bg-card)!important;border:1px solid var(--border-light)!important;border-radius:var(--radius-lg)!important;box-shadow:none!important}
-.table-wrap thead{background:var(--bg-page)!important}
-.table-wrap thead th{color:var(--text-secondary)!important;border-bottom:1px solid var(--border)!important;background:var(--bg-page)!important;text-transform:none!important;font-size:13px!important}
-.table-wrap tbody tr{border-bottom:1px solid var(--border-light)!important}
-.table-wrap tbody tr:hover{background:var(--fs-blue-bg)!important}
-.table-wrap tbody td:first-child{color:var(--text-primary)!important}
-.tag{border-radius:var(--radius-sm)!important;font-size:11px!important}
-.source-badge{border-radius:var(--radius-full)!important;font-size:12px!important}
-.stats{background:var(--bg-card)!important;border:1px solid var(--border-light)!important;border-radius:var(--radius-lg)!important;color:var(--text-secondary)!important}
-.more-tools a,.related-links a{background:var(--bg-card)!important;border:1px solid var(--border-light)!important;border-radius:var(--radius-md)!important;color:var(--text-primary)!important}
-.more-tools a:hover,.related-links a:hover{border-color:var(--fs-blue)!important;color:var(--fs-blue)!important;background:var(--fs-blue-bg)!important}
-.direct-links .direct-card{background:var(--bg-card)!important;border:1px solid var(--border-light)!important;border-radius:var(--radius-lg)!important;box-shadow:none!important}
-.direct-links .direct-card:hover{border-color:var(--border-hover)!important;box-shadow:var(--shadow-hover)!important}
-.direct-links h4{color:var(--text-primary)!important}
-
-</style>
-
-
-<!-- 百度统计 -->
-<script>
-var _hmt = _hmt || [];
-(function() {
- var hm = document.createElement("script");
- hm.src = "https://hm.baidu.com/hm.js?8787f6e4c29bc3acc5812750c378a195";
- var s = document.getElementsByTagName("script")[0];
- s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "平野AI工具站",
-  "url": "https://pingyeai.cn",
-  "description": "AI模型价格对比、工具评测、使用教程"
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "首页",
-      "item": "https://pingyeai.cn/"
-    }
-  ]
-}
-</script>
-<style>
-/* ===== 飞书风格全局设计系统 ===== */
-:root{
-  --brand-red:#e94560;--brand-red-hover:#d63a52;--brand-red-bg:#fef2f4;
-  --fs-blue:#3370ff;--fs-blue-hover:#2a5fd9;--fs-blue-bg:#eaf1ff;
-  --bg-page:#f5f6f7;--bg-card:#ffffff;--bg-hover:#f5f6f7;--bg-selected:#eaf1ff;
-  --text-primary:#1f2329;--text-secondary:#646a73;--text-tertiary:#8f959e;--text-link:#3370ff;
-  --border:#dee0e3;--border-light:#e5e6eb;--border-hover:#bbbfc4;
-  --radius-sm:4px;--radius-md:6px;--radius-lg:8px;--radius-full:999px;
-  --shadow-card:none;--shadow-hover:0 2px 8px rgba(0,0,0,.06);
-  --ease:cubic-bezier(.4,0,.2,1);
-  --tag-trae-bg:#eaf1ff;--tag-trae-fg:#3370ff;
-  --tag-popular-bg:#fef2f4;--tag-popular-fg:#e94560;
-  --tag-wb-bg:#e8f8f0;--tag-wb-fg:#0a8c4d;
-  --tag-oc-bg:#f3e8ff;--tag-oc-fg:#8a2cd9;
-  --tag-ai-bg:#fff3e0;--tag-ai-fg:#d97700;
-  --tag-cloud-bg:#e3f4ff;--tag-cloud-fg:#0c7fd9;
-  --tag-code-bg:#e8ecf4;--tag-code-fg:#3d4c7a;
-  --tag-default-bg:#f5f6f7;--tag-default-fg:#646a73;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Segoe UI',sans-serif;background:var(--bg-page);color:var(--text-primary);line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-a{color:var(--fs-blue);text-decoration:none;transition:color .15s var(--ease)}
-a:hover{color:var(--fs-blue-hover)}
-.ico{display:inline-flex;vertical-align:middle;width:16px;height:16px;color:currentColor;flex-shrink:0}
-.ico svg{width:100%;height:100%;display:block}
-.ico-lg{width:20px;height:20px}
-.ico-xl{width:24px;height:24px}
-@media(max-width:768px){
-}
-</style>
-<style>
-
-/* ===== 飞书导航栏修正（纯文字+指示条）===== */
-.navbar .nav-links a{padding:6px 14px;font-size:14px;font-weight:500}
-.navbar .nav-links a.active{background:transparent!important;color:var(--brand-red)!important;font-weight:600;position:relative}
-.navbar .nav-links a.active::after{content:'';position:absolute;left:14px;right:14px;bottom:-18px;height:2px;background:var(--brand-red);border-radius:1px}
-.navbar{height:56px}
-
-/* ===== 表格表头加深加粗 ===== */
-.table-wrap thead{background:#ebeef2!important}
-.table-wrap thead th{background:#ebeef2!important;color:var(--text-primary)!important;font-weight:600!important;font-size:13px!important;border-bottom:1px solid var(--border)!important}
-
-/* ===== 标签/说明水平居中 ===== */
-.source-bar{justify-content:center!important;margin:12px auto 20px!important}
-.hero .badge{justify-content:center!important}
-.hero{text-align:center}
-.hero .update-note{text-align:center}
-
-/* ===== 来源 badge 飞书化 ===== */
-.source-badge{background:var(--bg-card)!important;border:1px solid var(--border)!important;color:var(--text-secondary)!important;border-radius:var(--radius-full)!important;font-size:12px!important;padding:4px 12px!important}
-.source-badge.verified{background:#e8f8f0!important;border-color:#b7ebcc!important;color:#0a8c4d!important}
-.source-badge.estimated{background:#fff3e0!important;border-color:#ffcc80!important;color:#d97700!important}
-
-</style>
-<style>
-/* ===== 导航栏修正：强制 sticky + 指示条贴底部 ===== */
-.navbar{position:sticky!important;top:0!important;z-index:100!important;height:56px!important;background:var(--bg-card)!important;border-bottom:1px solid var(--border)!important}
-.navbar .nav-links a{padding:6px 14px!important;font-size:14px!important;font-weight:500!important;line-height:1.5!important}
-.navbar .nav-links a.active{background:transparent!important;color:var(--brand-red)!important;font-weight:600!important;position:relative!important}
-.navbar .nav-links a.active::after{content:''!important;position:absolute!important;left:14px!important;right:14px!important;bottom:-14px!important;height:2px!important;background:var(--brand-red)!important;border-radius:1px!important;z-index:101!important}
-/* 确保 hero 不覆盖导航栏 */
-.hero{position:relative!important;z-index:1!important;margin-top:0!important}
-
-/* ===== 表格表头再加深（飞书深灰底+深色加粗文字）===== */
-.table-wrap thead{background:#e5e8ed!important}
-.table-wrap thead th{background:#e5e8ed!important;color:#1f2329!important;font-weight:700!important;font-size:13px!important;border-bottom:2px solid #c5cad2!important;letter-spacing:0!important;text-transform:none!important}
-.table-wrap thead th:first-child{border-top-left-radius:8px}
-.table-wrap thead th:last-child{border-top-right-radius:8px}
-
-/* ===== 来源标签/说明水平居中 + 飞书样式 ===== */
-.source-bar{display:flex!important;flex-wrap:wrap!important;justify-content:center!important;gap:8px!important;margin:16px auto 24px!important}
-.source-badge{display:inline-flex!important;align-items:center!important;gap:5px!important;font-size:12px!important;padding:5px 12px!important;border-radius:var(--radius-full)!important;background:var(--bg-card)!important;border:1px solid var(--border)!important;color:var(--text-secondary)!important;font-weight:500!important}
-.source-badge.verified{background:#e8f8f0!important;border-color:#b7ebcc!important;color:#0a8c4d!important}
-.source-badge.estimated{background:#fff3e0!important;border-color:#ffcc80!important;color:#d97700!important}
-
-/* ===== Hero badge 居中 + 飞书样式 ===== */
-.hero{text-align:center!important}
-.hero .badge{display:inline-flex!important;justify-content:center!important;gap:8px!important;flex-wrap:wrap!important;margin-bottom:12px!important}
-.hero .badge span{display:inline-flex!important;align-items:center!important;gap:5px!important;background:var(--bg-page)!important;border:1px solid var(--border-light)!important;border-radius:var(--radius-full)!important;padding:4px 12px!important;font-size:12px!important;color:var(--text-secondary)!important;font-weight:500!important}
-.hero .update-note{text-align:center!important;font-size:12px!important;color:var(--text-tertiary)!important;margin-top:8px!important}
-
-/* ===== 底部 stats 居中 ===== */
-.stats{display:flex!important;justify-content:center!important;align-items:center!important;gap:8px!important;text-align:center!important;background:var(--bg-card)!important;border:1px solid var(--border-light)!important;border-radius:var(--radius-lg)!important;color:var(--text-secondary)!important;padding:16px 24px!important}
-</style>
-<style>
-/* ===== 导航栏与 hero 间距 + active 高亮强化 ===== */
-.navbar{margin-bottom:24px!important}
-.hero{padding-top:32px!important;padding-bottom:36px!important}
-.navbar .nav-links a.active{color:var(--brand-red)!important;font-weight:600!important;background:transparent!important;position:relative!important}
-.navbar .nav-links a.active::after{content:''!important;position:absolute!important;left:14px!important;right:14px!important;bottom:-14px!important;height:2px!important;background:var(--brand-red)!important;border-radius:1px!important;z-index:101!important}
-
-/* ===== 页脚居中 + 链接后空白 ===== */
-.footer{text-align:center!important;padding:32px 24px 20px!important}
-.footer > div{display:block!important;text-align:center!important;margin:6px 0!important}
-.footer .stats{justify-content:center!important;margin:12px auto!important}
-.footer-links-after{height:60px}
-</style>
-<style>
-/* ===== 导航栏布局强制修正 ===== */
-.navbar{display:flex!important;align-items:center!important;height:56px!important}
-.navbar .container,.navbar .wide,.navbar .wide-container{display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;max-width:1200px!important;margin:0 auto!important;padding:0 24px!important;height:56px!important}
-.navbar .logo{display:flex!important;align-items:center!important;gap:8px!important}
-.navbar .nav-links{display:flex!important;flex-direction:row!important;align-items:center!important;gap:4px!important}
-.navbar .hamburger{display:none!important}
-@media(max-width:768px){
-  .navbar .hamburger{display:inline-flex!important}
-  .navbar .nav-links{display:none!important;position:absolute!important;top:48px!important;left:0!important;right:0!important;background:var(--bg-card)!important;flex-direction:column!important;padding:8px!important;gap:2px!important;border-bottom:1px solid var(--border)!important;box-shadow:0 2px 8px rgba(0,0,0,.06)!important}
-  .navbar .nav-links.open{display:flex!important}
-}
-</style>
-
-<style>
-/* ===== 导航栏布局强制修正 ===== */
-.navbar{position:sticky!important;top:0!important;z-index:100!important;height:56px!important;background:var(--bg-card)!important;border-bottom:1px solid var(--border)!important;display:flex!important;align-items:center!important;margin-bottom:24px!important}
-.navbar .container,.navbar .wide,.navbar .wide-container{display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;max-width:1200px!important;margin:0 auto!important;padding:0 24px!important;height:56px!important}
-.navbar .logo{display:flex!important;align-items:center!important;gap:8px!important}
-.navbar .nav-links{display:flex!important;flex-direction:row!important;align-items:center!important;gap:4px!important}
-.navbar .hamburger{display:none!important}
-.navbar .nav-links a{padding:6px 14px!important;font-size:14px!important;font-weight:500!important;line-height:1.5!important}
-.navbar .nav-links a.active{background:transparent!important;color:var(--brand-red)!important;font-weight:600!important;position:relative!important}
-.navbar .nav-links a.active::after{content:''!important;position:absolute!important;left:14px!important;right:14px!important;bottom:-14px!important;height:2px!important;background:var(--brand-red)!important;border-radius:1px!important;z-index:101!important}
-@media(max-width:768px){
-  .navbar{height:48px!important;margin-bottom:16px!important}
-  .navbar .container,.navbar .wide,.navbar .wide-container{padding:0 16px!important;height:48px!important}
-  .navbar .hamburger{display:inline-flex!important}
-  .navbar .nav-links{display:none!important;position:absolute!important;top:48px!important;left:0!important;right:0!important;background:var(--bg-card)!important;flex-direction:column!important;padding:8px!important;gap:2px!important;border-bottom:1px solid var(--border)!important;box-shadow:0 2px 8px rgba(0,0,0,.06)!important}
-  .navbar .nav-links.open{display:flex!important}
-}
-
-/* ===== Hero 飞书化 ===== */
-.hero{background:var(--bg-card)!important;color:var(--text-primary)!important;border-bottom:1px solid var(--border-light)!important;padding:32px 0 36px!important;text-align:center!important;position:relative!important;z-index:1!important;margin-top:0!important}
-.hero h1{color:var(--text-primary)!important}
-.hero h1 span{background:none!important;-webkit-text-fill-color:var(--brand-red)!important;color:var(--brand-red)!important}
-.hero p{color:var(--text-secondary)!important;max-width:560px;margin:0 auto 20px!important}
-.hero .badge,.hero .stats-badges{display:inline-flex!important;justify-content:center!important;gap:8px!important;flex-wrap:wrap!important;margin-bottom:12px!important}
-.hero .badge span{display:inline-flex!important;align-items:center!important;gap:5px!important;background:var(--bg-page)!important;border:1px solid var(--border-light)!important;border-radius:var(--radius-full)!important;padding:4px 12px!important;font-size:12px!important;color:var(--text-secondary)!important;font-weight:500!important}
-.hero .update-note{text-align:center!important;font-size:12px!important;color:var(--text-tertiary)!important;margin-top:8px!important}
-
-/* ===== 表格表头加深 ===== */
-.table-wrap thead,.table thead,table thead{background:#e5e8ed!important}
-.table-wrap thead th,.table thead th,table thead th{background:#e5e8ed!important;color:#1f2329!important;font-weight:700!important;font-size:13px!important;border-bottom:2px solid #c5cad2!important;letter-spacing:0!important;text-transform:none!important}
-
-/* ===== 标签/说明水平居中 ===== */
-.source-bar{display:flex!important;flex-wrap:wrap!important;justify-content:center!important;gap:8px!important;margin:16px auto 24px!important}
-.source-badge{display:inline-flex!important;align-items:center!important;gap:5px!important;font-size:12px!important;padding:5px 12px!important;border-radius:var(--radius-full)!important;background:var(--bg-card)!important;border:1px solid var(--border)!important;color:var(--text-secondary)!important;font-weight:500!important}
-.source-badge.verified{background:#e8f8f0!important;border-color:#b7ebcc!important;color:#0a8c4d!important}
-.source-badge.estimated{background:#fff3e0!important;border-color:#ffcc80!important;color:#d97700!important}
-
-/* ===== 页脚居中 ===== */
-.footer{text-align:center!important;padding:32px 24px 20px!important;background:var(--bg-card)!important;border-top:1px solid var(--border-light)!important}
-.footer > div{display:block!important;text-align:center!important;margin:6px 0!important}
-.footer a{color:var(--text-secondary)!important}
-.footer a:hover{color:var(--fs-blue)!important}
-
-/* ===== 卡片飞书化（通用）===== */
-.card,.feature-card,.tool-card,.direct-card,.blog-card{background:var(--bg-card)!important;border:1px solid var(--border-light)!important;border-radius:var(--radius-lg)!important;box-shadow:none!important}
-.card:hover,.feature-card:hover,.tool-card:hover,.direct-card:hover,.blog-card:hover{border-color:var(--border-hover)!important;box-shadow:var(--shadow-hover)!important}
-
-/* ===== 按钮飞书化 ===== */
-.btn,.button,button.cta{border-radius:var(--radius-md)!important;font-weight:500!important}
-
-/* ===== 链接色统一 ===== */
-a{color:var(--fs-blue)!important}
-a:hover{color:var(--fs-blue-hover)!important}
-.navbar a,.footer a{color:var(--text-secondary)!important}
-.navbar .nav-links a.active{color:var(--brand-red)!important}
-</style>
-
-
-
-
-
-
-<!-- 飞书风格图标系统 -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-<defs>
-<symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol>
-<symbol id="i-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
-<symbol id="i-tool" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.5 2.5-2.1-2.1z"/></symbol>
-<symbol id="i-blog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
-<symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/></symbol>
-<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
-<symbol id="i-bot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M12 3v4M9 13h.01M15 13h.01M9 17h6"/><path d="M2 12h2M20 12h2"/></symbol>
-<symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="M8 14l3-4 3 3 4-6"/></symbol>
-<symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14 9.5c-.5-.8-1.5-1.3-2.5-1.3-1.4 0-2.5.8-2.5 2s1.1 1.8 2.5 1.8 2.5.6 2.5 1.8-1.1 2-2.5 2c-1 0-2-.5-2.5-1.3M12 6.5v1.7M12 15.8v1.7"/></symbol>
-<symbol id="i-coin-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 14l6-6M14.5 8H10M16 8v4.5"/></symbol>
-<symbol id="i-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></symbol>
-<symbol id="i-ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l5-5 13 13-5 5z"/><path d="M7 8l2 2M10 5l2 2M13 8l2 2M16 11l2 2"/></symbol>
-<symbol id="i-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2M10 21v-3h4v3"/></symbol>
-<symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9-9 9z"/><circle cx="9" cy="9" r="1.2"/></symbol>
-<symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
-<symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.5.5 1 1.5 1 2.5h6c0-1 .5-2 1-2.5A6 6 0 0 0 12 3z"/></symbol>
-<symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7a2 2 0 0 1 2 2v14a1 1 0 0 0-1-1H4z"/><path d="M20 4h-7a2 2 0 0 0-2 2v14a1 1 0 0 1 1-1h8z"/></symbol>
-<symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></symbol>
-<symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6-10 10H4v-6z"/><path d="M13 5l6 6"/></symbol>
-<symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
-<symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6 7-12a7 7 0 0 0-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
-<symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 6 6.3.6-4.8 4.2 1.5 6.2L12 17l-5.7 3 1.5-6.2L3 9.6 9.3 9z"/></symbol>
-<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></symbol>
-<symbol id="i-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
-<symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/></symbol>
-<symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
-<symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-15 6.7L3 16M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 4v4h-4M3 20v-4h4"/></symbol>
-<symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2"/><path d="M9 11a8 8 0 0 1 8-8c2 0 3 1 3 3a8 8 0 0 1-8 8l-3-3z"/><circle cx="14" cy="10" r="1.5"/></symbol>
-<symbol id="i-cloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1 0-8 5 5 0 0 1 9.8-1A3.5 3.5 0 0 1 18 18z"/></symbol>
-<symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4"/><path d="M5 12v9h14v-9M12 8v13"/><path d="M12 8S10 3 7.5 4 9 8 12 8zM12 8s2-5 4.5-4S15 8 12 8z"/></symbol>
-<symbol id="i-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></symbol>
-<symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
-<symbol id="i-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M7 7l-3 6h6zM17 7l-3 6h6z"/></symbol>
-<symbol id="i-laptop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="11" rx="1"/><path d="M2 20h20"/></symbol>
-<symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M14 6l-4 12"/></symbol>
-<symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></symbol>
-<symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 13h6M9 17h4"/></symbol>
-<symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="4"/><path d="M11 11l9 9M16 16l2-2M19 19l2-2"/></symbol>
-<symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
-<symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
-<symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/></symbol>
-<symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></symbol>
-<symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
-<symbol id="i-book-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v15M12 6s-3-2-7-2-3 0-3 0v15s0-1 3-1 7 2 7 2M12 6s3-2 7-2 3 0 3 0v15s0-1-3-1-7 2-7 2"/></symbol>
-<symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
-<symbol id="i-rss" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor"/></symbol>
-</defs>
-</svg>
 </head>
 <body>
 
-<!-- ===== Navbar ===== -->
 <nav class="navbar">
   <div class="container">
     <a href="/" class="logo"><img src="/logo.jpg" alt="平野AI" class="logo-img" width="28" height="28"> <span>平野</span>AI</a>
@@ -449,55 +34,87 @@ a:hover{color:var(--fs-blue-hover)!important}
   </div>
 </nav>
 
-<header class="hero">
-  <div class="container">
-    <h1><svg class="ico ico-xl"><use href="#i-bot"/></use></svg> <span>AI模型价格</span>对比器 2026</h1>
-    <p>一表看懂GPT、Claude、Gemini、DeepSeek等主流AI模型的API定价和订阅价格</p>
-    <div class="badge">
-      <span><svg class="ico ico-xl"><use href="#i-chart"/></use></svg> 20款模型</span>
-      <span><svg class="ico"><use href="#i-coin"/></use></svg> API定价</span>
-      <span><svg class="ico"><use href="#i-calendar"/></use></svg> 订阅价格</span>
+<button class="theme-toggle" onclick="document.documentElement.classList.toggle('dark');this.textContent=document.documentElement.classList.contains('dark')?'☀️':'🌙'" style="position:fixed;top:70px;right:20px;z-index:99;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--bg-card);color:var(--text);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);transition:all .2s">🌙</button>
+
+
+
+<!-- Hero -->
+<div style="background:linear-gradient(135deg,#0f0f11 0%,#1a0f08 40%,#2a1408 70%,#0f0f11 100%);color:#fff;padding:64px 0 48px;text-align:center;position:relative;overflow:hidden">
+  <div style="position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(255,106,0,0.12),transparent 60%);pointer-events:none"></div>
+  <div class="container" style="position:relative">
+    <h1 style="font-size:clamp(1.8rem,5vw,2.6rem);font-weight:700;margin-bottom:12px;letter-spacing:-0.02em">用过来的经验，<span style="background:linear-gradient(90deg,#ff6a00,#ffaa44);-webkit-background-clip:text;-webkit-text-fill-color:transparent">写给你看</span></h1>
+    <p style="font-size:1.05rem;color:rgba(255,255,255,0.6);max-width:500px;margin:0 auto 24px;line-height:1.7">非技术背景，全职用了大半年AI agent。模型价格、工具实测、踩坑记录，全是真实体验。</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+      <span style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.5)">📊 100+模型价格</span>
+      <span style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.5)">🔧 26篇实测</span>
+      <span style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.5)">🧰 20+工具对比</span>
     </div>
-    <div class="update-note">最后更新：2026年5月29日 · 来源标注：<svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 官方确认 · <svg class="ico" style="color:#d97700"><use href="#i-warn"/></use></svg> 参考现行定价</div>
-  </div>
-</header>
-
-<main class="container">
-
-<div class="source-bar">
-  <span class="source-badge verified"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> OpenAI — 来自官网 openai.com/api/pricing</span>
-  <span class="source-badge verified"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> DeepSeek — 来自官网 api-docs.deepseek.com</span>
-  <span class="source-badge estimated"><svg class="ico" style="color:#d97700"><use href="#i-warn"/></use></svg> 其他模型 —— 基于现行公开定价</span>
-</div>
-
-<!-- Tab -->
-<nav class="tab-nav" role="tablist">
-  <button class="active" data-tab="api" role="tab"><svg class="ico"><use href="#i-coin"/></use></svg> API 定价</button>
-  <button data-tab="sub" role="tab"><svg class="ico"><use href="#i-calendar"/></use></svg> 订阅价格</button>
-</nav>
-
-<!-- Toolbar -->
-<div class="toolbar">
-  <div class="search-wrap">
-    <span class="icon"><svg class="ico"><use href="#i-search"/></use></svg> </span>
-    <input type="text" id="searchInput" placeholder="搜索模型名称..." autocomplete="off">
-  </div>
-  <div class="filters">
-    <select id="providerFilter">
-      <option value="all">全部厂商</option>
-      <option value="openai">OpenAI</option>
-      <option value="anthropic">Anthropic</option>
-      <option value="google">Google</option>
-      <option value="deepseek">DeepSeek</option>
-      <option value="xiaomi">小米</option>
-      <option value="others">其他</option>
-    </select>
   </div>
 </div>
 
-<!-- API pricing -->
-<section class="tab-content active" id="tab-api">
-  <div class="table-wrap">
+<div class="container">
+
+<!-- Quick nav -->
+<div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:24px 0">
+  <a href="#models" style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:var(--radius-sm);background:var(--bg-card);border:1px solid var(--border);text-decoration:none;color:var(--text);font-size:0.88rem;font-weight:500;transition:all .2s">📊 模型价格</a>
+  <a href="/compare-ai-coding-tools" style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:var(--radius-sm);background:var(--bg-card);border:1px solid var(--border);text-decoration:none;color:var(--text);font-size:0.88rem;font-weight:500;transition:all .2s">🔧 编程工具对比</a>
+  <a href="/blog/" style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:var(--radius-sm);background:var(--bg-card);border:1px solid var(--border);text-decoration:none;color:var(--text);font-size:0.88rem;font-weight:500;transition:all .2s">📝 博客</a>
+  <a href="/models/" style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:var(--radius-sm);background:var(--bg-card);border:1px solid var(--border);text-decoration:none;color:var(--text);font-size:0.88rem;font-weight:500;transition:all .2s">🧠 模型目录</a>
+</div>
+
+<!-- Featured post -->
+<div style="margin-bottom:32px">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+    <h2 style="font-size:1.2rem;font-weight:600">📌 最新文章</h2>
+    <a href="/blog/" style="font-size:0.85rem;color:var(--orange);text-decoration:none">全部 →</a>
+  </div>
+  <a href="/blog/trae-work-mini-program-pits.html" style="display:block;background:linear-gradient(135deg,var(--bg-card),rgba(255,106,0,0.03));border:1px solid rgba(255,106,0,0.2);border-radius:var(--radius);padding:24px;text-decoration:none;color:inherit;transition:all .25s" class="hover-card">
+    <div style="display:flex;gap:16px;align-items:flex-start">
+      <div style="flex:1">
+        <span style="display:inline-block;background:var(--orange);color:#fff;font-size:0.7rem;padding:2px 10px;border-radius:6px;margin-bottom:8px">NEW</span>
+        <h3 style="font-size:1.1rem;font-weight:600;margin-bottom:4px">周末两天，用TRAE WORK给娃做了个小程序</h3>
+        <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:6px">非技术背景，两天做出一个微信小程序。踩了20多个坑，AI修A崩B、Web迁小程序全重做、删掉的功能AI又加回来……</p>
+        <span style="font-size:0.78rem;color:var(--text-tertiary)">7月5日 · 踩坑实录</span>
+      </div>
+      <div style="width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,var(--orange),#ffaa44);display:flex;align-items:center;justify-content:center;font-size:30px;flex-shrink:0">🧩</div>
+    </div>
+  </a>
+</div>
+
+<!-- Blog cards -->
+<div style="margin-bottom:36px">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+    <h2 style="font-size:1.2rem;font-weight:600">📝 近期文章</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px">
+    <a href="/blog/" style="background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border);padding:20px;text-decoration:none;color:inherit;transition:all .25s" class="hover-card">
+      <div style="width:36px;height:36px;border-radius:10px;background:rgba(16,185,129,0.1);color:#10b981;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px">📱</div>
+      <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:6px;line-height:1.3">微信小微灰度体验，能干的比想象的多</h3>
+      <p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.5">点咖啡、查美食、做攻略、总结文章——微信里多了个会干活的AI助手。</p>
+      <div style="display:flex;gap:8px;margin-top:10px;font-size:0.72rem;color:var(--text-tertiary)"><span>6月30日</span><span style="padding:2px 8px;border-radius:6px;background:var(--bg);font-size:0.68rem">体验</span></div>
+    </a>
+    <a href="/blog/" style="background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border);padding:20px;text-decoration:none;color:inherit;transition:all .25s" class="hover-card">
+      <div style="width:36px;height:36px;border-radius:10px;background:rgba(99,102,241,0.1);color:#6366f1;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px">🌐</div>
+      <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:6px;line-height:1.3">让Codex搜了一次外网，才知道国内外AI产品差在哪</h3>
+      <p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.5">让Codex查东西它走外网搜，换了WorkBuddy/TRAE走国内。设计基因的差异。</p>
+      <div style="display:flex;gap:8px;margin-top:10px;font-size:0.72rem;color:var(--text-tertiary)"><span>6月29日</span><span style="padding:2px 8px;border-radius:6px;background:var(--bg);font-size:0.68rem">观点</span></div>
+    </a>
+    <a href="/blog/trae-work-switch-cost.html" style="background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border);padding:20px;text-decoration:none;color:inherit;transition:all .25s" class="hover-card">
+      <div style="width:36px;height:36px;border-radius:10px;background:rgba(255,106,0,0.1);color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px">💰</div>
+      <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:6px;line-height:1.3">从WorkBuddy换到TRAE WORK，这笔账不算不知道</h3>
+      <p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.5">追了大半年AI agent，换了十几个工具，最后算清楚了三层隐性成本。</p>
+      <div style="display:flex;gap:8px;margin-top:10px;font-size:0.72rem;color:var(--text-tertiary)"><span>6月28日</span><span style="padding:2px 8px;border-radius:6px;background:var(--bg);font-size:0.68rem">深度</span></div>
+    </a>
+  </div>
+</div>
+
+<!-- Table section -->
+<div id="models" style="margin-bottom:32px">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+    <h2 style="font-size:1.2rem;font-weight:600">📊 AI模型价格对比</h2>
+    <a href="/models/" style="font-size:0.85rem;color:var(--orange);text-decoration:none">全部 →</a>
+  </div>
+<div class="table-wrap">
     <table>
       <thead><tr>
           <th>模型</th>
@@ -510,15 +127,7 @@ a:hover{color:var(--fs-blue-hover)!important}
       <tbody id="apiTableBody"></tbody>
     </table>
   </div>
-  <div class="chart-section">
-    <h3><svg class="ico ico-xl"><use href="#i-chart"/></use></svg> API 输入价格对比（越低越划算）</h3>
-    <div id="apiChartBars"></div>
-  </div>
-</section>
-
-<!-- Subscription pricing -->
-<section class="tab-content" id="tab-sub" style="display:none">
-  <div class="table-wrap">
+<div class="table-wrap">
     <table>
       <thead><tr>
           <th>产品</th>
@@ -530,103 +139,14 @@ a:hover{color:var(--fs-blue-hover)!important}
       <tbody id="subTableBody"></tbody>
     </table>
   </div>
-</section>
-
-<!-- Related Tools -->
-<div class="related-tools">
-  <h3><svg class="ico"><use href="#i-tool"/></use></svg> 更多工具</h3>
-  <div class="list">
-    <a href="/compare-ai-coding-tools"><svg class="ico ico-xl"><use href="#i-tool"/></use></svg> 编程工具横向对比 → Claude Code vs Codex vs Trae SOLO</a>
-  </div>
-
-<div class="related-tools" style="margin-top:16px">
-  <h3>📂 模型目录</h3>
-  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
-    <a href="/models/openai" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#0f3460;margin-right:2px"></span> OpenAI</a>
-      <a href="/models/anthropic" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#d4a574;margin-right:2px"></span> Anthropic</a>
-      <a href="/models/google" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4285f4;margin-right:2px"></span> Google</a>
-      <a href="/models/deepseek" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4caf50;margin-right:2px"></span> DeepSeek</a>
-      <a href="/models/xiaomi" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#ff6f00;margin-right:2px"></span> 小米</a>
-      <a href="/models/others" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#9c27b0;margin-right:2px"></span> 其他</a>
-  </div>
-  <div class="list" style="display:flex;flex-wrap:wrap;gap:8px">
-    <a href="/models/gpt55">GPT-5.5</a>
-      <a href="/models/gpt54">GPT-5.4</a>
-      <a href="/models/gpt54m">GPT-5.4 mini</a>
-      <a href="/models/claude4o">Claude 4 Opus</a>
-      <a href="/models/claude4s">Claude 4 Sonnet</a>
-      <a href="/models/claude4h">Claude 4 Haiku</a>
-      <a href="/models/gem25p">Gemini 2.5 Pro</a>
-      <a href="/models/gem25f">Gemini 2.5 Flash</a>
-      <a href="/models/dsv4f">DeepSeek V4 Flash</a>
-      <a href="/models/dsv4p">DeepSeek V4 Pro</a>
-      <a href="/models/mimov25">MiMo V2.5</a>
-      <a href="/models/mimov25p">MiMo V2.5 Pro</a>
-      <a href="/models/qwen3m">Qwen3 Max</a>
-      <a href="/models/qw32p">Qwen3 Plus</a>
-      <a href="/models/mistrall">Mistral Large</a>
-      <a href="/models/grok3">Grok 3</a>
-  
-<div class="related-tools" style="margin-top:16px">
-  <h3>📂 模型目录</h3>
-  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
-    <a href="/models/openai.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#0f3460;margin-right:2px"></span> OpenAI</a>
-      <a href="/models/anthropic.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#d4a574;margin-right:2px"></span> Anthropic</a>
-      <a href="/models/google.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4285f4;margin-right:2px"></span> Google</a>
-      <a href="/models/deepseek.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4caf50;margin-right:2px"></span> DeepSeek</a>
-      <a href="/models/xiaomi.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#ff6f00;margin-right:2px"></span> 小米</a>
-      <a href="/models/others.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#9c27b0;margin-right:2px"></span> 其他</a>
-  </div>
-  <div class="list" style="display:flex;flex-wrap:wrap;gap:8px">
-    <a href="/models/gpt55.html">GPT-5.5</a>
-      <a href="/models/gpt54.html">GPT-5.4</a>
-      <a href="/models/gpt54m.html">GPT-5.4 mini</a>
-      <a href="/models/claude4o.html">Claude 4 Opus</a>
-      <a href="/models/claude4s.html">Claude 4 Sonnet</a>
-      <a href="/models/claude4h.html">Claude 4 Haiku</a>
-      <a href="/models/gem25p.html">Gemini 2.5 Pro</a>
-      <a href="/models/gem25f.html">Gemini 2.5 Flash</a>
-      <a href="/models/dsv4f.html">DeepSeek V4 Flash</a>
-      <a href="/models/dsv4p.html">DeepSeek V4 Pro</a>
-      <a href="/models/mimov25.html">MiMo V2.5</a>
-      <a href="/models/mimov25p.html">MiMo V2.5 Pro</a>
-      <a href="/models/qwen3m.html">Qwen3 Max</a>
-      <a href="/models/qw32p.html">Qwen3 Plus</a>
-      <a href="/models/mistrall.html">Mistral Large</a>
-      <a href="/models/grok3.html">Grok 3</a>
-  </div>
-
-<div class="related-tools" style="margin-top:16px">
-  <h3>📂 模型目录</h3>
-  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
-    <a href="/models/openai.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#0f3460;margin-right:2px"></span> OpenAI</a>
-      <a href="/models/anthropic.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#d4a574;margin-right:2px"></span> Anthropic</a>
-      <a href="/models/google.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4285f4;margin-right:2px"></span> Google</a>
-      <a href="/models/deepseek.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4caf50;margin-right:2px"></span> DeepSeek</a>
-      <a href="/models/xiaomi.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#ff6f00;margin-right:2px"></span> 小米</a>
-      <a href="/models/others.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#9c27b0;margin-right:2px"></span> 其他</a>
-  </div>
-  <div class="list" style="display:flex;flex-wrap:wrap;gap:8px">
-    <a href="/models/gpt55.html">GPT-5.5</a>
-      <a href="/models/gpt54.html">GPT-5.4</a>
-      <a href="/models/gpt54m.html">GPT-5.4 mini</a>
-      <a href="/models/claude4o.html">Claude 4 Opus</a>
-      <a href="/models/claude4s.html">Claude 4 Sonnet</a>
-      <a href="/models/claude4h.html">Claude 4 Haiku</a>
-      <a href="/models/gem25p.html">Gemini 2.5 Pro</a>
-      <a href="/models/gem25f.html">Gemini 2.5 Flash</a>
-      <a href="/models/dsv4f.html">DeepSeek V4 Flash</a>
-      <a href="/models/dsv4p.html">DeepSeek V4 Pro</a>
-      <a href="/models/mimov25.html">MiMo V2.5</a>
-      <a href="/models/mimov25p.html">MiMo V2.5 Pro</a>
-      <a href="/models/qwen3m.html">Qwen3 Max</a>
-      <a href="/models/qw32p.html">Qwen3 Plus</a>
-      <a href="/models/mistrall.html">Mistral Large</a>
-      <a href="/models/grok3.html">Grok 3</a>
-  </div>
 </div>
 
-<!-- CTA -->
+<!-- Tools -->
+<section style="margin-bottom:36px">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+    <h2 style="font-size:1.2rem;font-weight:600">🔧 工具实测</h2>
+    <a href="/compare-ai-coding-tools" style="font-size:0.85rem;color:var(--orange);text-decoration:none">全部 →</a>
+  </div>
 <section class="tool-section">
   <h3><svg class="ico ico-xl"><use href="#i-rocket"/></use></svg> 直达官方</h3>
   <div class="tool-grid">
@@ -670,7 +190,18 @@ a:hover{color:var(--fs-blue-hover)!important}
   </div>
 </section>
 
-</main>
+
+</section>
+
+<!-- Stats -->
+<div style="display:flex;justify-content:center;gap:40px;padding:24px 0 8px;border-top:1px solid var(--border);flex-wrap:wrap;margin-top:12px">
+  <div style="text-align:center"><div style="font-size:1.5rem;font-weight:700;color:var(--orange)">26</div><div style="font-size:0.8rem;color:var(--text-secondary);margin-top:2px">文章</div></div>
+  <div style="text-align:center"><div style="font-size:1.5rem;font-weight:700;color:var(--orange)">100+</div><div style="font-size:0.8rem;color:var(--text-secondary);margin-top:2px">模型价格</div></div>
+  <div style="text-align:center"><div style="font-size:1.5rem;font-weight:700;color:var(--orange)">20+</div><div style="font-size:0.8rem;color:var(--text-secondary);margin-top:2px">工具对比</div></div>
+  <div style="text-align:center"><div style="font-size:1.5rem;font-weight:700;color:var(--orange)">1300+</div><div style="font-size:0.8rem;color:var(--text-secondary);margin-top:2px">读者</div></div>
+</div>
+
+</div>
 
 <footer class="footer" style="text-align:center">
   <div><a href="https://pingyeai.cn">pingyeai.cn</a> — 平野AI工具站</div>
@@ -680,80 +211,15 @@ a:hover{color:var(--fs-blue-hover)!important}
   <div class="footer-links-after" aria-hidden="true"></div>
 </footer>
 
+<style>
+.hover-card:hover{box-shadow:var(--shadow-hover)!important;transform:translateY(-3px);border-color:var(--orange)!important}
+.dark .table-wrap thead{background:var(--bg)!important}
+.dark .table-wrap tbody td{color:var(--text)!important}
+.dark .tool-card{background:var(--bg-card)!important;border-color:var(--border)!important}
+@media(max-width:640px){[style*="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))"]{grid-template-columns:1fr!important}}
+</style>
 <script>
-// Navigation hamburger
-document.getElementById('hamburgerBtn').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.toggle('open');
-});
-// Active nav link
-document.querySelectorAll('.nav-links a').forEach(a => {
-  if(a.getAttribute('href') === window.location.pathname) a.classList.add('active');
-});
-
-// Data
-const COLORS = { openai:'#0f3460', anthropic:'#d4a574', google:'#4285f4', deepseek:'#4caf50', xiaomi:'#ff6f00', others:'#9c27b0' };
-const BAR_COLORS = ['#0f3460','#1565c0','#d4a574','#8d6e63','#4285f4','#4fc3f7','#4caf50','#66bb6a','#9c27b0','#e91e63','#ff6f00','#f44336','#00897b','#546e7a','#795548','#37474f'];
-
-const apiModels = [
-  { id:'gpt55', name:'GPT-5.5', prov:'openai', input:5.00, output:30.00, cache:0.50, ctx:'128K', tags:['flagship','recent'], note:'旗舰推理模型' },
-  { id:'gpt54', name:'GPT-5.4', prov:'openai', input:2.50, output:15.00, cache:0.25, ctx:'128K', tags:['popular'], note:'性价比编程模型' },
-  { id:'gpt54m', name:'GPT-5.4 mini', prov:'openai', input:0.75, output:4.50, cache:0.075, ctx:'128K', tags:['cheap'], note:'最强mini模型' },
-  { id:'claude4o', name:'Claude 4 Opus', prov:'anthropic', input:15.00, output:75.00, cache:7.50, ctx:'200K', note:'旗舰推理+深度分析', tags:['flagship'] },
-  { id:'claude4s', name:'Claude 4 Sonnet', prov:'anthropic', input:3.00, output:15.00, cache:1.50, ctx:'200K', note:'平衡速度与质量', tags:['popular'] },
-  { id:'claude4h', name:'Claude 4 Haiku', prov:'anthropic', input:0.25, output:1.25, cache:0.125, ctx:'200K', note:'快速轻量', tags:['cheap'] },
-  { id:'gem25p', name:'Gemini 2.5 Pro', prov:'google', input:3.50, output:10.50, cache:1.05, ctx:'2M', note:'长上下文+多模态', tags:['flagship'] },
-  { id:'gem25f', name:'Gemini 2.5 Flash', prov:'google', input:0.15, output:0.60, cache:0.03, ctx:'1M', note:'最快响应速度', tags:['cheap','popular'] },
-  { id:'dsv4f', name:'DeepSeek V4 Flash', prov:'deepseek', input:0.14, output:0.28, cache:0.0028, ctx:'1M', note:'思维链+1M上下文', tags:['cheap','best'] },
-  { id:'dsv4p', name:'DeepSeek V4 Pro', prov:'deepseek', input:1.74, output:3.48, cache:0.0145, ctx:'1M', note:'75%折扣至5/31', tags:['popular'] },
-  { id:'mimov25', name:'MiMo V2.5', prov:'xiaomi', input:0.14, output:0.28, cache:0.0028, ctx:'128K', tags:['cheap','best'], note:'极致性价比，V2.5标准版' },
-  { id:'mimov25p', name:'MiMo V2.5 Pro', prov:'xiaomi', input:0.435, output:0.87, cache:0.0036, ctx:'128K', tags:['popular'], note:'旗舰推理模型' },
-  { id:'qwen3m', name:'Qwen3 Max', prov:'others', input:2.00, output:8.00, cache:null, ctx:'128K', note:'阿里旗舰', tags:['popular'] },
-  { id:'qw32p', name:'Qwen3 Plus', prov:'others', input:0.50, output:2.00, cache:null, ctx:'128K', note:'性价比之选', tags:['cheap'] },
-  { id:'mistrall', name:'Mistral Large', prov:'others', input:2.00, output:6.00, cache:null, ctx:'128K', note:'欧洲最强', tags:[] },
-  { id:'grok3', name:'Grok 3', prov:'others', input:2.00, output:10.00, cache:null, ctx:'128K', note:'xAI 旗舰', tags:['popular'] },
-];
-
-const subModels = [
-  { name:'ChatGPT Plus', price:'$20/月', models:'GPT-5.5, GPT-5.4, GPT-5.4 mini', limit:'有使用上限，高容量', suit:'日常使用、轻度编程' },
-  { name:'ChatGPT Pro', price:'$200/月', models:'GPT-5.5 无限', limit:'无限使用，优先排队', suit:'重度用户、专业开发' },
-  { name:'Claude Pro', price:'$20/月', models:'Claude 4 Sonnet, Haiku', limit:'有使用上限', suit:'深度分析、写作' },
-  { name:'Claude Max', price:'$100/月', models:'Claude 4 Opus 无限', limit:'无限使用', suit:'企业级深度分析' },
-  { name:'Gemini Advanced', price:'$19.99/月', models:'Gemini 2.5 Pro, Flash', limit:'有上限，含Google One', suit:'多模态、长上下文' },
-  { name:'DeepSeek Chat', price:'免费', models:'V4 Flash', limit:'无限免费', suit:'轻度使用、尝鲜' },
-  { name:'GitHub Copilot', price:'$10/月', models:'GPT-5.4, Claude 4 Sonnet', limit:'2000次/月补全', suit:'开发者编程辅助' },
-  { name:'Cursor Pro', price:'$20/月', models:'GPT-5.5, Claude 4', limit:'500次高级模型/月', suit:'AI优先代码编辑器' },
-];
-
-function renderApiTable(data){
-  const tbody = document.getElementById('apiTableBody');
-  tbody.innerHTML = data.map(m => {
-    const initial = m.name.split(' ')[0][0];
-    const tags = (m.tags||[]).map(t => `<span class="tag tag-${t}">${{recent:'最新',popular:'热门',flagship:'旗舰',best:'推荐',cheap:'超值'}[t]||t}</span>`).join('');
-    const cacheStr = m.cache !== null ? '$'+m.cache.toFixed(m.cache<1?4:2) : '—';
-    return '<tr><td><span class="prov-logo" style="background:'+COLORS[m.prov]+'">'+initial+'</span>'+m.name+tags+'</td><td class="price-input">$'+m.input.toFixed(2)+'</td><td class="price-output">$'+m.output.toFixed(2)+'</td><td>'+cacheStr+'</td><td>'+m.ctx+'</td><td style="font-size:0.8rem;color:#666">'+(m.note||'')+'</td></tr>';
-  }).join('');
-}
-function renderSubTable(){
-  const tbody = document.getElementById('subTableBody');
-  tbody.innerHTML = subModels.map(m => '<tr><td style="font-weight:600">'+m.name+'</td><td class="'+(m.price=='免费'?'price-free':'price-sub')+'">'+m.price+'</td><td style="font-size:0.85rem">'+m.models+'</td><td style="font-size:0.85rem;color:#666">'+m.limit+'</td><td style="font-size:0.85rem;color:#666">'+m.suit+'</td></tr>').join('');
-}
-function renderChart(data){
-  const sorted = [...data].sort((a,b) => a.input - b.input);
-  const max = sorted[sorted.length-1].input;
-  const container = document.getElementById('apiChartBars');
-  container.innerHTML = sorted.map((m,i) => {
-    const pct = (m.input / max * 100).toFixed(1);
-    return '<div class="chart-bar"><div class="label-row"><span>'+m.name+'</span><span>$'+m.input.toFixed(2)+'</span></div><div class="bar-track"><div class="bar-fill" style="width:'+pct+'%;background:'+BAR_COLORS[i%BAR_COLORS.length]+'">'+(pct>15?'$'+m.input.toFixed(m.input<1?4:2):'')+'</div></div></div>';
-  }).join('');
-}
-let currentFilter='all',currentSearch='';
-const provMap={openai:['openai'],anthropic:['anthropic'],google:['google'],deepseek:['deepseek'],xiaomi:['xiaomi'],others:['others']};
-function filterData(){return apiModels.filter(m=>{if(currentFilter!=='all'&&!provMap[currentFilter].includes(m.prov))return false;if(currentSearch&&!m.name.toLowerCase().includes(currentSearch.toLowerCase()))return false;return true;});}
-function update(){const data=filterData();renderApiTable(data);renderChart(data);}
-document.getElementById('searchInput').addEventListener('input',e=>{currentSearch=e.target.value;update();});
-document.getElementById('providerFilter').addEventListener('change',e=>{currentFilter=e.target.value;update();});
-document.querySelectorAll('.tab-nav button').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.tab-nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.tab-content').forEach(tc=>tc.style.display='none');document.getElementById('tab-'+btn.dataset.tab).style.display='';});});
-renderSubTable();update();
+document.getElementById('hamburgerBtn')?.addEventListener('click',()=>{document.getElementById('navLinks').classList.toggle('open');});
 </script>
 </body>
 </html>

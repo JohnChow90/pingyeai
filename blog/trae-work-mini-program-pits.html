@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>周末两天，用TRAE WORK给娃做了个小程序 | 平野AI工具站</title>
+<link rel="alternate" type="application/rss+xml" title="平野AI工具站" href="/feed.xml">
+<meta name="description" content="非技术背景，用TRAE WORK两天做出一个微信小程序。AI修A崩B、Web迁小程序全重做、删掉的功能AI自己又加回来……4个和AI协作踩过的坑，也是4个避坑经验。">
+<meta name="keywords" content="AI工具,AI编程,TRAE WORK,小程序,公众号文章,踩坑,避坑,平野先生">
+<link rel="canonical" href="https://pingyeai.cn/blog/trae-work-mini-program-pits">
+<meta property="og:title" content="周末两天，用TRAE WORK给娃做了个小程序">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-07-05">
+<meta property="article:author" content="John Chow">
+<style></style>
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?8787f6e4c29bc3acc5812750c378a195";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+</head>
+<body>
+<link rel="stylesheet" href="/style.css">
+<nav class="navbar">
+<div class="container" style="display:flex;align-items:center;justify-content:space-between;padding:10px 20px">
+<a href="/" class="logo"><img src="/logo.jpg" alt="平野AI" class="logo-img" width="28" height="28"> <span>平野</span>AI</a>
+<button class="hamburger" id="hamburgerBtn" aria-label="菜单"><svg class="ico ico-lg"><use href="#i-menu"/></svg></button>
+<div class="nav-links" id="navLinks">
+<a href="/">首页</a>
+<a href="/models/">模型目录</a>
+<a href="/compare-ai-coding-tools">编程工具对比</a>
+<a href="/blog/" class="active">博客</a>
+</div>
+</div>
+</nav>
+
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+<symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+</svg>
+
+<div class="container">
+<header class="article-header">
+<h1>周末两天，用TRAE WORK给娃做了个小程序</h1>
+<div class="article-meta"><span><svg class="ico"><use href="#i-calendar"/></svg> 2026年7月5日</span><span><svg class="ico"><use href="#i-pen"/></svg> John Chow</span></div>
+</header>
+
+<div class="copyright-notice">
+<div class="icon">©️</div>
+<h3>原创文章，转载请注明出处</h3>
+<p>本文为「平野先生玩AI」原创内容，转载请注明出处。侵权必究。</p>
+</div>
+
+<article class="article-body">
+<p>你好，我是平野先生。</p>
+<p>家里小朋友马上一年级，自从接触vibe coding，一直想做个课本同步学习工具帮他学——同步课本知识、动画讲解、可以自主跟学的小程序。</p>
+<p>之前倒是做过两个网页应用，从来没碰过小程序开发，一开始只是想试试，没想到最后真的做成了。过程中踩了不少坑，可当小程序预览出来完整能跑的时候，还是有点抑制不住的兴奋。</p>
+<p>全程用TRAE WORK，聊想法、讨论方案，Design模式做前端，Code模式实现功能。坐下来写这篇复盘文章的时候，小程序后台正在审核。</p>
+<p>下面就和你分享记录一下主要开发过程，以及复盘下来踩到了哪些坑、怎么避坑。</p>
+<h2>聊想法，讨论方案</h2>
+<p>最开始脑子里只有一个很模糊的想法：给家里即将上一年级的小朋友做一个可以帮他学习的工具，可以在平板上用，能辅助小朋友学习课本知识。</p>
+<p>我没学过编程，也不懂小程序该怎么开发。先让TRAE WORK做市场调研，有哪些功能接近的成熟产品，再结合我自己想实现的功能，让它写了一份开发计划方案。方案看着挺像那么回事——先做哪个、后做哪个，每一步该干什么，写得清清楚楚。</p>
+<h2>做MVP</h2>
+<p>先用Design模式做前端，说实话一开始半信半疑。结果一做发现这东西确实行。首页、课程页、星空页、家长设置页，一路做下来，不对马上改。最惊喜的是星空页——方案里只写了一行"深蓝夜空，金色星星"，结果TRAE WORK渲染出来的效果几乎和我想要的一模一样。</p>
+<p>那一下的感觉：哇哦，这东西真能干活。</p>
+<p>前端差不多了，换Code模式做功能。这里TRAE WORK问了几个问题，技术性的东西不懂，直接选了推荐的选项，这给后续开发挖了个大坑，先按下不表，后面会展开说。</p>
+<p>TRAE WORK自己从网上搜索课程数据填进去，学习进度记录功能、星空怎么亮起来也接上了。搞完之后给了我一个本地html链接跑测试——能点、能翻、能记录。</p>
+<p>接着给学习内容增加拼音标注，这是耗费时间最长的一步。因为不懂给汉字标注拼音的标准，一开始描述的不准确，不是标注不全，就是没有和汉字对齐，要么就是拼音和汉字字间距不一致拼音被压缩、截断……各种问题，五花八门，中间也试过切换大模型看能不能修复，最后实在不想一点一点截图描述了，大模型停在了Doubao-Seed-2.1-Pro，让它自己全面检查、修复拼音标注存在的问题，上了个厕所回来，自己修复好了。</p>
+<h2>小程序迁移</h2>
+<p>小程序需要AppID才能真机预览，当时还没拿到AppID，也不知道微信开发者工具可以用测试号。TRAE WORK提了一个方案：先用网页把功能跑通，在浏览器里看效果，没问题了再迁到小程序工程。听起来很合理——不用去注册、不用额外等、马上能看到。</p>
+<p>我就这么干了。现在回头看，这个决定才是整个开发过程最绕远的路。</p>
+<p>从最开始模糊的想法，到体验版，折腾了两个晚上加一个白天。复盘总结了整个开发过程中踩的比较大的坑，如果你也想做小程序，可能会对你有帮助。</p>
+<h3>1：头疼医头，脚痛医脚</h3>
+<p>这个坑贯穿了整个开发过程。</p>
+<p>做拼音标注的时候，让TRAE WORK给汉字标上拼音。它标好了，一刷新页面——拼音正常，汉字全没了，只剩拼音。它查完说字号继承了外层的零，看不见了。修好了。</p>
+<p>切学期，打开星空页——星星还是上学期的。让它改了，下次切又没刷新。同一个问题反复出现。</p>
+<p>改拼音布局，页面撑变形了。让它删一个不用的按钮，按钮图标没了，后台的引用还在，一运行就报错。</p>
+<p>发现没有？所有问题的模式一模一样：我说一个事→它改一处→别的地方崩了→发现了再让它改→它再改那一处→又不知道牵连到哪。</p>
+<p>后来我想了个笨办法：每次让它改完东西，不管大改小改，都加一句"把整个项目从头到尾检查一遍，看我说的这个改动有没有影响到其他地方"。多花几分钟，但至少能规避大部分关联问题。</p>
+<h3>2：推荐了一条看似更快其实绕远的路</h3>
+<p>做小程序要上真机测试才能预览功能，需要AppID，一开始没拿到AppID。TRAE WORK提了一个方案：先用网页把功能跑通，在浏览器里看效果，没问题了再迁到小程序工程。</p>
+<p>听起来很合理——不用去注册、不用额外等、马上能看到。我就这么干了。</p>
+<p>等全做完了，往小程序迁的时候才发现不是那么回事。3D星空在浏览器上跑得飞起，到了小程序白屏卡死；拼音标注在网页上对齐得好好的，搬到小程序又全部重做；前前后后加起来，超过1/3的功能等于做了两遍。</p>
+<p>回过头想，TRAE WORK提的方案听起来确实很顺，但我自己也点了头。我不会写代码，看不穿"先跑Web再迁移"这句话背后意味着什么，结果就是一步变四步：开发完→Web验证→迁移→再适配。</p>
+<p>后面再做vibe coding，coding之前我会让它列清楚从计划方案到出预览分哪几步走，都需要提前准备哪些东西，准备齐全了再动手。</p>
+<h3>3：你以为把需求说清楚了，不代表AI听懂了</h3>
+<p>"加个设置入口"——就这么一句话，TRAE WORK在页面右上角画了一个齿轮图标，点进去是设置页。</p>
+<p>但我要的是底部菜单栏第三个选项，点进去才是设置页。两个完全不是一回事。</p>
+<p>不是不听话，是我说得太模糊了。"设置入口"四个字，我可以理解成齿轮按钮、底部菜单、悬浮窗、右上角文字链接……一百个人有一百种理解。TRAE WORK从里面选了最常用的那个，恰好不是我要的。</p>
+<p>后来我学乖了：说需求的时候不只说"要什么"，还告诉它"不要什么"。"加个设置入口，不要放在页面右上角，不要用齿轮图标，放到底部菜单。"</p>
+<p>你说一遍，AI理解一遍，反复确认不丢人。</p>
+<h3>4：删了的东西，AI自己又加回来了</h3>
+<p>这个我是真没想到。</p>
+<p>设置入口一开始放在页面右上角，一个齿轮图标。做着做着觉得放那不好看，改成了底部菜单第三个选项。明确说"把齿轮按钮的代码删掉"。</p>
+<p>改了几轮别的东西，打开预览一看——齿轮按钮又回来了。</p>
+<p>后来才明白，大模型有历史对话记忆。它翻到前面聊天记录"看到"你提过齿轮按钮，觉得你可能还需要，改附近代码的时候就顺手帮你恢复了。它不是故意的，但确实会这么干。</p>
+<p>修法也简单：删除的时候让AI把显示、样式、功能三个文件里跟这个东西相关的代码一次清干净，再加一句"这是删除操作，后续不要恢复"。虽然听起来有点傻，但真的管用。</p>
+<hr>
+<p>两天做出一个能跑的东西，确实快。但这些坑也说明了一件事——AI不是万能的，尤其是在"从一个平台搬到另一个平台"这个环节，最需要人的经验和判断。最大的收获不是那个小程序，是怎么跟AI配合才不翻车。AI能写代码，但你得知道让它写什么、写完怎么验证，这才是真本事。</p>
+<p>而知道让AI写什么、写完怎么验证，这就是有编程背景比不懂编程最大的优势。</p>
+
+</article>
+</div>
+
+<footer class="footer" style="text-align:center;padding:30px 20px;color:#999;font-size:13px;border-top:1px solid #eee;margin-top:40px">
+<p>© 2026 平野AI工具站 · 记录AI工具的实战经验</p>
+</footer>
+
+<script>
+document.getElementById('hamburgerBtn').addEventListener('click',()=>{
+  document.getElementById('navLinks').classList.toggle('open');
+});
+</script>
+</body>
+</html>
