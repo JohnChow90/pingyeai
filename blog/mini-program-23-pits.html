@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>伴学小程序开发 · 完整踩坑记录（23个） | 平野AI工具站</title>
+<link rel="alternate" type="application/rss+xml" title="平野AI工具站" href="/feed.xml">
+<meta name="description" content="用TRAE WORK开发伴学小程序全过程，完整复盘23个踩坑记录，分前端坑、Web→小程序迁移坑、人与AI协作坑三大类，含每个坑的现象、原因、修法和教训。">
+<meta name="keywords" content="AI工具,AI编程,TRAE WORK,小程序,公众号文章,踩坑,避坑,平野先生">
+<link rel="canonical" href="https://pingyeai.cn/blog/伴学小程序踩坑完整版">
+<meta property="og:title" content="伴学小程序开发 · 完整踩坑记录（23个）">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-07-05">
+<meta property="article:author" content="John Chow">
+<style>
+</style>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_TOKEN"}'></script>
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?8787f6e4c29bc3acc5812750c378a195";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "伴学小程序开发 · 完整踩坑记录（23个）",
+  "url": "https://pingyeai.cn/blog/伴学小程序踩坑完整版.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pingyeai.cn/blog/伴学小程序踩坑完整版.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "John Chow"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "平野AI工具站"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://pingyeai.cn/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "博客",
+      "item": "https://pingyeai.cn/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "伴学小程序开发 · 完整踩坑记录（23个）"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<link rel="stylesheet" href="/style.css">
+<nav class="navbar">
+<div class="container" style="display:flex;align-items:center;justify-content:space-between;padding:10px 20px">
+<a href="/" class="logo"><img src="/logo.jpg" alt="平野AI" class="logo-img" width="28" height="28"> <span>平野</span>AI</a>
+<button class="hamburger" id="hamburgerBtn" aria-label="菜单"><svg class="ico ico-lg"><use href="#i-menu"/></svg></button>
+<div class="nav-links" id="navLinks">
+<a href="/">首页</a>
+<a href="/models/">模型目录</a>
+<a href="/compare-ai-coding-tools">编程工具对比</a>
+<a href="/blog/" class="active">博客</a>
+</div>
+</div>
+</nav>
+
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+<symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+</svg>
+
+<div class="container">
+<header class="article-header">
+<h1>伴学小程序开发 · 完整踩坑记录（23个）</h1>
+<div class="article-meta"><span><svg class="ico"><use href="#i-calendar"/></use></svg> 2026年7月5日</span><span><svg class="ico"><use href="#i-pen"/></use></svg> John Chow</span></div>
+</header>
+
+<div class="copyright-notice">
+<div class="icon">©️</div>
+<h3>原创文章，转载请注明出处</h3>
+<p>本文为「平野先生玩AI」原创内容，转载请注明出处。侵权必究。</p>
+</div>
+
+<article class="article-body">
+<p>下面是用TRAE WORK做伴学小程序开发，跑完完整流程之后复盘总结的23个坑。分为三类：前端坑（10个）、Web→小程序迁移坑（8个）、人与AI协作坑（5个）。每个坑标注了现象、原因、修法和教训。</p>
+
+<hr>
+
+<h2>一、前端坑（10个）</h2>
+
+<h3>1. rich-text里ruby标签字号继承问题</h3>
+<p><strong>现象：</strong> 古诗拼音正常显示，汉字全没了</p>
+<p><strong>原因：</strong> 外层字号设为零消除间隙，ruby标签内的汉字继承了字号0</p>
+<p><strong>修法：</strong> ruby标签显式设字号</p>
+<p><strong>教训：</strong> 小程序rich-text里每个层级都要显式设字号，别指望继承</p>
+
+<h3>2. wx:key语法错误</h3>
+<p><strong>现象：</strong> 列表渲染报错</p>
+<p><strong>原因：</strong> 写了key而不是wx:key</p>
+<p><strong>修法：</strong> 改成wx:key</p>
+<p><strong>教训：</strong> 小程序的指令前缀不能丢</p>
+
+<h3>3. Canvas 2D API版本选择</h3>
+<p><strong>现象：</strong> 新版Canvas 2D API坐标转换不稳定</p>
+<p><strong>原因：</strong> 不同基础库版本对新Canvas API支持不一致</p>
+<p><strong>修法：</strong> 改用旧版API，兼容性更好</p>
+<p><strong>教训：</strong> 小程序里API优先用旧版稳定的</p>
+
+<h3>4. tabBar页面跳转限制</h3>
+<p><strong>现象：</strong> 从tabBar页用navigateBack/navigateTo跳转不生效</p>
+<p><strong>原因：</strong> tabBar页面必须用switchTab</p>
+<p><strong>修法：</strong> tabBar页面之间用switchTab，二级页面用navigateTo</p>
+<p><strong>教训：</strong> 跳之前先想清楚目标页是不是tabBar页</p>
+
+<h3>5. 星星被header遮挡</h3>
+<p><strong>现象：</strong> 星空页前几颗星点了没反应</p>
+<p><strong>原因：</strong> 半透明header的层级比星星高，遮住了</p>
+<p><strong>修法：</strong> 调整层级或星星布局偏移</p>
+<p><strong>教训：</strong> 层级要统一规划，不要层层递加</p>
+
+<h3>6. 触摸事件坐标获取不全</h3>
+<p><strong>现象：</strong> 点击星星位置偏移</p>
+<p><strong>原因：</strong> 只取了一种坐标来源</p>
+<p><strong>修法：</strong> 做兼容处理，多种坐标来源做fallback</p>
+<p><strong>教训：</strong> 触摸坐标来源不统一，必须做兼容</p>
+
+<h3>7. button默认样式导致文字不居中</h3>
+<p><strong>现象：</strong> 按钮文字偏上或偏左</p>
+<p><strong>原因：</strong> 小程序button有默认padding、最小高度等属性</p>
+<p><strong>修法：</strong> 显式重置padding/margin，用flex居中</p>
+<p><strong>教训：</strong> 小程序组件的默认样式比HTML标签多，用之前先重置</p>
+
+<h3>8. 插件未授权导致小程序崩溃</h3>
+<p><strong>现象：</strong> 加了朗读功能后整个小程序启动失败</p>
+<p><strong>原因：</strong> 声明了插件但没去公众平台后台授权</p>
+<p><strong>修法：</strong> 先授权插件，或用try-catch包裹插件调用</p>
+<p><strong>教训：</strong> 任何第三方插件都要先授权再声明</p>
+
+<h3>9. switchTab与navigateTo混用</h3>
+<p><strong>现象：</strong> 有时能跳有时不能跳</p>
+<p><strong>原因：</strong> 搞混了哪些页是tabBar页哪些不是</p>
+<p><strong>修法：</strong> 明确区分tabBar页和非tabBar页，走不同的跳转方式</p>
+<p><strong>教训：</strong> 小程序的跳转体系比Web严格，不能混用</p>
+
+<h3>10. 学期切换后页面数据不刷新</h3>
+<p><strong>现象：</strong> 切了学期，星空页还显示老数据</p>
+<p><strong>原因：</strong> 没有检测状态变化</p>
+<p><strong>修法：</strong> 检测学期信息，变了就重新加载</p>
+<p><strong>教训：</strong> 跨页面的状态变化要有监听机制</p>
+
+<h2>二、Web→小程序迁移坑（8个）</h2>
+
+<h3>11. 3D星空跑不动</h3>
+<p><strong>现象：</strong> Web上炫酷的3D星空，到小程序里白屏5-10秒，低端机卡爆</p>
+<p><strong>原因：</strong> 小程序WebGL支持有限，库文件体积大，性能差</p>
+<p><strong>修法：</strong> 降到2D Canvas手绘星空，不炫酷但流畅</p>
+<p><strong>教训：</strong> 小程序是"简单直接"的环境，炫技要向可用性妥协</p>
+
+<h3>12. 全局样式重置不生效</h3>
+<p><strong>现象：</strong> 写的全局样式重置没有效果</p>
+<p><strong>原因：</strong> 小程序不支持Web的通用选择器写法</p>
+<p><strong>修法：</strong> 改用具体的选择器逐一写</p>
+<p><strong>教训：</strong> 小程序样式规则和Web不是一套，写之前先查官方支持列表</p>
+
+<h3>13. 没有浏览器对象可用</h3>
+<p><strong>现象：</strong> 操作页面元素的方法直接报错</p>
+<p><strong>原因：</strong> 小程序是双线程架构，逻辑层没有浏览器功能</p>
+<p><strong>修法：</strong> 全部改成改数据→自动更新界面，用小程序自带的方法获取信息</p>
+<p><strong>教训：</strong> 从Web迁移，凡是操作页面元素的代码全部要重写</p>
+
+<h3>14. 本地存储不能用</h3>
+<p><strong>现象：</strong> 本地存储报未定义</p>
+<p><strong>原因：</strong> 小程序没有浏览器那套本地存储</p>
+<p><strong>修法：</strong> 换成小程序的存储方式</p>
+<p><strong>教训：</strong> 小程序存储方式不同，迁移时要全局替换</p>
+
+<h3>15. 尺寸单位要换</h3>
+<p><strong>现象：</strong> 不同屏幕尺寸上布局比例不对</p>
+<p><strong>原因：</strong> Web的尺寸单位在小程序上显示效果不同</p>
+<p><strong>修法：</strong> 按小程序推荐的比例换算</p>
+<p><strong>教训：</strong> 响应式布局在Web和用不同的单位体系</p>
+
+<h3>16. 页面跳转体系完全不同</h3>
+<p><strong>现象：</strong> Web里随便跳，小程序里各种跳不动</p>
+<p><strong>原因：</strong> 小程序的跳转有严格规定</p>
+<p><strong>修法：</strong> 区分tabBar页和非tabBar页，用对应的跳转方式</p>
+<p><strong>教训：</strong> 小程序的导航体系比Web严格得多</p>
+
+<h3>17. 音频播放方式差异</h3>
+<p><strong>现象：</strong> Web里直接就能播音频，小程序里播不了</p>
+<p><strong>原因：</strong> 小程序必须用特定的方式创建实例</p>
+<p><strong>修法：</strong> 用小程序的音频播放方式，离开页面时手动销毁</p>
+<p><strong>教训：</strong> 小程序里创建的实例都要手动销毁，不然会出问题</p>
+
+<h3>18. Canvas触摸坐标体系不同</h3>
+<p><strong>现象：</strong> 点击canvas后位置偏移</p>
+<p><strong>原因：</strong> 小程序触摸坐标来源多样且不同</p>
+<p><strong>修法：</strong> 写兼容代码，在多个坐标来源之间做fallback</p>
+<p><strong>教训：</strong> 小程序canvas坐标要处理多个来源</p>
+
+<h2>三、人与AI协作坑（5个）</h2>
+
+<h3>19. AI修一个问题引入两个新问题</h3>
+<p><strong>现象：</strong> 修了拼音布局，撑开了整个页面；删了按钮，引用还在</p>
+<p><strong>原因：</strong> AI是点对点改代码，全局影响评估不全</p>
+<p><strong>修法：</strong> 每次改完让AI跑全量检查，不只改你说的地方</p>
+<p><strong>教训：</strong> 用AI改代码，你必须是审核的人，不是监工</p>
+
+<h3>20. AI把删掉的东西又加回来了</h3>
+<p><strong>现象：</strong> 齿轮按钮删了两次，后续修改又被恢复</p>
+<p><strong>原因：</strong> 大模型有历史对话记忆，它可能推断你还需要</p>
+<p><strong>修法：</strong> 删除时一次性清掉所有相关文件代码，再搜索确认无残留</p>
+<p><strong>教训：</strong> 删除操作要明确告诉AI，后续修改不要恢复</p>
+
+<h3>21. AI加功能时不考虑前提条件</h3>
+<p><strong>现象：</strong> 声明了插件但没授权，整个小程序崩溃</p>
+<p><strong>原因：</strong> AI只管"要实现X需要什么"，不管前提条件</p>
+<p><strong>修法：</strong> 让AI加第三方服务时，每次问一句"如果这个服务不可用会怎样"</p>
+<p><strong>教训：</strong> 防御性代码AI不会主动写，你得提醒它</p>
+
+<h3>22. AI会重复犯同样的错误</h3>
+<p><strong>现象：</strong> 同一个问题在不同页面反复出现</p>
+<p><strong>原因：</strong> AI没有从上一个bug学习的能力</p>
+<p><strong>修法：</strong> 修完让AI全局搜索相似模式，一次性全改</p>
+<p><strong>教训：</strong> 修bug时让AI顺便在整个代码库里排查同一类问题</p>
+
+<h3>23. 需求沟通要具体</h3>
+<p><strong>现象：</strong> 说"加个设置入口"，AI加了个按钮，但你要的是菜单选项</p>
+<p><strong>原因：</strong> 自然语言的模糊性，"入口"可以是一百种东西</p>
+<p><strong>修法：</strong> 说需求时多给一个参考例子，或明确"不是X是Y"</p>
+<p><strong>教训：</strong> 对AI说话越具体，它做出来的越接近你想要的</p>
+
+<hr>
+
+<p>以上23个坑，三类别，标注了每个坑的"现象→原因→修法→教训"，可直接作为避坑参考。</p>
+</article>
+</div>
+
+<footer class="footer" style="text-align:center;padding:30px 20px;color:#999;font-size:13px;border-top:1px solid #eee;margin-top:40px">
+<p>© 2026 平野AI工具站 · 记录AI工具的实战经验</p>
+</footer>
+
+<script>
+document.getElementById('hamburgerBtn').addEventListener('click',()=>{
+  document.getElementById('navLinks').classList.toggle('open');
+});
+</script>
+</body>
+</html>
