@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用TRAE Work Design模式做完3个项目，总结出3个工作流和4个坑 | 平野AI工具站</title>
+<link rel="alternate" type="application/rss+xml" title="平野AI工具站" href="/feed.xml">
+<meta name="description" content="用TRAE Work Design模式做了伴学小程序、数据看板、内容创作助手三个项目，总结出三种工作流和四个避坑经验。">
+<meta name="keywords" content="TRAE WORK,Design模式,AI设计,AI工具,公众号文章,平野先生,踩坑">
+<link rel="canonical" href="https://pingyeai.cn/blog/trae-work-design-3-workflows">
+<meta property="og:title" content="用TRAE Work Design模式做完3个项目，总结出3个工作流和4个坑">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-07-07">
+<meta property="article:author" content="John Chow">
+<style></style>
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?8787f6e4c29bc3acc5812750c378a195";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+</head>
+<body>
+<link rel="stylesheet" href="/style.css">
+<nav class="navbar">
+<div class="container" style="display:flex;align-items:center;justify-content:space-between;padding:10px 20px">
+<a href="/" class="logo"><img src="/logo.jpg" alt="平野AI" class="logo-img" width="28" height="28"> <span>平野</span>AI</a>
+<button class="hamburger" id="hamburgerBtn" aria-label="菜单"><svg class="ico ico-lg"><use href="#i-menu"/></svg></button>
+<div class="nav-links" id="navLinks">
+<a href="/">首页</a>
+<a href="/models/">模型目录</a>
+<a href="/compare-ai-coding-tools">编程工具对比</a>
+<a href="/blog/" class="active">博客</a>
+</div>
+</div>
+</nav>
+
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+<symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+</svg>
+
+<div class="container">
+<header class="article-header">
+<h1>用TRAE Work Design模式做完3个项目，总结出3个工作流和4个坑</h1>
+<div class="article-meta"><span><svg class="ico"><use href="#i-calendar"/></svg> 2026年07年07</span><span><svg class="ico"><use href="#i-pen"/></svg> John Chow</span></div>
+</header>
+
+<div class="copyright-notice">
+<div class="icon">©️</div>
+<h3>原创文章，转载请注明出处</h3>
+<p>本文为「平野先生玩AI」原创内容，转载请注明出处。侵权必究。</p>
+</div>
+
+<article class="article-body">
+<p>前两天终于用TRAE Work的Design模式把三个项目UI部分都做完了。</p>
+<p>伴学小程序从0到1做的原型已经用到初代版本上，数据看板做了局部UI调整、内容创作助手做了整体UI升级换代。</p>
+<p>前后折腾了一周多，中间推翻重来了好几次。</p>
+<p>三个项目做下来，踩了不少坑，也试出了几条比较顺手的路径。我把它们整理成3个工作流，分别对应三种不同类型的项目。</p>
+<p>如果你也在用TRAE Work或者类似的AI设计工具，这几个流程可以直接拿去参考。</p>
+<h2>三个项目，三种场景</h2>
+<p>Design模式上线到现在，先后跑完了三个项目：</p>
+<p><strong>伴学小程序从0到1做原型</strong>——最完整的一次Design模式流程。没有现成UI，只有一个功能想法，从风格选择到需求描述、画布迭代到导出开发，走了一遍完整的从0到1链路。</p>
+<p><strong>数据看板做UI调整</strong>——小范围改造的典型场景。一个页面，改配色和组件样式，不需要规划阶段，直接上传截图描述需求就出效果。</p>
+<p><strong>内容创作助手整体UI升级换代</strong>——规模最大的一次。涉及十一个功能页面，不能一张一张地调，得先做规划再用设计系统锁死规则，再逐页批量升级。</p>
+<h2>三个场景 × 三个工作流</h2>
+<h3>第一次做新项目，一片空白怎么开始</h3>
+<p><em>对应项目：</em>伴学小程序从0到1做原型</p>
+<p><em>适用场景：</em>新项目启动、没有现有UI可以参考，只有一个功能想法，直接进Design模式。</p>
+<p>关键就在描述需求这一步——把页面类型、核心内容、目标用户都说清楚，出来的东西才靠谱。</p>
+<p>我第一版就吃了这个亏，只说了"做一个学习工具的首页"，出来一个花里胡哨的页面，完全没法用。第二次我把"给一年级小朋友用的，按钮要大、字号要舒服、不要太多文字"说进去了，结果明显不一样。</p>
+<h3>改一两个页面，不大动干戈</h3>
+<p><em>对应项目：</em>数据看板UI调整</p>
+<p><em>适用场景：</em>单页面改版、局部组件样式调整、小范围视觉优化</p>
+<p>一个页面，改配色和组件样式，不需要规划阶段，直接动手。</p>
+<p>上传截图这一步很关键。我试过只描述不传图，不是找不准要修改的内容，就是出来的东西跟原来的页面风格对不上。传了截图之后，AI能识别要修改的内容、现有样式，改起来准很多。</p>
+<h3>整个系统改头换面，担心改完风格不统一</h3>
+<p><em>对应项目：</em>内容创作助手整体UI升级换代</p>
+<p><em>适用场景：</em>多模块UI升级、全站UI大改版、跨多个功能模块的系统性改造</p>
+<p>涉及十一个功能页面，不能一张一张地调，需要先做规划再用设计系统锁死规则。</p>
+<p>第一步的规划环节我走了弯路。一开始直接进Design模式一页一页改，改到第三页发现风格跟第二页对不上，又回去重来。总感觉做出来的效果不对味儿，换了个设计系统，用/spec先出一个改造大纲，把涉及哪些页面、改什么风格、优先级排好，后面就顺了。</p>
+<p>第二步选设计系统的时候，内置的够用，按自己的审美喜好选就行。如果没有喜欢的，或者你的项目有现成的设计规范，可以提前创建自定义设计系统导入进去。</p>
+<h2>踩的坑</h2>
+<h3>坑1：需求表达不清晰</h3>
+<p>这个坑在伴学小程序原型和数据看板局部UI升级时候都踩过。比如让TRAE Work加一个设置页面，只说了一句"增加一个设置页面"，它直接在右上角做了个齿轮图标，其实我想要的是一个"我的"菜单。数据看板想升级一个饼图样式，简单说了句"把这个饼图升级，增加呈现总额数值"，它直接把饼图改成了环状图。</p>
+<p>涨了经验：尽可能清楚描述想要的实际效果——做什么功能、大概长什么样。如果自己说不清楚，有两个办法实测有效：（1）描述完以后加一句"请在这个基础上增强提示词，我确认过以后再开始执行"；（2）不知道怎么准确描述的画面，直接把截图扔给Design，它会根据图片理解你的意图。</p>
+<p>需求表达容易出问题，不完全是用户的原因。TRAE Work的Work、Code、Design三个模式目前都没有提示词增强功能，纯自然语言描述到AI理解出错的概率自然高。它的姊妹app TRAE CN是有这个功能的，竞品WorkBuddy提示词增强功能也已经上线了，不知道TRAE Work后面会不会补上。</p>
+<h3>坑2：系统UI升级没划定升级范围</h3>
+<p>给内容创作助手升级全局UI时，没明确说需要升级所有功能界面，Design模式自己挑了4个页面做了效果，做完才发现漏了，又补充说明才逐一补上。</p>
+<p>涨了经验：清楚告诉AI要改的是哪个界面、哪个图形、哪个按钮，其他的不要动。</p>
+<h3>坑3：没有要求先画原型再做代码</h3>
+<p>这个坑代价最大，数据看板和内容创作助手两次都踩了。进Design模式以后直接说"帮我升级UI"，Design以为可以直接改代码，画原型、改代码在后台一顿操作，改完了才给预览。这时候发现不满意，已经来不及调了。</p>
+<p>涨了经验：说完需求以后加一句"先画原型图，预览效果没问题了再应用到代码层"。</p>
+<h3>坑4：预览切换会卡死</h3>
+<p>Design模式画布中可以切换网页端、平板、手机端预览效果，但切换操作经常卡死，只能关掉重进。不算高频，遇到了挺烦的，建议每次切换完等一两秒再操作。</p>
+<p>整体用下来Design模式完成度不错，如果提示词增强功能能补上，体验还能再好一截。</p>
+<p>这几个工作流我还会继续用，觉得有用可以直接拿走。</p>
+</article>
+</div>
+
+<footer class="footer" style="text-align:center;padding:30px 20px;color:#999;font-size:13px;border-top:1px solid #eee;margin-top:40px">
+<p>© 2026 平野AI工具站 · 记录AI工具的实战经验</p>
+</footer>
+
+<script>
+document.getElementById('hamburgerBtn').addEventListener('click',()=>{
+  document.getElementById('navLinks').classList.toggle('open');
+});
+</script>
+</body>
+</html>

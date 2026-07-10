@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI编程工具横向对比 2026 — Claude Code vs Codex vs Trae SOLO | 平野AI工具站</title>
+<title>AI编程工具横向对比 2026 — Claude Code vs Codex vs Trae SOLO vs WorkBuddy | 平野AI工具站</title>
 <link rel="alternate" type="application/rss+xml" title="平野AI工具站" href="/feed.xml">
 
-<meta name="description" content="全面对比Claude Code、OpenAI Codex、Trae SOLO三大AI编程工具的功能、价格、适用场景，帮你选最适合的AI编程助手。">
-<meta name="keywords" content="AI编程工具对比,Claude Code,Codex,Trae SOLO,Cursor,Copilot,AI编程助手">
+<meta name="description" content="全面对比Claude Code、OpenAI Codex、Trae SOLO、WorkBuddy四大AI编程/办公工具的功能、价格、适用场景，帮你选最适合的工具。">
+<meta name="keywords" content="AI编程工具对比,Claude Code,Codex,Trae SOLO,WorkBuddy,Cursor,Copilot,AI编程助手">
 <link rel="canonical" href="https://pingyeai.cn/compare-ai-coding-tools">
-<meta property="og:title" content="AI编程工具横向对比 2026">
+<meta property="og:title" content="AI编程工具横向对比 2026 — 新增WorkBuddy">
 <meta property="og:description" content="Claude Code vs Codex vs Trae SOLO，选哪个？一表看懂。">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -137,7 +137,7 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',
   "@type": "WebSite",
   "name": "AI编程工具横向对比 2026",
   "url": "https://pingyeai.cn/compare-ai-coding-tools",
-  "description": "全面对比Claude Code、OpenAI Codex、Trae SOLO三大AI编程工具的功能、价格、适用场景"
+  "description": "全面对比Claude Code、OpenAI Codex、Trae SOLO、WorkBuddy四大AI编程/办公工具的功能、价格、适用场景"
 }
 </script>
 <style>
@@ -319,15 +319,23 @@ a:hover{color:var(--fs-blue-hover)!important}
       <a href="/models/">模型目录</a>
       <a href="/compare-ai-coding-tools" class="active" class="active"><svg class="ico"><use href="#i-tool"/></use></svg>编程工具对比</a>
       <a href="/blog/">博客</a>    </div>
-  </div>
+  
+    <div class="comp-card wb">
+      <div class="icon"><svg class="ico ico-xl"><use href="#i-bot"/></use></svg> </div>
+      <h3>WorkBuddy</h3>
+      <div class="maker">by 腾讯云</div>
+      <p>多模态AI Agent办公工具，支持编程、文档、设计、数据分析等多种任务。集成MCP协议、Skill/Plugin体系，可自主规划并交付复杂任务结果。</p>
+      <a class="btn btn-primary" href="https://workbuddy.tencent.com" target="_blank" rel="noopener">了解详情 →</a>
+    </div>
+</div>
 </nav>
 
 <header class="hero">
   <div class="container">
     <h1><svg class="ico ico-xl"><use href="#i-tool"/></use></svg> <span>AI编程工具</span>横向对比 2026</h1>
-    <p>Claude Code vs OpenAI Codex vs Trae SOLO — 功能、价格、适用场景全对比</p>
+    <p>Claude Code vs OpenAI Codex vs Trae SOLO vs WorkBuddy — 四大AI编程/办公工具全对比</p>
     <div class="badge">
-      <span>🆚 3大工具</span>
+      <span>🆚 4大工具</span>
       <span><svg class="ico ico-xl"><use href="#i-chart"/></use></svg> 22项维度</span>
       <span><svg class="ico"><use href="#i-search"/></use></svg> 场景推荐</span>
     </div>
@@ -340,7 +348,7 @@ a:hover{color:var(--fs-blue-hover)!important}
 <!-- Introduction -->
 <!-- ====== Summary Cards ====== -->
 <section class="section">
-  <h2><span class="emoji"><svg class="ico"><use href="#i-list"/></use></svg> </span> 三大工具速览</h2>
+  <h2><span class="emoji"><svg class="ico"><use href="#i-list"/></use></svg> </span> 四大工具速览</h2>
   <div class="comp-cards">
     <div class="comp-card cc">
       <div class="icon"><svg class="ico ico-xl"><use href="#i-spark"/></use></svg> </div>
@@ -376,30 +384,31 @@ a:hover{color:var(--fs-blue-hover)!important}
         <th><svg class="ico ico-xl"><use href="#i-spark"/></use></svg> Claude Code</th>
         <th><svg class="ico ico-xl"><use href="#i-bot"/></use></svg> OpenAI Codex</th>
         <th><svg class="ico ico-xl"><use href="#i-bot"/></use></svg> Trae SOLO</th>
+        <th><svg class="ico ico-xl"><use href="#i-bot"/></use></svg> WorkBuddy</th>
       </tr></thead>
       <tbody>
-        <tr><td>开发商</td><td>Anthropic</td><td>OpenAI</td><td>字节跳动</td></tr>
-        <tr><td>使用形态</td><td>CLI 终端工具 <span class="tag tag-cli">CLI</span></td><td>CLI + VS Code扩展 <span class="tag tag-cli">CLI</span><span class="tag tag-vscode">VSC</span></td><td>独立IDE <span class="tag tag-ide">IDE</span></td></tr>
-        <tr><td>底层模型</td><td>Claude 4 Sonnet / Opus</td><td>GPT-5.5 / GPT-5.4</td><td>Claude 4 + GPT-5.5 双模型</td></tr>
-        <tr><td>上下文窗口</td><td>200K tokens</td><td>128K tokens</td><td>据模型而定</td></tr>
-        <tr><td>代码仓库理解</td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 自动扫描</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 自动索引</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 项目级理解</span></td></tr>
-        <tr><td>代码生成</td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></td></tr>
-        <tr><td>代码调试</td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 自动诊断</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 自动修复</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 对话式调试</span></td></tr>
-        <tr><td>终端命令执行</td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 集成终端</span></td></tr>
-        <tr><td>Git 工作流</td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> commit/PR</span> <span class="win">强</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> commit支持</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 可视化Git</span></td></tr>
-        <tr><td>多文件编辑</td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></td></tr>
-        <tr><td>中文支持</td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 支持中文对话</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 支持中文对话</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 原生中文</span> <span class="win">强</span></td></tr>
-        <tr><td>扩展/插件</td><td><span class="cross"><svg class="ico" style="color:#e94560"><use href="#i-cross"/></use></svg> 终端原生，无扩展</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> VS Code扩展</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 内置功能丰富</span></td></tr>
-        <tr><td>学习曲线</td><td>中等（需熟悉终端）</td><td>低（VS Code集成）</td><td>低（独立IDE，开箱即用）</td></tr>
-        <tr><td>安装方式</td><td>npm install -g @anthropic-ai/claude-code</td><td>VS Code插件 / pip安装</td><td>下载桌面端应用</td></tr>
-        <tr><td>付费模式</td><td>Claude Pro/Max 订阅 <span class="win">包含</span></td><td>GPT-5.5 API按token计费 + Codex功能费</td><td>免费</td></tr>
-        <tr><td>API费用（估算）</td><td>Claude Pro $20/月无限或Max $100/月</td><td>GPT-5.5 $5/$30 per 1M tok</td><td>免费（有使用配额）</td></tr>
-        <tr><td>是否可离线使用</td><td><span class="cross"><svg class="ico" style="color:#e94560"><use href="#i-cross"/></use></svg> 需要联网</span></td><td><span class="cross"><svg class="ico" style="color:#e94560"><use href="#i-cross"/></use></svg> 需要联网</span></td><td><span class="cross"><svg class="ico" style="color:#e94560"><use href="#i-cross"/></use></svg> 需要联网</span></td></tr>
-        <tr><td>国内访问</td><td><span class="cross"><svg class="ico" style="color:#e94560"><use href="#i-cross"/></use></svg> 需代理</span></td><td><span class="cross"><svg class="ico" style="color:#e94560"><use href="#i-cross"/></use></svg> 需代理</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 国内直连</span> <span class="win">强</span></td></tr>
-        <tr><td>适合项目规模</td><td>中大型项目 <span class="win">推荐</span></td><td>中小型项目</td><td>各类项目</td></tr>
-        <tr><td>代码安全</td><td>Anthropic API加密传输</td><td>OpenAI API加密</td><td>国内服务器，数据合规</td></tr>
-        <tr><td>发布年份</td><td>2025</td><td>2025</td><td>2025</td></tr>
-        <tr><td>社区活跃度</td><td>中等（海外开发者多）</td><td>高（OpenAI生态）</td><td>中高（中文社区活跃）</td></tr>
+        <tr><td>开发商</td><td>Anthropic</td><td>OpenAI</td><td>字节跳动</td><td>腾讯云</tr>
+        <tr><td>使用形态</td><td>CLI 终端工具 <span class="tag tag-cli">CLI</span></td><td>CLI + VS Code扩展 <span class="tag tag-cli">CLI</span><span class="tag tag-vscode">VSC</span></td><td>独立IDE <span class="tag tag-ide">IDE</span></td><td>桌面应用 <span class="tag tag-ide">App</span></tr>
+        <tr><td>底层模型</td><td>Claude 4 Sonnet / Opus</td><td>GPT-5.5 / GPT-5.4</td><td>Claude 4 + GPT-5.5 双模型</td><td>混元Hy3/DeepSeek/GLM/Kimi等</tr>
+        <tr><td>上下文窗口</td><td>200K tokens</td><td>128K tokens</td><td>据模型而定</td><td>据模型而定（最高1M）</tr>
+        <tr><td>代码仓库理解</td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 自动扫描</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 自动索引</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 项目级理解</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 工作区管理</span></tr>
+        <tr><td>代码生成</td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></tr>
+        <tr><td>代码调试</td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 自动诊断</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 自动修复</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 对话式调试</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 对话式调试</span></tr>
+        <tr><td>终端命令执行</td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 集成终端</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></tr>
+        <tr><td>Git 工作流</td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> commit/PR</span> <span class="win">强</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> commit支持</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 可视化Git</span></td><td><span class="warn">有限支持</span></tr>
+        <tr><td>多文件编辑</td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> </span></tr>
+        <tr><td>中文支持</td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 支持中文对话</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 支持中文对话</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 原生中文</span> <span class="win">强</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 原生中文</span></tr>
+        <tr><td>扩展/插件</td><td><span class="cross"><svg class="ico" style="color:#e94560"><use href="#i-cross"/></use></svg> 终端原生，无扩展</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> VS Code扩展</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 内置功能丰富</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> Skill+Plugin+MCP</span></tr>
+        <tr><td>学习曲线</td><td>中等（需熟悉终端）</td><td>低（VS Code集成）</td><td>低（独立IDE，开箱即用）</td><td>低（桌面应用，开箱即用）</tr>
+        <tr><td>安装方式</td><td>npm install -g @anthropic-ai/claude-code</td><td>VS Code插件 / pip安装</td><td>下载桌面端应用</td><td>下载桌面端应用</tr>
+        <tr><td>付费模式</td><td>Claude Pro/Max 订阅 <span class="win">包含</span></td><td>GPT-5.5 API按token计费 + Codex功能费</td><td>免费</td><td><span class="price-free">免费积分制</span></tr>
+        <tr><td>API费用（估算）</td><td>Claude Pro $20/月无限或Max $100/月</td><td>GPT-5.5 $5/$30 per 1M tok</td><td>免费（有使用配额）</td><td>注册送积分，免费模型可用</tr>
+        <tr><td>是否可离线使用</td><td><span class="cross"><svg class="ico" style="color:#e94560"><use href="#i-cross"/></use></svg> 需要联网</span></td><td><span class="cross"><svg class="ico" style="color:#e94560"><use href="#i-cross"/></use></svg> 需要联网</span></td><td><span class="cross"><svg class="ico" style="color:#e94560"><use href="#i-cross"/></use></svg> 需要联网</span></td><td><span class="cross"><svg class="ico" style="color:#e94560"><use href="#i-cross"/></use></svg> 需要联网</span></tr>
+        <tr><td>国内访问</td><td><span class="cross"><svg class="ico" style="color:#e94560"><use href="#i-cross"/></use></svg> 需代理</span></td><td><span class="cross"><svg class="ico" style="color:#e94560"><use href="#i-cross"/></use></svg> 需代理</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 国内直连</span> <span class="win">强</span></td><td><span class="check"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 国内直连</span> <span class="win">强</span></tr>
+        <tr><td>适合项目规模</td><td>中大型项目 <span class="win">推荐</span></td><td>中小型项目</td><td>各类项目</td><td>各类项目（编程+办公）</tr>
+        <tr><td>代码安全</td><td>Anthropic API加密传输</td><td>OpenAI API加密</td><td>国内服务器，数据合规</td><td>国内服务器，数据合规</tr>
+        <tr><td>发布年份</td><td>2025</td><td>2025</td><td>2025</td><td>2025</tr>
+        <tr><td>社区活跃度</td><td>中等（海外开发者多）</td><td>高（OpenAI生态）</td><td>中高（中文社区活跃）</td><td>中高（腾讯生态+中文社区）</tr>
       </tbody>
     </table>
   </div>
@@ -461,6 +470,26 @@ a:hover{color:var(--fs-blue-hover)!important}
       <li>国际化程度不如前两者</li>
     </ul></div>
   </div>
+
+  <h3 style="font-size:1rem;margin-bottom:10px;margin-top:16px;color:#3370ff"><svg class="ico ico-xl"><use href="#i-bot"/></use></svg> WorkBuddy</h3>
+  <div class="proscons">
+    <div class="pros"><h4><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 优点</h4><ul>
+      <li>国内直连，无需代理</li>
+      <li>多模型可选（混元/DeepSeek/GLM/Kimi等），灵活切换</li>
+      <li>Design模式做UI原型，从设计到开发一条龙</li>
+      <li>Skill+Plugin+MCP三层扩展体系</li>
+      <li>积分制灵活，免费模型可用</li>
+      <li>编程+办公+设计全能</li>
+      <li>记忆系统自动沉淀用户偏好</li>
+    </ul></div>
+    <div class="cons"><h4><svg class="ico" style="color:#e94560"><use href="#i-cross"/></use></svg> 缺点</h4><ul>
+      <li>非编程专用IDE，编程深度不如专用工具</li>
+      <li>高级模型消耗积分较快</li>
+      <li>Git工作流支持有限</li>
+      <li>生态不如OpenAI/Anthropic成熟</li>
+    </ul></div>
+  </div>
+
 </section>
 
 <!-- ====== Scenario Recommendations ====== -->
@@ -496,8 +525,9 @@ a:hover{color:var(--fs-blue-hover)!important}
     <p style="font-size:1rem;line-height:1.8;color:#333">
       <strong><svg class="ico ico-xl"><use href="#i-spark"/></use></svg> Claude Code</strong> — 适合深度代码理解 + Git工作流自动化，后端/架构师首选<br>
       <strong><svg class="ico ico-xl"><use href="#i-bot"/></use></svg> OpenAI Codex</strong> — 适合全栈开发 + VS Code用户，前端/React生态最佳<br>
-      <strong><svg class="ico ico-xl"><use href="#i-bot"/></use></svg> Trae SOLO</strong> — 适合国内开发者 + 中文项目，零成本开箱即用<br><br>
-      <span style="color:#666;font-size:0.9rem">没有最好的工具，只有最适合你的场景。建议三个都试一遍，毕竟前两个有免费额度，第三个本身免费。</span>
+      <strong><svg class="ico ico-xl"><use href="#i-bot"/></use></svg> Trae SOLO</strong> — 适合国内开发者 + 中文项目，零成本开箱即用<br>
+      <strong><svg class="ico ico-xl"><use href="#i-bot"/></use></svg> WorkBuddy</strong> — 适合编程+办公全能场景，积分制灵活，Design模式是独有优势<br><br>
+      <span style="color:#666;font-size:0.9rem">没有最好的工具，只有最适合你的场景。前三个有免费额度/免费版，WorkBuddy注册送积分，建议都试一遍再做选择。</span>
     </p>
   </div>
 </section>
