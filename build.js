@@ -772,17 +772,17 @@ function build() {
   </div>
 </div>`;
 
-    // Insert the model directory section after the existing related-tools div
-    // Find the existing related-tools div and add model links before it
-    const existingTools = indexHTML.match(/<div class="related-tools">[\s\S]*?<\/div>/);
-    if (existingTools) {
-      // Add modelsSection after the existing related-tools
-      indexHTML = indexHTML.replace('</div>\n\n<!-- CTA -->', `${modelsSection}\n\n<!-- CTA -->`);
+    // Insert model directory section (only if not already present)
+    if (!indexHTML.includes('models目录区域')) {
+      // Add a marker comment so we never insert twice
+      const markedSection = modelsSection.replace(
+        '<div class="related-tools"',
+        '<div class="related-tools" data-keep="models目录区域"'
+      );
+      indexHTML = indexHTML.replace('</main>', markedSection + '\n</main>');
       log.push('✅ 首页已增加模型目录区域');
     } else {
-      // Try to find the tools section
-      indexHTML = indexHTML.replace('</main>', `${modelsSection}\n</main>`);
-      log.push('✅ 首页已增加模型目录区域');
+      log.push('ℹ️ 首页已有模型目录区域，跳过');
     }
 
     writeFile(path.join(ROOT, 'index.html'), indexHTML);
