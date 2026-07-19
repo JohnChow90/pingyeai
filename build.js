@@ -774,13 +774,20 @@ function build() {
 
     // Insert model directory section (only if not already present)
     if (!indexHTML.includes('models目录区域')) {
-      // Add a marker comment so we never insert twice
       const markedSection = modelsSection.replace(
         '<div class="related-tools"',
         '<div class="related-tools" data-keep="models目录区域"'
       );
-      indexHTML = indexHTML.replace('</main>', markedSection + '\n</main>');
-      log.push('✅ 首页已增加模型目录区域');
+      // Try </main> first, fallback to footer-links-after
+      if (indexHTML.includes('</main>')) {
+        indexHTML = indexHTML.replace('</main>', markedSection + '\n</main>');
+        log.push('✅ 首页已增加模型目录区域 (after </main>)');
+      } else if (indexHTML.includes('<div class="footer-links-after"')) {
+        indexHTML = indexHTML.replace('<div class="footer-links-after"', markedSection + '\n\n<div class="footer-links-after"');
+        log.push('✅ 首页已增加模型目录区域 (before footer-links)');
+      } else {
+        log.push('⚠️ 未找到插入位置，请在 index.html 中手动添加模型目录');
+      }
     } else {
       log.push('ℹ️ 首页已有模型目录区域，跳过');
     }
