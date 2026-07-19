@@ -34,6 +34,8 @@ const PROVIDER_COLORS = Object.fromEntries(PROVIDERS.map(p => [p.id, p.color]));
 
 // ====== Blog articles metadata (for related articles) ======
 const BLOG_ARTICLES = [
+  { slug: 'trae-work-zero-code-mini-program', title: '零代码上线小程序？TRAE Work、WorkBuddy通用6个环节路线图', cat: 'trae', keywords: ['trae', 'work', 'mini', 'program', 'zero', 'code', 'wechat'] },
+
   { slug: 'trae-work-feishu-cli', title: 'TRAE WORK+飞书CLI，6个技能让办公效率再上一层楼', cat: 'trae', keywords: ['trae','work','feishu','cli','lark','automation'] },
 
   { slug: 'trae-feishu-ppt', title: 'TRAE SOLO调用飞书CLI做PPT，还是算了吧', cat: 'trae', keywords: ['trae','solo','feishu','ppt','cli','mac','windows'] },

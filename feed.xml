@@ -6,19 +6,9 @@
     <description>AI工具使用心得、踩坑记录、实战教程</description>
     <language>zh-CN</language>
   <item>
-    <title><![CDATA[同事滑着椅子过来问：你这PPT怎么做的？——AI做的，免费，不要钱]]></title>
-    <link>https://pingyeai.cn/blog/trae-work-ppt-free</link>
-    <guid>https://pingyeai.cn/blog/trae-work-ppt-free</guid>
-  </item>
-  <item>
-    <title><![CDATA[用TRAE Work Design模式做完3个项目，总结出3个工作流和4个坑]]></title>
-    <link>https://pingyeai.cn/blog/trae-work-design-3-workflows</link>
-    <guid>https://pingyeai.cn/blog/trae-work-design-3-workflows</guid>
-  </item>
-  <item>
-    <title><![CDATA[WorkBuddy上线混元新模型，20积分、20分钟干完以前一个钟头的活]]></title>
-    <link>https://pingyeai.cn/blog/workbuddy-hunyuan-hy3</link>
-    <guid>https://pingyeai.cn/blog/workbuddy-hunyuan-hy3</guid>
+    <title><![CDATA[零代码上线小程序？TRAE Work、WorkBuddy通用6个环节路线图]]></title>
+    <link>https://pingyeai.cn/blog/trae-work-zero-code-mini-program</link>
+    <guid>https://pingyeai.cn/blog/trae-work-zero-code-mini-program</guid>
   </item>
   <item>
     <title><![CDATA[TRAE WORK+飞书CLI，6个技能让办公效率再上一层楼]]></title>
@@ -124,30 +114,6 @@
     <title><![CDATA[WorkBuddy和Trae SOLO到底怎么选？]]></title>
     <link>https://pingyeai.cn/blog/workbuddy-vs-trae-solo</link>
     <guid>https://pingyeai.cn/blog/workbuddy-vs-trae-solo</guid>
-  </item>
-  <item>
-    <title><![CDATA[微信小微灰度体验，能干的比想象的多]]></title>
-    <link>https://pingyeai.cn/blog/wechat-xiaowei-experience.html</link>
-    <guid>https://pingyeai.cn/blog/wechat-xiaowei-experience.html</guid>
-    <description><![CDATA[微信小微灰度体验。点咖啡、查美食、做攻略、总结文章、整理待办——微信里多了个会干活的AI助手。]]></description>
-  </item>
-  <item>
-    <title><![CDATA[从WorkBuddy换到TRAE WORK，这笔账不算不知道]]></title>
-    <link>https://pingyeai.cn/blog/trae-work-switch-cost.html</link>
-    <guid>https://pingyeai.cn/blog/trae-work-switch-cost.html</guid>
-    <description><![CDATA[追了半年AI agent，换一个agent到底要付出多少代价？三层隐性成本。]]></description>
-  </item>
-  <item>
-    <title><![CDATA[TRAE WORK又限额了，翻出WorkBuddy]]></title>
-    <link>https://pingyeai.cn/blog/trae-work-limit-workbuddy-back.html</link>
-    <guid>https://pingyeai.cn/blog/trae-work-limit-workbuddy-back.html</guid>
-    <description><![CDATA[TRAE WORK限额后重新打开WorkBuddy，3个变化，最后一个最意外。]]></description>
-  </item>
-  <item>
-    <title><![CDATA[AI工具集体断粮的12天]]></title>
-    <link>https://pingyeai.cn/blog/ai-tools-12-days-without.html</link>
-    <guid>https://pingyeai.cn/blog/ai-tools-12-days-without.html</guid>
-    <description><![CDATA[12天里AI工具陆续断粮，最后还是个人开发者用API搭自己的方案最稳。]]></description>
   </item>
   </channel>
 </rss>
