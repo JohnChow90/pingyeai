@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRAE Work积分制上线，6招帮你省30%积分和token | 平野AI工具站</title>
+<link rel="alternate" type="application/rss+xml" title="平野AI工具站" href="/feed.xml">
+
+<meta name="description" content="TRAE Work积分体系正式上线，免费额度没了。实测触发每日、每周、每月限额后总结出6个省积分方法：按任务难度选模型、多agent模式拆分任务、手动压缩上下文、拆分对话、固定工作流写成skill、自动化任务本地化，帮你少花冤枉钱。">
+<meta name="keywords" content="TRAE Work,积分制,积分体系,省积分,省token,积分倍率,多agent,上下文压缩,skill,自动化,DeepSeek,模型选择">
+<link rel="canonical" href="https://pingyeai.cn/blog/trae-work-credit-6-tips.html">
+<meta property="og:title" content="TRAE Work积分制上线，6招帮你省30%积分和token">
+<meta property="og:description" content="TRAE Work积分体系上线，免费额度没了。6个省积分方法实测：按任务选模型、多agent拆分、手动压缩上下文、拆分对话、工作流写成skill、自动化本地化。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pingyeai.cn/blog/trae-work-credit-6-tips.html">
+<meta property="article:published_time" content="2026-08-03">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TRAE Work积分制上线，6招帮你省30%积分和token",
+  "description": "TRAE Work积分体系正式上线，免费额度没了。总结6个省积分方法：按任务难度选模型、多agent模式拆分任务、手动压缩上下文、拆分对话、固定工作流写成skill、自动化任务本地化。",
+  "url": "https://pingyeai.cn/blog/trae-work-credit-6-tips.html",
+  "mainEntityOfPage": "https://pingyeai.cn/blog/trae-work-credit-6-tips.html",
+  "author": {"@type": "Person", "name": "平野先生"},
+  "publisher": {"@type": "Organization", "name": "平野AI工具站", "url": "https://pingyeai.cn"},
+  "datePublished": "2026-08-03",
+  "keywords": "TRAE Work,积分制,省积分,省token,积分倍率,多agent,skill,自动化"
+}
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8787f6e4c29bc3acc5812750c378a195";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;background:#f7f8fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.container{max-width:800px;margin:0 auto;padding:0 20px}
+.article-header{background:linear-gradient(135deg,#0f3460,#1a1a2e);color:#fff;padding:60px 0 40px;text-align:center}
+.article-header h1{font-size:1.5rem;font-weight:700;margin-bottom:12px;line-height:1.4}
+.article-header .meta{font-size:0.82rem;color:rgba(255,255,255,0.6)}
+.article-header .meta span{margin:0 8px}
+.article-body{padding:40px 0 60px}
+.article-body h2{font-size:1.15rem;margin:32px 0 12px;color:#0f3460}
+.article-body p{font-size:1rem;margin-bottom:1.2rem;color:#333;line-height:1.9}
+.article-body strong{color:#0f3460}
+.back-link{display:inline-flex;align-items:center;gap:4px;padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.1);text-decoration:none;color:rgba(255,255,255,0.7);font-size:0.82rem;margin-bottom:12px}
+.back-link:hover{color:#fff}
+.footer{text-align:center;padding:32px 24px 20px;border-top:1px solid #eee;color:#999;font-size:0.82rem}
+.footer a{color:#666;text-decoration:none}
+.article-body table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:0.9rem}
+.article-body th,.article-body td{border:1px solid #e0e0e8;padding:8px 12px;text-align:left}
+.article-body th{background:#f0f3fa;color:#0f3460;font-weight:600}
+.article-body td:first-child{font-weight:600;color:#1a1a2e;white-space:nowrap}
+@media(max-width:640px){.article-header h1{font-size:1.25rem}}
+</style>
+</head>
+<body>
+<div class="article-header">
+  <div class="container">
+    <a href="/blog/" class="back-link">← 返回博客列表</a>
+    <h1>TRAE Work积分制上线，6招帮你省30%积分和token</h1>
+    <div class="meta"><span>2026-08-03</span><span>·</span><span>平野先生</span></div>
+  </div>
+</div>
+<div class="article-body">
+  <div class="container">
+
+<p>TRAE Work积分体系已经正式上线3天了，说实话，刚更新完的时候有点小慌，再也不能白嫖免费额度了。</p>
+
+<p>但是，现在已经完全离不开手里的几个agent，TRAE Work、WorkBuddy、Codex、Claude，还得继续用它们干活，要么用它们的积分，要么用自己的API。这时候，就必须得好好想想怎么能尽量省积分、省token，毕竟打工人，肯定不想在AI、在agent上花那么多钱。</p>
+
+<p>周末继续用TRAE Work给小程序升级功能，突然有那么一下，提示我打到50轮对话上限了，建议我新开对话。然后我就停了下来，坐在那开始想：与其每次都踩到边界再慌，不如把自己折腾AI大半年攒下来的经验好好整理一遍。动作做在前面，总比看着积分余额一个劲往下掉心疼强。</p>
+
+<p>下面就是自己这大半年，触发过TRAE Work的每日限额、周限额、月限额，同时最近30天还用DeepSeek API烧掉了7亿多token，也用WorkBuddy一晚上烧光全部积分，踩了无数坑总结出来的省积分、省token的"六脉神剑"独门心法。</p>
+
+<h2>第一式：根据任务难度/场景类型选模型</h2>
+<p>推理模型和推理模型比、多模态模型和多模态模型比，国内同类型的大模型能力实际用起来差距并没有参数显示的那么大。</p>
+<p>有了这个前提，就有两条选择线：</p>
+<p>一是按任务难度选。简单任务用小模型，长线任务用积分倍率低的模型，重要任务、复杂任务才用大模型。</p>
+<p>二是按场景类型选。写文案、列计划、分析数据用推理模型，比如DeepSeek V4系列；vibe coding就用编程能力更突出的模型，比如GLM系列、模型名称带code的；需要识图、生图、解析视频、生成视频，才用多模态模型。</p>
+<p>多模态模型的积分/token消耗比推理模型大得多，你写个方案却选了多模态模型，那就是纯纯的浪费。</p>
+<p>对了，同一个模型在TRAE Work和WorkBuddy里的积分倍率也不一样。认准某个模型跑任务的话，选低的那个，同样的任务能省下不少。</p>
+
+<table>
+<tr><th>模型</th><th>TRAE Work 积分倍率</th><th>WorkBuddy 积分倍率</th></tr>
+<tr><td>Hy3</td><td>-</td><td>0.00x</td></tr>
+<tr><td>Seed-2.1-Pro</td><td>0.77x</td><td>-</td></tr>
+<tr><td>Seed-2.1-Turbo</td><td>0.10x</td><td>-</td></tr>
+<tr><td>Seed-Code</td><td>0.03x</td><td>-</td></tr>
+<tr><td>DeepSeek-V4-Flash正式版</td><td>0.05x（限Ultra会员）</td><td>-</td></tr>
+<tr><td>GLM-5.2</td><td>0.40x</td><td>0.79x（夜间折扣）</td></tr>
+<tr><td>GLM-5.1</td><td>0.83x</td><td>0.79x</td></tr>
+<tr><td>GLM-5</td><td>0.70x</td><td>-</td></tr>
+<tr><td>GLM-5v-Turbo</td><td>-</td><td>0.95x</td></tr>
+<tr><td>DeepSeek-V4-Pro</td><td>0.32x</td><td>0.16x</td></tr>
+<tr><td>DeepSeek-V4-Flash</td><td>0.05x</td><td>0.16x</td></tr>
+<tr><td>Kimi-K3</td><td>1.65x（限Pro+以上会员）</td><td>1.62x</td></tr>
+<tr><td>Kimi-K2.7-Code</td><td>0.62x</td><td>0.57x</td></tr>
+<tr><td>Kimi-K2.6</td><td>0.69x</td><td>0.52x</td></tr>
+<tr><td>MiniMax-M3</td><td>0.26x</td><td>0.25x</td></tr>
+<tr><td>Qwen3.7-Plus</td><td>0.25x</td><td>-</td></tr>
+</table>
+
+<h2>第二式：多agent模式</h2>
+<p>按任务类型把工作拆给不同的子agent，每个子agent只干自己那一类活。</p>
+<p>我开发内容助手的时候就是这么干的：用新建对话的方式拆成前端和后端两个子agent——前端负责UI界面，后端负责功能实现。其实还可以再加一个"总工程师"做全局协调和调度。</p>
+<p>现在的agent基本都有全局记忆和项目记忆，同一个项目（通俗理解就是同一个文件夹）下，多个对话之间、多个agent之间的记忆和信息是互通共享的。</p>
+<p>有这个前提支撑，放心把任务拆给不同子agent。好处是每个agent都只跑一个类型的任务，这样就能避免上下文污染，后续任务读取信息就准确，输出就稳定，就能少返工、不返工。返工，才是最烧积分的地方。</p>
+
+<h2>第三式：手动压缩上下文</h2>
+<p>agent默认支持的上下文长度是有限的——TRAE Work和WorkBuddy都是200K，最新版Codex默认590K。超出额度会触发自动压缩，agent自己会提取上下文里的"关键"信息，传递给新的上下文。</p>
+<p>但自动压缩有个问题：它自己判断的"关键"不一定准确。</p>
+<p>所以我现在会手动压缩。把上下文里哪些信息必须保留，自己指定清楚，压缩完准确度就高很多。后续任务能正确读取，不会因为信息丢失或读错返工，也就省下了不必要的积分。</p>
+
+<h2>第四式：拆分对话/上下文</h2>
+<p>本质就是同一个工作空间里新开对话。</p>
+<p>一个对话里的上下文经历过多次压缩（不管是自动还是手动），每压缩一次，新的关键信息就会覆盖旧的关键信息，压缩几次以后，就很难保证关键信息的准确性和完整性。</p>
+<p>所以，一个项目不要一个对话从头用到尾。该新建对话就新建，让每个对话的上下文核心关键信息更完整、更准确。</p>
+
+<h2>第五式：固定工作流写成skill</h2>
+<p>那我自己来说，在公司每天要汇总分析数据、每周要写周报、每月要写月报，再比如我最近用Codex做视频——这些高重复度、基本固定不变的工作流和业务流程，都值得提炼固化成一个skill。</p>
+<p>需要执行的时候直接调用，让agent按固定的流程、规范和边界跑任务。这样产出稳定，不用每次重新描述需求，也不会因为表达不准确让agent拆解执行出偏差，再花积分去纠偏。</p>
+
+<h2>第六式：自动化任务本地化</h2>
+<p>以前我也习惯把定时定点做的机械性重复工作，挂成TRAE Work和WorkBuddy的自动化任务。可有时候忙起来会忘了打开客户端；就算没忘，每次触发自动化任务，都在消耗积分。</p>
+<p>后来我做运营数据看板，把每天要重复做的下载报表、解析数据这些动作，写成了本地自动化脚本，整个数据处理工作流集成做了一个单机版客户端。每天只需要打开客户端，点一下按钮，脚本跑完全流程，数据呈现到看板上——一个token都没花。</p>
+
+<p>靠着这套独门心法，这大半年时间闭环了大大小小4个项目，粗略算了一下，对比一开始完全没有意识的"愣头青"式用法，大概省下来了至少30%的积分和token。</p>
+
+<p>总结一下六招：按任务难度/场景类型选模型、多agent模式、手动压缩上下文、拆分对话/上下文、固定工作流写成skill、自动化任务本地化。</p>
+
+<p>希望这套省积分、省token的"六脉神剑"在日常重度使用agent干活的你有所帮助，如果你愿意分享给身边在用AI agent的朋友，说不定他会回来感谢你。</p>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <p><a href="https://pingyeai.cn">pingyeai.cn</a> — 平野AI工具站 · <a href="/blog/">博客</a> · <a href="/">首页</a></p>
+</footer>
+</body>
+</html>

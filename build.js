@@ -34,6 +34,7 @@ const PROVIDER_COLORS = Object.fromEntries(PROVIDERS.map(p => [p.id, p.color]));
 
 // ====== Blog articles metadata (for related articles) ======
 const BLOG_ARTICLES = [
+  { slug: 'trae-work-credit-6-tips', title: 'TRAE Work积分制上线，6招帮你省30%积分和token', cat: 'trae', keywords: ['trae', 'work', '积分', '积分制', '省积分', '省token', '模型', 'skill', '多agent', '上下文'] },
   { slug: 'trae-work-plugin-market', title: 'TRAE Work 插件市场上线', cat: 'trae', keywords: ['trae', 'work', 'plugin', 'market', 'plugins'] },
   { slug: 'trae-work-credit-system', title: 'TRAE Work积分体系上线，你慌不慌？3个省积分方法实测', cat: 'trae', keywords: ['trae', 'work', '积分', 'credit', '省钱', '模型', 'skill', '免费'] },
   { slug: 'workbuddy-videogen-kling', title: '避雷！WorkBuddy套壳可灵生视频模型冒充原生工具，却在偷偷烧掉你的积分', cat: 'wb', keywords: ['workbuddy', 'kling', 'videogen', '套壳', '积分', '避雷', '可灵'] },
