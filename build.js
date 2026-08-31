@@ -62,6 +62,7 @@ const BLOG_ARTICLES = [
   { slug: 'workbuddy-craft-plan-ask', title: '上来就Craft？WorkBuddy积分就是这么烧没的', cat: 'wb', keywords: ['workbuddy','craft','plan','ask','tutorial'] },
   { slug: 'delete-5-keep-2', title: '删了5个AI编程软件，换成这2个', cat: 'ai', keywords: ['ai','tools','delete','recommend','trae','solo','openclaw'] },
   { slug: 'workbuddy-vs-trae-solo', title: 'WorkBuddy和Trae SOLO到底怎么选？', cat: 'wb', keywords: ['workbuddy','trae','solo','compare'] },
+  { slug: 'doubao-work-vs-doubao', title: '「豆包工作」和「豆包」到底什么关系', cat: 'ai', keywords: ['豆包工作','豆包','doubao','对比','飞书','agent','字节'] },
 ];
 
 // ====== Utility ======
