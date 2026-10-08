@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="算一下，你什么时候可以不上班。">
+<title>不上班计算器 · 我什么时候可以不上班</title>
+<link rel="alternate" type="application/rss+xml" title="平野AI工具站" href="/feed.xml">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#0a0c11; --card:#141822; --card2:#1b2130; --line:rgba(255,255,255,.08);
+  --txt:#eef1f7; --dim:#8e97ab; --dim2:#5d6577;
+  --gold:#ffd166; --green:#4ade80; --red:#ff6b6b; --blue:#5aa9ff;
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg); color:var(--txt); min-height:100vh;
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  font-size:16px; line-height:1.5; letter-spacing:.01em;
+  padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 32px);
+  background-image:radial-gradient(120% 60% at 50% -10%,rgba(90,169,255,.16),transparent 60%);
+  background-repeat:no-repeat;
+}
+.wrap{max-width:480px;margin:0 auto;padding:0 20px}
+
+/* ---------- header ---------- */
+header{padding:28px 0 6px}
+.kicker{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;letter-spacing:.09em;
+  color:var(--gold);background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.22);
+  padding:4px 10px;border-radius:999px;margin-bottom:14px}
+h1{font-size:29px;line-height:1.25;font-weight:800;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--gold)}
+.sub{color:var(--dim);font-size:13.5px;margin-top:9px}
+.sub b{color:var(--txt);font-weight:600}
+
+/* ---------- card ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:16px}
+.card.tight{padding:14px 16px}
+
+.field{padding:12px 0;border-bottom:1px solid var(--line)}
+.field:last-child{border-bottom:0;padding-bottom:4px}
+.field:first-child{padding-top:2px}
+label{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;color:var(--dim);margin-bottom:8px}
+label .hint{font-size:11.5px;color:var(--dim2)}
+.inputrow{display:flex;align-items:baseline;gap:6px}
+input[type=number]{
+  flex:1;width:100%;background:transparent;border:0;outline:0;color:var(--txt);
+  font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em;
+  padding:0;font-family:inherit;-moz-appearance:textfield
+}
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+input::placeholder{color:var(--dim2);font-weight:600}
+.unit{font-size:14px;color:var(--dim);flex-shrink:0;padding-bottom:2px}
+input:focus{color:var(--gold)}
+
+details{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
+summary{font-size:13px;color:var(--dim);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'展开';font-size:11.5px;color:var(--dim2)}
+details[open] summary::after{content:'收起'}
+.adv{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.adv .mini{background:var(--card2);border-radius:12px;padding:11px 12px}
+.adv .mini span{display:block;font-size:11.5px;color:var(--dim2);margin-bottom:4px}
+.adv input{font-size:18px}
+.adv .unit{font-size:12px}
+
+button.go{
+  width:100%;margin-top:18px;padding:17px;border:0;border-radius:15px;cursor:pointer;
+  background:linear-gradient(135deg,#ffd166,#ffb03a);color:#241a00;
+  font-size:17px;font-weight:800;letter-spacing:.02em;font-family:inherit;
+  box-shadow:0 8px 24px -8px rgba(255,177,58,.6);transition:transform .12s
+}
+button.go:active{transform:scale(.978)}
+
+/* ---------- result ---------- */
+#result{margin-top:20px;display:none}
+#result.on{display:block;animation:rise .42s cubic-bezier(.16,1,.3,1)}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.hero{background:linear-gradient(160deg,#1c2333,#131722);border:1px solid var(--line);
+  border-radius:20px;padding:24px 20px;text-align:center;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;inset:-40% -40% auto auto;width:220px;height:220px;
+  background:radial-gradient(circle,rgba(255,209,102,.18),transparent 70%)}
+.hero .lab{font-size:12.5px;color:var(--dim);letter-spacing:.06em;position:relative}
+.hero .big{font-size:76px;font-weight:900;line-height:1;letter-spacing:-.045em;margin:10px 0 4px;
+  font-variant-numeric:tabular-nums;color:var(--gold);position:relative}
+.hero .big small{font-size:24px;font-weight:800;margin-left:4px;letter-spacing:0}
+.hero .big.now{font-size:46px;color:var(--green)}
+.hero .at{font-size:14px;color:var(--dim);position:relative}
+.hero .at b{color:var(--txt);font-weight:700}
+.hero .verdict{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:15px;
+  font-weight:600;position:relative;line-height:1.55}
+
+.bar{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.bar .top{display:flex;justify-content:space-between;font-size:12.5px;color:var(--dim);margin-bottom:9px}
+.bar .track{height:9px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}
+.bar .fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#5aa9ff,#4ade80);
+  transition:width .9s cubic-bezier(.16,1,.3,1)}
+.bar .bot{font-size:12px;color:var(--dim2);margin-top:9px}
+
+.stats{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px}
+.stat span{display:block;font-size:11.5px;color:var(--dim2);margin-bottom:5px}
+.stat b{font-size:19px;font-weight:700;font-variant-numeric:tabular-nums}
+
+.sens{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.sens h3{font-size:13px;color:var(--dim);font-weight:600;margin-bottom:12px}
+.sens .row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:14px}
+.sens .row:first-of-type{border-top:0;padding-top:0}
+.sens .row .d{color:var(--green);font-weight:700;font-variant-numeric:tabular-nums;flex-shrink:0;margin-left:10px}
+.sens .row .d.na{color:var(--dim2);font-weight:500}
+
+.share{margin-top:16px;display:flex;gap:10px}
+.share button{flex:1;padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--card);
+  color:var(--txt);font-size:14.5px;font-weight:700;cursor:pointer;font-family:inherit}
+.share button.primary{background:var(--gold);color:#241a00;border-color:transparent}
+.share button:active{transform:scale(.98)}
+
+.foot{margin-top:26px;font-size:11.5px;color:var(--dim2);line-height:1.75;text-align:center}
+.foot a{color:var(--dim);text-decoration:none;border-bottom:1px solid var(--line)}
+
+/* ---------- modal ---------- */
+#modal{position:fixed;inset:0;background:rgba(4,6,10,.9);backdrop-filter:blur(6px);z-index:50;
+  display:none;align-items:center;justify-content:center;padding:20px}
+#modal.on{display:flex}
+#modal .inner{max-width:340px;width:100%;text-align:center}
+#modal img{width:100%;border-radius:16px;box-shadow:0 24px 60px -12px rgba(0,0,0,.8);display:block}
+#modal .tip{color:var(--dim);font-size:12.5px;margin-top:14px}
+#modal .close{margin-top:14px;color:var(--dim);font-size:13px;background:none;border:0;
+  cursor:pointer;font-family:inherit;text-decoration:underline}
+.toast{position:fixed;left:50%;bottom:38px;transform:translate(-50%,20px);background:rgba(255,255,255,.94);
+  color:#0a0c11;font-size:13.5px;font-weight:600;padding:10px 20px;border-radius:99px;opacity:0;
+  transition:all .28s;pointer-events:none;z-index:60}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">🧪 AI Product Lab · 实验 01</div>
+    <h1>你什么时候<br>可以<em>不上班</em>？</h1>
+    <p class="sub">填 4 个数字，10 秒给你答案。<b>不登录、不存数据。</b></p>
+  </header>
+
+  <div class="card">
+    <div class="field">
+      <label>你现在多大 <span class="hint">周岁</span></label>
+      <div class="inputrow"><input id="age" type="number" inputmode="decimal" value="35" min="16" max="80"><span class="unit">岁</span></div>
+    </div>
+    <div class="field">
+      <label>手上现在有多少钱 <span class="hint">存款 / 基金 / 股票全算上</span></label>
+      <div class="inputrow"><input id="assets" type="number" inputmode="decimal" value="30" min="0"><span class="unit">万</span></div>
+    </div>
+    <div class="field">
+      <label>每个月能存下多少 <span class="hint">收入减掉所有开销</span></label>
+      <div class="inputrow"><input id="save" type="number" inputmode="decimal" value="5000" min="0"><span class="unit">元</span></div>
+    </div>
+    <div class="field">
+      <label>每个月要花多少 <span class="hint">不工作了也得花的那些</span></label>
+      <div class="inputrow"><input id="spend" type="number" inputmode="decimal" value="6000" min="0"><span class="unit">元</span></div>
+    </div>
+
+    <details>
+      <summary>进阶参数（一般不用改）</summary>
+      <div class="adv">
+        <div class="mini"><span>年化收益</span><div class="inputrow"><input id="ret" type="number" inputmode="decimal" value="5" step="0.5"><span class="unit">%</span></div></div>
+        <div class="mini"><span>通胀率</span><div class="inputrow"><input id="infl" type="number" inputmode="decimal" value="2.5" step="0.5"><span class="unit">%</span></div></div>
+        <div class="mini"><span>每年取钱比例</span><div class="inputrow"><input id="swr" type="number" inputmode="decimal" value="4" step="0.5"><span class="unit">%</span></div></div>
+        <div class="mini"><span>算到多少岁为止</span><div class="inputrow"><input id="until" type="number" inputmode="decimal" value="90"><span class="unit">岁</span></div></div>
+      </div>
+    </details>
+
+    <button class="go" id="calc">算一下</button>
+  </div>
+
+  <div id="result">
+    <div class="hero">
+      <div class="lab" id="heroLab">你还需要</div>
+      <div class="big" id="years">--<small>年</small></div>
+      <div class="at" id="atAge"></div>
+      <div class="verdict" id="verdict"></div>
+    </div>
+
+    <div class="bar">
+      <div class="top"><span>离“不用上班”还差</span><span id="prog">0%</span></div>
+      <div class="track"><div class="fill" id="fill"></div></div>
+      <div class="bot" id="progBot"></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><span>你需要攒到</span><b id="target">--</b></div>
+      <div class="stat"><span>按现在的钱,还差</span><b id="gap">--</b></div>
+      <div class="stat"><span>不工作的第一年,能花</span><b id="firstYear">--</b></div>
+      <div class="stat"><span>这笔钱能撑</span><b id="lastYears">--</b></div>
+    </div>
+
+    <div class="sens">
+      <h3>想快一点？改一个数字试试</h3>
+      <div id="sensRows"></div>
+    </div>
+
+    <div class="share">
+      <button class="primary" id="btnCard">生成分享图</button>
+      <button id="btnCopy">复制结果</button>
+    </div>
+  </div>
+
+  <p class="foot">
+    这个计算器是 <b>AI Product Lab</b> 的第 1 号实验。<br>
+    纯数学估算，不是投资建议，也不考虑大病 / 买房 / 养娃的突发状况。<br>
+    <a href="https://pingyeai.cn" target="_blank" rel="noopener">pingyeai.cn</a>
+  </p>
+
+</div>
+
+<div id="modal"><div class="inner">
+  <img id="cardImg" alt="计算结果分享图">
+  <p class="tip">长按图片 → 保存到相册</p>
+  <button class="close" id="btnClose">关闭</button>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(id){ return document.getElementById(id); };
+  var MAX_YEARS = 70;
+
+  function num(id, min, max, dflt){
+    var v = parseFloat($(id).value);
+    if (!isFinite(v)) v = dflt;
+    if (min !== null && v < min) v = min;
+    if (max !== null && v > max) v = max;
+    return v;
+  }
+
+  function fmtWan(yuan){
+    if (yuan >= 100000000) return (yuan/100000000).toFixed(2) + ' 亿';
+    if (yuan >= 10000) return Math.round(yuan/10000) + ' 万';
+    return Math.round(yuan) + ' 元';
+  }
+
+  // 核心计算：在“今天的钱”口径下逐年推演
+  function simulate(opt){
+    var real = (1 + opt.ret/100) / (1 + opt.infl/100) - 1;   // 实际购买力年化
+    var target = opt.spend * 12 / (opt.swr/100);             // 达到这个数就能不上班
+    var a = opt.assets;
+    for (var y = 0; y <= MAX_YEARS; y++){
+      if (opt.spend <= 0 || a >= target) return { years:y, target:target, real:real, reached:true };
+      var before = a;
+      a = a * (1 + real) + opt.save * 12;
+      // 钱在缩水、又存不进新的 -> 永远到不了
+      if (a <= before && y > 2) return { years:Infinity, target:target, real:real, reached:false };
+    }
+    return { years:Infinity, target:target, real:real, reached:false };
+  }
+
+  function base(){
+    return {
+      age:    num('age', 16, 80, 35),
+      assets: num('assets', 0, null, 0) * 10000,
+      save:   num('save', 0, null, 0),
+      spend:  num('spend', 0, null, 0),
+      ret:    num('ret', -20, 30, 5),
+      infl:   num('infl', -10, 30, 2.5),
+      swr:    num('swr', 0.5, 20, 4),
+      until:  num('until', 40, 120, 90)
+    };
+  }
+
+  // 按「能不上班那年的年龄」分档，比按年数更诚实
+  var VERDICTS = [
+    [45,      '四十多岁就能不上班，你已经跑赢绝大多数人了。'],
+    [55,      '五十多岁能不上班，这是个真计划，不是梦。'],
+    [65,      '路是通的。但要一直跑到终点，中间一次都不能停。'],
+    [80,      '差不多是法定退休的年纪。前提是这二三十年一次都不掉链子。'],
+    [Infinity,'按现在这个算法，你得换一种活法。']
+  ];
+  function verdict(years, age){
+    if (years === 0) return '你现在就可以不上班了。别声张。';
+    var at = age + years;
+    for (var i=0;i<VERDICTS.length;i++) if (at <= VERDICTS[i][0]) return VERDICTS[i][1];
+    return VERDICTS[VERDICTS.length-1][1];
+  }
+
+  function toast(msg){
+    var t = $('toast'); t.textContent = msg; t.classList.add('on');
+    clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.remove('on'); }, 1800);
+  }
+
+  var LAST = null;
+
+  function calc(doScroll){
+    var o = base();
+    if (o.spend <= 0){ toast('每月要花多少，不能是 0'); return; }
+
+    var r = simulate(o);
+    var years = r.years;
+    var reached = r.reached && (years + o.age) <= o.until;
+
+    var el = $('years'), lab = $('heroLab');
+    lab.textContent = '你还需要';
+
+    if (!reached){
+      el.className = 'big now';
+      el.innerHTML = '算不出来';
+      $('atAge').innerHTML = '在 ' + o.until + ' 岁之前，<b>攒不到</b>';
+      $('verdict').textContent = '钱在变慢，支出在变贵。要么多存，要么少花，要么接受一直有事做。';
+      years = null;
+    } else if (years === 0){
+      el.className = 'big now';
+      el.innerHTML = '已经可以了';
+      lab.textContent = '按你填的数字';
+      $('atAge').innerHTML = '今年的你 <b>' + Math.round(o.age) + ' 岁</b>';
+      $('verdict').textContent = verdict(0, o.age);
+    } else {
+      el.className = 'big';
+      el.innerHTML = years + '<small>年</small>';
+      $('atAge').innerHTML = '也就是 <b>' + Math.round(o.age + years) + ' 岁</b> 那年';
+      $('verdict').textContent = verdict(years, o.age);
+    }
+
+    // 进度条
+    var pct = r.target > 0 ? Math.min(100, o.assets / r.target * 100) : 0;
+    $('prog').textContent = pct.toFixed(pct < 10 ? 1 : 0) + '%';
+    $('fill').style.width = pct + '%';
+    $('progBot').textContent = (years === null || years === 0)
+      ? '你现在有 ' + fmtWan(o.assets) + '，需要 ' + fmtWan(r.target)
+      : '还差 ' + fmtWan(Math.max(0, r.target - o.assets)) + '，按每月存 ' + Math.round(o.save) + ' 元 往回追';
+
+    $('target').textContent    = fmtWan(r.target);
+    $('gap').textContent       = fmtWan(Math.max(0, r.target - o.assets));
+    $('firstYear').textContent = fmtWan(o.spend * 12);
+    $('lastYears').textContent = (o.swr > 0 ? Math.round(100 / o.swr) + ' 年左右' : '--');
+
+    // 敏感度
+    var rows = [];
+    var v1 = simulate(Object.assign({}, o, { save: o.save + 1000 }));
+    var v2 = simulate(Object.assign({}, o, { spend: Math.max(0, o.spend - 1000), save: o.save + Math.min(1000, o.spend) }));
+    var v3 = simulate(Object.assign({}, o, { ret: o.ret + 2 }));
+    var v4 = simulate(Object.assign({}, o, { assets: o.assets + 500000 }));
+
+    function delta(v){
+      if (years === null) return v.reached ? null : '还是到不了';
+      if (!v.reached) return '还是到不了';
+      var d = years - v.years;
+      if (d <= 0) return '没变化';
+      return '提前 ' + d + ' 年';
+    }
+    rows.push(['每月多存 1000 元', delta(v1)]);
+    rows.push(['每月少花 1000 元（也存下来）', delta(v2)]);
+    rows.push(['年化收益从 ' + o.ret + '% 提到 ' + (o.ret+2) + '%', delta(v3)]);
+    rows.push(['现在多 50 万本金', delta(v4)]);
+
+    var html = '';
+    for (var i=0;i<rows.length;i++){
+      var v = rows[i][1];
+      html += '<div class="row"><span>' + rows[i][0] + '</span><b class="d' + (v === '还是到不了' || v === '没变化' ? ' na' : '') + '">' + v + '</b></div>';
+    }
+    $('sensRows').innerHTML = html;
+    $('fill').style.width = '0%';
+    setTimeout(function(){ $('fill').style.width = pct + '%'; }, 30);
+
+    LAST = { o:o, years:years, reached:reached, target:r.target, pct:pct };
+    $('result').classList.add('on');
+    if (doScroll) $('result').scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+
+  // ---------- 分享图 ----------
+  function drawCard(){
+    if (!LAST) return null;
+    var L = LAST, o = L.o;
+    var W = 750, H = 1090, R = 2;
+    var c = document.createElement('canvas');
+    c.width = W * R; c.height = H * R;
+    var g = c.getContext('2d');
+    g.scale(R, R);
+
+    var bg = g.createLinearGradient(0, 0, W, H);
+    bg.addColorStop(0, '#141a27'); bg.addColorStop(1, '#0a0c11');
+    g.fillStyle = bg; g.fillRect(0, 0, W, H);
+
+    var glow = g.createRadialGradient(W/2, -60, 0, W/2, -60, 520);
+    glow.addColorStop(0, 'rgba(255,209,102,.22)'); glow.addColorStop(1, 'rgba(255,209,102,0)');
+    g.fillStyle = glow; g.fillRect(0, 0, W, 480);
+
+    var FONT = '"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,sans-serif';
+    g.textAlign = 'center';
+
+    g.fillStyle = '#ffd166'; g.font = '600 22px ' + FONT;
+    g.fillText('不上班计算器', W/2, 74);
+
+    g.fillStyle = '#8e97ab'; g.font = '400 21px ' + FONT;
+    g.fillText(L.years === 0 ? '按我填的数字' : (L.years === null ? '在 ' + o.until + ' 岁之前' : '我还需要'), W/2, 196);
+
+    if (L.years === null){
+      g.fillStyle = '#ff6b6b'; g.font = '800 76px ' + FONT;
+      g.fillText('算不出来', W/2, 330);
+    } else if (L.years === 0){
+      g.fillStyle = '#4ade80'; g.font = '800 80px ' + FONT;
+      g.fillText('已经可以了', W/2, 330);
+    } else {
+      var ys = String(L.years);
+      g.fillStyle = '#ffd166'; g.font = '900 ' + (ys.length > 2 ? 132 : 156) + 'px ' + FONT;
+      var yw = g.measureText(ys).width;
+      g.fillText(ys, W/2, 348);
+      g.font = '800 46px ' + FONT;
+      g.fillText('年', W/2 + yw/2 + 22, 348);
+    }
+
+    if (L.years !== null && L.years > 0){
+      g.fillStyle = '#8e97ab'; g.font = '400 25px ' + FONT;
+      g.fillText('也就是 ' + Math.round(o.age + L.years) + ' 岁 那年', W/2, 428);
+    }
+
+    g.font = '600 27px ' + FONT; g.fillStyle = '#eef1f7';
+    var line1 = L.years === null ? '钱在变慢，支出在变贵。'
+              : (L.years === 0 ? '你现在就可以不上班了。别声张。' : verdict(L.years, o.age));
+    g.fillText(line1, W/2, 512);
+
+    // 进度
+    var bx = 70, by = 588, bw = W - 140, bh = 16;
+    g.fillStyle = 'rgba(255,255,255,.08)';
+    g.beginPath(); g.roundRect(bx, by, bw, bh, 8); g.fill();
+    var fg = g.createLinearGradient(bx, 0, bx + bw, 0);
+    fg.addColorStop(0, '#5aa9ff'); fg.addColorStop(1, '#4ade80');
+    g.fillStyle = fg;
+    g.beginPath(); g.roundRect(bx, by, Math.max(4, bw * L.pct / 100), bh, 8); g.fill();
+    g.fillStyle = '#5d6577'; g.font = '400 21px ' + FONT;
+    g.fillText('已经攒了 ' + L.pct.toFixed(L.pct < 10 ? 1 : 0) + '%  ·  目标 ' + fmtWan(L.target), W/2, by + 52);
+
+    // 数据格
+    var items = [
+      ['年龄', Math.round(o.age) + ' 岁'],
+      ['现在有', fmtWan(o.assets)],
+      ['每月存', Math.round(o.save) + ' 元'],
+      ['每月花', Math.round(o.spend) + ' 元']
+    ];
+    var gw = (W - 140 - 24) / 2, gh = 116;
+    for (var i=0;i<items.length;i++){
+      var gx = 70 + (i % 2) * (gw + 24);
+      var gy = 712 + Math.floor(i / 2) * (gh + 20);
+      g.fillStyle = 'rgba(255,255,255,.05)';
+      g.beginPath(); g.roundRect(gx, gy, gw, gh, 18); g.fill();
+      g.fillStyle = '#8e97ab'; g.font = '400 21px ' + FONT;
+      g.fillText(items[i][0], gx + gw/2, gy + 44);
+      g.fillStyle = '#eef1f7'; g.font = '700 33px ' + FONT;
+      g.fillText(items[i][1], gx + gw/2, gy + 88);
+    }
+
+    g.fillStyle = '#5d6577'; g.font = '400 21px ' + FONT;
+    g.fillText('pingyeai.cn/tools/retireme', W/2, H - 84);
+    g.fillStyle = '#3a4152'; g.font = '400 18px ' + FONT;
+    g.fillText('AI Product Lab · 实验 01 · 纯数学估算，非投资建议', W/2, H - 48);
+
+    return c;
+  }
+
+  // roundRect polyfill
+  if (!CanvasRenderingContext2D.prototype.roundRect){
+    CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r){
+      this.moveTo(x + r, y);
+      this.arcTo(x + w, y, x + w, y + h, r);
+      this.arcTo(x + w, y + h, x, y + h, r);
+      this.arcTo(x, y + h, x, y, r);
+      this.arcTo(x, y, x + w, y, r);
+      this.closePath(); return this;
+    };
+  }
+
+  $('calc').addEventListener('click', function(){ calc(true); });
+  ['age','assets','save','spend','ret','infl','swr','until'].forEach(function(id){
+    $(id).addEventListener('keydown', function(e){ if (e.key === 'Enter'){ $(id).blur(); calc(true); } });
+    $(id).addEventListener('input', function(){
+      if (LAST) calc(false);   // 已经算过一次，改数字就地刷新
+    });
+  });
+
+  $('btnCard').addEventListener('click', function(){
+    var c = drawCard();
+    if (!c){ toast('先算一下'); return; }
+    var img = $('cardImg');
+    img.src = c.toDataURL('image/png');
+    $('modal').classList.add('on');
+  });
+  $('btnClose').addEventListener('click', function(){ $('modal').classList.remove('on'); });
+  $('modal').addEventListener('click', function(e){ if (e.target === $('modal')) $('modal').classList.remove('on'); });
+
+  $('btnCopy').addEventListener('click', function(){
+    if (!LAST){ toast('先算一下'); return; }
+    var L = LAST, o = L.o;
+    var txt = L.years === null
+      ? '我按不上班计算器算了一下：在 ' + o.until + ' 岁之前，我攒不到可以不上班的钱。'
+      : (L.years === 0
+        ? '我按不上班计算器算了一下：我现在就可以不上班了。'
+        : '我按不上班计算器算了一下：我还要 ' + L.years + ' 年，' + Math.round(o.age + L.years) + ' 岁那年可以不上班。');
+    txt += '（每月存 ' + Math.round(o.save) + ' 元，花 ' + Math.round(o.spend) + ' 元）pingyeai.cn/tools/retireme';
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){ toast('已复制，去粘贴吧'); }, function(){ toast('复制失败，长按手动选吧'); });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = txt; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); toast('已复制'); } catch(e){ toast('复制失败'); }
+      document.body.removeChild(ta);
+    }
+  });
+})();
+</script>
+</body>
+</html>
