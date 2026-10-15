@@ -64,6 +64,7 @@ const BLOG_ARTICLES = [
   { slug: 'workbuddy-vs-trae-solo', title: 'WorkBuddy和Trae SOLO到底怎么选？', cat: 'wb', keywords: ['workbuddy','trae','solo','compare'] },
   { slug: 'doubao-work-vs-doubao', title: '「豆包工作」和「豆包」到底什么关系', cat: 'ai', keywords: ['豆包工作','豆包','doubao','对比','飞书','agent','字节'] },
   { slug: 'doubao-work-travel-calculator', title: '「豆包工作」搓了个差旅计算器，5秒选对出差方式', cat: 'ai', keywords: ['豆包工作','doubao','seed','差旅计算器','出差','高铁','自驾','报销','AI工具','效率'] },
+  { slug: 'ai-mini-program-pdca-workflow', title: 'AI 开发小程序 PDCA 工作流', cat: 'code', keywords: ['AI开发小程序','PDCA','工作流','ChatGPT','DeepSeek','GLM','TRAE WORK','ZCode','小程序','星图记'] },
 ];
 
 // ====== Utility ======
