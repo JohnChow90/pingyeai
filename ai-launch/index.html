@@ -1,0 +1,1011 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 产品发布包｜把做出来的东西讲明白</title>
+  <meta name="description" content="给已经做出来的 AI 产品或数字产品，做一次完整发布：一句话定位、45 秒产品片、5 条竖版内容、发布文章和首屏文案。7 个工作日交付。">
+  <link rel="canonical" href="https://pingyeai.cn/ai-launch">
+  <meta property="og:title" content="AI 产品发布包｜把做出来的东西讲明白">
+  <meta property="og:description" content="不是代开发。解决产品做出来以后，别人仍然没看懂、没记住、没转发的那一段。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/xingtuji-contact.jpg">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/xingtuji-home.png" as="image">
+  <style>
+    :root {
+      --paper: #f2efe7;
+      --paper-deep: #e7e0d4;
+      --ink: #161813;
+      --muted: #686b62;
+      --line: rgba(22, 24, 19, .16);
+      --accent: #d95d39;
+      --accent-dark: #a93d20;
+      --night: #0d1220;
+      --bone: #f7f2e7;
+      --blue: #7187dc;
+      --max: 1180px;
+      --serif: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+      --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .23;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E");
+      z-index: 20;
+      mix-blend-mode: multiply;
+    }
+    a { color: inherit; text-decoration: none; }
+    body::before { display: none; }
+    body::before { content: none; background: none; }
+    button, input, textarea, select { font: inherit; }
+    img, video { display: block; max-width: 100%; }
+    .wrap { width: min(calc(100% - 40px), var(--max)); margin: 0 auto; }
+    .micro {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 30;
+      height: 66px;
+      color: var(--bone);
+      border-bottom: 1px solid rgba(255,255,255,.16);
+      background: rgba(10, 14, 24, .76);
+      backdrop-filter: blur(14px);
+    }
+    .header-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      white-space: nowrap;
+    }
+    .brand strong {
+      font-family: var(--serif);
+      font-size: 20px;
+      letter-spacing: .04em;
+    }
+    .brand span {
+      color: rgba(247,242,231,.62);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .17em;
+    }
+    .nav { display: flex; align-items: center; gap: 26px; }
+    .nav a {
+      color: rgba(247,242,231,.72);
+      font-size: 13px;
+      transition: color .2s ease;
+    }
+    .nav a:hover { color: #fff; }
+    .nav .nav-cta {
+      color: var(--night);
+      background: var(--bone);
+      padding: 10px 15px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 86svh;
+      color: var(--bone);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      background: var(--night);
+    }
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 68% 48%;
+      opacity: .77;
+      filter: saturate(.8) contrast(1.04);
+      transform: scale(1.01);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(5,9,18,.97) 0%, rgba(5,9,18,.84) 40%, rgba(5,9,18,.2) 78%, rgba(5,9,18,.4) 100%),
+        linear-gradient(0deg, rgba(5,9,18,.94) 0%, rgba(5,9,18,0) 38%);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding-top: 150px;
+      padding-bottom: 66px;
+      display: grid;
+      grid-template-columns: minmax(0, 760px) 1fr;
+      align-items: end;
+      gap: 42px;
+    }
+    .hero-copy { max-width: 740px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 26px;
+      color: rgba(247,242,231,.72);
+    }
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--accent);
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      margin-bottom: 24px;
+      font-family: var(--serif);
+      font-size: clamp(50px, 6.4vw, 92px);
+      font-weight: 900;
+      line-height: .98;
+      letter-spacing: 0;
+      max-width: 760px;
+    }
+    .hero-copy > p {
+      max-width: 620px;
+      margin-bottom: 32px;
+      color: rgba(247,242,231,.8);
+      font-size: clamp(17px, 1.6vw, 21px);
+      line-height: 1.8;
+    }
+    .actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 20px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 650;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: var(--accent); color: #fff; }
+    .button-primary:hover { background: #ed6d47; }
+    .button-ghost {
+      color: var(--bone);
+      border-color: rgba(247,242,231,.28);
+      background: rgba(255,255,255,.03);
+    }
+    .hero-note {
+      margin-top: 22px;
+      color: rgba(247,242,231,.56);
+      font-size: 12px;
+    }
+    .hero-side {
+      justify-self: end;
+      width: min(100%, 280px);
+      padding-left: 18px;
+      border-left: 1px solid rgba(247,242,231,.25);
+    }
+    .hero-side p {
+      margin: 0 0 16px;
+      color: rgba(247,242,231,.62);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .hero-side strong {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--bone);
+      font-family: var(--serif);
+      font-size: 38px;
+      line-height: 1;
+    }
+    .hero-side span {
+      color: rgba(247,242,231,.55);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .15em;
+    }
+
+    .proof-strip {
+      background: var(--accent);
+      color: #fff;
+    }
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      min-height: 94px;
+    }
+    .proof-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 17px 24px;
+      border-left: 1px solid rgba(255,255,255,.24);
+    }
+    .proof-item:first-child { border-left: 0; }
+    .proof-item strong {
+      margin-bottom: 4px;
+      font-family: var(--serif);
+      font-size: 26px;
+      line-height: 1.1;
+    }
+    .proof-item span { color: rgba(255,255,255,.7); font-size: 10px; letter-spacing: .08em; }
+
+    section { position: relative; }
+    .section-pad { padding: 108px 0; }
+    .section-head {
+      display: grid;
+      grid-template-columns: 165px minmax(0, 1fr);
+      gap: 36px;
+      margin-bottom: 54px;
+      align-items: start;
+    }
+    .section-no { color: var(--muted); padding-top: 8px; }
+    .section-head h2 {
+      margin: 0;
+      max-width: 780px;
+      font-family: var(--serif);
+      font-size: clamp(38px, 4.6vw, 66px);
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+    .section-head .lede {
+      max-width: 670px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+    }
+    .problem {
+      min-height: 250px;
+      padding: 29px 28px 34px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .problem + .problem { padding-left: 28px; border-left: 1px solid var(--line); }
+    .problem .num { margin-bottom: 58px; color: var(--accent); }
+    .problem h3 {
+      margin-bottom: 14px;
+      font-family: var(--serif);
+      font-size: 26px;
+      line-height: 1.3;
+    }
+    .problem p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.8; }
+
+    .case-section { background: var(--night); color: var(--bone); }
+    .case-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr);
+      align-items: center;
+      gap: 70px;
+    }
+    .case-video {
+      position: relative;
+      width: min(100%, 520px);
+      background: #080b13;
+      border: 1px solid rgba(247,242,231,.16);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .case-video video { width: 100%; height: auto; }
+    .video-label {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 7px 9px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 4px;
+      background: rgba(8,11,19,.72);
+      color: rgba(255,255,255,.8);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .14em;
+    }
+    .case-copy h3 {
+      margin-bottom: 22px;
+      font-family: var(--serif);
+      font-size: clamp(32px, 3.6vw, 52px);
+      line-height: 1.1;
+    }
+    .case-copy > p { color: rgba(247,242,231,.68); font-size: 16px; line-height: 1.9; }
+    .case-points { margin: 32px 0 0; padding: 0; list-style: none; }
+    .case-points li {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 14px;
+      padding: 18px 0;
+      border-top: 1px solid rgba(247,242,231,.14);
+      color: rgba(247,242,231,.79);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .case-points span { color: var(--blue); font-family: var(--mono); font-size: 9px; letter-spacing: .14em; }
+    .case-data {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 34px;
+      border: 1px solid rgba(247,242,231,.14);
+      background: rgba(247,242,231,.14);
+    }
+    .case-data div { padding: 16px 12px; background: var(--night); }
+    .case-data strong { display: block; font-family: var(--serif); font-size: 25px; }
+    .case-data span { color: rgba(247,242,231,.5); font-family: var(--mono); font-size: 8px; letter-spacing: .1em; }
+
+    .deliverables {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-top: 1px solid var(--line);
+    }
+    .deliverable {
+      display: grid;
+      grid-template-columns: 54px minmax(0, 1fr);
+      gap: 22px;
+      min-height: 190px;
+      padding: 30px 28px 30px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .deliverable:nth-child(even) { padding-left: 28px; border-left: 1px solid var(--line); }
+    .deliverable .icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+    .deliverable h3 { margin: 0 0 10px; font-family: var(--serif); font-size: 23px; }
+    .deliverable p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.75; }
+
+    .process-section { background: var(--paper-deep); }
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid rgba(22,24,19,.22);
+      border-bottom: 1px solid rgba(22,24,19,.22);
+    }
+    .step {
+      min-height: 255px;
+      padding: 26px 24px 30px;
+      border-left: 1px solid rgba(22,24,19,.17);
+    }
+    .step:first-child { border-left: 0; }
+    .step .micro { display: block; margin-bottom: 62px; color: var(--accent); }
+    .step h3 { margin-bottom: 12px; font-family: var(--serif); font-size: 24px; }
+    .step p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.75; }
+
+    .offer-section { background: #111612; color: var(--bone); }
+    .offer-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(340px, .9fr);
+      gap: 70px;
+      align-items: start;
+    }
+    .offer-kicker { margin-bottom: 22px; color: var(--accent); }
+    .offer-title {
+      margin-bottom: 22px;
+      font-family: var(--serif);
+      font-size: clamp(40px, 5vw, 70px);
+      line-height: 1.06;
+    }
+    .offer-intro { color: rgba(247,242,231,.68); font-size: 16px; line-height: 1.85; }
+    .scope-list { margin: 30px 0 0; padding: 0; list-style: none; border-top: 1px solid rgba(247,242,231,.16); }
+    .scope-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(247,242,231,.12);
+      color: rgba(247,242,231,.82);
+      font-size: 14px;
+    }
+    .scope-list span { color: rgba(247,242,231,.42); font-family: var(--mono); font-size: 10px; text-align: right; }
+    .price-card {
+      padding: 34px;
+      color: var(--ink);
+      background: var(--bone);
+      border-radius: 8px;
+    }
+    .price-card .pilot {
+      display: inline-block;
+      margin-bottom: 30px;
+      padding: 6px 9px;
+      color: #fff;
+      background: var(--accent);
+      border-radius: 4px;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .13em;
+    }
+    .price-line { display: flex; align-items: flex-end; gap: 10px; margin-bottom: 8px; }
+    .price { font-family: var(--serif); font-size: 64px; font-weight: 900; line-height: 1; }
+    .price small { margin-bottom: 8px; color: var(--muted); font-size: 15px; }
+    .old-price { color: var(--muted); font-size: 13px; text-decoration: line-through; }
+    .price-card > p { margin: 22px 0 26px; color: var(--muted); font-size: 14px; line-height: 1.75; }
+    .price-card .button { width: 100%; }
+    .price-card .fine { margin: 18px 0 0; font-size: 11px; line-height: 1.65; }
+    .exclusions {
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+    .exclusions strong { display: block; margin-bottom: 10px; font-size: 13px; }
+    .exclusions p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+    .work {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ded8cb;
+    }
+    .work-media { position: relative; background: #111; }
+    .work-media video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+    .work-label {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 6px 8px;
+      color: #fff;
+      background: rgba(8,10,15,.72);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 4px;
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: .12em;
+    }
+    .work-copy { padding: 24px 24px 26px; }
+    .work-copy h3 { margin: 0 0 9px; font-family: var(--serif); font-size: 25px; }
+    .work-copy p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .work-note {
+      margin-top: 20px;
+      padding: 14px 16px;
+      border-left: 2px solid var(--accent);
+      background: rgba(217,93,57,.06);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .lead-section { background: var(--accent); color: #fff; }
+    .lead-layout {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .lead-copy h2 {
+      margin-bottom: 22px;
+      font-family: var(--serif);
+      font-size: clamp(40px, 5vw, 68px);
+      line-height: 1.06;
+    }
+    .lead-copy p { max-width: 440px; color: rgba(255,255,255,.76); font-size: 15px; line-height: 1.8; }
+    .lead-form {
+      padding: 30px;
+      color: var(--ink);
+      background: #fffaf1;
+      border-radius: 8px;
+    }
+    .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: grid; gap: 7px; margin-bottom: 16px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: 12px; font-weight: 650; }
+    .field input, .field textarea, .field select {
+      width: 100%;
+      min-height: 46px;
+      padding: 11px 12px;
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid rgba(22,24,19,.23);
+      border-radius: 4px;
+      outline: none;
+    }
+    .field textarea { min-height: 110px; resize: vertical; }
+    .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,93,57,.1); }
+    .form-note { margin: 12px 0 0; color: var(--muted); font-size: 11px; line-height: 1.65; }
+    .form-status { min-height: 20px; margin: 12px 0 0; color: var(--accent-dark); font-size: 12px; }
+
+    .faq { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; border-top: 1px solid var(--line); }
+    details { padding: 22px 0; border-bottom: 1px solid var(--line); }
+    summary { cursor: pointer; font-family: var(--serif); font-size: 21px; font-weight: 700; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--accent); font-family: var(--mono); }
+    details[open] summary::after { content: "−"; }
+    details p { margin: 14px 0 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+
+    .site-footer { padding: 42px 0 48px; background: #0b0f13; color: rgba(247,242,231,.62); }
+    .footer-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 36px; }
+    .footer-brand { font-family: var(--serif); color: var(--bone); font-size: 28px; }
+    .site-footer p { margin: 9px 0 0; font-size: 11px; line-height: 1.7; }
+    .footer-meta { text-align: right; font-family: var(--mono); font-size: 9px; letter-spacing: .08em; line-height: 1.8; }
+
+    .reveal, .reveal.is-visible { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      .nav a:not(.nav-cta) { display: none; }
+      .hero-inner { grid-template-columns: 1fr; padding-top: 128px; padding-bottom: 52px; }
+      .hero-side { display: none; }
+      .hero-image { object-position: 64% center; opacity: .64; }
+      .proof-grid { grid-template-columns: 1fr 1fr; }
+      .proof-item:nth-child(3) { border-left: 0; border-top: 1px solid rgba(255,255,255,.24); }
+      .proof-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,.24); }
+      .section-head { grid-template-columns: 1fr; gap: 12px; }
+      .case-layout, .offer-layout, .lead-layout { grid-template-columns: 1fr; gap: 44px; }
+      .case-video { margin: 0 auto; }
+      .process { grid-template-columns: 1fr 1fr; }
+      .step:nth-child(3) { border-left: 0; border-top: 1px solid rgba(22,24,19,.17); }
+      .step:nth-child(4) { border-top: 1px solid rgba(22,24,19,.17); }
+      .work-grid { grid-template-columns: 1fr; }
+      .lead-copy p { max-width: 620px; }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(calc(100% - 28px), var(--max)); }
+      .site-header { height: 60px; }
+      .brand span { display: none; }
+      .nav .nav-cta { padding: 9px 12px; }
+      h1 { font-size: clamp(46px, 14vw, 66px); }
+      .hero { min-height: 80svh; }
+      .hero-inner { padding-top: 105px; padding-bottom: 38px; }
+      .hero-copy > p { font-size: 16px; line-height: 1.72; }
+      .actions { align-items: stretch; flex-direction: column; }
+      .button { width: 100%; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .proof-item { min-height: 76px; border-left: 0; border-top: 1px solid rgba(255,255,255,.24); }
+      .proof-item:first-child { border-top: 0; }
+      .section-pad { padding: 76px 0; }
+      .section-head { margin-bottom: 34px; }
+      .section-head h2 { font-size: 42px; }
+      .problem-grid, .deliverables, .faq { grid-template-columns: 1fr; }
+      .problem, .problem + .problem, .deliverable, .deliverable:nth-child(even) {
+        padding: 24px 0;
+        border-left: 0;
+      }
+      .problem .num { margin-bottom: 30px; }
+      .deliverable { grid-template-columns: 45px 1fr; min-height: 0; }
+      .process { grid-template-columns: 1fr; }
+      .step, .step:nth-child(3), .step:nth-child(4) {
+        min-height: 0;
+        padding: 24px 0;
+        border-left: 0;
+        border-top: 1px solid rgba(22,24,19,.17);
+      }
+      .step:first-child { border-top: 0; }
+      .step .micro { margin-bottom: 26px; }
+      .price-card, .lead-form { padding: 24px; }
+      .price { font-size: 56px; }
+      .case-data { grid-template-columns: 1fr; }
+      .field-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-meta { text-align: left; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="返回顶部">
+        <strong>平野先生</strong>
+        <span>AI PRODUCT LAUNCH</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="#case">案例</a>
+        <a href="#deliverables">交付</a>
+        <a href="#offer">价格</a>
+        <a class="nav-cta" href="#contact">预约诊断</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero-image" src="assets/xingtuji-contact.jpg" alt="星图记产品演示片的十二个画面">
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <div class="eyebrow micro">给已经做出来的产品，再做一次发布</div>
+          <h1 id="hero-title">东西做出来了，<br>别人还是没看懂。</h1>
+          <p>我帮非技术背景的创作者和小团队，把产品整理成一句话、一支片、一套能直接发布的内容。7 个工作日，从叙事到交付。</p>
+          <div class="actions">
+            <a class="button button-primary" href="#contact">预约 20 分钟发布诊断</a>
+            <a class="button button-ghost" href="#case">看星图记案例</a>
+          </div>
+          <div class="hero-note">首批 3 个团队 · 6,999 元 · 不替客户开发产品</div>
+        </div>
+        <aside class="hero-side" aria-label="案例摘要">
+          <p>星图记<br>从功能堆叠到一个能讲清楚的入口。</p>
+          <strong>3,762</strong><span>真实用户 / 截至 2026-10-16</span>
+          <p style="margin-top:18px">350+ 份开发、验收与运营记录，组成这次公开案例。</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="proof-strip" aria-label="项目证明">
+      <div class="wrap proof-grid">
+        <div class="proof-item"><strong>星图记</strong><span>真实上线产品 / 不是概念页</span></div>
+        <div class="proof-item"><strong>40 秒</strong><span>5 轮迭代后验收通过的产品片</span></div>
+        <div class="proof-item"><strong>835</strong><span>篇有效笔记支撑的内容与交付系统</span></div>
+        <div class="proof-item"><strong>7 天</strong><span>首批发布包的完整交付周期</span></div>
+      </div>
+    </section>
+
+    <section class="section-pad" id="problem">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-no micro">01 / PROBLEM</div>
+          <div>
+            <h2>功能越多，第一句话越容易消失。</h2>
+            <p class="lede">产品不缺一个更长的功能列表。缺的是别人愿不愿意停下来，听完第一句话。</p>
+          </div>
+        </div>
+        <div class="problem-grid">
+          <article class="problem reveal">
+            <div class="num micro">01</div>
+            <h3>自己讲的是功能</h3>
+            <p>用户听见的是一堆“可以做什么”，却没听见“这跟我有什么关系”。</p>
+          </article>
+          <article class="problem reveal">
+            <div class="num micro">02</div>
+            <h3>每个入口都像懂的</h3>
+            <p>官网、朋友圈、视频、文章各说一套。发布之后，没有留下同一个记忆点。</p>
+          </article>
+          <article class="problem reveal">
+            <div class="num micro">03</div>
+            <h3>发布会结束就结束</h3>
+            <p>只有一条片或一篇文章，没有能继续分发、搜索和承接的整套内容。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad case-section" id="case">
+      <div class="wrap case-layout">
+        <div class="case-video reveal">
+          <span class="video-label">CASE 01 / 40 SEC</span>
+          <video controls preload="metadata" poster="assets/xingtuji-home.png">
+            <source src="video/xingtuji-demo.mp4" type="video/mp4">
+            你的浏览器不支持视频播放。
+          </video>
+        </div>
+        <div class="case-copy reveal">
+          <div class="eyebrow micro">自有产品案例 / 星图记</div>
+          <h3>把“十个功能”讲成“每天 10 分钟，打开就能练”。</h3>
+          <p>星图记是一个给小学生的语文练习工具。真正难的，不是把功能做出来，而是让家长在十几秒内明白：它能替自己解决什么。</p>
+          <ul class="case-points">
+            <li><span>BEFORE</span>十个功能、六个入口、多个付费点，介绍只能从头念到尾。</li>
+            <li><span>AFTER</span>先立一个使用承诺，再用真机流程、成长记录和结果完成证明。</li>
+            <li><span>SYSTEM</span>主片、竖版切条、文章、截图和首屏文案，共用同一条叙事。</li>
+          </ul>
+          <div class="case-data" aria-label="星图记数据">
+            <div><strong>3,762</strong><span>累计用户</span></div>
+            <div><strong>4.31%</strong><span>活跃日留存</span></div>
+            <div><strong>40s</strong><span>主片时长</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" id="deliverables">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-no micro">02 / DELIVERABLES</div>
+          <div>
+            <h2>不是一条视频，是一套能发布的结果。</h2>
+            <p class="lede">所有交付围绕同一个产品承诺展开。官网、视频号、公众号、小红书，在不同地方说同一件事。</p>
+          </div>
+        </div>
+        <div class="deliverables">
+          <article class="deliverable reveal">
+            <div class="icon">01</div>
+            <div><h3>发布定位与叙事底稿</h3><p>一次 60 分钟访谈，找出产品最值得被记住的一句话、三个证据和一个行动入口。</p></div>
+          </article>
+          <article class="deliverable reveal">
+            <div class="icon">02</div>
+            <div><h3>45 秒主片</h3><p>真机素材、界面演示或产品截图，做成有节奏、有字幕、有声音设计的产品片。</p></div>
+          </article>
+          <article class="deliverable reveal">
+            <div class="icon">03</div>
+            <div><h3>5 条竖版切条</h3><p>从主片拆成能连续发布的短内容，覆盖产品卖点、使用场景和结果证明。</p></div>
+          </article>
+          <article class="deliverable reveal">
+            <div class="icon">04</div>
+            <div><h3>1 篇发布文章</h3><p>用第一人称讲清楚为什么做、解决什么问题、产品怎么用，适合发公众号或官网。</p></div>
+          </article>
+          <article class="deliverable reveal">
+            <div class="icon">05</div>
+            <div><h3>首屏文案与发布清单</h3><p>网站第一屏、朋友圈转发语、视频标题和发布顺序，改到可以直接贴进后台。</p></div>
+          </article>
+          <article class="deliverable reveal">
+            <div class="icon">06</div>
+            <div><h3>两轮修改与交付验收</h3><p>一轮方向确认、一轮成稿修改。按清单验收，不把客户的偏好变化变成无限返工。</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad process-section" id="process">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-no micro">03 / PROCESS</div>
+          <div>
+            <h2>7 个工作日，先把产品讲明白。</h2>
+            <p class="lede">客户只需要提供产品、素材和一次完整访谈。剩下的从叙事统一到实际发布，由我完成。</p>
+          </div>
+        </div>
+        <div class="process">
+          <article class="step reveal"><span class="micro">DAY 1–2</span><h3>问清楚</h3><p>产品访谈、用户场景、竞品对比，确定一条主线，不先做画面。</p></article>
+          <article class="step reveal"><span class="micro">DAY 3–4</span><h3>写成话</h3><p>主片脚本、文章骨架、首屏文案同时写，保证每个渠道不跑题。</p></article>
+          <article class="step reveal"><span class="micro">DAY 5–6</span><h3>做出来</h3><p>动效、真机演示、配音、字幕和切条同步制作，先出完整粗剪给客户确认。</p></article>
+          <article class="step reveal"><span class="micro">DAY 7</span><h3>交到手上</h3><p>成片、切条、文章、发布语和检查清单一起交付，压缩到可直接上传。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad offer-section" id="offer">
+      <div class="wrap offer-layout">
+        <div class="reveal">
+          <div class="offer-kicker micro">04 / OFFER</div>
+          <h2 class="offer-title">AI 产品发布启动包</h2>
+          <p class="offer-intro">适合已经有产品原型、内测版本或正式上线版本，但还没有一套统一发布内容的个人和小团队。</p>
+          <ul class="scope-list">
+            <li><span>交付 01</span>60 分钟发布访谈 + 一页定位底稿</li>
+            <li><span>交付 02</span>45 秒横版或竖版产品主片</li>
+            <li><span>交付 03</span>5 条可连续发布的竖版切条</li>
+            <li><span>交付 04</span>800–1,200 字第一人称发布文章</li>
+            <li><span>交付 05</span>首屏文案、标题与发布顺序</li>
+            <li><span>交付 06</span>两轮修改 + 一次交付验收</li>
+          </ul>
+        </div>
+        <aside class="price-card reveal" aria-label="价格与预约">
+          <span class="pilot">首批 3 个团队</span>
+          <div class="price-line"><span class="price">6,999</span><small>元 / 套</small></div>
+          <div class="old-price">标准价 9,999 元</div>
+          <p>50% 定金后开始排期。客户提供 Logo、产品截图或录屏、60 分钟访谈，7 个工作日后交付。</p>
+          <a class="button button-primary" href="#contact">提交产品资料</a>
+          <p class="fine">首发价仅用于前 3 个可公开展示案例的项目；如要求匿名，按标准价执行。</p>
+          <div class="exclusions">
+            <strong>不包含</strong>
+            <p>产品开发、广告投放、账号代运营、保证流量或成交、推翻方向后的重做。源工程与额外版本另行报价。</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-pad" id="work">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-no micro">05 / DIRECTION</div>
+          <div>
+            <h2>同一套方法，也能做另一种气质。</h2>
+            <p class="lede">星图记解决“产品怎么被看懂”。下面两支是概念创作，用来验证另一件事：纯图形与声音，也能把抽象产品讲出情绪。</p>
+          </div>
+        </div>
+        <div class="work-grid">
+          <article class="work reveal">
+            <div class="work-media">
+              <span class="work-label">CONCEPT / NOT OFFICIAL</span>
+              <video controls preload="metadata" poster="assets/deepseek-cover.png">
+                <source src="video/concept-film.mp4" type="video/mp4">
+                你的浏览器不支持视频播放。
+              </video>
+            </div>
+            <div class="work-copy">
+              <h3>DeepSeek Harness · 概念片</h3>
+              <p>用夜班、文件、交付和三条信条，把“一个把事做完的智能”做成 48 秒视听叙事。</p>
+            </div>
+          </article>
+          <article class="work reveal">
+            <div class="work-media">
+              <img src="assets/codex-cover.png" alt="Codex 自我介绍概念片封面">
+            </div>
+            <div class="work-copy">
+              <h3>Codex · 自我介绍概念片</h3>
+              <p>把工具介绍从功能说明拉到“我是谁、我怎么工作”的层面。</p>
+            </div>
+          </article>
+        </div>
+        <div class="work-note reveal">说明：DeepSeek 与 Codex 相关视频均为个人概念创作，非品牌官方项目，也不代表品牌合作或背书。客户商用片会重新建立独立视觉与素材授权清单。</div>
+      </div>
+    </section>
+
+    <section class="section-pad lead-section" id="contact">
+      <div class="wrap lead-layout">
+        <div class="lead-copy reveal">
+          <div class="eyebrow micro">START HERE</div>
+          <h2>先把产品发过来，看看值不值得做。</h2>
+          <p>填写产品信息后，会打开你的邮件客户端。24 小时内回复是否适合。适合的项目约一次 20 分钟诊断；不适合的，我会直接说明原因。</p>
+          <p style="margin-top:26px">直接联系：<a href="mailto:424104691@qq.com" style="text-decoration:underline;text-underline-offset:4px">424104691@qq.com</a></p>
+        </div>
+        <form class="lead-form reveal" id="lead-form">
+          <div class="field-grid">
+            <div class="field">
+              <label for="name">怎么称呼你</label>
+              <input id="name" name="name" autocomplete="name" placeholder="姓名或昵称" required>
+            </div>
+            <div class="field">
+              <label for="product">产品名称</label>
+              <input id="product" name="product" placeholder="产品叫什么" required>
+            </div>
+            <div class="field full">
+              <label for="url">产品地址</label>
+              <input id="url" name="url" type="url" placeholder="https://" required>
+            </div>
+            <div class="field">
+              <label for="stage">现在到哪一步了</label>
+              <select id="stage" name="stage">
+                <option>还在原型</option>
+                <option>正在内测</option>
+                <option>已经上线</option>
+                <option>准备重大更新</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="date">计划什么时候发布</label>
+              <input id="date" name="date" type="date">
+            </div>
+            <div class="field full">
+              <label for="pain">现在最想解决的问题</label>
+              <textarea id="pain" name="problem" placeholder="比如：官网说不清卖点、视频太像功能演示、文章一直写不出来" required></textarea>
+            </div>
+          </div>
+          <button class="button button-primary" type="submit">生成预约邮件</button>
+          <p class="form-note">页面不保存数据，也不会自动发送。提交后只会在你的邮件客户端里生成一封草稿。</p>
+          <p class="form-status" id="form-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="section-pad" id="faq">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-no micro">06 / FAQ</div>
+          <div><h2>开始前说清楚。</h2></div>
+        </div>
+        <div class="faq">
+          <details class="reveal"><summary>你是不是替我做产品？</summary><p>不是。发布包从“产品已经存在”开始。我能做的是把已有的产品、界面和过程整理成一套发布内容，不接代码开发。</p></details>
+          <details class="reveal"><summary>没有视频素材能做吗？</summary><p>可以。产品截图、屏幕录制、界面原型、演示账号和一次访谈通常够用。需要实拍或额外 3D 资产时，单独评估。</p></details>
+          <details class="reveal"><summary>能不能保证涨粉或成交？</summary><p>不能。发布内容能解决“别人看不懂、记不住、没有统一素材”的问题，但不能替产品本身创造需求，也不承诺平台流量。</p></details>
+          <details class="reveal"><summary>为什么首批只要 6,999 元？</summary><p>我需要 3 个可用真实案例，来验证这套发布包在不同产品上的交付效率。代价是能公开讲述项目过程和结果；要求匿名的项目按标准价执行。</p></details>
+          <details class="reveal"><summary>修改几次？哪些算新增工作？</summary><p>包含方向确认后的一轮文案修改和一轮成片修改。改产品定位、换核心叙事、重做整支片、增加新版本，都属于新增工作，需要重新报价。</p></details>
+          <details class="reveal"><summary>版权和素材怎么处理？</summary><p>客户保证提供的 Logo、截图、录屏和字体素材有使用权。成片交付后，客户获得约定范围内的商业使用权；源工程、模板和未采用方向仍归创作者所有。</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <div class="footer-brand">平野先生</div>
+        <p>真实使用，真实踩坑，真实交付。</p>
+      </div>
+      <div class="footer-meta">
+        AI PRODUCT LAUNCH · 2026<br>
+        星图记数据截至 2026-10-16<br>
+        DeepSeek / Codex 作品均为概念创作
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.querySelector('#lead-form');
+    const status = document.querySelector('#form-status');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const product = String(data.get('product') || '').trim();
+      const name = String(data.get('name') || '').trim();
+      const url = String(data.get('url') || '').trim();
+      const stage = String(data.get('stage') || '').trim();
+      const date = String(data.get('date') || '').trim();
+      const problem = String(data.get('problem') || '').trim();
+
+      const subject = `预约 AI 产品发布诊断｜${product}`;
+      const body = [
+        `你好，平野先生：`,
+        ``,
+        `我是${name}，想预约一次 AI 产品发布诊断。`,
+        `产品名称：${product}`,
+        `产品地址：${url}`,
+        `当前阶段：${stage}`,
+        `计划发布时间：${date || '还没确定'}`,
+        ``,
+        `最想解决的问题：`,
+        problem,
+        ``,
+        `如果适合，请联系我继续沟通。`
+      ].join('\n');
+
+      status.textContent = '正在打开邮件客户端。如果没有反应，可以直接发邮件到 424104691@qq.com。';
+      window.location.href = `mailto:424104691@qq.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+
+    const items = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14 });
+      items.forEach((item) => observer.observe(item));
+    } else {
+      items.forEach((item) => item.classList.add('is-visible'));
+    }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "AI 产品发布启动包",
+    "description": "为已经做出来的 AI 产品或数字产品提供发布定位、45 秒产品片、5 条竖版切条、发布文章与首屏文案。",
+    "provider": {
+      "@type": "Person",
+      "name": "平野先生"
+    },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "CNY",
+      "price": "6999",
+      "availability": "https://schema.org/LimitedAvailability"
+    }
+  }
+  </script>
+</body>
+</html>
