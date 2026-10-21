@@ -65,6 +65,7 @@ const BLOG_ARTICLES = [
   { slug: 'doubao-work-vs-doubao', title: '「豆包工作」和「豆包」到底什么关系', cat: 'ai', keywords: ['豆包工作','豆包','doubao','对比','飞书','agent','字节'] },
   { slug: 'doubao-work-travel-calculator', title: '「豆包工作」搓了个差旅计算器，5秒选对出差方式', cat: 'ai', keywords: ['豆包工作','doubao','seed','差旅计算器','出差','高铁','自驾','报销','AI工具','效率'] },
   { slug: 'ai-mini-program-pdca-workflow', title: 'AI 开发小程序 PDCA 工作流', cat: 'code', keywords: ['AI开发小程序','PDCA','工作流','ChatGPT','DeepSeek','GLM','TRAE WORK','ZCode','小程序','星图记'] },
+  { slug: 'ai-product-launch-narrative', title: '产品做出来了，别人还是没看懂', cat: 'ai', keywords: ['AI产品发布','产品演示片','产品定位','星图记','短视频'] },
 ];
 
 // ====== Utility ======
@@ -914,6 +915,7 @@ function build() {
   const now2 = new Date().toISOString().split('T')[0];
   const sitePages = [
     { url: 'https://pingyeai.cn/', priority: '1.0', changefreq: 'weekly' },
+    { url: 'https://pingyeai.cn/ai-launch', priority: '0.9', changefreq: 'monthly' },
     { url: 'https://pingyeai.cn/models/', priority: '0.9', changefreq: 'weekly' },
     { url: 'https://pingyeai.cn/compare-ai-coding-tools', priority: '0.8', changefreq: 'monthly' },
     { url: 'https://pingyeai.cn/blog/', priority: '0.9', changefreq: 'weekly' },
