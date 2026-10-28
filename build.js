@@ -11,7 +11,9 @@ const path = require('path');
 const ROOT = __dirname;
 
 // ====== 模型数据 ======
-const MODELS = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'models.json'), 'utf-8'));
+const PRICING_UPDATED_AT = '2026-10-28';
+const MODEL_DATA = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'models.json'), 'utf-8'));
+const MODELS = MODEL_DATA.map(m => ({ ...m, ctx: m.context || m.ctx }));
 
 const PROVIDERS = [
   { id: 'openai', label: 'OpenAI', color: '#0f3460' },
@@ -84,6 +86,16 @@ function priceStr(v) {
 function cacheStr(v) {
   if (v === null || v === undefined) return '—';
   return '$' + (v < 1 ? v.toFixed(v < 0.01 ? 4 : 2) : v.toFixed(2));
+}
+
+function toInlineModel(m) {
+  const cache = m.cachePrice === null || m.cachePrice === undefined ? 'null' : m.cachePrice;
+  return `  { id:${JSON.stringify(m.id)}, name:${JSON.stringify(m.name)}, prov:${JSON.stringify(m.provider)}, input:${m.inputPrice}, output:${m.outputPrice}, cache:${cache}, ctx:${JSON.stringify(m.ctx)}, tags:${JSON.stringify(m.tags || [])}, note:${JSON.stringify(m.note || '')} },`;
+}
+
+function syncIndexPricingData(html) {
+  const block = `const apiModels = [\n${MODELS.map(toInlineModel).join('\n')}\n];`;
+  return html.replace(/const apiModels\s*=\s*\[[\s\S]*?\n\];/, block);
 }
 
 function findRelatedArticles(model) {
@@ -178,7 +190,8 @@ function makeNavHTML(activePath) {
 function makeFooterHTML() {
   return `<footer class="footer">
   <div><a href="https://pingyeai.cn">pingyeai.cn</a> — 平野AI工具站</div>
-  <div>数据来源：OpenAI / DeepSeek 官方定价页面 · 其他模型定价仅供参考</div>
+  <div>价格来源：厂商官方定价页与公开模型索引 · 最后核对：${PRICING_UPDATED_AT}</div>
+  <div>币种：USD / 1M tokens · 实际账单以厂商官网为准</div>
   <div><a href="/">首页</a> · <a href="/models/">模型目录</a> · <a href="/compare-ai-coding-tools">编程工具对比</a> · <a href="/blog/">博客</a></div>
 </footer>`;
 }
@@ -345,6 +358,7 @@ function generateModelPage(m) {
 
   const html = `${makePageHead(title, desc, `/models/${m.id}.html`, [jsonldProduct, jsonldApp])}
 ${pageCSS}
+</style>
 </head>
 <body>
 ${makeNavHTML('/models/' + m.id + '.html')}
@@ -429,7 +443,7 @@ function generateCatalogPage() {
   }
 
   const title = 'AI模型API定价目录 2026 | 平野AI工具站';
-  const desc = '浏览全部16款主流AI模型的API定价信息，包括GPT-5.5、Claude 4、Gemini 2.5、DeepSeek V4等，按厂商分类快速对比。';
+  const desc = `浏览全部${MODELS.length}款主流AI模型的API定价信息，包括GPT-6.1、Claude 5.5、Gemini 4、DeepSeek V4.1等，按厂商分类快速对比。`;
 
   const catalogCSS = `
 .prov-section{margin:28px 0}
@@ -489,6 +503,7 @@ function generateCatalogPage() {
     { "@context": "https://schema.org", "@type": "CollectionPage", "name": title, "description": desc, "url": "https://pingyeai.cn/models/" }
   ])}
 ${catalogCSS}
+</style>
 </head>
 <body>
 ${makeNavHTML('/models/')}
@@ -563,6 +578,7 @@ function generateProviderPage(provider) {
     { "@context": "https://schema.org", "@type": "CollectionPage", "name": title, "description": desc, "url": `https://pingyeai.cn/models/${provider.id}.html` }
   ])}
 ${provCSS}
+</style>
 </head>
 <body>
 ${makeNavHTML('/models/' + provider.id + '.html')}
@@ -766,6 +782,8 @@ function build() {
 
     // Update navbar
     indexHTML = updateNavbar(indexHTML, '/');
+    indexHTML = syncIndexPricingData(indexHTML);
+    log.push('✅ 首页模型价格数据已同步');
 
     // Add model directory section in related-tools area
     const modelLinksHTML = MODELS.map(m => `<a href="/models/${m.id}.html">${m.name}</a>`).join('\n      ');

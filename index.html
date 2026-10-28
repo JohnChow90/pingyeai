@@ -7,8 +7,8 @@
 <link rel="alternate" type="application/rss+xml" title="平野AI工具站" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
-<meta name="description" content="实时对比GPT-5.5、Claude 4 Opus、Gemini 2.5 Pro、DeepSeek V4等主流AI模型的API定价和订阅价格，帮你选最划算的AI工具。">
-<meta name="keywords" content="AI模型价格,GPT-5.5价格,Claude价格,DeepSeek V4价格,API定价对比,AI工具对比">
+<meta name="description" content="2026年10月更新：实时对比GPT-6.1、Claude Opus 5.5、Gemini 4、DeepSeek V4.1、MiMo V2.6等主流AI模型的API定价和订阅价格。">
+<meta name="keywords" content="AI模型价格,GPT-6.1价格,Claude 5.5价格,Gemini 4价格,DeepSeek V4.1价格,API定价对比,AI工具对比">
 <link rel="canonical" href="https://pingyeai.cn/">
 <meta property="og:title" content="AI模型价格对比器 2026">
 <meta property="og:description" content="一表看懂所有主流AI模型的定价，选工具不再纠结。">
@@ -440,7 +440,6 @@ a:hover{color:var(--fs-blue-hover)!important}
       <a href="/" class="active">🏠 首页</a>
       <a href="/models/">📂 模型目录</a>
       <a href="/compare-ai-coding-tools">🛠 编程工具对比</a>
-      <a href="/ai-launch">🚀 产品发布</a>
       <a href="/blog/">📝 博客</a>
     </div>
   </div>
@@ -455,7 +454,7 @@ a:hover{color:var(--fs-blue-hover)!important}
       <span><svg class="ico"><use href="#i-coin"/></use></svg> API定价</span>
       <span><svg class="ico"><use href="#i-calendar"/></use></svg> 订阅价格</span>
     </div>
-    <div class="update-note">最后更新：2026年5月29日 · 来源标注：<svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> 官方确认 · <svg class="ico" style="color:#d97700"><use href="#i-warn"/></use></svg> 参考现行定价</div>
+    <div class="update-note">最后更新：2026年10月28日 · 币种：USD / 1M tokens · 实际账单以厂商官网为准</div>
   </div>
 </header>
 
@@ -469,9 +468,8 @@ a:hover{color:var(--fs-blue-hover)!important}
 <main class="container">
 
 <div class="source-bar">
-  <span class="source-badge verified"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> OpenAI — 来自官网 openai.com/api/pricing</span>
-  <span class="source-badge verified"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> DeepSeek — 来自官网 api-docs.deepseek.com</span>
-  <span class="source-badge estimated"><svg class="ico" style="color:#d97700"><use href="#i-warn"/></use></svg> 其他模型 —— 基于现行公开定价</span>
+  <span class="source-badge verified"><svg class="ico" style="color:#0a8c4d"><use href="#i-check"/></use></svg> Anthropic / DeepSeek / 小米 — 官方价格页核对</span>
+  <span class="source-badge estimated"><svg class="ico" style="color:#d97700"><use href="#i-warn"/></use></svg> 其他厂商 — 官网与公开模型价格索引交叉核对</span>
 </div>
 
 <!-- Tab -->
@@ -542,22 +540,22 @@ a:hover{color:var(--fs-blue-hover)!important}
   <div class="tool-grid">
     <div class="tool-card">
       <h4><svg class="ico ico-xl"><use href="#i-bot"/></use></svg> ChatGPT</h4>
-      <p>OpenAI 旗舰模型，GPT-5.5 系列，编程与专业工作首选。</p>
+      <p>OpenAI 当前主力为 GPT-6.1 系列，旗舰 GPT-6 Astra 面向高难度推理与专业工作。</p>
       <a class="btn btn-primary" href="https://chat.openai.com" target="_blank" rel="noopener">立即体验</a>
     </div>
     <div class="tool-card">
       <h4><svg class="ico ico-xl"><use href="#i-spark"/></use></svg> Claude</h4>
-      <p>Anthropic 出品，长上下文与安全性突出，适合深度分析。</p>
+      <p>Anthropic 当前主力为 Claude Opus / Sonnet / Haiku 5.5，主打长上下文、编程和 Agent。</p>
       <a class="btn btn-primary" href="https://claude.ai" target="_blank" rel="noopener">立即体验</a>
     </div>
     <div class="tool-card">
       <h4><svg class="ico"><use href="#i-cloud"/></use></svg> Gemini</h4>
-      <p>Google 多模态模型，200万上下文窗口，视频理解能力强。</p>
+      <p>Google 当前主力为 Gemini 4 Argon 与 Gemini 3.8 Flash，支持长上下文和多模态理解。</p>
       <a class="btn btn-primary" href="https://gemini.google.com" target="_blank" rel="noopener">立即体验</a>
     </div>
     <div class="tool-card">
       <h4><svg class="ico"><use href="#i-star"/></use></svg> DeepSeek</h4>
-      <p>国产最强，V4 Flash/Pro 性价比极高，1M上下文。</p>
+      <p>DeepSeek V4.1 Flash / V4 Pro，支持 1M 上下文，按高峰与低峰分段计费。</p>
       <a class="btn btn-primary" href="https://chat.deepseek.com" target="_blank" rel="sponsored noopener">立即体验</a>
       <p class="aff-note">含推广链接</p>
     </div>
@@ -568,8 +566,8 @@ a:hover{color:var(--fs-blue-hover)!important}
       <p class="aff-note">含推广链接</p>
     </div>
     <div class="tool-card mimo-card">
-      <h4><svg class="ico"><use href="#i-tag"/></use></svg> 小米 MiMo V2.5</h4>
-      <p>小米旗舰大模型，V2.5系列 API 降价高达99%，极致性价比。¥10 体验金免费领。</p>
+      <h4><svg class="ico"><use href="#i-tag"/></use></svg> 小米 MiMo V2.6</h4>
+      <p>小米当前旗舰与高性价比模型，V2.6 系列支持 1M 上下文、全模态理解和深度思考。</p>
       <div class="mimo-promo">
         <span class="promo-code">邀请码: <strong>9YRE8S</strong></span>
         <span class="promo-bonus"><svg class="ico"><use href="#i-gift"/></use></svg> 双方各得 ¥10</span>
@@ -599,29 +597,33 @@ a:hover{color:var(--fs-blue-hover)!important}
       <a href="/models/others.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #ddd;text-decoration:none;color:#555;font-size:0.78rem;transition:all 0.2s" onmouseover="this.style.borderColor='#1a1a2e';this.style.color='#1a1a2e'" onmouseout="this.style.borderColor='#ddd';this.style.color='#555'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#9c27b0;margin-right:2px"></span> 其他</a>
   </div>
   <div class="list" style="display:flex;flex-wrap:wrap;gap:8px">
-    <a href="/models/gpt55.html">GPT-5.5</a>
-      <a href="/models/gpt54.html">GPT-5.4</a>
-      <a href="/models/gpt54m.html">GPT-5.4 mini</a>
-      <a href="/models/claude4o.html">Claude 4 Opus</a>
-      <a href="/models/claude4s.html">Claude 4 Sonnet</a>
-      <a href="/models/claude45h.html">Claude Haiku 4.5</a>
-      <a href="/models/gem25p.html">Gemini 2.5 Pro</a>
-      <a href="/models/gem25f.html">Gemini 2.5 Flash</a>
-      <a href="/models/dsv4f.html">DeepSeek V4 Flash</a>
+    <a href="/models/gpt55.html">GPT-6 Astra</a>
+      <a href="/models/gpt54.html">GPT-6.1 Terra</a>
+      <a href="/models/gpt54m.html">GPT-6 Luna</a>
+      <a href="/models/gpt61s.html">GPT-6.1 Sol</a>
+      <a href="/models/claude4o.html">Claude Opus 5.5</a>
+      <a href="/models/claude4s.html">Claude Sonnet 5.5</a>
+      <a href="/models/claude4h.html">Claude Haiku 5.5</a>
+      <a href="/models/gem25p.html">Gemini 4 Argon</a>
+      <a href="/models/gem25f.html">Gemini 3.8 Flash</a>
+      <a href="/models/gem35fl.html">Gemini 3.5 Flash Lite</a>
+      <a href="/models/dsv4f.html">DeepSeek V4.1 Flash</a>
       <a href="/models/dsv4p.html">DeepSeek V4 Pro</a>
-      <a href="/models/mimov25.html">MiMo V2.5</a>
-      <a href="/models/mimov25p.html">MiMo V2.5 Pro</a>
-      <a href="/models/qwen3m.html">Qwen3 Max</a>
-      <a href="/models/qw32p.html">Qwen3 Plus</a>
-      <a href="/models/mistrall.html">Mistral Large</a>
-      <a href="/models/grok3.html">Grok 3</a>
+      <a href="/models/mimov25.html">MiMo V2.6 Flash</a>
+      <a href="/models/mimov25p.html">MiMo V2.6 Pro</a>
+      <a href="/models/qwen3m.html">Qwen3.8 Max</a>
+      <a href="/models/qw32p.html">Qwen3.8 Flash</a>
+      <a href="/models/mistrall.html">Mistral Large 4</a>
+      <a href="/models/mistral35.html">Mistral Medium 3.5</a>
+      <a href="/models/grok3.html">Grok 4.7</a>
+      <a href="/models/grok43.html">Grok 4.3</a>
   </div>
 </div>
 
 <footer class="footer" style="text-align:center">
   <div><a href="https://pingyeai.cn">pingyeai.cn</a> — 平野AI工具站</div>
-  <div>数据来源：OpenAI / DeepSeek 官方定价页面 · 其他模型定价仅供参考</div>
-  <div class="stats"><svg class="ico"><use href="#i-refresh"/></use></svg> 最后更新：2026-05-29 ｜ <svg class="ico ico-xl"><use href="#i-chart"/></use></svg> 收录20款API模型 + 8款订阅产品</div>
+  <div>价格来源：厂商官方定价页与公开模型索引 · 实际账单以厂商官网为准</div>
+  <div class="stats"><svg class="ico"><use href="#i-refresh"/></use></svg> 最后更新：2026-10-28 ｜ <svg class="ico ico-xl"><use href="#i-chart"/></use></svg> 收录20款API模型 + 8款订阅产品</div>
   <div><a href="/">首页</a> · <a href="/compare-ai-coding-tools">编程工具对比</a></div>
   <div class="footer-links-after" aria-hidden="true"></div>
 </footer>
@@ -641,33 +643,37 @@ const COLORS = { openai:'#0f3460', anthropic:'#d4a574', google:'#4285f4', deepse
 const BAR_COLORS = ['#0f3460','#1565c0','#d4a574','#8d6e63','#4285f4','#4fc3f7','#4caf50','#66bb6a','#9c27b0','#e91e63','#ff6f00','#f44336','#00897b','#546e7a','#795548','#37474f'];
 
 const apiModels = [
-  { id:'gpt55', name:'GPT-5.5', prov:'openai', input:5.00, output:30.00, cache:0.50, ctx:'1M', tags:['flagship','recent'], note:'旗舰推理模型' },
-  { id:'gpt54', name:'GPT-5.4', prov:'openai', input:2.50, output:15.00, cache:0.25, ctx:'1M', tags:['popular'], note:'性价比编程模型' },
-  { id:'gpt54m', name:'GPT-5.4 mini', prov:'openai', input:0.75, output:4.50, cache:0.075, ctx:'1M', tags:['cheap'], note:'最强mini模型' },
-  { id:'claude4o', name:'Claude 4 Opus', prov:'anthropic', input:15.00, output:75.00, cache:7.50, ctx:'200K', note:'旗舰推理+深度分析', tags:['flagship'] },
-  { id:'claude4s', name:'Claude 4 Sonnet', prov:'anthropic', input:3.00, output:15.00, cache:1.50, ctx:'1M', note:'平衡速度与质量', tags:['popular'] },
-  { id:'claude45h', name:'Claude Haiku 4.5', prov:'anthropic', input:1.00, output:5.00, cache:0.50, ctx:'200K', note:'最新轻量模型', tags:['cheap'] },
-  { id:'gem25p', name:'Gemini 2.5 Pro', prov:'google', input:1.25, output:10.00, cache:0.125, ctx:'1M', note:'长上下文+多模态', tags:['flagship'] },
-  { id:'gem25f', name:'Gemini 2.5 Flash', prov:'google', input:0.30, output:2.50, cache:0.03, ctx:'1M', note:'最快响应速度', tags:['cheap','popular'] },
-  { id:'dsv4f', name:'DeepSeek V4 Flash', prov:'deepseek', input:0.14, output:0.28, cache:0.0028, ctx:'1M', note:'思维链+1M上下文', tags:['cheap','best'] },
-  { id:'dsv4p', name:'DeepSeek V4 Pro', prov:'deepseek', input:0.435, output:0.87, cache:0.0036, ctx:'1M', note:'最新官方定价', tags:['popular','best'] },
-  { id:'mimov25', name:'MiMo V2.5', prov:'xiaomi', input:0.14, output:0.28, cache:0.0028, ctx:'128K', tags:['cheap','best'], note:'极致性价比，V2.5标准版' },
-  { id:'mimov25p', name:'MiMo V2.5 Pro', prov:'xiaomi', input:0.435, output:0.87, cache:0.0036, ctx:'128K', tags:['popular'], note:'旗舰推理模型' },
-  { id:'qwen3m', name:'Qwen3 Max', prov:'others', input:2.00, output:8.00, cache:null, ctx:'128K', note:'阿里旗舰', tags:['popular'] },
-  { id:'qw32p', name:'Qwen3 Plus', prov:'others', input:0.50, output:2.00, cache:null, ctx:'128K', note:'性价比之选', tags:['cheap'] },
-  { id:'mistrall', name:'Mistral Large', prov:'others', input:0.50, output:1.50, cache:null, ctx:'256K', note:'欧洲最强，大幅降价', tags:['cheap'] },
-  { id:'grok3', name:'Grok 3', prov:'others', input:3.00, output:15.00, cache:null, ctx:'128K', note:'xAI 旗舰', tags:['popular'] },
+  { id:"gpt55", name:"GPT-6 Astra", prov:"openai", input:10, output:50, cache:1, ctx:"1.05M", tags:["flagship","recent"], note:"旗舰推理模型" },
+  { id:"gpt54", name:"GPT-6.1 Terra", prov:"openai", input:1, output:5, cache:0.05, ctx:"1.05M", tags:["popular","best"], note:"主力性价比模型" },
+  { id:"gpt54m", name:"GPT-6 Luna", prov:"openai", input:0.1, output:0.5, cache:0.01, ctx:"1.05M", tags:["cheap"], note:"低成本轻量模型" },
+  { id:"gpt61s", name:"GPT-6.1 Sol", prov:"openai", input:2, output:10, cache:0.1, ctx:"1.05M", tags:["popular"], note:"高性能推理" },
+  { id:"claude4o", name:"Claude Opus 5.5", prov:"anthropic", input:4, output:20, cache:0.2, ctx:"1M", tags:["flagship"], note:"Agent 编程旗舰" },
+  { id:"claude4s", name:"Claude Sonnet 5.5", prov:"anthropic", input:2, output:10, cache:0.1, ctx:"1M", tags:["popular","best"], note:"性能与成本平衡" },
+  { id:"claude4h", name:"Claude Haiku 5.5", prov:"anthropic", input:0.1, output:0.5, cache:0.01, ctx:"1M", tags:["cheap"], note:"轻量快速，长上下文加价" },
+  { id:"gem25p", name:"Gemini 4 Argon", prov:"google", input:2, output:10, cache:0.1, ctx:"1M", tags:["flagship","recent"], note:"新一代旗舰模型" },
+  { id:"gem25f", name:"Gemini 3.8 Flash", prov:"google", input:0.825, output:4.125, cache:0.0825, ctx:"1M", tags:["popular"], note:"主力高速模型" },
+  { id:"gem35fl", name:"Gemini 3.5 Flash Lite", prov:"google", input:0.3, output:2.5, cache:0.03, ctx:"1M", tags:["cheap"], note:"低成本轻量模型" },
+  { id:"dsv4f", name:"DeepSeek V4.1 Flash", prov:"deepseek", input:0.3, output:1.2, cache:0.006, ctx:"1M", tags:["cheap","best"], note:"高峰价，低峰五折" },
+  { id:"dsv4p", name:"DeepSeek V4 Pro", prov:"deepseek", input:1.32, output:3.96, cache:0.044, ctx:"1M", tags:["popular"], note:"高峰价，低峰五折" },
+  { id:"mimov25", name:"MiMo V2.6 Flash", prov:"xiaomi", input:0.14, output:0.28, cache:0.0028, ctx:"1M", tags:["cheap","best"], note:"极致性价比" },
+  { id:"mimov25p", name:"MiMo V2.6 Pro", prov:"xiaomi", input:0.435, output:0.87, cache:0.0036, ctx:"1M", tags:["popular"], note:"旗舰推理与 Agent" },
+  { id:"qwen3m", name:"Qwen3.8 Max", prov:"others", input:2, output:6, cache:0.25, ctx:"1M", tags:["popular"], note:"阿里旗舰推理" },
+  { id:"qw32p", name:"Qwen3.8 Flash", prov:"others", input:0.15, output:0.47, cache:0.016, ctx:"1M", tags:["cheap"], note:"低成本高速模型" },
+  { id:"mistrall", name:"Mistral Large 4", prov:"others", input:1.36, output:4.18, cache:0.14, ctx:"1M", tags:[], note:"欧洲旗舰模型" },
+  { id:"mistral35", name:"Mistral Medium 3.5", prov:"others", input:1.5, output:7.5, cache:null, ctx:"262K", tags:[], note:"中端多语言模型" },
+  { id:"grok3", name:"Grok 4.7", prov:"others", input:2, output:6, cache:0.5, ctx:"500K", tags:["popular","recent"], note:"xAI 新一代旗舰" },
+  { id:"grok43", name:"Grok 4.3", prov:"others", input:1.25, output:2.5, cache:0.2, ctx:"1M", tags:["cheap"], note:"高性价比通用模型" },
 ];
 
 const subModels = [
-  { name:'ChatGPT Plus', price:'$20/月', models:'GPT-5.5, GPT-5.4, GPT-5.4 mini', limit:'有使用上限，消息数增加', suit:'日常使用、轻度编程' },
-  { name:'ChatGPT Pro', price:'$200/月', models:'GPT-5.5 无限', limit:'无限使用，优先排队', suit:'重度用户、专业开发' },
-  { name:'Claude Pro', price:'$20/月', models:'Claude 4 Sonnet, Haiku 4.5', limit:'有使用上限', suit:'深度分析、写作' },
-  { name:'Claude Max', price:'$100/月', models:'Claude 4 Opus 无限', limit:'无限使用', suit:'企业级深度分析' },
-  { name:'Gemini Advanced', price:'$19.99/月', models:'Gemini 2.5 Pro, Flash', limit:'有上限，含Google One', suit:'多模态、长上下文' },
-  { name:'DeepSeek Chat', price:'免费', models:'V4 Flash + Pro', limit:'无限免费', suit:'轻度使用、尝鲜' },
-  { name:'GitHub Copilot', price:'$10/月', models:'GPT-5.4, Claude 4 Sonnet', limit:'2000次/月补全', suit:'开发者编程辅助' },
-  { name:'Cursor Pro', price:'$20/月', models:'GPT-5.5, Claude 4', limit:'500次高级模型/月', suit:'AI优先代码编辑器' },
+  { name:'ChatGPT Plus', price:'$20/月', models:'GPT-6.1 Terra, Sol, Luna', limit:'按套餐用量限制', suit:'日常使用、轻度编程' },
+  { name:'ChatGPT Pro', price:'$200/月', models:'GPT-6 Astra / GPT-6.1', limit:'更高用量上限', suit:'重度用户、专业开发' },
+  { name:'Claude Pro', price:'$20/月', models:'Claude Sonnet 5.5, Haiku 5.5', limit:'按套餐用量限制', suit:'深度分析、写作' },
+  { name:'Claude Max', price:'$100/月起', models:'Claude Opus 5.5 等', limit:'更高用量上限', suit:'企业级深度分析' },
+  { name:'Google AI Pro', price:'$19.99/月', models:'Gemini 4 Argon, 3.8 Flash', limit:'按套餐用量限制', suit:'多模态、长上下文' },
+  { name:'DeepSeek Chat', price:'免费', models:'V4.1 Flash + V4 Pro', limit:'按平台规则', suit:'轻度使用、尝鲜' },
+  { name:'GitHub Copilot Pro', price:'$10/月', models:'多家主流代码模型', limit:'按套餐用量限制', suit:'开发者编程辅助' },
+  { name:'Cursor Pro', price:'$20/月', models:'GPT-6.1 / Claude 5.5 等', limit:'按套餐用量限制', suit:'AI优先代码编辑器' },
 ];
 
 function renderApiTable(data){

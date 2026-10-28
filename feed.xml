@@ -6,11 +6,6 @@
     <description>AI工具使用心得、踩坑记录、实战教程</description>
     <language>zh-CN</language>
   <item>
-    <title><![CDATA[产品做出来了，别人还是没看懂]]></title>
-    <link>https://pingyeai.cn/blog/ai-product-launch-narrative</link>
-    <guid>https://pingyeai.cn/blog/ai-product-launch-narrative</guid>
-  </item>
-  <item>
     <title><![CDATA[TRAE Work积分制上线，6招帮你省30%积分和token]]></title>
     <link>https://pingyeai.cn/blog/trae-work-credit-6-tips</link>
     <guid>https://pingyeai.cn/blog/trae-work-credit-6-tips</guid>
@@ -154,6 +149,11 @@
     <title><![CDATA[AI 开发小程序 PDCA 工作流]]></title>
     <link>https://pingyeai.cn/blog/ai-mini-program-pdca-workflow</link>
     <guid>https://pingyeai.cn/blog/ai-mini-program-pdca-workflow</guid>
+  </item>
+  <item>
+    <title><![CDATA[产品做出来了，别人还是没看懂]]></title>
+    <link>https://pingyeai.cn/blog/ai-product-launch-narrative</link>
+    <guid>https://pingyeai.cn/blog/ai-product-launch-narrative</guid>
   </item>
   </channel>
 </rss>
